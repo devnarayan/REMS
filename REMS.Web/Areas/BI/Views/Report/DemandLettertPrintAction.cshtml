@@ -1,0 +1,103 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>BackupReceiptPrint</title>
+    <link href="~/Content/css/your_style.css" rel="stylesheet" />
+    <script src="~/Scripts/angular.js"></script>
+    <script src="~/AgController/Reportjs.js"></script>
+    @*<script src="~/Scripts/moment.min.js"></script>
+    <script src="~/Scripts/moment-with-locales.min.js"></script>
+    <script src="~/Scripts/angular.js"></script>
+    <link rel="stylesheet" type="text/css" media="screen" href="~/Content/css/style.css">
+    <script src="~/Scripts/ngController/Reportjs.js"></script>*@
+    @* <script src="~/Scripts/ngController/ManagePayjs.js"></script>*@
+</head>
+<body data-ng-app="BIApp" lang="EN-US">
+    <div id="ReceiptPritable" data-ng-controller="ReportController">
+        <div id="loading">
+            <img id="loading-image" src="~/images/loading.gif" alt="Loading..." />
+        </div>
+        <div data-ng-init="DemandLetterPrintPrintAction()">
+            <input type="hidden" id="hidID" name="hidID" value="@ViewBag.ID" />
+            <div data-ng-repeat="pr in PrintReceiptList">
+                <div>
+                    <b style="font-size: 15px">
+                            <p style="text-align: center">DEMAND LETTER </p>
+                            To,<span style="float: right">Date: {{pr.LetterDateSt}}</span>
+                            <br />
+                            <br />
+                            <br />
+                            {{pr.CustomerName}}
+                        <br />
+                        <br />
+Dear Sir/Madam,
+                            <br />
+                            <br />
+                            <br />
+
+                           
+                            <p style="margin-left:50px">
+                            Re: Property as Booked by you in the Project Called {{pr.ProjectName}}.
+                                </p>
+                        <br />
+                            <br />
+                            <br />
+                           
+                            We refer to the allotment letter dated {{pr.LetterDateSt}} whereby you were allotted COMMERCIAL CUM
+OFFICE SPACE NO. {{pr.FlatName}} at {{pr.PropertyAddress}}, the details of which were duly explained to
+you.
+                        <br />
+                            <br />
+                            <br />
+                            <br />
+                            The detailed schedule of payment was also duly intimated to you while giving the said
+letter of allotment and you were required to pay the installments of the property
+under the specific payment plan as per the said schedule of payment Amount of Rs. {{pr.DueAmount}}  is due as per our records, it seems that the same has not been paid.
+                        <br />
+                            We do hereby request you to kind remit the said amount of RS.{{pr.DueAmount}} on or before
+date {{pr.DueDateST}} lest you shall be liable to pay interest thereof {{pr.InterestRate}} % per annum.
+However, in case you have already made the said payment, you are requested to
+
+provide us with the necessary copies of the same.<br />
+                            <br />
+                            <br />
+                            <br />
+                            Thanking you and assuring you of our cooperation at all times.
+Yours Faithfully,
+                        <br /><br />
+                            For {{pr.CompanyName}}
+                    </b>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script src="~/Scripts/jquery-2.1.3.min.js"></script>
+    @*<script src="~/Content/js/jquery-1.7.2.min.js"></script>
+    <script src="~/Content/js/jquery-ui-1.8.19.custom.min.js"></script>
+    <link href="~/Content/css/jquery-ui-1.8.19.custom.css" rel="stylesheet" />*@
+</body>
+</html>

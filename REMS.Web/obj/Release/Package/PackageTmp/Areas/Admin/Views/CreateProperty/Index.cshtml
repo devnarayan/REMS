@@ -1,0 +1,63 @@
+﻿@{
+    ViewBag.Title = "AddCharges";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- MAIN CONTENT -->
+<div id="content" data-ng-app="PropertyApp" data-ng-controller="PropertyController">
+    <!-- row -->
+    <div class="row" data-ng-init="AddFlatInit()">
+        <!-- col -->
+        <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+            <h1 class="page-title txt-color-blueDark">
+                <!-- PAGE HEADER --><i class="fa-fw fa fa-home"></i> Tower View <span>
+                    >
+                    Flats
+                </span>
+            </h1>
+        </div>
+        <!-- end col -->
+        <!-- right side of the page with the sparkline graphs -->
+        <!-- col -->
+        <div class="col-xs-12 col-sm-5 col-md-5 col-lg-8">
+            <!-- sparks -->
+            <div class="row smart-form">
+                <div class="col col-8">
+                    <label class="select">
+                        <select name="TowerID" id="TowerID">
+                            <option value="0" selected="" disabled="">Select Tower</option>
+                            <option data-ng-repeat="tw in TowerList" value="{{tw.TowerID}}">{{tw.TowerName}}</option>
+                        </select> <i></i>
+                    </label>
+                </div>
+                <div class="col col-2">
+                    <input type="button" data-ng-click="ViewTowerMatrix()" value="View" class="btn btn-primary btn-lg" />
+                </div>
+            </div>
+            <!-- end sparks -->
+        </div>
+        <!-- end col -->
+    </div>
+    <!-- end row -->
+    <!-- row -->
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="well well-sm">
+                <!-- Timeline Content -->
+                <div class="smart-timeline">
+                    <ul class="smart-timeline-list" id="TowerHtml">
+                   
+                     </ul>
+                </div>
+                <!-- END Timeline Content -->
+            </div>
+        </div>
+    </div>
+    <!-- end row -->
+    <!-- Modal -->
+
+</div>
+<!-- END MAIN CONTENT -->
+@section pagespecific {
+    <script src="~/AgController/Propertyjs.js"></script>
+}

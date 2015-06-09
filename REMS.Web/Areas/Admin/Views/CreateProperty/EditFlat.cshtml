@@ -1,0 +1,524 @@
+﻿@{
+    ViewBag.Title = "AddCharges";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- MAIN CONTENT -->
+<div id="content" data-ng-app="PropertyApp" data-ng-controller="PropertyController">
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+            <h1 class="page-title txt-color-blueDark">
+                <!-- PAGE HEADER -->
+                <i class="fa-fw fa fa-flag"></i>
+                Flat/Property
+                <span>
+                    >
+                    Manage
+                </span>
+            </h1>
+        </div>
+        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+            <!-- Button trigger modal -->
+        </div>
+    </div>
+    <div id="MessageArea" class="alert alert-block alert-{{MessageClass}}" style="display:none;">
+        <a class="close" data-dismiss="alert" href="#">×</a>
+        <h4 class="alert-heading"><i class="fa fa-check-square-o"></i> {{MessageTitle}}</h4>
+        <p>
+            {{Message}}
+        </p>
+    </div>
+    <!-- widget grid -->
+    <section id="widget-grid" class="" data-ng-init="EditFlatInit()">
+
+        <div class="row" id="headdiv">
+            <article class="col-sm-12 col-md-12 col-lg-12">
+                <!-- Widget ID (each widget will need unique ID)-->
+                <div class="jarviswidget" id="wid-id-1" data-widget-editbutton="false" data-widget-custombutton="false">
+                    <!-- widget options:
+                usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+
+                data-widget-colorbutton="false"
+                data-widget-editbutton="false"
+                data-widget-togglebutton="false"
+                data-widget-deletebutton="false"
+                data-widget-fullscreenbutton="false"
+                data-widget-custombutton="false"
+                data-widget-collapsed="true"
+                data-widget-sortable="false"
+
+            -->
+                    <header>
+                        <span class="widget-icon"> <i class="fa fa-building-o"></i> </span>
+                        <h2>Select Tower and  Floor</h2>
+                    </header>
+                    <!-- widget div-->
+                    <div>
+                        <!-- widget edit box -->
+                        <div class="jarviswidget-editbox">
+                            <!-- This area used as dropdown edit box -->
+                        </div>
+                        <!-- end widget edit box -->
+                        <!-- widget content -->
+                        <div class="widget-body">
+                            <form id="checkout-form2" class="smart-form" novalidate="novalidate">
+                                <header>
+                                    <div class="row">
+                                        <section class="col col-4">
+                                            <label>Select Tower - {{flat.TowerName}}</label>
+                                            <label class="select">
+                                                <select name="TowerID" data-ng-model="flat.TowerID" data-ng-change="towerChange()" id="TowerID">
+                                                    <option value="0" selected="" disabled="">Select Tower</option>
+                                                    <option data-ng-repeat="flat in TowerList" value="{{flat.TowerID}}">{{flat.TowerName}}</option>"
+                                                </select>
+                                            </label>
+                                        </section>
+                                        <section class="col col-4">
+                                            <label>Select Floor</label>
+                                            <label class="select">
+                                                <select name="FloorID" data-ng-model="flat.FloorID" id="FloorID">
+                                                    <option value="0" selected="" disabled="">Select Floor</option>
+                                                    <option data-ng-repeat="tw in FloorList" value="{{tw.FloorID}}">{{tw.FloorName}}</option>"
+                                                </select>
+                                            </label>
+                                        </section>
+                                        <section class="col col-4">
+                                            <input type="hidden" id="hidFlatID" name="hidFlatID" value="@ViewBag.FlatID" />
+                                            <input type="hidden" id="hidFloorID" name="hidFloorID" value="@ViewBag.FloorID" /><br />
+                                            <p class="btn btn-primary btn-sm" data-ng-click="ViewAllFlatClick()"><i class="fa fa-search"></i> View</p>
+                                        </section>
+                                    </div>
+                                </header>
+                            </form>
+                        </div>
+                        <!-- end widget content -->
+                    </div>
+                    <!-- end widget div -->
+                </div>
+                <!-- end widget -->
+
+            </article>
+        </div>
+        <!-- START ROW -->
+        <div class="row" id="contentdiv">
+            <!-- NEW COL START -->
+            <article class="col-sm-12 col-md-12 col-lg-6">
+                <!-- Widget ID (each widget will need unique ID)-->
+                <div class="jarviswidget" id="wid-id-1" data-widget-editbutton="false" data-widget-custombutton="false">
+                    <!-- widget options:
+                        usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+
+                        data-widget-colorbutton="false"
+                        data-widget-editbutton="false"
+                        data-widget-togglebutton="false"
+                        data-widget-deletebutton="false"
+                        data-widget-fullscreenbutton="false"
+                        data-widget-custombutton="false"
+                        data-widget-collapsed="true"
+                        data-widget-sortable="false"
+
+                    -->
+                    <header>
+                        <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+                        <h2>Manage Floor</h2>
+                    </header>
+                    <!-- widget div-->
+                    <div>
+                        <!-- widget edit box -->
+                        <div class="jarviswidget-editbox">
+                            <!-- This area used as dropdown edit box -->
+                        </div>
+                        <!-- end widget edit box -->
+                        <!-- widget content -->
+                        <div class="widget-body">
+                            <form id="checkout-form" class="smart-form" novalidate="novalidate">
+                              
+                                <fieldset>
+                                    <div class="row">
+                                        <section class="col col-5">
+                                            <label class="select">
+                                                <select name="FlatTypeList" id="FlatTypeList" data-ng-change="ChangeFlatType()" data-ng-model="flat.FlatType">
+                                                    <option value="0" selected="" disabled="">Select Flat Type</option>
+                                                    <option data-ng-repeat="ftl in FlatTypeList" value="{{ftl.FType}}">{{ftl.FType}}</option>
+                                                </select> <i></i>
+                                            </label>
+                                        </section>
+                                        <section class="col col-5">
+                                            <label class="input">
+                                                <i class="icon-prepend fa fa-check-circle"></i>
+                                                <input type="text" name="FlatNo" data-ng-model="flat.FlatNo" placeholder="Flat/Property No">
+                                            </label>
+                                        </section>
+                                    </div>
+                                    <div class="row">
+                                        <section class="col col-10">
+                                            <label class="select">
+                                                <select name="TowerList"  data-ng-model="flat.FlatSize">
+                                                    <option value="0" selected="" disabled="">Select Flat Type Size</option>
+                                                    <option data-ng-repeat="ftsl in FlatTypeSizeList" value="{{ftsl.Size}}">{{ftsl.Size}}</option>
+                                                </select> <i></i>
+                                            </label>
+                                        </section>
+                                    </div>
+                                    <div class="row">
+                                        <section class="col col-5">
+                                            <label class="input">
+                                                <i class="icon-prepend fa fa-check-circle"></i>
+                                                <input type="text" name="SalePrice" data-ng-model="flat.SalePrice" placeholder="Sale Price">
+                                            </label>
+                                        </section>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col col-10" id="flatplchtml">
+
+                                        </div>
+                                    </div>
+                                    @*<section>
+                                        <label class="label">Select Amenities</label>
+                                        <div class="row">
+                                            <div class="col col-4">
+                                                <label class="checkbox">
+                                                    <input type="checkbox" name="checkbox" checked="checked">
+                                                    <i></i>Bad Rooms
+                                                </label>
+                                                <label class="checkbox">
+                                                    <input type="checkbox" name="checkbox">
+                                                    <i></i>Furnished
+                                                </label>
+                                                <label class="checkbox">
+                                                    <input type="checkbox" name="checkbox">
+                                                    <i></i>Corner Flat
+                                                </label>
+                                            </div>
+                                            <div class="col col-4">
+                                                <label class="checkbox">
+                                                    <input type="checkbox" name="checkbox">
+                                                    <i></i>Living Room
+                                                </label>
+                                                <label class="checkbox">
+                                                    <input type="checkbox" name="checkbox">
+                                                    <i></i>ServantRoom
+                                                </label>
+                                                <label class="checkbox">
+                                                    <input type="checkbox" name="checkbox">
+                                                    <i></i>Kitchen
+                                                </label>
+                                            </div>
+                                            <div class="col col-4">
+                                                <label class="checkbox">
+                                                    <input type="checkbox" name="checkbox">
+                                                    <i></i>Balconies
+                                                </label>
+                                                <label class="checkbox">
+                                                    <input type="checkbox" name="checkbox">
+                                                    <i></i>Bath Rooms
+                                                </label>
+                                                <label class="checkbox">
+                                                    <input type="checkbox" name="checkbox">
+                                                    <i></i>Pooja Room
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col col-4">
+                                                <label class="checkbox">
+                                                    <input type="checkbox" name="checkbox" checked="checked">
+                                                    <i></i>Study Room
+                                                </label>
+                                                <label class="checkbox">
+                                                    <input type="checkbox" name="checkbox">
+                                                    <i></i>AC
+                                                </label>
+                                                <label class="checkbox">
+                                                    <input type="checkbox" name="checkbox">
+                                                    <i></i>GASLine
+                                                </label>
+                                            </div>
+                                            <div class="col col-4">
+                                                <label class="checkbox">
+                                                    <input type="checkbox" name="checkbox">
+                                                    <i></i>Intercom
+                                                </label>
+                                                <label class="checkbox">
+                                                    <input type="checkbox" name="checkbox">
+                                                    <i></i>Cupboards
+                                                </label>
+                                                <label class="checkbox">
+                                                    <input type="checkbox" name="checkbox">
+                                                    <i></i>HomeAutomation
+                                                </label>
+                                            </div>
+                                            <div class="col col-4">
+                                                <label class="checkbox">
+                                                    <input type="checkbox" name="checkbox">
+                                                    <i></i>WashingArea
+                                                </label>
+                                                <label class="checkbox">
+                                                    <input type="checkbox" name="checkbox">
+                                                    <i></i>PowerBackup
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </section>*@
+                                </fieldset>
+                                <footer>
+                                    <button type="submit" id="btnUpdate" data-ng-click="UpdateFlatSave()" class="btn btn-primary">
+                                        Update
+                                    </button>
+                                    <button type="submit" data-ng-click="AddFlatSave()" id="btnSave" class="btn btn-primary">
+                                        Save
+                                    </button>
+                                    <button type="submit" data-ng-click="CancelFlat()" id="btnSave" class="btn btn-default">
+                                        Cancel
+                                    </button>
+                                </footer>
+                            </form>
+                        </div>
+                        <!-- end widget content -->
+                    </div>
+                    <!-- end widget div -->
+                </div>
+                <!-- end widget -->
+
+            </article>
+            <!-- END COL -->
+            <!-- NEW COL START -->
+            <article class="col-sm-12 col-md-12 col-lg-6">
+                <!-- Widget ID (each widget will need unique ID)-->
+                <div class="jarviswidget" id="wid-id-2" data-widget-editbutton="false" data-widget-custombutton="false">
+                    <!-- widget options:
+                        usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+
+                        data-widget-colorbutton="false"
+                        data-widget-editbutton="false"
+                        data-widget-togglebutton="false"
+                        data-widget-deletebutton="false"
+                        data-widget-fullscreenbutton="false"
+                        data-widget-custombutton="false"
+                        data-widget-collapsed="true"
+                        data-widget-sortable="false"
+
+                    -->
+                    <header>
+                        <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+                        <h2>Flat/Property List</h2>
+                    </header>
+                    <!-- widget div-->
+                    <div>
+                        <!-- widget edit box -->
+                        <div class="jarviswidget-editbox">
+                            <!-- This area used as dropdown edit box -->
+                        </div>
+                        <!-- end widget edit box -->
+                        <!-- widget content -->
+                        <div class="widget-body">
+                            <form id="checkout-form3" class="smart-form" novalidate="novalidate">
+                                <fieldset>
+                                    <div class="row">
+                                        <section class="col-md-12">
+                                            <table id="dt_basic" class="table table-striped table-bordered table-hover" width="100%">
+                                                <thead>
+                                                    <tr>
+                                                        <th data-hide="phone">Flat No</th>
+                                                        <th data-class="expand"><i class="fa fa-fw fa-align-left text-muted hidden-md hidden-sm hidden-xs"></i> Flat Type</th>
+                                                        <th data-class="expand"><i class=" text-muted hidden-md hidden-sm hidden-xs"></i> Size</th>
+                                                        <th data-class="expand"><i class="fa fa-fw fa-rupee text-muted hidden-md hidden-sm hidden-xs"></i> Price</th>
+                                                        <th data-hide="phone,tablet"><i class="fa fa-fw fa-map-marker txt-color-blue hidden-md hidden-sm hidden-xs"></i> Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr data-ng-repeat="fl in FlatList">
+                                                        <td data-ng-click="SelectFlat(fl.FlatID)" class="pointer"><a href="#"> {{fl.FlatNo}}</a></td>
+                                                        <td>{{fl.FlatType}}</td>
+                                                        <td>{{fl.FlatSize}}</td>
+                                                        <td>{{fl.SalePrice}}</td>
+                                                        <td>
+                                                            <span><i class="fa fa-edit pointer" data-ng-click="EditFlat(fl.FlatID)"></i> &nbsp;&nbsp;
+                                                                <i class="fa fa-trash-o pointer" data-ng-click="EditFlat(fl.FlatID)" data-toggle="modal" href="#myModal"></i></span>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </section>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                        <!-- end widget content -->
+                    </div>
+                    <!-- end widget div -->
+                </div>
+                <!-- end widget -->
+                <div class="jarviswidget" id="wid-id-3" data-widget-editbutton="false" data-widget-custombutton="false">
+                    <!-- widget options:
+                        usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+
+                        data-widget-colorbutton="false"
+                        data-widget-editbutton="false"
+                        data-widget-togglebutton="false"
+                        data-widget-deletebutton="false"
+                        data-widget-fullscreenbutton="false"
+                        data-widget-custombutton="false"
+                        data-widget-collapsed="true"
+                        data-widget-sortable="false"
+
+                    -->
+                    <header>
+                        <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+                        <h2>Manage Additional Charges</h2>
+                    </header>
+                    <!-- widget div-->
+                    <div>
+                        <!-- widget edit box -->
+                        <div class="jarviswidget-editbox">
+                            <!-- This area used as dropdown edit box -->
+                        </div>
+                        <!-- end widget edit box -->
+                        <!-- widget content -->
+                        <div class="widget-body">
+                            <form id="checkout-form4" class="smart-form" novalidate="novalidate">
+                                <header>
+                                    <div class="row" id="addtionalchargediv">
+                                        <section class="col col-8">
+                                            <label class="select">
+                                                <select name="AdditionalChage" data-ng-model="flat.AdditionalChargeID" id="AdditionalChage">
+                                                    <option value="0" selected="" disabled="">Select Additional Charges</option>
+                                                    <option data-ng-repeat="adc in AdditionalChargeList" value="{{adc.AdditionalChargeID}}">{{adc.Name}}</option>
+                                                </select> <i></i>
+                                            </label>
+                                        </section>
+                                        <section class="col col-4">
+                                            <p class="btn btn-primary btn-lg pointer" data-ng-click="AddAdditionalCharge()"><i class="fa fa-plus-circle"></i> Add</p>
+                                        </section>
+                                    </div>
+                                </header>
+                                <fieldset>
+                                    <div class="row">
+                                        <section class="col-md-12">
+                                            <table id="dt_basic" class="table table-striped table-bordered table-hover" width="100%">
+                                                <thead>
+                                                    <tr>
+                                                        <th data-hide="phone">ID</th>
+                                                        <th data-class="expand"><i class="fa fa-fw fa-align-left text-muted hidden-md hidden-sm hidden-xs"></i> Additional Charges</th>
+                                                        <th data-class="expand"><i class="fa fa-fw fa-rupee text-muted hidden-md hidden-sm hidden-xs"></i> Amount</th>
+                                                        <th data-hide="phone,tablet"><i class="fa fa-fw fa-map-marker txt-color-blue hidden-md hidden-sm hidden-xs"></i> Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr data-ng-repeat="fcharge in FlatChargeList">
+                                                        <td>{{fcharge.AdditionalChargeID}}</td>
+                                                        <td>{{fcharge.ChargeName}}</td>
+                                                        <td>{{fcharge.Amount}}</td>
+                                                        <td>
+                                                            <span><i class="fa fa-trash-o pointer" data-ng-click="DeleteFlatCharge(fcharge.FlatChargeID)"></i></span>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </section>
+                                    </div>
+                                </fieldset>
+                            </form>
+                            <form id="checkout-form1" class="smart-form" novalidate="novalidate">
+                                <header>
+                                    <div class="row" id="addtionalchargediv">
+                                        <section class="col col-8">
+                                            <label class="select">
+                                                <select name="AddOnChage" data-ng-model="flat.AddOnChargeID" id="AddOnCharge">
+                                                    <option value="0" selected="" disabled="">Select Optional Charges</option>
+                                                    <option data-ng-repeat="adc in AddOnChargeList" value="{{adc.AddOnChargeID}}">{{adc.Name}}</option>
+                                                </select> <i></i>
+                                            </label>
+                                        </section>
+                                        <section class="col col-4">
+                                            <p class="btn btn-primary btn-lg pointer" data-ng-click="AddAddOnCharge()"><i class="fa fa-plus-circle"></i> Add</p>
+                                        </section>
+                                    </div>
+                                </header>
+                                <fieldset>
+                                    <div class="row">
+                                        <section class="col-md-12">
+                                            <table id="dt_basic" class="table table-striped table-bordered table-hover" width="100%">
+                                                <thead>
+                                                    <tr>
+                                                        <th data-hide="phone">ID</th>
+                                                        <th data-class="expand"><i class="fa fa-fw fa-align-left text-muted hidden-md hidden-sm hidden-xs"></i> AddOn Charges</th>
+                                                        <th data-class="expand"><i class="fa fa-fw fa-rupee text-muted hidden-md hidden-sm hidden-xs"></i> Amount</th>
+                                                        <th data-hide="phone,tablet"><i class="fa fa-fw fa-map-marker txt-color-blue hidden-md hidden-sm hidden-xs"></i> Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr data-ng-repeat="fcharge in FlatOChargeList">
+                                                        <td>{{fcharge.FlatOChargeID}}</td>
+                                                        <td>{{fcharge.ChargeName}}</td>
+                                                        <td>{{fcharge.Amount}}</td>
+                                                        <td>
+                                                            <span><i class="fa fa-trash-o pointer" data-ng-click="DeleteFlatOCharge(fcharge.FlatOChargeID)"></i></span>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </section>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                        <!-- end widget content -->
+                    </div>
+                    <!-- end widget div -->
+                </div>
+                <!-- end widget -->
+            </article>
+            <!-- END COL -->
+        </div>
+        <!-- END ROW -->
+    </section>
+    <!-- end widget grid -->
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title">
+                        <img src="/content/img/logo.png" width="150" alt="SmartAdmin">
+                    </h4>
+                </div>
+                <div class="modal-body no-padding">
+                    <form id="login-form" class="smart-form">
+                        <fieldset>
+                            <section>
+                                <div class="row">
+                                    <div class="col col-2"></div>
+                                    <div class="col col-10">
+                                        <label class="label-danger">
+                                            Are you sure want to delete flat ?
+                                        </label>
+                                    </div>
+                                </div>
+                            </section>
+                        </fieldset>
+                        <footer>
+                            <button type="submit" data-ng-click="DeleteFlat()" class="btn btn-primary">
+                                Delete
+                            </button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">
+                                Cancel
+                            </button>
+                        </footer>
+                    </form>
+
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+</div>
+<!-- END MAIN CONTENT -->
+@section pagespecific {
+    <script src="~/AgController/Propertyjs.js"></script>
+   
+}

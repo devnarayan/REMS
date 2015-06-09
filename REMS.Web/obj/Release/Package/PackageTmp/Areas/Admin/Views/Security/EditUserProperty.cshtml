@@ -1,0 +1,151 @@
+﻿@{
+    ViewBag.Title = "EditUserProperty";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- MAIN CONTENT -->
+<div id="content" data-ng-app="SecurityApp" data-ng-controller="SecurityController">
+    <div class="row">
+        <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+            <h1 class="page-title txt-color-blueDark">
+                <!-- PAGE HEADER -->
+                <i class="fa-fw fa fa-building-o"></i>
+                Edit Users Project
+                <span>
+                    >
+                    Manage
+                </span>
+            </h1>
+        </div>
+        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+            <!-- Button trigger modal -->
+        </div>
+    </div>
+    <div id="MessageArea" class="alert alert-block alert-{{MessageClass}}" style="display:none;">
+        <a class="close" data-dismiss="alert" href="#">×</a>
+        <h4 class="alert-heading"><i class="fa fa-check-square-o"></i> {{MessageTitle}}</h4>
+        <p>
+            {{Message}}
+        </p>
+    </div>
+    <!-- widget grid -->
+    <section id="widget-grid" class="" data-ng-init="EditUserPropertyInit()">
+
+        <!-- START ROW -->
+        <div class="row">
+            <!-- NEW COL START -->
+            <article class="col-sm-12 col-md-12 col-lg-12">
+                <!-- Widget ID (each widget will need unique ID)-->
+                <div class="jarviswidget" id="wid-id-1" data-widget-editbutton="false" data-widget-custombutton="false">
+                    <!-- widget options:
+                        usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+
+                        data-widget-colorbutton="false"
+                        data-widget-editbutton="false"
+                        data-widget-togglebutton="false"
+                        data-widget-deletebutton="false"
+                        data-widget-fullscreenbutton="false"
+                        data-widget-custombutton="false"
+                        data-widget-collapsed="true"
+                        data-widget-sortable="false"
+
+                    -->
+                    <header>
+                        <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+                        <h2>Manage Role Access Rights</h2>
+                    </header>
+                    <!-- widget div-->
+                    <div>
+                        <!-- widget edit box -->
+                        <div class="jarviswidget-editbox">
+                            <!-- This area used as dropdown edit box -->
+                        </div>
+                        <!-- end widget edit box -->
+                        <!-- widget content -->
+                        <div class="widget-body">
+                            <form id="checkout-form" class="smart-form" novalidate="novalidate">
+                                <fieldset>
+                                    <div class="row">
+                                        <div class="col-sm-12 smart-form">
+                                            <div id="comment-form" class="smart-form">
+                                                <fieldset>
+                                                    <div class="row">
+                                                        <div class="col-md-12 text-center">
+                                                            {{status}}
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col col-md-offset-2 col-md-2">Select User Name</div>
+                                                        <div class="col col-md-4">
+                                                            <select id="UserName" class="form-control" data-ng-model="UserModel.UserName" name="UserName">
+                                                                <option data-ng-repeat="us in UserList" value="{{us.UserName}}">{{us.UserName}}</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col col-md-2">
+                                                            <button class="btn btn-primary btn-lg" data-ng-click="UsersPropertyAccessSearch()" type="submit">
+                                                                <i class="fa fa-search"></i>
+                                                                Search
+                                                            </button>
+                                                        </div>
+                                                        <div class="col col-md-2">
+                                                            <button class="btn btn-success btn-lg" data-ng-click="SaveEditUserProperty()" type="submit">
+                                                                <i class="fa fa-save"></i>
+                                                                Save
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="table-responsive">
+                                                                <table class="table table-bordered table-striped particular_tbl">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th><b>Select</b></th>
+                                                                            <th><b>Property Name</b></th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody id="tbodyhtml"></tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </fieldset>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <footer>
+                                    <button class="btn btn-primary pull-left" data-ng-click="SaveEditUserProperty()" type="submit">
+                                        <i class="fa fa-save"></i>
+                                        Save
+                                    </button>
+                                    <button class="btn btn-default pull-left btn_marg" type="submit">Cancel</button>
+                                </footer>
+                            </form>
+                        </div>
+                        <!-- end widget content -->
+                    </div>
+                    <!-- end widget div -->
+                </div>
+                <!-- end widget -->
+
+            </article>
+            <!-- END COL -->
+
+        </div>
+        <!-- END ROW -->
+    </section>
+    <!-- end widget grid -->
+</div>
+<!-- END MAIN CONTENT -->
+@section pagespecific {
+    <script src="~/AgController/Securityjs.js"></script>
+    <script>
+        $(function () {
+            $(".datecal").datepicker({
+                changeMonth: true,
+                changeYear: true,
+                yearRange: '1970:2090'
+            });
+        });
+    </script>
+}

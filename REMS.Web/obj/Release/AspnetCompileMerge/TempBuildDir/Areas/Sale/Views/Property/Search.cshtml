@@ -1,0 +1,329 @@
+﻿
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div  data-ng-app="PaymentApp" role="main">
+    <!-- MAIN CONTENT -->
+    <div id="content" data-ng-controller="PaymentController">
+
+        <div class="row">
+            <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+                <h1 class="page-title txt-color-blueDark"><i class="fa fa-building fa-fw "></i>Search Property</h1>
+            </div>
+            <div class="col-xs-12 col-sm-5 col-md-5 col-lg-8">
+
+            </div>
+        </div>
+
+        <!-- widget grid -->
+        <section id="widget-grid" class="" data-ng-init="RefundInit()">
+            <input type="hidden" id="hidFlatID" name="hidFlatID" value="@ViewBag.ID" />
+
+            <!-- row -->
+            <div class="row">
+
+                <!-- NEW WIDGET START -->
+                <article class="col-sm-12 col-md-12">
+
+                    <!-- Widget ID (each widget will need unique ID)-->
+                    <div class="jarviswidget" id="wid-id-2" data-widget-editbutton="false" data-widget-deletebutton="false">
+
+                        <header>
+                            <h2>Search Wizard </h2>
+                        </header>
+
+                        <!-- widget div-->
+                        <div>
+                            <!-- widget content -->
+                            <div class="widget-body fuelux">
+                                <div class="step-content">
+                                    <div class="form-horizontal" id="fuelux-wizard">
+                                        @*@using (Html.BeginForm("Search", "Home", new { area = "" }, FormMethod.Post)) {*@
+                                        <div class="form-content">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <b>Property:</b><br />
+                                                    <select name="TowerID" class="form-control" data-ng-change="TowerChange2()" data-ng-model="Flat.TowerID" id="searchby" required>
+                                                        <option data-ng-repeat="pro in TowerList" value="{{ pro.TowerID }}">{{pro.TowerName }}</option>
+                                                        <option value="All" selected="selected">All</option>                                                     
+                                                        <option value="Customer Name">Customer Name</option>
+                                                        <option value="BookingDate">Booking Date</option>
+                                                        <option value="SaleDate">Sale Date</option>
+                                                        <option value="This Month">This Month</option>
+                                                        <option value="Last 7 Days">Last 7 Days</option>
+                                                    </select>
+                                                    @*<select name="PropertyID" data-ng-change="PropertyName()" data-ng-model="newCust.PropertyID" id="PropertyID" class="form-control">
+                                                        <option value="All" selected="selected">All</option>
+                                                        <option data-ng-repeat="pro in Properties" value="{{ pro.PropertyID }}">{{ pro.PropertyName }}</option>
+                                                    </select>*@
+                                                </div>
+                                                <div class="col-md-4" id="searchflatname">
+                                                    <b>Search By:</b><br />
+                                                    <select name="FlatID" class="form-control" data-ng-model="Flat.FlatID" id="FlatID" required>
+                                                        <option data-ng-repeat="fl in FlatList" value="{{ fl.FlatID }}">{{ fl.FlatNo }}</option>
+                                                    </select>
+                                                    @*<input type="hidden" id="protypename" name="protypename">
+                                                    <select id="searchby" name="searchby" class="form-control">
+                                                        <option value="All" selected="selected">All</option>
+                                                        <option value="SubType">Property SubType</option>
+                                                        <option value="FlatName">Property Name</option>
+                                                        <option value="Customer Name">Customer Name</option>
+                                                        <option value="BookingDate">Booking Date</option>
+                                                        <option value="SaleDate">Sale Date</option>
+                                                        <option value="This Month">This Month</option>
+                                                        <option value="Last 7 Days">Last 7 Days</option>
+                                                    </select>*@
+                                                </div>
+
+                                                <div class="col-md-4">
+                                                    <br />
+                                                    <input type="submit" value="Search" data-ng-click="SearchProperty()" class="btn btn-primary" />
+                                                </div>
+                                            </div>
+                                            <div class="row" id="datediv">
+                                                <div class="col-md-4">
+                                                    <b>Date From:</b>
+                                                    <input type="date" name="datefrom" id="datefrom" class="form-control" />
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <b>Date To:</b>
+                                                    <input type="date" name="dateto" id="dateto" class="form-control" />
+                                                </div>
+
+                                            </div>
+                                            <div class="row" id="alldiv">
+                                                <div class="col-md-8">
+                                                    <b>Enter Search Query</b><br />
+                                                    <input type="text" id="searchtext" name="searchtext" class="form-control" />
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <br />
+                                                </div>
+                                            </div>
+                                            
+
+                                            <input type="hidden" name="hidsortby" id="hidsortby" />
+                                            <br />
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="table-responsive">
+                                                        <table class="table table-bordered table-striped particular_tbl">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th data-ng-click="reverse=!reverse;orderSearchList('BookingDateSt', reverse)" class="pointer">SaleDate <i class="fa fa-sort-down"></i> </th>
+                                                                    <th data-ng-click="reverse=!reverse;orderSearchList('FlatName', reverse)" class="pointer">Flat Name <i class="fa fa-sort-down"></i> </th>
+                                                                    <th data-ng-click="reverse=!reverse;orderSearchList('FName', reverse)" class="pointer">Name <i class="fa fa-sort-down"></i> </th>
+                                                                    <th data-ng-click="reverse=!reverse;orderSearchList('SaleRate', reverse)" class="pointer">SaleRate <i class="fa fa-sort-down"></i> </th>
+                                                                    <th><b>Status</b></th>
+                                                                    <th>
+                                                                        <b>Action</b>
+                                                                    </th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr data-ng-repeat="sr in SearchList">
+                                                                    <td>{{sr.BookingDateSt}}</td>
+                                                                    <td>{{sr.FlatName}}</td>
+                                                                    <td>{{sr.FName}}</td>
+                                                                    <td>{{sr.SaleRate}}</td>
+                                                                    <td>{{sr.Statusrecord}}</td>
+                                                                    <td>
+
+                                                                        <div class="dropdown">
+                                                                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Manage Property</a>
+                                                                            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                                                                @*<li> <a target="_blank" href="/Home/Summary/{{sr.SaleID}}" title="View Property Details" class=""><i class="fa fa-database"></i> View Summary</a></li>*@
+                                                                                <li> <a target="_blank" href="/Sale/Payment/Index/{{sr.FlatID}}" title="Submit Payment" class=""><i class="fa fa-rupee"></i> Submit Payment</a></li>
+                                                                                <li> <a target="_blank" href="/Customer/ManageCustomer/EditCustomer/{{sr.SaleID}}" title="Edit Customer" class=""><i class="fa fa-edit"></i> Edit Customer</a></li>
+                                                                                <li class="divider"></li>
+                                                                                <li><a target="_blank" href="/Customer/Transfer/TransferProperty/{{sr.FlatID}}" title="Transfer Property to another customer" class=""><i class="fa fa-list"></i> Transfer Property</a></li>
+                                                                                <li><a target="_blank" href="/Customer/Transfer/RefundProperty/{{sr.SaleID}}" title="Refund Property" class=""><i class="fa fa-reply"></i> Refund Property</a></li>
+                                                                                <li class="divider"></li>
+                                                                                <li><a target="_blank" href="/Customer/Document/GenerateAgreementAction/{{sr.SaleID}}" title="Download Agreement" class=""><i class="fa fa-download"></i> Download Agreement</a></li>
+                                                                                <li><a target="_blank" href="/Customer/Document/UploadAgreement/{{sr.SaleID}}" title="Upload Agreement" class=""><i class="fa fa-upload"></i> Upload Agreement</a></li>
+                                                                                @*<li><a target="_blank" href="/Customer/Document/GenerateAgreement/{{sr.SaleID}}" title="Welcome Letter" class=""><i class="fa fa-envelope"></i> Welcome Letter</a></li>*@
+                                                                                <li class="divider"></li>
+                                                                                <li><a target="_blank" href="/Customer/Broker/AttachBroker/{{sr.SaleID}}" title="Attach Broker" class=""><i class="fa fa-plus"></i> Add Broker To Property</a></li>
+                                                                                @*<li><a target="_blank" href="/Customer/Broker/PayBroker/{{sr.SaleID}}" title="Pay to Broker" class=""><i class="fa fa-rupee"></i> Pay To Broker Commission</a></li>*@
+                                                                                <li><a target="_blank" href="/Customer/Broker/ApprovePayment/{{sr.SaleID}}" title="Approve Broker Payment" class=""><i class="fa fa-angle-right"></i> Approve Broker Payments</a></li>
+                                                                                <li><a target="_blank" href="/Customer/Broker/Index/{{sr.SaleID}}" title="View Payments" class=""><i class="fa fa-rupee"></i> View Broker Payments</a></li>
+                                                                                <li><a target="_blank" href="/Customer/Broker/PaymentLadger/{{sr.SaleID}}" title="Broker Payment Ladger" class=""><i class="fa fa-list"></i> Broker Payment Ladger</a></li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr><td></td><td></td><td><b>Total</b></td><td><b>{{TotalSaleAmount}}</b></td><td></td><td></td></tr>
+                                                            </tbody>
+                                                        </table><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+
+                                        @*}*@
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end widget content -->
+                        </div>
+                        <!-- end widget div -->
+                    </div>
+                    <!-- end widget -->
+                </article>
+                <!-- WIDGET END -->
+            </div>
+            <!-- end row -->
+        </section>
+        <!-- end widget grid -->
+    </div>
+    <!-- END MAIN CONTENT -->
+    @*<script src="~/Content/js/jquery-1.7.2.min.js"></script>
+    <script src="~/Content/js/jquery-ui-1.8.19.custom.min.js"></script>
+    <link href="~/Content/css/jquery-ui-1.8.19.custom.css" rel="stylesheet" />
+    <script src="~/Scripts/ngController/Paymentjs.js"></script>*@
+</div>
+
+@section pagespecific { 
+<script src="~/AgController/Paymentjs.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $("#datediv").hide();
+        $("#alldiv").hide();
+        $("#searchflatname").hide();
+        $("#subtypediv").hide();
+        $scope.Flat.FlatID = 0;
+        if (localStorage.getItem("searchby") != null) {
+            $("#searchby").val(localStorage.getItem("searchby"));
+            $("#sortby").val(localStorage.getItem("sortby"));
+            $("#datefrom").val(localStorage.getItem("datefrom"));
+            $("#dateto").val(localStorage.getItem("dateto"));
+            $("#searchtext").val(localStorage.getItem("stext"));
+
+
+            var v = $("#sortby").val();
+            var vv = $("#searchby").val();
+            var df = $("#datefrom").val();
+            var dt = $("#dateto").val();
+            var stext = $("#searchtext").val();
+            if (vv.toString() == "All" || vv.toString() == "This Month" || vv.toString() == "Last 7 Days") {
+                $("#alldiv").hide();
+                $("#datediv").hide(); $("#subtypediv").hide(); $("#searchflatname").hide();
+                var Id = 0;
+                $("#hidFlatID").val(Id)
+            }
+            else {
+                if (vv.toString() == "BookingDate" || vv.toString() == "SaleDate") {
+                    $("#datediv").show();
+                    $("#alldiv").hide(); $("#subtypediv").hide(); $("#searchflatname").hide();
+                }
+                else if (vv.toString() == "Customer Name") {
+                    $("#alldiv").show();
+                    $("#datediv").hide();
+                    $("#searchflatname").hide();
+                    $("#subtypediv").hide();
+                }
+                else {
+                    $("#searchflatname").show();
+                    $("#alldiv").hide();
+                    $("#datediv").hide();
+                    $("#subtypediv").hide();
+                }
+            }
+        }
+    })
+    $("#sortby").change(function () {
+        var v = $("#sortby").val();
+        var vv = $("#searchby").val();
+        var df = $("#datefrom").val();
+        var dt = $("#dateto").val();
+        var stext = $("#searchtext").val();
+        localStorage.setItem("searchby", vv);
+        localStorage.setItem("sortby", v);
+        localStorage.setItem("datefrom", df);
+        localStorage.setItem("dateto", dt);
+        localStorage.setItem("stext", stext);
+
+        $("#hidsortby").val(v);
+        if (vv.toString() == "All" || vv.toString() == "This Month" || vv.toString() == "Last 7 Days") {
+            $("#alldiv").hide();
+            $("#datediv").hide(); $("#subtypediv").hide(); $("#searchflatname").hide();
+            $scope.Flat.FlatID = "0";
+        }
+        else {
+            if (vv.toString() == "BookingDate" || vv.toString() == "SaleDate") {
+                $("#datediv").show();
+                $("#alldiv").hide(); $("#subtypediv").hide(); $("#searchflatname").hide();
+            }
+            else if (vv.toString() == "Customer Name") {
+                $("#subtypediv").hide();
+                $("#alldiv").show();
+                $("#datediv").hide();
+                $("#searchflatname").hide();
+            }
+            else {
+                $("#searchflatname").show();
+                $("#alldiv").hide();
+                $("#datediv").hide();
+                $("#subtypediv").hide();
+            }
+        }
+    })
+
+    $("#searchby").change(function () {
+        var v = $("#sortby").val();
+        var vv = $("#searchby").val();
+        var df = $("#datefrom").val();
+        var dt = $("#dateto").val();
+        var stext = $("#searchtext").val();
+        localStorage.setItem("searchby", vv);
+        localStorage.setItem("sortby", v);
+        localStorage.setItem("datefrom", df);
+        localStorage.setItem("dateto", dt);
+        localStorage.setItem("stext", stext);
+
+        $("#hidsortby").val(v);
+        if (vv.toString() == "All" || vv.toString() == "This Month" || vv.toString() == "Last 7 Days") {
+            $("#alldiv").hide();
+
+            $("#datefrom").val("");
+            $("#dateto").val("");
+            $("#datediv").hide(); $("#subtypediv").hide(); $("#searchflatname").hide();
+        }
+        else {
+            if (vv.toString() == "BookingDate" || vv.toString() == "SaleDate") {
+                $("#datediv").show();
+                $("#alldiv").hide(); $("#subtypediv").hide(); $("#searchflatname").hide();
+            }
+            else if (vv.toString() == "Customer Name") {
+                $("#subtypediv").hide();
+                $("#alldiv").show();
+                $("#searchflatname").hide();
+                $("#datediv").hide();
+            }
+            else {
+                $("#searchflatname").show();
+                $("#alldiv").hide();
+                $("#datediv").hide();
+                $("#subtypediv").hide();
+            }
+        }
+    })
+    $("#datefrom").blur(function () {
+        var df = $("#datefrom").val();
+        localStorage.setItem("datefrom", df);
+    })
+    $("#dateto").blur(function () {
+        var df = $("#dateto").val();
+        localStorage.setItem("dateto", df);
+    })
+    $("#searchtext").blur(function () {
+        var df = $("#searchtext").val();
+        localStorage.setItem("stext", df);
+    })
+</script>
+}

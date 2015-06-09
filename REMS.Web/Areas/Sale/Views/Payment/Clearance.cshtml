@@ -1,0 +1,320 @@
+﻿
+@{
+    ViewBag.Title = "Payment Clearance";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div id="content" data-ng-app="PaymentApp" data-ng-controller="PaymentController">
+    <div class="row">
+        <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+            <h1 class="page-title txt-color-blueDark">
+                <!-- PAGE HEADER -->
+                <i class="fa-fw fa fa-flag"></i>
+                Payment Clearance
+                <span>
+                    >
+                   Manage
+                </span>
+            </h1>
+        </div>
+        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+            <!-- Button trigger modal -->
+        </div>
+    </div>
+    <div id="MessageArea" class="alert alert-block alert-{{MessageClass}}" style="display:none;">
+        <a class="close" data-dismiss="alert" href="#">×</a>
+        <h4 class="alert-heading"><i class="fa fa-check-square-o"></i> {{MessageTitle}}</h4>
+        <p>
+            {{Message}}
+        </p>
+    </div>
+
+    <!-- widget grid -->
+    <section id="widget-grid" data-ng-init="PaymentClearanceInit()" class="">
+        <!-- row -->
+        <div class="row">
+            <!-- NEW WIDGET START -->
+            <article class="col-sm-12 col-md-12">
+                <!-- Widget ID (each widget will need unique ID)-->
+                <div class="jarviswidget" id="wid-id-2" data-widget-editbutton="false" data-widget-deletebutton="false">
+                    <header>
+                        <h2>Payment Clearance Wizard </h2>
+                    </header>
+                    <!-- widget div-->
+                    <div>
+                        <!-- widget edit box -->
+                        <div class="jarviswidget-editbox">
+                            <!-- This area used as dropdown edit box -->
+                        </div>
+                        <!-- end widget edit box -->
+                        <!-- widget content -->
+                        <div class="widget-body fuelux">
+                            <div class="step-content">
+                                <div class="form-horizontal" id="fuelux-wizard">
+                                    <div class="form-content">
+                                        <fieldset>
+                                            <div class="row">
+                                                <input type="hidden" data-ng-model="Payment.PaymentID" name="PaymentID" id="PaymentID" value="@ViewBag.ID" />
+                                                <input type="hidden" data-ng-model="Payment.TransactionID" name="TransactionID" id="TransactionID" value="@ViewBag.ID" />
+                                                <div class="message">
+                                                    <p>
+                                                        <center>{{ Error}}  {{ Message }}</center>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                        
+                                            <div class="jarviswidget wdgt_marg" data-widget-editbutton="false" data-widget-custombutton="false">
+                                                <header>
+                                                    <span class="widget-icon"><i class="fa fa-edit"></i></span>
+                                                    <h2>Payment Details</h2>
+                                                </header>
+                                                <!-- widget div-->
+                                                <div>
+                                                    <!-- widget edit box -->
+                                                    <div class="jarviswidget-editbox">
+                                                        <!-- This area used as dropdown edit box -->
+                                                    </div>
+                                                    <!-- end widget edit box -->
+                                                    <!-- widget content -->
+                                                    <div class="widget-body no-padding">
+                                                        <div id="flatdetail" class="row">
+                                                            <div class="col-sm-2"></div>
+                                                            <div class="col-sm-6 smart-form">
+                                                                <div id="comment-form" class="smart-form">
+                                                                    <fieldset>
+                                                                        <div class="row">
+                                                                            <div class="col-sm-6">
+                                                                                <div class="hm_content_sec_top">
+                                                                                    <input type="hidden" id="FlatName" name="FlatName" value="{{Payment.FlatName}}" />
+                                                                                    <input type="hidden" id="DueAmount" name="DueAmount" value="{{Payment.DueAmount}}" />
+                                                                                    <input type="hidden" id="DueDate" name="DueDate" value="{{Payment.DueDate}}" />
+                                                                                    <input type="hidden" id="ddlPayment" name="ddlPayment" value="{{Payment.InstallmentNo}}" />
+                                                                                    <input type="hidden" id="IsReceipt" name="IsReceipt" value="{{Payment.IsReceipt}}" />
+                                                                                    <ul>
+                                                                                        <li>Property Name:</li>
+                                                                                        <li id="FlatName">{{Payment.FlatName}} </li>
+                                                                                    </ul>
+                                                                                    <ul>
+                                                                                        <li>Customer Name:</li>
+                                                                                        <li id="CustomeName">{{Sale.Sale[0].CustomerName}}</li>
+                                                                                    </ul>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </fieldset>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                        </div>
+                                                        <!-- end widget content -->
+                                                    </div>
+                                                    <!-- end widget div -->
+                                                </div>
+                                                <div class="jarviswidget" data-widget-editbutton="false" data-widget-custombutton="false">
+                                                    <header>
+                                                        <span class="widget-icon"><i class="fa fa-edit"></i></span>
+                                                        <h2>Payments Clearance</h2>
+                                                    </header>
+                                                    <!-- widget div-->
+                                                    <div>
+                                                        <!-- widget edit box -->
+                                                        <div class="jarviswidget-editbox">
+                                                            <!-- This area used as dropdown edit box -->
+                                                        </div>
+                                                        <!-- end widget edit box -->
+                                                        <!-- widget content -->
+                                                        <div class="widget-body no-padding">
+                                                            <div class="row">
+                                                                <div class="col-sm-6 smart-form">
+                                                                    <div id="comment-form" class="smart-form">
+                                                                        <fieldset>
+                                                                            <div class="row">
+                                                                                <div class="col-md-7 col">
+                                                                                    <label class="checkbox-inline3">
+                                                                                        <input class="checkbox style-0" data-ng-model="isBounce" type="checkbox" id="isBounce">
+                                                                                        <span>Is Bounce</span>
+                                                                                    </label>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class="col-sm-7 col">
+                                                                                    <label class="label">Bank Clearance Date:</label>
+                                                                                    <label class="input">
+                                                                                        <input type="text" id="ClearanceDate" data-ng-model="ClearanceDate" value="{{Payment.ClearanceDate}}" class="datecal" required="required" />
+                                                                                    </label>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class="col-sm-7 col">
+                                                                                    <label class="label">Clearance Charges: </label>
+                                                                                    <label class="input">
+                                                                                        <input type="number" id="ClearAmt" data-ng-model="ClearAmt" required="required" />
+                                                                                    </label>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class="col-sm-7 col">
+                                                                                    <label class="label">Remark: </label>
+                                                                                    <label class="input">
+                                                                                        <input type="text" id="Remarks" data-ng-model="Remarks" required="required" />
+                                                                                    </label>
+                                                                                </div>
+                                                                            </div>
+                                                                        </fieldset>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-6">
+                                                                    <div id="comment-form" class="smart-form">
+                                                                        <fieldset>
+                                                                            <div class="row">
+                                                                                <div class="col-sm-5 col">
+                                                                                    <label class="label">Receipt No: </label>
+                                                                                </div>
+                                                                                <div class="col-sm-6"><b> {{Payment.PaymentNo}}</b></div>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class="col col-sm-5">
+                                                                                    <label class="label">Amount Received: </label>
+                                                                                </div>
+                                                                                <div class="col-md-7">
+                                                                                    <b> {{Payment.Amount}}</b>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class="col col-sm-5">
+                                                                                    <label class="label">Amount Received (IN Words):</label>
+                                                                                </div>
+                                                                                <div class="col-md-7"> <b>{{Payment.AmtRcvdinWords}}</b></div>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class="col-sm-5 col">
+                                                                                    <label class="label">Payment Date: </label>
+                                                                                </div>
+                                                                                <div class="col-sm-7"><b> {{Payment.PaymentDateSt}}</b></div>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class="col-sm-5 col">
+                                                                                    <label class="label">Payment Mode: </label>
+                                                                                </div>
+                                                                                <div class="col-sm-7"><b>  {{Payment.PaymentMode}}</b></div>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class="col-sm-5 col">Is Bound:</div>
+                                                                                <div class="col-sm-7">{{Payment.IsBounce}}</div>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class="col-sm-5 col">Clearance Charge:</div>
+                                                                                <div class="col-sm-7">{{Payment.ClearanceCharge}}</div>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class="col-sm-5 col">Clearance Remark:</div>
+                                                                                <div class="col-sm-7">{{Payment.RefundRemark}}</div>
+                                                                            </div>
+                                                                        </fieldset>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-actions frm-marg">
+                                                                <div class="row">
+                                                                    <div class="col-md-12">
+                                                                        <button class="btn btn-primary pull-left" data-ng-click="UpdateClearance()">
+                                                                            <i class="fa fa-save"></i>
+                                                                            Update
+                                                                        </button>
+                                                                        <button class="btn btn-default pull-left btn_marg" type="submit">Cancel</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- end widget content -->
+                                                    </div>
+                                                    <!-- end widget div -->
+                                                </div>
+
+                                                <div class="jarviswidget" data-widget-editbutton="false" data-widget-custombutton="false">
+                                                    <header>
+                                                        <span class="widget-icon"><i class="fa fa-edit"></i></span>
+                                                        <h2>Payments Details</h2>
+                                                    </header>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <div class="table-responsive">
+                                                                        <table class="table table-bordered table-striped particular_tbl">
+                                                                            <thead>
+                                                                                <tr>
+                                                                                    <th><b>PaymentDate</b></th>
+                                                                                    <th><b>Receipt No</b></th>
+                                                                                    <th><b>Amount</b></th>
+                                                                                    <th><b>Clearance Charge</b></th>
+                                                                                    <th><b>Clearance Date</b></th>
+                                                                                    <th><b>ChequeNo</b></th>
+                                                                                    <th><b>Bank Name</b></th>
+                                                                                    <th><b>ChequeDate</b></th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td>{{Payment.PaymentDateSt}}</td>
+                                                                                    <td>{{Payment.PaymentNo}}</td>
+                                                                                    <td>{{ Payment.Amount}}</td>
+                                                                                    <td>{{Payment.ClearanceCharge}}</td>
+                                                                                    <td>{{Payment.BankClearanceDateSt}}</td>
+                                                                                    <td>{{Payment.ChequeNo}}</td>
+                                                                                    <td>{{Payment.BankName}}</td>
+                                                                                    <td>{{Payment.ChequeDateSt}}</td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- widget div-->
+                                                    <div>
+                                                        <!-- widget edit box -->
+                                                        <div class="jarviswidget-editbox">
+                                                            <!-- This area used as dropdown edit box -->
+                                                        </div>
+                                                        <!-- end widget edit box -->
+                                                        <!-- widget content -->
+                                                        <!-- end widget content -->
+                                                    </div>
+                                                    <!-- end widget div -->
+                                                </div>
+
+                                            </div>
+                                       
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- end widget content -->
+                    </div>
+                    <!-- end widget div -->
+                </div>
+                <!-- end widget -->
+            </article>
+            <!-- WIDGET END -->
+        </div>
+        <!-- end row -->
+    </section>
+    <!-- end widget grid -->
+
+</div>
+@section pagespecific {
+    <script src="~/AgController/Paymentjs.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $(".datecal").datepicker({
+            changeMonth: true,
+            changeYear: true,
+            yearRange: '1970:2014',
+            dateFormat:'dd/mm/yy'
+        });
+    });
+</script>
+}

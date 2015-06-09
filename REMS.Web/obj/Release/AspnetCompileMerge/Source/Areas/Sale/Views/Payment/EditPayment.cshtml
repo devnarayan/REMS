@@ -1,0 +1,286 @@
+﻿@model IEnumerable<REMS.Data.Payment>
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+
+<div id="content" data-ng-app="PaymentApp" data-ng-controller="PaymentController">
+    <div class="row">
+        <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+            <h1 class="page-title txt-color-blueDark">
+                <!-- PAGE HEADER -->
+                <i class="fa-fw fa fa-flag"></i>
+                Installment Payments
+                <span>
+                    >
+                    Search
+                </span>
+            </h1>
+        </div>
+        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+            <!-- Button trigger modal -->
+        </div>
+    </div>
+    <div id="MessageArea" class="alert alert-block alert-{{MessageClass}}" style="display:none;">
+        <a class="close" data-dismiss="alert" href="#">×</a>
+        <h4 class="alert-heading"><i class="fa fa-check-square-o"></i> {{MessageTitle}}</h4>
+        <p>
+            {{Message}}
+        </p>
+    </div>
+    <!-- widget grid -->
+    <section id="widget-grid" class="" data-ng-init="EditPaymentInit()">
+        <!-- row -->
+        <div class="row">
+            <!-- NEW WIDGET START -->
+            <article class="col-sm-12 col-md-12">
+                @*@using (Html.BeginForm("Search", "Payment", null))
+                    {*@
+
+                <!-- Widget ID (each widget will need unique ID)-->
+                <div class="jarviswidget" id="wid-id-2" data-widget-editbutton="false" data-widget-deletebutton="false">
+
+                    <header>
+                        <h2>Search Installment Payments</h2>
+                    </header>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <b>Search By Property:</b><br />
+                            <label class="select">
+                                <select name="TowerID" class="form-control" data-ng-change="TowerChange()" data-ng-model="Flat.TowerID" id="TowerID" required>
+                                    <option data-ng-repeat="pro in TowerList" value="{{ pro.TowerID }}">{{pro.TowerName }}</option>
+                                </select>
+                            </label>
+                        </div>
+                        <div class="col-md-3">
+                            <b>Property Name:</b><br />
+                            <label class="select">
+                                <select name="FlatID" class="form-control" data-ng-model="Flat.FlatID" id="FlatID" required>
+                                    <option data-ng-repeat="fl in FlatList" value="{{ fl.FlatID }}">{{ fl.FlatNo }}</option>
+                                </select>
+                            </label>
+                        </div>
+                        <div class="col-md-1">
+                            <br />
+                            <input type="submit" value="Search" data-ng-click="EditSearchPayment()" class="btn btn-primary" id="Srch1" />
+                            <input type="hidden" id="search1" name="search1" />
+                        </div>
+                    </div>
+                    <!-- widget div-->
+                    <div>
+
+                        <!-- widget content -->
+                        <div class="widget-body fuelux">
+                            <div class="step-content">
+                                <div class="form-horizontal" id="fuelux-wizard">
+                                    <div class="form-content">
+                                        <input type="hidden" name="hidsortby" id="hidsortby" />
+                                        <br />
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="table-responsive">
+                                                    <table class="table table-bordered table-striped particular_tbl">
+                                                        <thead>
+                                                            <tr>
+                                                                <th data-ng-click="reverse=!reverse;orderSearchList('PaymentDateSt', reverse)" class="pointer">PaymentDate <i class="fa fa-sort-down"></i> </th>
+                                                                <th data-ng-click="reverse=!reverse;orderSearchList('FlatName', reverse)" class="pointer">@Session["PropertyName"].ToString() <i class="fa fa-sort-down"></i> </th>
+                                                                <th data-ng-click="reverse=!reverse;orderSearchList('CustomerName', reverse)" class="pointer">CustomerName <i class="fa fa-sort-down"></i> </th>
+                                                                <th data-ng-click="reverse=!reverse;orderSearchList('Amount', reverse)" class="pointer">Amount <i class="fa fa-sort-down"></i> </th>
+                                                                <th data-ng-click="reverse=!reverse;orderSearchList('PaymentStatus', reverse)" class="pointer">Status <i class="fa fa-sort-down"></i> </th>
+                                                                <th data-ng-click="reverse=!reverse;orderSearchList('PaymentMode', reverse)" class="pointer">PaymentMode <i class="fa fa-sort-down"></i> </th>
+                                                                <th> <b>Action</b> </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr data-ng-repeat="sr in SearchList">
+                                                                <td style="background-color:{{sr.InstallmentNo}}">{{sr.PaymentDateSt}}</td>
+                                                                <td style="background-color:{{sr.InstallmentNo}}">{{sr.FlatName}}</td>
+                                                                <td style="background-color:{{sr.InstallmentNo}}">{{sr.CustomerName}}</td>
+                                                                <td style="background-color:{{sr.InstallmentNo}}">{{sr.Amount}}</td>
+                                                                <td style="background-color:{{sr.InstallmentNo}}">{{sr.PaymentStatus}}</td>
+                                                                <td style="background-color:{{sr.InstallmentNo}}">{{sr.PaymentStatus}}</td>
+                                                                <td style="background-color:{{sr.InstallmentNo}}">
+                                                                    <div class="dropdown">
+                                                                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Manage Payment</a>
+                                                                        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                                                            <li> <a target="_blank" href="/Payment/Clearance/{{sr.TransactionID}}" title="Payment Clearance" class=""><i class="fa fa-database"></i> Clearance</a></li>
+                                                                            <li><a target="_blank" href="/Payment/Details/{{sr.TransactionID}}" title="View Payment Details" class=""><i class="fa fa-eye"></i> View Payment Details</a></li>
+                                                                            <li><a target="_blank" href="/Payment/Edit/{{sr.TransactionID}}" title="Edit Payment Details" class=""><i class="fa fa-edit"></i> Edit Payment Details</a></li>
+                                                                            <li class="divider"></li>
+                                                                            <li><a target="_blank" href="/Installment/Manage/CancelPayments/" title="View Canceled Payment" class=""><i class="fa fa-list"></i> View Canceled Payments</a></li>
+                                                                            <li><a target="_blank" href="/Installment/Manage/PaymentCancel/{{sr.TransactionID}}" title="Cancel Payment" class=""><i class="fa fa-reply"></i> Cancel Payment</a></li>
+                                                                            <li><a target="_blank" href="/Installment/Manage/PaymentUnCancel/{{sr.TransactionID}}" title="Undo Cancel Payment" class=""><i class="fa fa-undo"></i> Undo Cancel Payment</a></li>
+                                                                            <li class="divider"></li>
+                                                                            <li><a target="_blank" href="/Installment/Manage/RefundPayment/{{sr.TransactionID}}" title="Refund Payment" class=""><i class="fa fa-reply-all"></i> Refund Payment</a></li>
+                                                                            <li><a target="_blank" href="/Payment/Edit/{{sr.TransactionID}}" title="Transfer Property" class=""><i class="fa fa-chain"></i> Transfer Property</a></li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr><td></td><td></td><td><b>Total</b></td><td><b>{{TotalSearchAmount}}</b></td><td></td><td></td></tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <br />
+                                            &nbsp;&nbsp;&nbsp;&nbsp; <b style="background-color:red;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b> Advance Booking Amount
+                                            <br />
+                                            <br />
+                                            <br />
+                                            <br />
+                                            <br />
+                                            <br />
+                                            <br />
+                                            <br />
+                                            <br />
+                                            <br />
+                                            <br />
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end widget content -->
+                    </div>
+                    <!-- end widget div -->
+                </div>
+                <!-- end widget -->
+                @*}*@
+            </article>
+            <!-- WIDGET END -->
+        </div>
+        <!-- end row -->
+    </section>
+    <!-- end widget grid -->
+</div>
+<!-- END MAIN CONTENT -->
+@section pagespecific {
+    <script src="~/AgController/Paymentjs2.js"></script>
+
+    <script>
+    $(document).ready(function () {
+        $("#datediv").hide();
+        $("#alldiv").hide();
+        if (localStorage.getItem("searchby") != null) {
+            $("#searchby").val(localStorage.getItem("searchby"));
+            $("#sortby").val(localStorage.getItem("sortby"));
+            $("#datefrom").val(localStorage.getItem("datefrom"));
+            $("#dateto").val(localStorage.getItem("dateto"));
+            $("#searchtext").val(localStorage.getItem("stext"));
+
+            if (localStorage.getItem("sortby") == "All") {
+                $("#datediv").hide();
+                if (localStorage.getItem("searchby") == "All") {
+                    $("#alldiv").hide();
+                }
+                else {
+                    $("#alldiv").show();
+                }
+            } else {
+                $("#datediv").show();
+                if (localStorage.getItem("searchby") == "All") {
+                    $("#alldiv").hide();
+                }
+                else {
+                    $("#alldiv").show();
+                }
+            }
+        }
+    })
+    $("#sortby").change(function () {
+        var v = $("#sortby").val();
+        var vv = $("#searchby").val();
+        var df = $("#datefrom").val();
+        var dt = $("#dateto").val();
+        var stext = $("#searchtext").val();
+        localStorage.setItem("searchby", vv);
+        localStorage.setItem("sortby", v);
+        localStorage.setItem("datefrom", df);
+        localStorage.setItem("dateto", dt);
+        localStorage.setItem("stext", stext);
+
+        $("#hidsortby").val(v);
+        if (v.toString() == "All") {
+            $("#datediv").hide();
+            if (vv.toString() != "All") {
+                $("#alldiv").show();
+            }
+        } else {
+            $("#datediv").show();
+            if (vv.toString() == "All") {
+                $("#alldiv").hide();
+            }
+            else {
+                $("#alldiv").show();
+            }
+        }
+    })
+
+    $("#searchby").change(function () {
+        var v = $("#sortby").val();
+        var vv = $("#searchby").val();
+        var df = $("#datefrom").val();
+        var dt = $("#dateto").val();
+        var stext = $("#searchtext").val();
+        localStorage.setItem("searchby", vv);
+        localStorage.setItem("sortby", v);
+        localStorage.setItem("datefrom", df);
+        localStorage.setItem("dateto", dt);
+        localStorage.setItem("stext", stext);
+
+        $("#hidsortby").val(v);
+        if (v.toString() == "All") {
+            $("#datediv").hide();
+            if (vv.toString() == "All") {
+                $("#alldiv").hide();
+            }
+            else {
+                $("#alldiv").show();
+            }
+        } else {
+            $("#datediv").show();
+            if (vv.toString() == "All") {
+                $("#alldiv").hide();
+            }
+            else {
+                $("#alldiv").show();
+            }
+        }
+    })
+    $("#datefrom").blur(function () {
+        var df = $("#datefrom").val();
+        localStorage.setItem("datefrom", df);
+    })
+    $("#dateto").blur(function () {
+        var df = $("#dateto").val();
+        localStorage.setItem("dateto", df);
+    })
+    $("#searchtext").blur(function () {
+        var df = $("#searchtext").val();
+        localStorage.setItem("stext", df);
+    })
+
+    function myserach() {
+        $("#search1").val("1");
+
+    }
+    function myserachpro() {
+        $("#search1").val("0");
+    }
+    </script>
+    @*<script type="text/javascript">
+            $(function () {
+                $(".datecal").datepicker({
+                    changeMonth: true,
+                    changeYear: true,
+                    yearRange: '1970:2014'
+                });
+
+            });
+        </script>*@
+}

@@ -1,0 +1,16 @@
+     <br />
+                <div style='text-align: center'>
+<h2>SBP GROUPS</h2>
+<p><b>Kharar, Mohali</b></p>
+<p> <b>New Delhi</b></p>
+<p><b>Ph. 011-43111111</b></p>
+<p><b>Fax. 011-43111111</b></p><br/>
+<h3>RECEIPT</h3>
+                    <br />
+                </div>
+           <table>
+<tr><td><b>PaymentDate</b></td><td><b>Amount </b></td><td><b>CustomerName</b></td><td><b>Property Name</b></td><td><b>ReceiptNo</b></td><td><b>PaymentMode</b></td><td><b>ChequeNo</b></td><td><b>BankName</b></td><td><b>ChequeDate</b></td><td><b>Status</b></td></tr>
+  
+</table>
+<br/>
+               

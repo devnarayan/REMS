@@ -1,0 +1,146 @@
+   <!DOCTYPE html>
+
+<html>
+<head>
+    <meta name='viewport' content='width=device-width' />
+    <title>Backup Demand Print</title>
+
+    
+
+    <style>
+      .mytbls  td{
+            border-bottom:1px solid gray;
+            border-left:1px solid gray;
+        }
+    </style>
+</head>
+<body >
+    <div id='ReceiptPritable' >
+        
+        <div >
+           
+            <div>
+                <div style='text-align: center'>
+                    <h2></h2>
+                    <p><b></b></p>
+                    <p></p>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <h3>RECEIPT: ST8 </h3>
+                </div>
+
+                Received with thanks from
+                <br />
+                <table>
+                    <tr>
+                        <td>
+                            First Allottee:
+                        </td>
+                        <td> Mr. Raj yash patel  </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>     </td>
+                    </tr>
+                </table>
+
+                Co Allottee(s): &nbsp;      
+                <br />
+                <div class='mytbls'>
+                    <table style='border:2px solid gray; width:100%;'>
+                        <tr>
+                            <td>
+                                Property Name:
+                            </td>
+                            <td>
+                               New Credo property 
+                            </td>
+                        </tr>
+                        <tr style='border: 1px solid black'>
+                            <td>Installment</td>
+                            <td> Service Tax   </td>
+                        <tr>
+ <tr style='border: 1px solid black'>
+                            <td>Details</td>
+                            <td> Cash       </td>
+                        <tr>
+                        
+                        <tr style='border: 1px solid black'>
+                            <td>Amount (Rs)</td>
+                            <td> 500.00  </td>
+                        </tr>
+                        <tr>
+                            <td>  </td>
+                            <td>Five Hundred    </td>
+                        </tr>
+                    </table>
+                </div>
+                <p>
+                    Property at:  Property full address , <b>New Credo property  </b>
+                    <br />
+                    Location: Location of property 
+
+                </p>
+                <table>
+                    <tr>
+                        <td>
+                            <ul>
+                                <li>Receipt is valid subject to realisation of cheque.</li>
+                            </ul>
+                        </td>
+                        <td></td>
+                    </tr>
+                </table>
+                <p><b>for <%CompanyName%> </b></p>
+                <table>
+                    <tr>
+                        <td>
+                            <b>Authorised Signatury </b>
+                            <br />
+                            (Prepared By)<br />
+                           <%SignAdmin%>
+                        </td>
+                        <td>
+                            <p style='text-align: right;'></p>
+                        </td>
+                    </tr>
+                </table>
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+
+            </div>
+        </div>
+    </div>
+  
+</body>
+</html>
+
+
+
+
+
+
+                         
+          
+
+
+
+                    
+

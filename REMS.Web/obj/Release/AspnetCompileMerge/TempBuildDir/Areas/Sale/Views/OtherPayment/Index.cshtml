@@ -1,0 +1,165 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div data-ng-app="OPaymentApp" role="main">
+    
+    <!-- MAIN CONTENT -->
+    <div id="content" data-ng-controller="OtherPaymentController">
+        <div class="row">
+            <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+                <h1 class="page-title txt-color-blueDark"><i class="fa fa-pencil-square-o fa-fw "></i>Search Other Payments </h1>
+            </div>
+        </div>
+        <!-- widget grid -->
+        <section id="widget-grid" class="" data-ng-init="RefundInit()">
+            <input type="hidden" id="hidFlatID" name="hidFlatID" value="@ViewBag.ID" />
+            <!-- row -->
+            <div class="row">
+                <!-- NEW WIDGET START -->
+                <article class="col-sm-12 col-md-12">
+                    @*@using (Html.BeginForm("Search", "Payment", null))
+                    {*@
+                    <!-- Widget ID (each widget will need unique ID)-->
+                    <div class="jarviswidget" id="wid-id-2" data-widget-editbutton="false" data-widget-deletebutton="false">
+                        <header>
+                            <h2>Search Other Payments</h2>
+                        </header>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <b>Search By Property:</b><br />
+                                <select name="TowerID" class="form-control" data-ng-change="TowerChange()" data-ng-model="Flat.TowerID" id="PaymentFor" required>
+                                    <option data-ng-repeat="pro in TowerList" value="{{ pro.TowerID }}">{{pro.TowerName }}</option>
+                                    <option value="All">All</option>
+                                    <option value="Service Tax">Service Tax</option>
+                                    <option value="Late Payment Charges">Late Payment Charges</option>
+                                    <option value="Transfer Fee">Transfer Fee</option>
+                                    <option value="Misc Amount">Misc Amount</option>
+                                    <option value="Clearance Charges">Clearance Charges</option>
+                                </select>
+                                @*<select name="newCust.PropertyID" class="form-control" data-ng-change="PropertyName()" data-ng-model="newCust.PropertyID" id="PropertyID">
+                                    <option data-ng-repeat="pro in Properties" value="{{ pro.PropertyID }}">{{ pro.PropertyName }}</option>
+                                </select>*@
+                            </div>
+                            <div class="col-md-3" id="divSearchDDL">
+                                <b>Search By Property:</b><br />
+                                <select name="FlatID" class="form-control" data-ng-model="Flat.FlatID" id="FlatID" required>
+                                    <option data-ng-repeat="fl in FlatList" value="{{ fl.FlatID }}">{{ fl.FlatNo }}</option>
+                                </select>
+                                @*<select name="newCust.PaymentFor" class="form-control" data-ng-model="newCust.PaymentFor" id="PaymentFor">
+                                    <option value="All">All</option>
+                                    <option value="Service Tax">Service Tax</option>
+                                    <option value="Late Payment Charges">Late Payment Charges</option>
+                                    <option value="Transfer Fee">Transfer Fee</option>
+                                    <option value="Misc Amount">Misc Amount</option>
+                                    <option value="Clearance Charges">Clearance Charges</option>
+                                </select>*@
+                            </div>
+                            <div class="col-md-3 hidden" id="divSearchTxt">
+                                <b>Property Amount:</b><br />
+                                <input type="text" id="searchtext" name="searchtext" class="form-control" />
+                            </div>
+                            <div class="col-md-1">
+                                <br />
+                                <input type="submit" value="Search" data-ng-click="EditSearchPayment()" class="btn btn-primary" id="Srch1" />
+                                <input type="hidden" id="search1" name="search1" />
+                            </div>
+                        </div>
+                        <!-- widget div-->
+                        <div>
+                            <!-- widget content -->
+                            <div class="widget-body fuelux">
+                                <div class="step-content">
+                                    <div class="form-horizontal" id="fuelux-wizard">
+                                        <div class="form-content">
+                                            <input type="hidden" name="hidsortby" id="hidsortby" />
+                                            <br />
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="table-responsive">
+                                                        <table class="table table-bordered table-striped particular_tbl">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th data-ng-click="reverse=!reverse;orderSearchList('PaymentDateSt', reverse)" class="pointer">PaymentDate <i class="fa fa-sort-down"></i> </th>
+                                                                    <th data-ng-click="reverse=!reverse;orderSearchList('PaymentFor', reverse)" class="pointer">Payment For <i class="fa fa-sort-down"></i> </th>
+                                                                    <th data-ng-click="reverse=!reverse;orderSearchList('FlatName', reverse)" class="pointer">FlatName <i class="fa fa-sort-down"></i> </th>
+                                                                    <th data-ng-click="reverse=!reverse;orderSearchList('CustomerName', reverse)" class="pointer">Customer Name <i class="fa fa-sort-down"></i> </th>
+                                                                    <th data-ng-click="reverse=!reverse;orderSearchList('Amount', reverse)" class="pointer">Amount <i class="fa fa-sort-down"></i> </th>
+                                                                    <th data-ng-click="reverse=!reverse;orderSearchList('PaymentStatus', reverse)" class="pointer">Status <i class="fa fa-sort-down"></i> </th>
+                                                                    <th> <b>Action</b> </th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr data-ng-repeat="sr in SearchList">
+                                                                    <td style="background-color:{{sr.InstallmentNo}}">{{sr.PaymentDateSt}}</td>
+                                                                    <td style="background-color:{{sr.InstallmentNo}}">{{sr.PaymentFor}}</td>
+                                                                    <td style="background-color:{{sr.InstallmentNo}}">{{sr.FlatName}}</td>
+                                                                    <td style="background-color:{{sr.InstallmentNo}}">{{sr.CustomerName}}</td>
+                                                                    <td style="background-color:{{sr.InstallmentNo}}">{{sr.Amount}}</td>
+                                                                    <td style="background-color:{{sr.InstallmentNo}}">{{sr.PaymentStatus}}</td>
+                                                                    <td style="background-color:{{sr.InstallmentNo}}">
+                                                                        <div class="dropdown">
+                                                                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Manage Payment</a>
+                                                                            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                                                                <li> <a target="_blank" href="/Sale/Payment/Clearance/{{sr.TransactionID}}" title="Payment Clearance" class=""><i class="fa fa-adjust"></i> Clearance</a></li>
+                                                                                <li><a target="_blank" href="/Sale/Payment/Details/{{sr.TransactionID}}" title="View Payment Details" class=""><i class="fa fa-eye"></i> View Payment Details</a></li>
+                                                                                <li><a target="_blank" href="/Sale/Payment/Details/{{sr.TransactionID}}" title="Edit Payment Details" class=""><i class="fa fa-edit"></i> Edit Payment Details</a></li>
+                                                                                <li class="divider"></li>
+                                                                                @*<li><a target="_blank" href="/OtherPayment/ViewCancelPayments/" title="View Canceled Payment" class=""><i class="fa fa-list"></i> View Canceled Payments</a></li>*@
+                                                                                @*<li><a target="_blank" href="/Manage/PaymentCancel/{{sr.TransactionID}}" title="Cancel Payment" class=""><i class="fa fa-reply"></i> Cancel Payment</a></li>
+                                                                                <li><a target="_blank" href="/OtherPayment/PaymentUnCancel/{{sr.TransactionID}}" title="Undo Cancel Payment" class=""><i class="fa fa-undo"></i> Undo Cancel Payment</a></li>
+                                                                                <li class="divider"></li>
+                                                                                <li><a target="_blank" href="/Manage/RefundPayment/{{sr.TransactionID}}" title="Refund Payment" class=""><i class="fa fa-reply-all"></i> Refund Payment</a></li>*@
+                                                                            </ul>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr><td></td><td></td><td></td><td><b>Total</b></td><td><b>{{TotalSearchAmount}}</b></td><td></td><td></td></tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <br />
+                                                &nbsp;&nbsp;&nbsp;&nbsp; <b style="background-color:red;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b> Advance Booking Amount
+                                                <br />
+                                                <br />
+                                                <br />
+                                                <br />
+                                                <br />
+                                                <br />
+                                                <br />
+                                                <br />
+                                                <br />
+                                                <br />
+                                                <br />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end widget content -->
+                        </div>
+                        <!-- end widget div -->
+                    </div>
+                    <!-- end widget -->
+                    @*}*@
+                </article>
+                <!-- WIDGET END -->
+            </div>
+            <!-- end row -->
+        </section>
+        <!-- end widget grid -->
+    </div>
+    <!-- END MAIN CONTENT -->
+    @*<script src="~/Content/js/jquery-1.7.2.min.js"></script>
+    <script src="~/Content/js/jquery-ui-1.8.19.custom.min.js"></script>
+    <link href="~/Content/css/jquery-ui-1.8.19.custom.css" rel="stylesheet" />
+    <script src="~/Scripts/ngController/OPaymentjs.js"></script>*@
+</div>
+@section pagespecific {
+<script src="~/AgController/OPaymentjs.js"></script>
+}

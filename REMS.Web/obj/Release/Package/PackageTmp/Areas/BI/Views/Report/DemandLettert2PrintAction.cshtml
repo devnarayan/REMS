@@ -1,0 +1,77 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Demand Letter 2</title>
+
+    <script src="~/Scripts/moment.min.js"></script>
+    <script src="~/Scripts/moment-with-locales.min.js"></script>
+    <script src="~/Scripts/angular.js"></script>
+    <link rel="stylesheet" type="text/css" media="screen" href="~/Content/css/style.css">
+    <script src="~/Scripts/ngController/Reportjs.js"></script>
+    @* <script src="~/Scripts/ngController/ManagePayjs.js"></script>*@
+</head>
+<body data-ng-app="BIApp" lang="EN-US">
+    <div id="ReceiptPritable" data-ng-controller="ReportController">
+        <div id="loading">
+            <img id="loading-image" src="~/images/loading.gif" alt="Loading..." />
+        </div>
+        <div data-ng-init="DemandLettertPrintReport2()">
+            <input type="hidden" id="hidID" name="hidID" value="@ViewBag.ID" />
+            <div data-ng-repeat="pr in PrintReceiptList">
+                <div>
+                    <b style="font-size: 15px">
+                        <p>
+                            @* <p style="text-align: center">DEMAND LETTER </p>*@
+                            To,<span style="float: right">Date: {{pr.SaleDateSt}}</span>
+                            <br />
+                            <br />
+                            <br />
+                            MR. {{pr.FName}}
+                            <br />
+                            <br />
+                            Dear Sir/Madam,
+                            <br />
+                            <br />
+                            <br />
+                            <p style="margin-left: 50px">
+                                Re: Property as Booked by you in the Project Called CITY HEART.
+                            </p>
+                            <br />
+                            <br />
+                            <br />
+
+                            This is in continuation of our previous letter dated {{pr.FtRDateSt}}  and letter of allotment, whereby you had booked COMMERCIAL CUM OFFICE SPACE in our project called CITY HEART.
+                        <br />
+                            <br />
+                            <br />
+                            We would again request you to kind remit the said amount of Rs.{{pr.DueAmount}}  forthwith without any delay within a period of 10 days from the date of the present letter along with interest  18 % per annum as already intimated for the delayed period.
+                            <br />
+                            Sir, you will appreciate that timely payment is very essential for the completion of the project on time and as such we would request you to cooperate in the matter. Please note that in case the payment is not made within the stipulated time, we shall be constrained to cancel the allotment and as such all consequences thereof shall follow. However, in case you have already made the said payment, you are requested to provide us with the necessary copies of the same.
+                        <br />
+                            <br />
+                            <br />
+                            <br />
+                            Thanking you and assuring you of our cooperation at all times.
+Yours Faithfully,
+                        <br />
+                            <br />
+                            For SKYCITY BUILDERS AND PROMOTERS PVT.LTD
+                        </p>
+                    </b>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script src="~/Content/js/jquery-1.7.2.min.js"></script>
+    <script src="~/Content/js/jquery-ui-1.8.19.custom.min.js"></script>
+    <link href="~/Content/css/jquery-ui-1.8.19.custom.css" rel="stylesheet" />
+</body>
+</html>
+

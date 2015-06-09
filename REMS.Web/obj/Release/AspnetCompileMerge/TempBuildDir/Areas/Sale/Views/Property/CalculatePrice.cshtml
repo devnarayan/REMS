@@ -1,0 +1,356 @@
+﻿@{
+    ViewBag.Title = "CalculatePrice";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="content" data-ng-app="SaleApp" data-ng-controller="PropertyController">
+    <div class="row">
+        <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+            <h1 class="page-title txt-color-blueDark">
+                <!-- PAGE HEADER -->
+                <i class="fa-fw fa fa-flag"></i>
+                Flat Price View
+                <span>
+                    >
+                    Details
+                </span>
+            </h1>
+        </div>
+        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+            <!-- Button trigger modal -->
+        </div>
+    </div>
+    <div id="MessageArea" class="alert alert-block alert-{{MessageClass}}" style="display:none;">
+        <a class="close" data-dismiss="alert" href="#">×</a>
+        <h4 class="alert-heading"><i class="fa fa-check-square-o"></i> {{MessageTitle}}</h4>
+        <p>
+            {{Message}}
+        </p>
+    </div>
+    <!-- widget grid -->
+    <section id="widget-grid" class="" data-ng-init="PropertyPricingInit()">
+        <input type="hidden" id="hidFlatID" value="@ViewBag.FlatID" />
+        <!-- START ROW -->
+        <div class="row">
+            <!-- NEW COL START -->
+            <article class="col-sm-12 col-md-12 col-lg-6">
+                <!-- Widget ID (each widget will need unique ID)-->
+                <div class="jarviswidget" id="wid-id-1" data-widget-editbutton="false" data-widget-custombutton="false">
+                    <!-- widget options:
+                        usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+
+                        data-widget-colorbutton="false"
+                        data-widget-editbutton="false"
+                        data-widget-togglebutton="false"
+                        data-widget-deletebutton="false"
+                        data-widget-fullscreenbutton="false"
+                        data-widget-custombutton="false"
+                        data-widget-collapsed="true"
+                        data-widget-sortable="false"
+
+                    -->
+                    <header>
+                        <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+                        <h2>Property Details</h2>
+                    </header>
+                    <!-- widget div-->
+                    <div>
+                        <!-- widget edit box -->
+                        <div class="jarviswidget-editbox">
+                            <!-- This area used as dropdown edit box -->
+                        </div>
+                        <!-- end widget edit box -->
+                        <!-- widget content -->
+                        <div class="widget-body">
+                            <form id="checkout-form" class="smart-form" novalidate="novalidate">
+                                <div class="row">
+                                    <div class="col col-md-3">
+                                        Tower:
+                                    </div>
+                                    <div class="col col-md-8">
+                                        {{FlatDetails.TowerNo}}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col col-md-3">
+                                        Floor:
+                                    </div>
+                                    <div class="col col-md-8">
+                                        {{FlatDetails.FloorNo}}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col col-md-3">
+                                        Flat/Property No:
+                                    </div>
+                                    <div class="col col-md-8">
+                                        {{FlatDetails.FlatNo}}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col col-md-3">
+                                        Flat Type:
+                                    </div>
+                                    <div class="col col-md-8">
+                                        {{FlatDetails.FlatType}}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col col-md-3">
+                                        Size:
+                                    </div>
+                                    <div class="col col-md-8">
+                                        {{FlatDetails.FlatSize}}
+                                    </div>
+                                </div>
+                                <div class="divider"><hr /></div>
+                                <div class="row">
+                                    <div class="col col-md-3">
+                                        Sale Price:
+                                    </div>
+                                    <div class="col col-md-8">
+                                        {{FlatDetails.SalePrice}}
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- end widget content -->
+                        <div class="widget-body">
+                            <form id="checkout-form" class="smart-form" novalidate="novalidate">
+                                <div style="display:none" class="row">
+                                    <div class="col col-md-5">
+                                        <br />
+                                        <h2>  Installment Plan:</h2>
+                                    </div>
+                                    <div class="col col-md-6">
+                                        <label></label>
+                                        <label class="select">
+                                            <select name="PlanID" data-ng-change="ShowPlanPrice(FlatDetails.FlatType,FlatDetails.FlatSize)" id="PlanID" data-ng-model="plan.PlanID">
+                                                <option value="0" selected="" disabled="">Select Plan </option>
+                                                <option data-ng-repeat="pl in PlanTypeMasterList" value="{{pl.PlanID}}">{{pl.PlanName}}</option>
+                                            </select> <i></i>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div  class="row">
+                                    <div class="col col-md-5">
+                                        <h2>  Grant Total:</h2>
+                                    </div>
+                                    <div class="col col-md-6">
+                                        <h2>  {{GTotal}} INR</h2>
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+                        <div class="widget-body">
+                            <div class="row">
+                                <section class="col-md-12">
+                                    <table id="dt_basic" class="table table-striped table-bordered table-hover" width="100%">
+                                        <thead>
+                                            <tr>
+                                                <th data-class="expand"><i class="fa fa-fw fa-user text-muted hidden-md hidden-sm hidden-xs"></i> PlanName</th>
+                                                <th data-hide="phone"><i class="fa fa-fw fa-rupee text-muted hidden-md hidden-sm hidden-xs"></i> Amount/Sq.Ft</th>
+                                                <th>TotalAmount</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr data-ng-repeat="ps in FlatDetails.ChargeSummaryList">
+                                                <td>{{ps.PlanName}}</td>
+                                                <td>{{ps.AmountSqFt}}</td>
+                                                <td>{{ps.TotalAmount}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </section>
+                            </div>
+                        </div>
+                        @*<div class="widget-body">
+                                <div class="row">
+                            <section class="col-md-12">
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <table class="table table-striped table-bordered table-hover" width="100%">
+                                                    <tr>
+                                                        <td>
+                                                            <table class="table table-striped table-bordered table-hover" width="100%">
+                                                                <tr><td data-class="expand" colspan="2"> Plan A</td> </tr>
+                                                                <tr>
+                                                                    <td>Furnished <br /> <span id="planaf"></span></td>
+                                                                    <td>
+                                                                        UnFurnished<br />
+                                                                        <span id="planauf"></span>
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </td>
+                                                        <td>
+                                                            <table class="table table-striped table-bordered table-hover" width="100%">
+                                                                <tr><td data-class="expand" colspan="2"> Plan B</td> </tr>
+                                                                <tr><td>Furnished<br /> <span id="planbf"></span></td><td>UnFurnished<br /> <span id="planbuf"></span></td> </tr>
+                                                            </table>
+                                                        </td>
+                                                        
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <table class="table table-striped table-bordered table-hover" width="100%">
+                                                                <tr><td data-class="expand" colspan="2"> Plan C</td> </tr>
+                                                                <tr><td>Furnished<br /> <span id="plancf"></span></td><td>UnFurnished<br /> <span id="plancuf"></span></td> </tr>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </section>
+                            </div>
+                        </div>*@
+                    </div>
+                    <!-- end widget div -->
+                </div>
+                <!-- end widget -->
+            </article>
+            <!-- END COL -->
+            <!-- NEW COL START -->
+            <article class="col-sm-12 col-md-12 col-lg-6">
+                <!-- Widget ID (each widget will need unique ID)-->
+                <div class="jarviswidget" id="wid-id-2" data-widget-editbutton="false" data-widget-custombutton="false">
+                    <!-- widget options:
+                        usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+
+                        data-widget-colorbutton="false"
+                        data-widget-editbutton="false"
+                        data-widget-togglebutton="false"
+                        data-widget-deletebutton="false"
+                        data-widget-fullscreenbutton="false"
+                        data-widget-custombutton="false"
+                        data-widget-collapsed="true"
+                        data-widget-sortable="false"
+
+                    -->
+                   
+                    <!-- widget div-->
+                    <div>
+                        <!-- widget edit box -->
+                        <div class="jarviswidget-editbox">
+                            <!-- This area used as dropdown edit box -->
+                        </div>
+                        <!-- end widget edit box -->
+                        <!-- widget content -->
+                        <header>
+                            <h2>Flat PLC Charges</h2>
+                        </header>
+                        <div class="widget-body">
+                            <form id="checkout-form" class="smart-form" novalidate="novalidate">
+                                <fieldset>
+                                    <div class="row">
+
+                                        <section class="col-md-12">
+                                            <table id="dt_basic" class="table table-striped table-bordered table-hover" width="100%">
+                                                <thead>
+                                                    <tr>
+                                                        <th data-class="expand"><i class=" text-muted hidden-md hidden-sm hidden-xs"></i> PLC</th>
+                                                        <th data-class="expand"><i class="fa fa-fw fa-rupee text-muted hidden-md hidden-sm hidden-xs"></i> Amount/sq.ft.</th>
+                                                        <th data-class="expand"><i class="fa fa-fw fa-rupee text-muted hidden-md hidden-sm hidden-xs"></i> Total Amount</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr data-ng-repeat="fl in FlatDetails.FlatPLCList">
+                                                        <td>{{fl.PLCName}}</td>
+                                                        <td>{{fl.AmountSqFt}}</td>
+                                                        <td>{{fl.TotalAmount}}</td>
+                                                    </tr>
+                                                </tbody>
+                                                <tfoot>
+                                                    <tr><td><b>Total</b></td><td><b>{{TotalPLCAmount}}</b></td><td><b>{{GTotalPLCAmount}}</b></td></tr>
+                                                </tfoot>
+                                            </table>
+                                        </section>
+                                    </div>
+
+                                </fieldset>
+                            </form>
+                        </div>
+
+                        <header>
+                            <h2>Additional Charges </h2>
+                        </header>
+                        <div class="widget-body">
+                            <fieldset class="smart-form">
+                                <table id="dt_basic" class="table table-striped table-bordered table-hover" width="100%">
+                                    <thead>
+                                        <tr>
+                                            <th data-class="expand"><i class="fa fa-fw fa-user text-muted hidden-md hidden-sm hidden-xs"></i> Name</th>
+                                            <th data-hide="phone"><i class="fa fa-fw fa-rupee text-muted hidden-md hidden-sm hidden-xs"></i> Amount</th>
+                                            <th>Charge Type</th>
+                                            <th>TotalAmount</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr data-ng-repeat="fl in FlatDetails.FlatChargeList">
+                                            <td>{{fl.ChargeName}}</td>
+                                            <td>{{fl.Amount}}</td>
+                                            <td>{{fl.ChargeType}}</td>
+                                            <td>{{fl.TotalAmount}}</td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr><td><b>Total</b></td><td><b>{{TotalChargeAmount}}</b></td><td></td><td><b>{{GTotalChargeAmount}}</b></td></tr>
+                                    </tfoot>
+                                </table>
+                            </fieldset>
+                        </div>
+                        <header>
+                            <h2>Optional Charges </h2>
+                        </header>
+                        <div class="widget-body">
+                            <form id="checkout-form" class="smart-form" novalidate="novalidate">
+                                <fieldset>
+                                    <div class="row">
+                                        <section class="col-md-12">
+                                            <table id="dt_basic" class="table table-striped table-bordered table-hover" width="100%">
+                                                <thead>
+                                                    <tr>
+                                                        <th data-class="expand"><i class=" text-muted hidden-md hidden-sm hidden-xs"></i> Charge Name</th>
+                                                        <th data-class="expand"><i class="fa fa-fw fa-rupee text-muted hidden-md hidden-sm hidden-xs"></i> Amount</th>
+                                                        <th data-class="expand"><i class="fa fa-fw fa-rupee text-muted hidden-md hidden-sm hidden-xs"></i> Charge Type</th>
+                                                        <th data-class="expand"><i class="fa fa-fw fa-rupee text-muted hidden-md hidden-sm hidden-xs"></i> Total Amount</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr data-ng-repeat="fl in FlatDetails.FlatOChargeList">
+                                                        <td>{{fl.ChargeName}}</td>
+                                                        <td>{{fl.Amount}}</td>
+                                                        <td>{{fl.ChargeType}}</td>
+                                                        <td>{{fl.TotalAmount}}</td>
+                                                    </tr>
+                                                </tbody>
+                                                <tfoot>
+                                                    <tr><td><b>Total</b></td><td><b>{{FlatOChargeTotal}}</b></td><td></td><td><b>{{GTFlatOCharge}}</b></td></tr>
+                                                </tfoot>
+                                            </table>
+                                        </section>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                        <!-- end widget content -->
+                    </div>
+                    <!-- end widget div -->
+                </div>
+                <!-- end widget -->
+                <!-- end widget -->
+            </article>
+            <!-- END COL -->
+        </div>
+        <!-- END ROW -->
+    </section>
+    <!-- end widget grid -->
+</div>
+<!-- END MAIN CONTENT -->
+@section pagespecific {
+    <script src="~/AgController/SalePropertyJs.js"></script>
+}

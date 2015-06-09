@@ -1,0 +1,1973 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="REMSDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="AdditionalCharge">
+    <Key>
+      <PropertyRef Name="AdditionalChargeID" />
+    </Key>
+    <Property Name="AdditionalChargeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TowerID" Type="Int32" />
+    <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="Amount" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Unit" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ChargeType" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="CrDate" Type="DateTime" Precision="3" />
+    <Property Name="CrBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TaxPer" Type="Decimal" Precision="17" Scale="2" />
+    <Property Name="Mandatory" Type="Boolean" />
+    <NavigationProperty Name="FlatCharges" Relationship="Self.FK_FlatCharge_AdditionalCharge" FromRole="AdditionalCharge" ToRole="FlatCharge" />
+  </EntityType>
+  <EntityType Name="AddOnCharge">
+    <Key>
+      <PropertyRef Name="AddOnChargeID" />
+    </Key>
+    <Property Name="AddOnChargeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="Amount" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="ChargeType" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="CrDate" Type="DateTime" Precision="3" />
+    <Property Name="CrBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TaxPer" Type="Decimal" Precision="17" Scale="2" />
+    <Property Name="Mandatory" Type="Boolean" />
+    <NavigationProperty Name="FlatOCharges" Relationship="Self.FK_FlatOCharge_AddOnCharge" FromRole="AddOnCharge" ToRole="FlatOCharge" />
+  </EntityType>
+  <EntityType Name="Agreement">
+    <Key>
+      <PropertyRef Name="AgreementID" />
+    </Key>
+    <Property Name="AgreementID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SaleID" Type="Int32" />
+    <Property Name="AgreementAmount" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ModifyBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CrDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifyDate" Type="DateTime" Precision="3" />
+    <Property Name="DocURL" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="HTMLURL" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+    <Property Name="UploadDate" Type="DateTime" Precision="3" />
+    <Property Name="UploadBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UploadURL" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="AllotmentLetter" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="AllotmentLetterBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="AllotmentLetterDate" Type="DateTime" Precision="3" />
+    <Property Name="WelComeLetter" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="AssuredDocURL" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+    <Property Name="AssuredHTMLURL" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="AssuredReturn">
+    <Key>
+      <PropertyRef Name="AssuredReturnID" />
+    </Key>
+    <Property Name="AssuredReturnID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SaleID" Type="Int32" />
+    <Property Name="Duration" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Amount" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ModifyBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CrDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifyDate" Type="DateTime" Precision="3" />
+    <Property Name="PropertyID" Type="Int32" />
+    <Property Name="FlatName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="MonthName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ChequeNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ChequeDate" Type="DateTime" Precision="3" />
+    <Property Name="TDS" Type="Decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="AssuredReturnPayment">
+    <Key>
+      <PropertyRef Name="ARPaymentID" />
+    </Key>
+    <Property Name="ARPaymentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ReceiptNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SaleID" Type="Int32" />
+    <Property Name="PaymentDate" Type="DateTime" Precision="3" />
+    <Property Name="Amount" Type="Decimal" Precision="17" Scale="2" />
+    <Property Name="PaymentMode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="ChequeNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BankName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ChequeDate" Type="DateTime" Precision="3" />
+    <Property Name="PaymentStatus" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="CustomerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Remarks" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="BankCharges" Type="Decimal" Precision="17" Scale="2" />
+    <Property Name="BankClearanceDate" Type="DateTime" Precision="3" />
+    <Property Name="BankBranch" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="AmtRcvdinWords" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="IsReceipt" Type="Boolean" />
+    <Property Name="Activity" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="ModifyDate" Type="DateTime" Precision="3" />
+    <Property Name="FlatName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CrDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifyBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="RefundRemark" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="ClearanceCharge" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="IsBounce" Type="Boolean" Nullable="false" />
+    <Property Name="CustomerID" Type="Int32" />
+    <Property Name="AssuredReturnID" Type="Int32" />
+    <Property Name="TransactionID" Type="Int32" />
+  </EntityType>
+  <EntityType Name="BankMaster">
+    <Key>
+      <PropertyRef Name="BankID" />
+    </Key>
+    <Property Name="BankID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BankName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="BankBranch" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="BankAddress" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="BrokerMaster">
+    <Key>
+      <PropertyRef Name="BrokerID" />
+    </Key>
+    <Property Name="BrokerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BrokerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Address1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Address2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MobileNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PanNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifyDate" Type="DateTime" Precision="3" />
+    <Property Name="RecordStatus" Type="Int32" />
+  </EntityType>
+  <EntityType Name="BrokerPayment">
+    <Key>
+      <PropertyRef Name="BrokerPaymentID" />
+    </Key>
+    <Property Name="BrokerPaymentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FlatID" Type="Int32" />
+    <Property Name="SaleID" Type="Int32" />
+    <Property Name="BrokerID" Type="Int32" />
+    <Property Name="AmountPaid" Type="Decimal" Precision="17" Scale="2" />
+    <Property Name="PaidDate" Type="DateTime" Precision="3" />
+    <Property Name="PID" Type="Int32" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifyDate" Type="DateTime" Precision="3" />
+    <Property Name="RecordStatus" Type="Int32" />
+    <Property Name="PaymentMode" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="ChequeNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ChequeDate" Type="DateTime" Precision="3" />
+    <Property Name="BankName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="BankBranch" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Remarks" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="BrokerToProperty">
+    <Key>
+      <PropertyRef Name="BrokerToPropertyID" />
+    </Key>
+    <Property Name="BrokerToPropertyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FlatID" Type="Int32" />
+    <Property Name="SaleID" Type="Int32" />
+    <Property Name="BrokerID" Type="Int32" />
+    <Property Name="BrokerAmount" Type="Decimal" Precision="17" Scale="2" />
+    <Property Name="PID" Type="Int32" />
+    <Property Name="Date" Type="DateTime" Precision="3" />
+    <Property Name="Createdate" Type="DateTime" Precision="3" />
+    <Property Name="ModifyDate" Type="DateTime" Precision="3" />
+    <Property Name="RecordStatus" Type="Int32" />
+    <Property Name="ApproveStatus" Type="Int32" />
+    <Property Name="Remarks" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="CityMaster">
+    <Key>
+      <PropertyRef Name="CityID" />
+    </Key>
+    <Property Name="CityID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CityName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="StateName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CityCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="StateCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CrDate" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="AreaID" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="CustomerID" />
+    </Key>
+    <Property Name="CustomerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SaleID" Type="Int32" />
+    <Property Name="AppTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="LName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Address1" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Address2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PAN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MobileNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DateOfBirth" Type="DateTime" Precision="3" />
+    <Property Name="CoAppTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CoFName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CoMName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CoLName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CoAddress1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CoAddress2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CoCity" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CoState" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CoCountry" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CoPAN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CoMobileNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Address1Out" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Address2Out" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CityOut" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="StateOut" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CountryOut" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PANOut" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MobileOut" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="AlternateMobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="LandLine" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="EmailID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="AlternateEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Website" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="LoanAmount" Type="Decimal" Precision="17" Scale="2" />
+    <Property Name="LienField" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BankID" Type="Int32" />
+    <Property Name="BankAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BankBranch" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsPAN" Type="Boolean" />
+    <Property Name="IsPhoto" Type="Boolean" />
+    <Property Name="IsAddressPf" Type="Boolean" />
+    <Property Name="IsRationCard" Type="Boolean" />
+    <Property Name="IsDrivingLicence" Type="Boolean" />
+    <Property Name="IsPassport" Type="Boolean" />
+    <Property Name="IsVoterCard" Type="Boolean" />
+    <Property Name="IsTransfer" Type="Int32" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="RecordStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PlanID" Type="Int32" />
+    <Property Name="SecCoAppTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SecCoFName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SecCoMName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SecCoLName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SecCoAddress1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SecCoAddress2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SecCoCity" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SecCoState" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SecCoCountry" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SecCoMobileNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SecCoPAN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CoTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CoPName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SecCoTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SecCoPName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsConstruction" Type="Int32" />
+    <Property Name="PhotoImagePath" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="AddPfImagePath" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DVImagePath" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="VoterCardImagePath" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PassportImagePath" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="RationCardImagePath" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Remarks" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="CoDOB" Type="DateTime" Precision="3" />
+    <Property Name="SecCoDOB" Type="DateTime" Precision="3" />
+    <Property Name="PANImagePath" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CoIsPAN" Type="Boolean" />
+    <Property Name="CoIsPhoto" Type="Boolean" />
+    <Property Name="CoIsAddressPf" Type="Boolean" />
+    <Property Name="CoIsRationCard" Type="Boolean" />
+    <Property Name="CoIsDrivingLicence" Type="Boolean" />
+    <Property Name="CoIsVoterCard" Type="Boolean" />
+    <Property Name="CoIsPassport" Type="Boolean" />
+    <Property Name="SecCoIsPAN" Type="Boolean" />
+    <Property Name="SecCoIsPhoto" Type="Boolean" />
+    <Property Name="SecCoIsAddressPf" Type="Boolean" />
+    <Property Name="SecCoIsRationCard" Type="Boolean" />
+    <Property Name="SecCoIsDrivingLicence" Type="Boolean" />
+    <Property Name="SecCoIsVoterCard" Type="Boolean" />
+    <Property Name="SecCoIsPassport" Type="Boolean" />
+    <Property Name="CoPhotoImagePath" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CoAddPfImagePath" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CoDVImagePath" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CoVoterCardImagePath" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CoPassportImagePath" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CoRationCardImagePath" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CoPANImagePath" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SecCoPhotoImagePath" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SecCoAddPfImagePath" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SecCoDVImagePath" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SecCoVoterCardImagePath" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SecCoPassportImagePath" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SecCoRationCardImagePath" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SecCoPANImagePath" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsEdit" Type="Boolean" />
+    <Property Name="PinCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ExecutiveName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CoPinCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SecCoPinCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TransferAmount" Type="Decimal" Precision="17" Scale="2" />
+    <Property Name="TransferDate" Type="DateTime" Precision="3" />
+    <Property Name="Distt" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LegalOptionDate" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="panallowstatus" Type="Int32" />
+    <Property Name="affidavit" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="SaleStatus" Type="Boolean" />
+    <Property Name="CrDate" Type="DateTime" Precision="3" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="SaleFlat" Relationship="REMSDBModel.FK_Customer_SaleFlat" FromRole="Customer" ToRole="SaleFlat" />
+  </EntityType>
+  <EntityType Name="Error">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ErrorDate" Type="DateTime" Precision="3" />
+    <Property Name="IpAddress" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="UserAgent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Exception" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Everything" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="HttpReferer" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="PathAndQuery" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ChangedBy" Type="Int32" />
+    <Property Name="ChangedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="FullURL" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ErrorID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="EventMaster">
+    <Key>
+      <PropertyRef Name="EventID" />
+    </Key>
+    <Property Name="EventID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EventName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="EventDesc" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+    <Property Name="RecordStatus" Type="Int32" />
+    <Property Name="EventType" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Flat">
+    <Key>
+      <PropertyRef Name="FlatID" />
+    </Key>
+    <Property Name="FlatID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FloorID" Type="Int32" Nullable="false" />
+    <Property Name="FlatType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FlatName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FlatNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FlatSize" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="FlatSizeUnit" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SalePrice" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="BadRooms" Type="Int32" />
+    <Property Name="IsFurnished" Type="Boolean" />
+    <Property Name="LivingRoom" Type="Boolean" />
+    <Property Name="ServantRoom" Type="Boolean" />
+    <Property Name="Kitchen" Type="Boolean" />
+    <Property Name="Balconies" Type="Boolean" />
+    <Property Name="BathRooms" Type="Boolean" />
+    <Property Name="PoojaRoom" Type="Boolean" />
+    <Property Name="StudyRoom" Type="Boolean" />
+    <Property Name="AC" Type="Boolean" />
+    <Property Name="Intercom" Type="Boolean" />
+    <Property Name="Cupboards" Type="Boolean" />
+    <Property Name="WashingArea" Type="Boolean" />
+    <Property Name="PowerBackup" Type="Boolean" />
+    <Property Name="GASLine" Type="Boolean" />
+    <Property Name="HomeAutomation" Type="Boolean" />
+    <Property Name="CrDate" Type="DateTime" Precision="3" />
+    <Property Name="CrBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FlatOrder" Type="Int32" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Floor" Relationship="Self.FK_Flat_Floor" FromRole="Flat" ToRole="Floor" />
+    <NavigationProperty Name="FlatCharges" Relationship="Self.FK_FlatCharge_Flat" FromRole="Flat" ToRole="FlatCharge" />
+    <NavigationProperty Name="FlatInstallmentDetails" Relationship="Self.FK_FlatInstallmentDetail_Flat" FromRole="Flat" ToRole="FlatInstallmentDetail" />
+    <NavigationProperty Name="FlatOCharges" Relationship="Self.FK_FlatOCharge_Flat" FromRole="Flat" ToRole="FlatOCharge" />
+    <NavigationProperty Name="FlatPLCs" Relationship="Self.FK_FlatPLC_Flat" FromRole="Flat" ToRole="FlatPLC" />
+    <NavigationProperty Name="SaleFlats" Relationship="REMSDBModel.FK_SaleFlat_Flat" FromRole="Flat" ToRole="SaleFlat" />
+  </EntityType>
+  <EntityType Name="FlatCharge">
+    <Key>
+      <PropertyRef Name="FlatChargeID" />
+    </Key>
+    <Property Name="FlatChargeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FlatID" Type="Int32" />
+    <Property Name="AdditionalChargeID" Type="Int32" />
+    <Property Name="CrDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="AdditionalCharge" Relationship="Self.FK_FlatCharge_AdditionalCharge" FromRole="FlatCharge" ToRole="AdditionalCharge" />
+    <NavigationProperty Name="Flat" Relationship="Self.FK_FlatCharge_Flat" FromRole="FlatCharge" ToRole="Flat" />
+  </EntityType>
+  <EntityType Name="FlatInstallmentDetail">
+    <Key>
+      <PropertyRef Name="InstallmentID" />
+    </Key>
+    <Property Name="InstallmentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SaleID" Type="Int32" />
+    <Property Name="FlatID" Type="Int32" />
+    <Property Name="PlanInstallmentID" Type="Int32" />
+    <Property Name="BSPAmount" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="TotalAmount" Type="Decimal" Precision="17" Scale="2" />
+    <Property Name="TotalAmtInWords" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="RecordStatus" Type="Int32" />
+    <Property Name="InstallmentOrder" Type="Int32" />
+    <Property Name="Activity" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifyDate" Type="DateTime" Precision="3" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DueDate" Type="DateTime" Precision="3" />
+    <Property Name="BSPPer" Type="Decimal" Precision="17" Scale="2" />
+    <Property Name="PLCPer" Type="Decimal" Precision="17" Scale="2" />
+    <Property Name="AdditionalPer" Type="Decimal" Precision="17" Scale="2" />
+    <Property Name="OptionalPer" Type="Decimal" Precision="17" Scale="2" />
+    <Property Name="InstallmentServiceTaxID" Type="Int32" />
+    <NavigationProperty Name="Flat" Relationship="Self.FK_FlatInstallmentDetail_Flat" FromRole="FlatInstallmentDetail" ToRole="Flat" />
+    <NavigationProperty Name="PlanInstallment" Relationship="Self.FK_FlatInstallmentDetail_PlanInstallment" FromRole="FlatInstallmentDetail" ToRole="PlanInstallment" />
+  </EntityType>
+  <EntityType Name="FlatOCharge">
+    <Key>
+      <PropertyRef Name="FlatOChargeID" />
+    </Key>
+    <Property Name="FlatOChargeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FlatID" Type="Int32" />
+    <Property Name="AddOnChargeID" Type="Int32" />
+    <Property Name="CrDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="AddOnCharge" Relationship="Self.FK_FlatOCharge_AddOnCharge" FromRole="FlatOCharge" ToRole="AddOnCharge" />
+    <NavigationProperty Name="Flat" Relationship="Self.FK_FlatOCharge_Flat" FromRole="FlatOCharge" ToRole="Flat" />
+  </EntityType>
+  <EntityType Name="FlatPLC">
+    <Key>
+      <PropertyRef Name="FlatPLCID" />
+    </Key>
+    <Property Name="FlatPLCID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FlatID" Type="Int32" Nullable="false" />
+    <Property Name="PLCID" Type="Int32" Nullable="false" />
+    <Property Name="CrDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Flat" Relationship="Self.FK_FlatPLC_Flat" FromRole="FlatPLC" ToRole="Flat" />
+    <NavigationProperty Name="PLC" Relationship="Self.FK_FlatPLC_PLC" FromRole="FlatPLC" ToRole="PLC" />
+  </EntityType>
+  <EntityType Name="FlatType">
+    <Key>
+      <PropertyRef Name="FlatTypeID" />
+    </Key>
+    <Property Name="FlatTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FullName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Size" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="IsFurnished" Type="Boolean" />
+    <Property Name="CrDate" Type="DateTime" Precision="3" />
+    <Property Name="CrBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="FlatTypeSizes" Relationship="Self.FK_FlatTypeSize_FlatType" FromRole="FlatType" ToRole="FlatTypeSize" />
+  </EntityType>
+  <EntityType Name="FlatTypeSize">
+    <Key>
+      <PropertyRef Name="FlatTypeSizeID" />
+    </Key>
+    <Property Name="FlatTypeSizeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FlatTypeID" Type="Int32" />
+    <Property Name="Size" Type="Decimal" Precision="19" Scale="2" />
+    <Property Name="Unit" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CrDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="FlatType" Relationship="Self.FK_FlatTypeSize_FlatType" FromRole="FlatTypeSize" ToRole="FlatType" />
+    <NavigationProperty Name="PlanTypeMasters" Relationship="Self.FK_PlanTypeMaster_FlatTypeSize" FromRole="FlatTypeSize" ToRole="PlanTypeMaster" />
+  </EntityType>
+  <EntityType Name="Floor">
+    <Key>
+      <PropertyRef Name="FloorID" />
+    </Key>
+    <Property Name="FloorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TowerID" Type="Int32" />
+    <Property Name="FloorNo" Type="Int32" />
+    <Property Name="FloorName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CrDate" Type="DateTime" Precision="3" />
+    <Property Name="CrBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Flats" Relationship="Self.FK_Flat_Floor" FromRole="Floor" ToRole="Flat" />
+    <NavigationProperty Name="Tower" Relationship="Self.FK_Floor_Tower" FromRole="Floor" ToRole="Tower" />
+  </EntityType>
+  <EntityType Name="LatePayment">
+    <Key>
+      <PropertyRef Name="LatePaymentID" />
+    </Key>
+    <Property Name="LatePaymentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SaleID" Type="Int32" />
+    <Property Name="TransactionID" Type="Int32" />
+    <Property Name="InstallmentNo" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="CrDate" Type="DateTime" Precision="3" />
+    <Property Name="InterestAmount" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="ReceiveAmount" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="DueDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="SaleFlat" Relationship="REMSDBModel.FK_LatePayment_SaleFlat" FromRole="LatePayment" ToRole="SaleFlat" />
+  </EntityType>
+  <EntityType Name="ModuleList">
+    <Key>
+      <PropertyRef Name="ModuleListID" />
+    </Key>
+    <Property Name="ModuleListID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="PageName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+    <Property Name="CrDate" Type="DateTime" Precision="3" />
+    <Property Name="Controller" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ActionName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Payment">
+    <Key>
+      <PropertyRef Name="PaymentID" />
+    </Key>
+    <Property Name="TransactionID" Type="Int64" />
+    <Property Name="InstallmentNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PaymentNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SaleID" Type="Int32" />
+    <Property Name="PaymentDate" Type="DateTime" Precision="3" />
+    <Property Name="DueAmount" Type="Decimal" Precision="17" Scale="2" />
+    <Property Name="ServiceTaxAmount" Type="Decimal" Precision="17" Scale="2" />
+    <Property Name="InterestAmount" Type="Decimal" Precision="17" Scale="2" />
+    <Property Name="TotalAmount" Type="Decimal" Precision="17" Scale="2" />
+    <Property Name="Amount" Type="Decimal" Precision="17" Scale="2" />
+    <Property Name="PaymentMode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="ChequeNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BankName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ChequeDate" Type="DateTime" Precision="3" />
+    <Property Name="PaymentStatus" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="CustomerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Remarks" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="BankCharges" Type="Decimal" Precision="17" Scale="2" />
+    <Property Name="BankClearanceDate" Type="DateTime" Precision="3" />
+    <Property Name="RecordStatus" Type="Int32" />
+    <Property Name="BankBranch" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="AmtRcvdinWords" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="IsReceipt" Type="Boolean" />
+    <Property Name="UserID" Type="Int32" />
+    <Property Name="Activity" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="ModifyDate" Type="DateTime" Precision="3" />
+    <Property Name="FlatName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TransferDate" Type="DateTime" Precision="3" />
+    <Property Name="isrefund" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="CrDate" Type="DateTime" Precision="3" />
+    <Property Name="PaymentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ModifyBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="RefundRemark" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="ClearanceCharge" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="IsBounce" Type="Boolean" Nullable="false" />
+    <Property Name="CustomerID" Type="Int32" />
+    <NavigationProperty Name="SaleFlat" Relationship="REMSDBModel.FK_Payment_SaleFlat" FromRole="Payment" ToRole="SaleFlat" />
+  </EntityType>
+  <EntityType Name="PaymentCancel">
+    <Key>
+      <PropertyRef Name="PaymentCancelID" />
+    </Key>
+    <Property Name="PaymentCancelID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TransactionID" Type="Int64" />
+    <Property Name="SaleID" Type="Int32" />
+    <Property Name="Amount" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="CancelDate" Type="DateTime" Precision="3" />
+    <Property Name="UnCancelDate" Type="DateTime" Precision="3" />
+    <Property Name="Remarks" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+    <Property Name="UnCancelRemark" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+    <Property Name="CancelBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UnCancelBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="SaleFlat" Relationship="REMSDBModel.FK_PaymentCancel_SaleFlat" FromRole="PaymentCancel" ToRole="SaleFlat" />
+  </EntityType>
+  <EntityType Name="PaymentOther">
+    <Key>
+      <PropertyRef Name="PaymentOtherID" />
+    </Key>
+    <Property Name="PaymentOtherID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TransactionID" Type="Int64" />
+    <Property Name="PaymentNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SaleID" Type="Int32" />
+    <Property Name="PaymentDate" Type="DateTime" Precision="3" />
+    <Property Name="Amount" Type="Decimal" Precision="17" Scale="2" />
+    <Property Name="PaymentMode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="ChequeNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BankName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ChequeDate" Type="DateTime" Precision="3" />
+    <Property Name="PaymentStatus" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="CustomerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Remarks" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="BankCharges" Type="Decimal" Precision="17" Scale="2" />
+    <Property Name="BankClearanceDate" Type="DateTime" Precision="3" />
+    <Property Name="RecordStatus" Type="Int32" />
+    <Property Name="BankBranch" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="AmtRcvdinWords" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="IsReceipt" Type="Boolean" />
+    <Property Name="Activity" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="ModifyDate" Type="DateTime" Precision="3" />
+    <Property Name="FlatName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TransferDate" Type="DateTime" Precision="3" />
+    <Property Name="isrefund" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="CrDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifyBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="RefundRemark" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="ClearanceCharge" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="IsBounce" Type="Boolean" Nullable="false" />
+    <Property Name="CustomerID" Type="Int32" />
+    <Property Name="PaymentFor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="SaleFlat" Relationship="REMSDBModel.FK_PaymentOther_SaleFlat" FromRole="PaymentOther" ToRole="SaleFlat" />
+  </EntityType>
+  <EntityType Name="PaymentOtherCancel">
+    <Key>
+      <PropertyRef Name="PaymentOtherCancelID" />
+    </Key>
+    <Property Name="PaymentOtherCancelID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TransactionID" Type="Int64" />
+    <Property Name="SaleID" Type="Int32" />
+    <Property Name="Amount" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="CancelDate" Type="DateTime" Precision="3" />
+    <Property Name="UnCancelDate" Type="DateTime" Precision="3" />
+    <Property Name="Remarks" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+    <Property Name="UnCancelRemark" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+    <Property Name="CancelBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UnCancelBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="SaleFlat" Relationship="REMSDBModel.FK_PaymentOtherCancel_SaleFlat" FromRole="PaymentOtherCancel" ToRole="SaleFlat" />
+  </EntityType>
+  <EntityType Name="PaymentRecord">
+    <Key>
+      <PropertyRef Name="PaymentRecordID" />
+    </Key>
+    <Property Name="PaymentRecordID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TransactionID" Type="Int32" />
+    <Property Name="SaleID" Type="Int32" Nullable="false" />
+    <Property Name="Amount" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="PayDate" Type="DateTime" Precision="3" />
+    <Property Name="Action" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PayType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="BalanceAmount" Type="Decimal" Precision="19" Scale="4" />
+    <NavigationProperty Name="SaleFlat" Relationship="REMSDBModel.FK_PaymentRecord_SaleFlat" FromRole="PaymentRecord" ToRole="SaleFlat" />
+  </EntityType>
+  <EntityType Name="PaymentRefund">
+    <Key>
+      <PropertyRef Name="RefundID" />
+    </Key>
+    <Property Name="RefundID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SaleID" Type="Int32" />
+    <Property Name="TotalAmount" Type="Decimal" Precision="17" Scale="2" />
+    <Property Name="PaidAmount" Type="Decimal" Precision="17" Scale="2" />
+    <Property Name="RefundAmount" Type="Decimal" Precision="17" Scale="2" />
+    <Property Name="ChequeNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ChequeDate" Type="DateTime" Precision="3" />
+    <Property Name="BankName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="RefundDate" Type="DateTime" Precision="3" />
+    <Property Name="IsPan" Type="Boolean" />
+    <Property Name="IsPhoto" Type="Boolean" />
+    <Property Name="IsAddressPf" Type="Boolean" />
+    <Property Name="IsRationCard" Type="Boolean" />
+    <Property Name="IsDrivingLicence" Type="Boolean" />
+    <Property Name="IsPassport" Type="Boolean" />
+    <Property Name="IsVoterCard" Type="Boolean" />
+    <Property Name="RecordStatus" Type="Int32" />
+    <Property Name="Remarks" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="SaleFlat" Relationship="REMSDBModel.FK_PaymentRefund_SaleFlat" FromRole="PaymentRefund" ToRole="SaleFlat" />
+  </EntityType>
+  <EntityType Name="PayServiceTax">
+    <Key>
+      <PropertyRef Name="PayServiceTaxID" />
+    </Key>
+    <Property Name="PayServiceTaxID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SaleID" Type="Int32" />
+    <Property Name="PayDate" Type="DateTime" Precision="3" />
+    <Property Name="Amount" Type="Decimal" Precision="17" Scale="2" />
+    <Property Name="RecordStatus" Type="Int32" />
+    <Property Name="PaymentNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="AmtRcvdinWords" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="PaymentMode" Type="Int32" />
+    <Property Name="ChequeNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ChequeDate" Type="DateTime" Precision="3" />
+    <Property Name="BankCharges" Type="Decimal" Precision="17" Scale="2" />
+    <Property Name="BankClearanceDate" Type="DateTime" Precision="3" />
+    <Property Name="BankName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="BankBranch" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PaymentStatus" Type="Int32" />
+    <Property Name="UserID" Type="Int32" />
+    <Property Name="Activity" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Remarks" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="SaleFlat" Relationship="REMSDBModel.FK_PayServiceTax_SaleFlat" FromRole="PayServiceTax" ToRole="SaleFlat" />
+  </EntityType>
+  <EntityType Name="Plan">
+    <Key>
+      <PropertyRef Name="PlanID" />
+    </Key>
+    <Property Name="PlanID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PlanName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="CrDate" Type="DateTime" Precision="3" />
+    <Property Name="Status" Type="Boolean" />
+    <NavigationProperty Name="PlanInstallments" Relationship="Self.FK_PlanInstallment_Plan" FromRole="Plan" ToRole="PlanInstallment" />
+    <NavigationProperty Name="PlanTypeMasters" Relationship="Self.FK_PlanTypeMaster_Plan" FromRole="Plan" ToRole="PlanTypeMaster" />
+  </EntityType>
+  <EntityType Name="PlanInstallment">
+    <Key>
+      <PropertyRef Name="PlanInstallmentID" />
+    </Key>
+    <Property Name="PlanInstallmentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PlanID" Type="Int32" />
+    <Property Name="Installment" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="InstallmentNo" Type="Int32" />
+    <Property Name="Amount" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="CrDate" Type="DateTime" Precision="3" />
+    <Property Name="CrBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IntervalDays" Type="Int32" />
+    <NavigationProperty Name="FlatInstallmentDetails" Relationship="Self.FK_FlatInstallmentDetail_PlanInstallment" FromRole="PlanInstallment" ToRole="FlatInstallmentDetail" />
+    <NavigationProperty Name="Plan" Relationship="Self.FK_PlanInstallment_Plan" FromRole="PlanInstallment" ToRole="Plan" />
+  </EntityType>
+  <EntityType Name="PlanTypeMaster">
+    <Key>
+      <PropertyRef Name="PlanTypeMasterID" />
+    </Key>
+    <Property Name="PlanTypeMasterID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FlatTypeSizeID" Type="Int32" />
+    <Property Name="PlanID" Type="Int32" />
+    <Property Name="PlanName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="AmountSqFt" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="CrDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="FlatTypeSize" Relationship="Self.FK_PlanTypeMaster_FlatTypeSize" FromRole="PlanTypeMaster" ToRole="FlatTypeSize" />
+    <NavigationProperty Name="Plan" Relationship="Self.FK_PlanTypeMaster_Plan" FromRole="PlanTypeMaster" ToRole="Plan" />
+  </EntityType>
+  <EntityType Name="PLC">
+    <Key>
+      <PropertyRef Name="PLCID" />
+    </Key>
+    <Property Name="PLCID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PLCName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="AmountSqFt" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="FloorNo" Type="Int32" />
+    <Property Name="TaxPer" Type="Decimal" Precision="17" Scale="2" />
+    <Property Name="Mandatory" Type="Boolean" />
+    <NavigationProperty Name="FlatPLCs" Relationship="Self.FK_FlatPLC_PLC" FromRole="PLC" ToRole="FlatPLC" />
+  </EntityType>
+  <EntityType Name="Project">
+    <Key>
+      <PropertyRef Name="ProjectID" />
+    </Key>
+    <Property Name="ProjectID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CrDate" Type="DateTime" Precision="3" />
+    <Property Name="CrBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CompanyName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="Location" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="ReceiptPrefix" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="RecordStatus" Type="Int32" />
+    <Property Name="OfficeAddress" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="District" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Village" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Tehsil" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Jurisdiction" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PossessionDate" Type="DateTime" Precision="3" />
+    <Property Name="ReceiptNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="AuthoritySign" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ProjectTypes" Relationship="Self.FK_ProjectType_Project" FromRole="Project" ToRole="ProjectType" />
+    <NavigationProperty Name="Towers" Relationship="Self.FK_Tower_Project" FromRole="Project" ToRole="Tower" />
+    <NavigationProperty Name="UserProperties" Relationship="Self.FK_UserProperty_UserProperty" FromRole="Project" ToRole="UserProperty" />
+  </EntityType>
+  <EntityType Name="ProjectType">
+    <Key>
+      <PropertyRef Name="ProjectTypeID" />
+    </Key>
+    <Property Name="ProjectTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProjectID" Type="Int32" />
+    <Property Name="CrDate" Type="DateTime" Precision="3" />
+    <Property Name="CrBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Project" Relationship="Self.FK_ProjectType_Project" FromRole="ProjectType" ToRole="Project" />
+  </EntityType>
+  <EntityType Name="PropertyRemark">
+    <Key>
+      <PropertyRef Name="Rid" />
+    </Key>
+    <Property Name="Rid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SaleID" Type="Int32" />
+    <Property Name="Remark" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="RemakDate" Type="DateTime" Precision="3" />
+    <Property Name="status" Type="Int32" />
+    <Property Name="ProprtyName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="createdate" Type="DateTime" Precision="3" />
+    <Property Name="FollowupAmount" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="SaleFlat" Relationship="REMSDBModel.FK_PropertyRemark_SaleFlat" FromRole="PropertyRemark" ToRole="SaleFlat" />
+  </EntityType>
+  <EntityType Name="PropertyTransfer">
+    <Key>
+      <PropertyRef Name="PropertyTransferID" />
+    </Key>
+    <Property Name="PropertyTransferID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SaleID" Type="Int32" />
+    <Property Name="OldCustomerID" Type="Int32" />
+    <Property Name="NewCustomerID" Type="Int32" />
+    <Property Name="TransferDate" Type="DateTime" Precision="3" />
+    <Property Name="TransferAmount" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="OldPlanType" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="NewPlanType" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="UserName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="SaleFlat" Relationship="REMSDBModel.FK_PropertyTransfer_SaleFlat" FromRole="PropertyTransfer" ToRole="SaleFlat" />
+  </EntityType>
+  <EntityType Name="RefundProperty">
+    <Key>
+      <PropertyRef Name="RefundPropertyID" />
+    </Key>
+    <Property Name="RefundPropertyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SaleID" Type="Int32" Nullable="false" />
+    <Property Name="RefundDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="RefundAmount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="PaymentMode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ChequeNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ChequeDate" Type="DateTime" Precision="3" />
+    <Property Name="BankName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="BranchName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Remarks" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="FlatName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="SaleFlat" Relationship="REMSDBModel.FK_RefundProperty_SaleFlat" FromRole="RefundProperty" ToRole="SaleFlat" />
+  </EntityType>
+  <EntityType Name="ReminderLetter">
+    <Key>
+      <PropertyRef Name="ReminderLetterID" />
+    </Key>
+    <Property Name="ReminderLetterID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LetterType" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+    <Property Name="SaleID" Type="Int32" />
+    <Property Name="duedate" Type="DateTime" Precision="3" />
+    <Property Name="DueAmount" Type="Decimal" Precision="19" Scale="4" />
+    <NavigationProperty Name="SaleFlat" Relationship="REMSDBModel.FK_ReminderLetter_SaleFlat" FromRole="ReminderLetter" ToRole="SaleFlat" />
+  </EntityType>
+  <EntityType Name="RoleAccess">
+    <Key>
+      <PropertyRef Name="RoleAccessID" />
+    </Key>
+    <Property Name="RoleAccessID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ModuleListID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="RoleName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="IsRead" Type="Boolean" Nullable="false" />
+    <Property Name="AssignDate" Type="DateTime" Precision="3" />
+    <Property Name="AssignUser" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ActionName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ControllerName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="ServiceTax">
+    <Key>
+      <PropertyRef Name="ServiceTaxID" />
+    </Key>
+    <Property Name="ServiceTaxID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ServiceTaxName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ServiceTaxPer" Type="Decimal" Precision="17" Scale="2" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifyDate" Type="DateTime" Precision="3" />
+    <Property Name="EndDate" Type="DateTime" Precision="3" />
+    <Property Name="Status" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="TaxMaster">
+    <Key>
+      <PropertyRef Name="TaxMasterID" />
+    </Key>
+    <Property Name="TaxMasterID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TaxName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TaxTag" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Tax" Type="Double" />
+    <Property Name="ApplyTill" Type="DateTime" Precision="3" />
+    <Property Name="CrDate" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Tower">
+    <Key>
+      <PropertyRef Name="TowerID" />
+    </Key>
+    <Property Name="TowerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProjectID" Type="Int32" />
+    <Property Name="ProjectTypeID" Type="Int32" />
+    <Property Name="TowerName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="TowerNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Block" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Security" Type="Boolean" />
+    <Property Name="PlayArea" Type="Boolean" />
+    <Property Name="PowerBackup" Type="Boolean" />
+    <Property Name="SwimmingPool" Type="Boolean" />
+    <Property Name="Gym" Type="Boolean" />
+    <Property Name="Garden" Type="Boolean" />
+    <Property Name="Library" Type="Boolean" />
+    <Property Name="CommunityHall" Type="Boolean" />
+    <Property Name="ClubHourse" Type="Boolean" />
+    <Property Name="JoggingTrack" Type="Boolean" />
+    <Property Name="Lift" Type="Boolean" />
+    <Property Name="Internet" Type="Boolean" />
+    <Property Name="InternalRoad" Type="Boolean" />
+    <Property Name="CrDate" Type="DateTime" Precision="3" />
+    <Property Name="CrBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Floors" Relationship="Self.FK_Floor_Tower" FromRole="Tower" ToRole="Floor" />
+    <NavigationProperty Name="Project" Relationship="Self.FK_Tower_Project" FromRole="Tower" ToRole="Project" />
+  </EntityType>
+  <EntityType Name="UploadAgreement">
+    <Key>
+      <PropertyRef Name="UploadAgreementID" />
+    </Key>
+    <Property Name="UploadAgreementID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SaleID" Type="Int32" />
+    <Property Name="FilePath" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Createdate" Type="DateTime" Precision="3" />
+    <Property Name="ModifyDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" />
+    <NavigationProperty Name="SaleFlat" Relationship="REMSDBModel.FK_UploadAgreement_SaleFlat" FromRole="UploadAgreement" ToRole="SaleFlat" />
+  </EntityType>
+  <EntityType Name="UserAccess">
+    <Key>
+      <PropertyRef Name="UserAccessID" />
+    </Key>
+    <Property Name="UserAccessID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ModuleListID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="IsRead" Type="Boolean" Nullable="false" />
+    <Property Name="IsWrite" Type="Boolean" Nullable="false" />
+    <Property Name="AssignDate" Type="DateTime" Precision="3" />
+    <Property Name="AssignUser" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ActionName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ControllerName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="UserProperty">
+    <Key>
+      <PropertyRef Name="UserPropertyID" />
+    </Key>
+    <Property Name="UserPropertyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProjectID" Type="Int32" />
+    <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="AssignDate" Type="DateTime" Precision="3" />
+    <Property Name="AssignUser" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Project" Relationship="Self.FK_UserProperty_UserProperty" FromRole="UserProperty" ToRole="Project" />
+  </EntityType>
+  <EntityType Name="PayTransferFee">
+    <Key>
+      <PropertyRef Name="PayTransferID" />
+    </Key>
+    <Property Name="PayTransferID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SaleID" Type="Int32" />
+    <Property Name="FlatID" Type="Int32" />
+    <Property Name="PayDate" Type="DateTime" Precision="3" />
+    <Property Name="Amount" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="RecordStatus" Type="Int32" />
+    <Property Name="PaymentNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="AmtRcvdinWords" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="PaymentMode" Type="Int32" />
+    <Property Name="ChequeNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ChequeDate" Type="DateTime" Precision="3" />
+    <Property Name="BankCharges" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="BankClearanceDate" Type="DateTime" Precision="3" />
+    <Property Name="BankName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="BankBranch" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PaymentStatus" Type="Int32" />
+    <Property Name="UserID" Type="Int32" />
+    <Property Name="Activity" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Remarks" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <Association Name="FK_FlatCharge_AdditionalCharge">
+    <End Role="AdditionalCharge" Type="Self.AdditionalCharge" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="FlatCharge" Type="Self.FlatCharge" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AdditionalCharge">
+        <PropertyRef Name="AdditionalChargeID" />
+      </Principal>
+      <Dependent Role="FlatCharge">
+        <PropertyRef Name="AdditionalChargeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FlatOCharge_AddOnCharge">
+    <End Role="AddOnCharge" Type="Self.AddOnCharge" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="FlatOCharge" Type="Self.FlatOCharge" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AddOnCharge">
+        <PropertyRef Name="AddOnChargeID" />
+      </Principal>
+      <Dependent Role="FlatOCharge">
+        <PropertyRef Name="AddOnChargeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Flat_Floor">
+    <End Role="Floor" Type="Self.Floor" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Flat" Type="Self.Flat" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Floor">
+        <PropertyRef Name="FloorID" />
+      </Principal>
+      <Dependent Role="Flat">
+        <PropertyRef Name="FloorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FlatCharge_Flat">
+    <End Role="Flat" Type="Self.Flat" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="FlatCharge" Type="Self.FlatCharge" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Flat">
+        <PropertyRef Name="FlatID" />
+      </Principal>
+      <Dependent Role="FlatCharge">
+        <PropertyRef Name="FlatID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FlatInstallmentDetail_Flat">
+    <End Role="Flat" Type="Self.Flat" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="FlatInstallmentDetail" Type="Self.FlatInstallmentDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Flat">
+        <PropertyRef Name="FlatID" />
+      </Principal>
+      <Dependent Role="FlatInstallmentDetail">
+        <PropertyRef Name="FlatID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FlatOCharge_Flat">
+    <End Role="Flat" Type="Self.Flat" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="FlatOCharge" Type="Self.FlatOCharge" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Flat">
+        <PropertyRef Name="FlatID" />
+      </Principal>
+      <Dependent Role="FlatOCharge">
+        <PropertyRef Name="FlatID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FlatPLC_Flat">
+    <End Role="Flat" Type="Self.Flat" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="FlatPLC" Type="Self.FlatPLC" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Flat">
+        <PropertyRef Name="FlatID" />
+      </Principal>
+      <Dependent Role="FlatPLC">
+        <PropertyRef Name="FlatID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FlatInstallmentDetail_PlanInstallment">
+    <End Role="PlanInstallment" Type="Self.PlanInstallment" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="FlatInstallmentDetail" Type="Self.FlatInstallmentDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PlanInstallment">
+        <PropertyRef Name="PlanInstallmentID" />
+      </Principal>
+      <Dependent Role="FlatInstallmentDetail">
+        <PropertyRef Name="PlanInstallmentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FlatPLC_PLC">
+    <End Role="PLC" Type="Self.PLC" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="FlatPLC" Type="Self.FlatPLC" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PLC">
+        <PropertyRef Name="PLCID" />
+      </Principal>
+      <Dependent Role="FlatPLC">
+        <PropertyRef Name="PLCID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FlatTypeSize_FlatType">
+    <End Role="FlatType" Type="Self.FlatType" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="FlatTypeSize" Type="Self.FlatTypeSize" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FlatType">
+        <PropertyRef Name="FlatTypeID" />
+      </Principal>
+      <Dependent Role="FlatTypeSize">
+        <PropertyRef Name="FlatTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PlanTypeMaster_FlatTypeSize">
+    <End Role="FlatTypeSize" Type="Self.FlatTypeSize" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="PlanTypeMaster" Type="Self.PlanTypeMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FlatTypeSize">
+        <PropertyRef Name="FlatTypeSizeID" />
+      </Principal>
+      <Dependent Role="PlanTypeMaster">
+        <PropertyRef Name="FlatTypeSizeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Floor_Tower">
+    <End Role="Tower" Type="Self.Tower" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Floor" Type="Self.Floor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tower">
+        <PropertyRef Name="TowerID" />
+      </Principal>
+      <Dependent Role="Floor">
+        <PropertyRef Name="TowerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PlanInstallment_Plan">
+    <End Role="Plan" Type="Self.Plan" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="PlanInstallment" Type="Self.PlanInstallment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Plan">
+        <PropertyRef Name="PlanID" />
+      </Principal>
+      <Dependent Role="PlanInstallment">
+        <PropertyRef Name="PlanID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PlanTypeMaster_Plan">
+    <End Role="Plan" Type="Self.Plan" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="PlanTypeMaster" Type="Self.PlanTypeMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Plan">
+        <PropertyRef Name="PlanID" />
+      </Principal>
+      <Dependent Role="PlanTypeMaster">
+        <PropertyRef Name="PlanID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProjectType_Project">
+    <End Role="Project" Type="Self.Project" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ProjectType" Type="Self.ProjectType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="ProjectID" />
+      </Principal>
+      <Dependent Role="ProjectType">
+        <PropertyRef Name="ProjectID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tower_Project">
+    <End Role="Project" Type="Self.Project" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Tower" Type="Self.Tower" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="ProjectID" />
+      </Principal>
+      <Dependent Role="Tower">
+        <PropertyRef Name="ProjectID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserProperty_UserProperty">
+    <End Role="Project" Type="Self.Project" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="UserProperty" Type="Self.UserProperty" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="ProjectID" />
+      </Principal>
+      <Dependent Role="UserProperty">
+        <PropertyRef Name="ProjectID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="REMSDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AdditionalCharges" EntityType="Self.AdditionalCharge" />
+    <EntitySet Name="AddOnCharges" EntityType="Self.AddOnCharge" />
+    <EntitySet Name="Agreements" EntityType="Self.Agreement" />
+    <EntitySet Name="AssuredReturns" EntityType="Self.AssuredReturn" />
+    <EntitySet Name="AssuredReturnPayments" EntityType="Self.AssuredReturnPayment" />
+    <EntitySet Name="BankMasters" EntityType="Self.BankMaster" />
+    <EntitySet Name="BrokerMasters" EntityType="Self.BrokerMaster" />
+    <EntitySet Name="BrokerPayments" EntityType="Self.BrokerPayment" />
+    <EntitySet Name="BrokerToProperties" EntityType="Self.BrokerToProperty" />
+    <EntitySet Name="CityMasters" EntityType="Self.CityMaster" />
+    <EntitySet Name="Customers" EntityType="Self.Customer" />
+    <EntitySet Name="Errors" EntityType="Self.Error" />
+    <EntitySet Name="EventMasters" EntityType="Self.EventMaster" />
+    <EntitySet Name="Flats" EntityType="Self.Flat" />
+    <EntitySet Name="FlatCharges" EntityType="Self.FlatCharge" />
+    <EntitySet Name="FlatInstallmentDetails" EntityType="Self.FlatInstallmentDetail" />
+    <EntitySet Name="FlatOCharges" EntityType="Self.FlatOCharge" />
+    <EntitySet Name="FlatPLCs" EntityType="Self.FlatPLC" />
+    <EntitySet Name="FlatTypes" EntityType="Self.FlatType" />
+    <EntitySet Name="FlatTypeSizes" EntityType="Self.FlatTypeSize" />
+    <EntitySet Name="Floors" EntityType="Self.Floor" />
+    <EntitySet Name="LatePayments" EntityType="Self.LatePayment" />
+    <EntitySet Name="ModuleLists" EntityType="Self.ModuleList" />
+    <EntitySet Name="Payments" EntityType="Self.Payment" />
+    <EntitySet Name="PaymentCancels" EntityType="Self.PaymentCancel" />
+    <EntitySet Name="PaymentOthers" EntityType="Self.PaymentOther" />
+    <EntitySet Name="PaymentOtherCancels" EntityType="Self.PaymentOtherCancel" />
+    <EntitySet Name="PaymentRecords" EntityType="Self.PaymentRecord" />
+    <EntitySet Name="PaymentRefunds" EntityType="Self.PaymentRefund" />
+    <EntitySet Name="PayServiceTaxes" EntityType="Self.PayServiceTax" />
+    <EntitySet Name="Plans" EntityType="Self.Plan" />
+    <EntitySet Name="PlanInstallments" EntityType="Self.PlanInstallment" />
+    <EntitySet Name="PlanTypeMasters" EntityType="Self.PlanTypeMaster" />
+    <EntitySet Name="PLCs" EntityType="Self.PLC" />
+    <EntitySet Name="Projects" EntityType="Self.Project" />
+    <EntitySet Name="ProjectTypes" EntityType="Self.ProjectType" />
+    <EntitySet Name="PropertyRemarks" EntityType="Self.PropertyRemark" />
+    <EntitySet Name="PropertyTransfers" EntityType="Self.PropertyTransfer" />
+    <EntitySet Name="RefundProperties" EntityType="Self.RefundProperty" />
+    <EntitySet Name="ReminderLetters" EntityType="Self.ReminderLetter" />
+    <EntitySet Name="RoleAccesses" EntityType="Self.RoleAccess" />
+    <EntitySet Name="ServiceTaxes" EntityType="Self.ServiceTax" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="TaxMasters" EntityType="Self.TaxMaster" />
+    <EntitySet Name="Towers" EntityType="Self.Tower" />
+    <EntitySet Name="UploadAgreements" EntityType="Self.UploadAgreement" />
+    <EntitySet Name="UserAccesses" EntityType="Self.UserAccess" />
+    <EntitySet Name="UserProperties" EntityType="Self.UserProperty" />
+    <EntitySet Name="PayTransferFees" EntityType="Self.PayTransferFee" />
+    <AssociationSet Name="FK_FlatCharge_AdditionalCharge" Association="Self.FK_FlatCharge_AdditionalCharge">
+      <End Role="AdditionalCharge" EntitySet="AdditionalCharges" />
+      <End Role="FlatCharge" EntitySet="FlatCharges" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FlatOCharge_AddOnCharge" Association="Self.FK_FlatOCharge_AddOnCharge">
+      <End Role="AddOnCharge" EntitySet="AddOnCharges" />
+      <End Role="FlatOCharge" EntitySet="FlatOCharges" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Flat_Floor" Association="Self.FK_Flat_Floor">
+      <End Role="Floor" EntitySet="Floors" />
+      <End Role="Flat" EntitySet="Flats" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FlatCharge_Flat" Association="Self.FK_FlatCharge_Flat">
+      <End Role="Flat" EntitySet="Flats" />
+      <End Role="FlatCharge" EntitySet="FlatCharges" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FlatInstallmentDetail_Flat" Association="Self.FK_FlatInstallmentDetail_Flat">
+      <End Role="Flat" EntitySet="Flats" />
+      <End Role="FlatInstallmentDetail" EntitySet="FlatInstallmentDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FlatOCharge_Flat" Association="Self.FK_FlatOCharge_Flat">
+      <End Role="Flat" EntitySet="Flats" />
+      <End Role="FlatOCharge" EntitySet="FlatOCharges" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FlatPLC_Flat" Association="Self.FK_FlatPLC_Flat">
+      <End Role="Flat" EntitySet="Flats" />
+      <End Role="FlatPLC" EntitySet="FlatPLCs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FlatInstallmentDetail_PlanInstallment" Association="Self.FK_FlatInstallmentDetail_PlanInstallment">
+      <End Role="PlanInstallment" EntitySet="PlanInstallments" />
+      <End Role="FlatInstallmentDetail" EntitySet="FlatInstallmentDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FlatPLC_PLC" Association="Self.FK_FlatPLC_PLC">
+      <End Role="PLC" EntitySet="PLCs" />
+      <End Role="FlatPLC" EntitySet="FlatPLCs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FlatTypeSize_FlatType" Association="Self.FK_FlatTypeSize_FlatType">
+      <End Role="FlatType" EntitySet="FlatTypes" />
+      <End Role="FlatTypeSize" EntitySet="FlatTypeSizes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PlanTypeMaster_FlatTypeSize" Association="Self.FK_PlanTypeMaster_FlatTypeSize">
+      <End Role="FlatTypeSize" EntitySet="FlatTypeSizes" />
+      <End Role="PlanTypeMaster" EntitySet="PlanTypeMasters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Floor_Tower" Association="Self.FK_Floor_Tower">
+      <End Role="Tower" EntitySet="Towers" />
+      <End Role="Floor" EntitySet="Floors" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PlanInstallment_Plan" Association="Self.FK_PlanInstallment_Plan">
+      <End Role="Plan" EntitySet="Plans" />
+      <End Role="PlanInstallment" EntitySet="PlanInstallments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PlanTypeMaster_Plan" Association="Self.FK_PlanTypeMaster_Plan">
+      <End Role="Plan" EntitySet="Plans" />
+      <End Role="PlanTypeMaster" EntitySet="PlanTypeMasters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProjectType_Project" Association="Self.FK_ProjectType_Project">
+      <End Role="Project" EntitySet="Projects" />
+      <End Role="ProjectType" EntitySet="ProjectTypes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tower_Project" Association="Self.FK_Tower_Project">
+      <End Role="Project" EntitySet="Projects" />
+      <End Role="Tower" EntitySet="Towers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserProperty_UserProperty" Association="Self.FK_UserProperty_UserProperty">
+      <End Role="Project" EntitySet="Projects" />
+      <End Role="UserProperty" EntitySet="UserProperties" />
+    </AssociationSet>
+    <FunctionImport Name="GenerateAssuredReturn_Installment">
+      <Parameter Name="SaleID" Mode="In" Type="Int32" />
+      <Parameter Name="Amount" Mode="In" Type="Decimal" />
+      <Parameter Name="Interest" Mode="In" Type="Decimal" />
+      <Parameter Name="StartDate" Mode="In" Type="DateTime" />
+      <Parameter Name="PDate" Mode="In" Type="DateTime" />
+      <Parameter Name="UserName" Mode="In" Type="String" />
+      <Parameter Name="TDSLimit" Mode="In" Type="Decimal" />
+      <Parameter Name="TDSPer" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="Get_Payment" ReturnType="Collection(REMSDBModel.Get_Payment_Result)">
+      <Parameter Name="TransactionID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Insert_Payment">
+      <Parameter Name="InstallmentNo" Mode="In" Type="String" />
+      <Parameter Name="SaleID" Mode="In" Type="Int32" />
+      <Parameter Name="PaymentDate" Mode="In" Type="DateTime" />
+      <Parameter Name="DueDate" Mode="In" Type="DateTime" />
+      <Parameter Name="DueAmount" Mode="In" Type="Decimal" />
+      <Parameter Name="InterestAmount" Mode="In" Type="Decimal" />
+      <Parameter Name="TotalAmount" Mode="In" Type="Decimal" />
+      <Parameter Name="Amount" Mode="In" Type="Decimal" />
+      <Parameter Name="PaymentMode" Mode="In" Type="String" />
+      <Parameter Name="ChequeNo" Mode="In" Type="String" />
+      <Parameter Name="ChequeDate" Mode="In" Type="DateTime" />
+      <Parameter Name="BankName" Mode="In" Type="String" />
+      <Parameter Name="PaymentStatus" Mode="In" Type="String" />
+      <Parameter Name="CustomerName" Mode="In" Type="String" />
+      <Parameter Name="Remarks" Mode="In" Type="String" />
+      <Parameter Name="BankBranch" Mode="In" Type="String" />
+      <Parameter Name="AmtRcvdinwords" Mode="In" Type="String" />
+      <Parameter Name="PaymentNo" Mode="In" Type="String" />
+      <Parameter Name="IsReceipt" Mode="In" Type="Boolean" />
+      <Parameter Name="UserID" Mode="In" Type="Int32" />
+      <Parameter Name="Activity" Mode="In" Type="String" />
+      <Parameter Name="FlatName" Mode="In" Type="String" />
+      <Parameter Name="TransactionID" Mode="In" Type="Int32" />
+      <Parameter Name="CustomerID" Mode="In" Type="Int32" />
+      <Parameter Name="Interest" Mode="In" Type="Boolean" />
+      <Parameter Name="CreatedBy" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Insert_PaymentAssuredReturn">
+      <Parameter Name="SaleID" Mode="In" Type="Int32" />
+      <Parameter Name="PaymentDate" Mode="In" Type="DateTime" />
+      <Parameter Name="Amount" Mode="In" Type="Decimal" />
+      <Parameter Name="PaymentMode" Mode="In" Type="String" />
+      <Parameter Name="ChequeNo" Mode="In" Type="String" />
+      <Parameter Name="ChequeDate" Mode="In" Type="DateTime" />
+      <Parameter Name="BankName" Mode="In" Type="String" />
+      <Parameter Name="PaymentStatus" Mode="In" Type="String" />
+      <Parameter Name="CustomerName" Mode="In" Type="String" />
+      <Parameter Name="Remarks" Mode="In" Type="String" />
+      <Parameter Name="BankBranch" Mode="In" Type="String" />
+      <Parameter Name="AmtRcvdinwords" Mode="In" Type="String" />
+      <Parameter Name="PaymentNo" Mode="In" Type="String" />
+      <Parameter Name="IsReceipt" Mode="In" Type="Boolean" />
+      <Parameter Name="FlatName" Mode="In" Type="String" />
+      <Parameter Name="TransactionID" Mode="In" Type="Int32" />
+      <Parameter Name="CustomerID" Mode="In" Type="Int32" />
+      <Parameter Name="CreatedBy" Mode="In" Type="String" />
+      <Parameter Name="AssuredReturnID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Rem_GetFlatPlanCharge" ReturnType="Collection(REMSDBModel.Rem_GetFlatPlanCharge_Result)">
+      <Parameter Name="FlatId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_Customer">
+      <Parameter Name="CustomerID" Mode="In" Type="Int32" />
+      <Parameter Name="AppTitle" Mode="In" Type="String" />
+      <Parameter Name="FName" Mode="In" Type="String" />
+      <Parameter Name="MName" Mode="In" Type="String" />
+      <Parameter Name="LName" Mode="In" Type="String" />
+      <Parameter Name="Title" Mode="In" Type="String" />
+      <Parameter Name="PName" Mode="In" Type="String" />
+      <Parameter Name="Address1" Mode="In" Type="String" />
+      <Parameter Name="Address2" Mode="In" Type="String" />
+      <Parameter Name="City" Mode="In" Type="String" />
+      <Parameter Name="State" Mode="In" Type="String" />
+      <Parameter Name="Country" Mode="In" Type="String" />
+      <Parameter Name="PAN" Mode="In" Type="String" />
+      <Parameter Name="MobileNo" Mode="In" Type="String" />
+      <Parameter Name="DateOfBirth" Mode="In" Type="DateTime" />
+      <Parameter Name="CoAppTitle" Mode="In" Type="String" />
+      <Parameter Name="CoFName" Mode="In" Type="String" />
+      <Parameter Name="CoMName" Mode="In" Type="String" />
+      <Parameter Name="CoLName" Mode="In" Type="String" />
+      <Parameter Name="CoAddress1" Mode="In" Type="String" />
+      <Parameter Name="CoAddress2" Mode="In" Type="String" />
+      <Parameter Name="CoCity" Mode="In" Type="String" />
+      <Parameter Name="CoState" Mode="In" Type="String" />
+      <Parameter Name="CoCountry" Mode="In" Type="String" />
+      <Parameter Name="CoPAN" Mode="In" Type="String" />
+      <Parameter Name="CoMobileNo" Mode="In" Type="String" />
+      <Parameter Name="AlternateMobile" Mode="In" Type="String" />
+      <Parameter Name="LandLine" Mode="In" Type="String" />
+      <Parameter Name="EmailID" Mode="In" Type="String" />
+      <Parameter Name="AlternateEmail" Mode="In" Type="String" />
+      <Parameter Name="LoanAmount" Mode="In" Type="Decimal" />
+      <Parameter Name="LienField" Mode="In" Type="String" />
+      <Parameter Name="BankID" Mode="In" Type="Int32" />
+      <Parameter Name="BankBranch" Mode="In" Type="String" />
+      <Parameter Name="SecCoAppTitle" Mode="In" Type="String" />
+      <Parameter Name="SecCoFName" Mode="In" Type="String" />
+      <Parameter Name="SecCoMName" Mode="In" Type="String" />
+      <Parameter Name="SecCoLName" Mode="In" Type="String" />
+      <Parameter Name="SecCoAddress1" Mode="In" Type="String" />
+      <Parameter Name="SecCoAddress2" Mode="In" Type="String" />
+      <Parameter Name="SecCoCity" Mode="In" Type="String" />
+      <Parameter Name="SecCoState" Mode="In" Type="String" />
+      <Parameter Name="SecCoCountry" Mode="In" Type="String" />
+      <Parameter Name="SecCoMobileNo" Mode="In" Type="String" />
+      <Parameter Name="SecCoPAN" Mode="In" Type="String" />
+      <Parameter Name="CoTitle" Mode="In" Type="String" />
+      <Parameter Name="CoPName" Mode="In" Type="String" />
+      <Parameter Name="SecCoTitle" Mode="In" Type="String" />
+      <Parameter Name="SecCoPName" Mode="In" Type="String" />
+      <Parameter Name="Remarks" Mode="In" Type="String" />
+      <Parameter Name="CoDOB" Mode="In" Type="DateTime" />
+      <Parameter Name="SecCoDOB" Mode="In" Type="DateTime" />
+      <Parameter Name="PinCode" Mode="In" Type="String" />
+      <Parameter Name="ExecutiveName" Mode="In" Type="String" />
+      <Parameter Name="CoPinCode" Mode="In" Type="String" />
+      <Parameter Name="SecCoPinCode" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spGetProjectByFlatid" ReturnType="Collection(REMSDBModel.spGetProjectByFlatid_Result)">
+      <Parameter Name="flatid" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spGetProjectByFlatid1" EntitySet="Projects" ReturnType="Collection(REMSDBModel.Project)">
+      <Parameter Name="flatid" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <EntitySet Name="PaymentMasters" EntityType="REMSDBModel.PaymentMaster" />
+    <FunctionImport Name="Insert_PaymentOther">
+      <Parameter Name="SaleID" Mode="In" Type="Int32" />
+      <Parameter Name="InstallmentNo" Mode="In" Type="String" />
+      <Parameter Name="PaymentDate" Mode="In" Type="DateTime" />
+      <Parameter Name="Amount" Mode="In" Type="Decimal" />
+      <Parameter Name="PaymentMode" Mode="In" Type="String" />
+      <Parameter Name="ChequeNo" Mode="In" Type="String" />
+      <Parameter Name="ChequeDate" Mode="In" Type="DateTime" />
+      <Parameter Name="BankName" Mode="In" Type="String" />
+      <Parameter Name="PaymentStatus" Mode="In" Type="String" />
+      <Parameter Name="CustomerName" Mode="In" Type="String" />
+      <Parameter Name="Remarks" Mode="In" Type="String" />
+      <Parameter Name="BankBranch" Mode="In" Type="String" />
+      <Parameter Name="AmtRcvdinwords" Mode="In" Type="String" />
+      <Parameter Name="PaymentNo" Mode="In" Type="String" />
+      <Parameter Name="IsReceipt" Mode="In" Type="Boolean" />
+      <Parameter Name="Activity" Mode="In" Type="String" />
+      <Parameter Name="FlatName" Mode="In" Type="String" />
+      <Parameter Name="TransactionID" Mode="In" Type="Int32" />
+      <Parameter Name="CustomerID" Mode="In" Type="Int32" />
+      <Parameter Name="CreatedBy" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Get_PaymentOther" ReturnType="Collection(REMSDBModel.Get_PaymentOther_Result)">
+      <Parameter Name="TransactionID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spPlanSummary" ReturnType="Collection(REMSDBModel.spPlanSummary_Result)">
+      <Parameter Name="FlatSize" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <EntitySet Name="SaleFlats" EntityType="REMSDBModel.SaleFlat" />
+    <AssociationSet Name="FK_Customer_SaleFlat" Association="REMSDBModel.FK_Customer_SaleFlat">
+      <End Role="SaleFlat" EntitySet="SaleFlats" />
+      <End Role="Customer" EntitySet="Customers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SaleFlat_Flat" Association="REMSDBModel.FK_SaleFlat_Flat">
+      <End Role="Flat" EntitySet="Flats" />
+      <End Role="SaleFlat" EntitySet="SaleFlats" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LatePayment_SaleFlat" Association="REMSDBModel.FK_LatePayment_SaleFlat">
+      <End Role="SaleFlat" EntitySet="SaleFlats" />
+      <End Role="LatePayment" EntitySet="LatePayments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Payment_SaleFlat" Association="REMSDBModel.FK_Payment_SaleFlat">
+      <End Role="SaleFlat" EntitySet="SaleFlats" />
+      <End Role="Payment" EntitySet="Payments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PaymentCancel_SaleFlat" Association="REMSDBModel.FK_PaymentCancel_SaleFlat">
+      <End Role="SaleFlat" EntitySet="SaleFlats" />
+      <End Role="PaymentCancel" EntitySet="PaymentCancels" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PaymentOther_SaleFlat" Association="REMSDBModel.FK_PaymentOther_SaleFlat">
+      <End Role="SaleFlat" EntitySet="SaleFlats" />
+      <End Role="PaymentOther" EntitySet="PaymentOthers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PaymentOtherCancel_SaleFlat" Association="REMSDBModel.FK_PaymentOtherCancel_SaleFlat">
+      <End Role="SaleFlat" EntitySet="SaleFlats" />
+      <End Role="PaymentOtherCancel" EntitySet="PaymentOtherCancels" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PaymentRecord_SaleFlat" Association="REMSDBModel.FK_PaymentRecord_SaleFlat">
+      <End Role="SaleFlat" EntitySet="SaleFlats" />
+      <End Role="PaymentRecord" EntitySet="PaymentRecords" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PaymentRefund_SaleFlat" Association="REMSDBModel.FK_PaymentRefund_SaleFlat">
+      <End Role="SaleFlat" EntitySet="SaleFlats" />
+      <End Role="PaymentRefund" EntitySet="PaymentRefunds" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PayServiceTax_SaleFlat" Association="REMSDBModel.FK_PayServiceTax_SaleFlat">
+      <End Role="SaleFlat" EntitySet="SaleFlats" />
+      <End Role="PayServiceTax" EntitySet="PayServiceTaxes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PropertyRemark_SaleFlat" Association="REMSDBModel.FK_PropertyRemark_SaleFlat">
+      <End Role="SaleFlat" EntitySet="SaleFlats" />
+      <End Role="PropertyRemark" EntitySet="PropertyRemarks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PropertyTransfer_SaleFlat" Association="REMSDBModel.FK_PropertyTransfer_SaleFlat">
+      <End Role="SaleFlat" EntitySet="SaleFlats" />
+      <End Role="PropertyTransfer" EntitySet="PropertyTransfers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RefundProperty_SaleFlat" Association="REMSDBModel.FK_RefundProperty_SaleFlat">
+      <End Role="SaleFlat" EntitySet="SaleFlats" />
+      <End Role="RefundProperty" EntitySet="RefundProperties" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReminderLetter_SaleFlat" Association="REMSDBModel.FK_ReminderLetter_SaleFlat">
+      <End Role="SaleFlat" EntitySet="SaleFlats" />
+      <End Role="ReminderLetter" EntitySet="ReminderLetters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UploadAgreement_SaleFlat" Association="REMSDBModel.FK_UploadAgreement_SaleFlat">
+      <End Role="SaleFlat" EntitySet="SaleFlats" />
+      <End Role="UploadAgreement" EntitySet="UploadAgreements" />
+    </AssociationSet>
+    <FunctionImport Name="Update_Clearance">
+      <Parameter Name="TransactionID" Mode="In" Type="String" />
+      <Parameter Name="ChargeAmount" Mode="In" Type="String" />
+      <Parameter Name="Remarks" Mode="In" Type="String" />
+      <Parameter Name="ModifyBy" Mode="In" Type="String" />
+      <Parameter Name="IsBounce" Mode="In" Type="String" />
+      <Parameter Name="ClearanceDate" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="Update_Payment">
+      <Parameter Name="SaleID" Mode="In" Type="Int32" />
+      <Parameter Name="TransactionID" Mode="In" Type="Int32" />
+      <Parameter Name="PaymentDate" Mode="In" Type="DateTime" />
+      <Parameter Name="Amount" Mode="In" Type="Decimal" />
+      <Parameter Name="PaymentMode" Mode="In" Type="String" />
+      <Parameter Name="ChequeNo" Mode="In" Type="String" />
+      <Parameter Name="ChequeDate" Mode="In" Type="DateTime" />
+      <Parameter Name="BankName" Mode="In" Type="String" />
+      <Parameter Name="PaymentStatus" Mode="In" Type="String" />
+      <Parameter Name="Remarks" Mode="In" Type="String" />
+      <Parameter Name="BankBranch" Mode="In" Type="String" />
+      <Parameter Name="AmtRcvdinwords" Mode="In" Type="String" />
+      <Parameter Name="UserName" Mode="In" Type="String" />
+      <Parameter Name="Activity" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Update_TransferProperty">
+      <Parameter Name="CustomerID" Mode="In" Type="Int32" />
+      <Parameter Name="FName" Mode="In" Type="String" />
+      <Parameter Name="MName" Mode="In" Type="String" />
+      <Parameter Name="LName" Mode="In" Type="String" />
+      <Parameter Name="SaleID" Mode="In" Type="Int32" />
+      <Parameter Name="TransferAmount" Mode="In" Type="String" />
+      <Parameter Name="UserName" Mode="In" Type="String" />
+      <Parameter Name="TransferDate" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="Insert_PaymentOther1">
+      <Parameter Name="SaleID" Mode="In" Type="Int32" />
+      <Parameter Name="InstallmentNo" Mode="In" Type="String" />
+      <Parameter Name="PaymentDate" Mode="In" Type="DateTime" />
+      <Parameter Name="Amount" Mode="In" Type="Decimal" />
+      <Parameter Name="PaymentMode" Mode="In" Type="String" />
+      <Parameter Name="ChequeNo" Mode="In" Type="String" />
+      <Parameter Name="ChequeDate" Mode="In" Type="DateTime" />
+      <Parameter Name="BankName" Mode="In" Type="String" />
+      <Parameter Name="PaymentStatus" Mode="In" Type="String" />
+      <Parameter Name="CustomerName" Mode="In" Type="String" />
+      <Parameter Name="Remarks" Mode="In" Type="String" />
+      <Parameter Name="BankBranch" Mode="In" Type="String" />
+      <Parameter Name="AmtRcvdinwords" Mode="In" Type="String" />
+      <Parameter Name="PaymentNo" Mode="In" Type="String" />
+      <Parameter Name="IsReceipt" Mode="In" Type="Boolean" />
+      <Parameter Name="Activity" Mode="In" Type="String" />
+      <Parameter Name="FlatName" Mode="In" Type="String" />
+      <Parameter Name="TransactionID" Mode="In" Type="Int32" />
+      <Parameter Name="CustomerID" Mode="In" Type="Int32" />
+      <Parameter Name="CreatedBy" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="Get_Payment_Result">
+    <Property Type="Int64" Name="TransactionID" Nullable="true" />
+    <Property Type="String" Name="InstallmentNo" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="PaymentNo" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="SaleID" Nullable="true" />
+    <Property Type="DateTime" Name="PaymentDate" Nullable="true" Precision="23" />
+    <Property Type="Decimal" Name="DueAmount" Nullable="true" Precision="17" Scale="2" />
+    <Property Type="Decimal" Name="ServiceTaxAmount" Nullable="true" Precision="17" Scale="2" />
+    <Property Type="Decimal" Name="InterestAmount" Nullable="true" Precision="17" Scale="2" />
+    <Property Type="Decimal" Name="TotalAmount" Nullable="true" Precision="17" Scale="2" />
+    <Property Type="Decimal" Name="Amount" Nullable="true" Precision="17" Scale="2" />
+    <Property Type="String" Name="PaymentMode" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="ChequeNo" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="BankName" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="ChequeDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="PaymentStatus" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="CustomerName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Remarks" Nullable="true" MaxLength="150" />
+    <Property Type="Decimal" Name="BankCharges" Nullable="true" Precision="17" Scale="2" />
+    <Property Type="DateTime" Name="BankClearanceDate" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="RecordStatus" Nullable="true" />
+    <Property Type="String" Name="BankBranch" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="AmtRcvdinWords" Nullable="true" MaxLength="250" />
+    <Property Type="Boolean" Name="IsReceipt" Nullable="true" />
+    <Property Type="Int32" Name="UserID" Nullable="true" />
+    <Property Type="String" Name="Activity" Nullable="true" MaxLength="10" />
+    <Property Type="DateTime" Name="ModifyDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="FlatName" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="TransferDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="isrefund" Nullable="true" MaxLength="10" />
+    <Property Type="DateTime" Name="CrDate" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="PaymentID" Nullable="false" />
+    <Property Type="String" Name="ModifyBy" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="CreatedBy" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="RefundRemark" Nullable="true" MaxLength="300" />
+    <Property Type="Decimal" Name="ClearanceCharge" Nullable="false" Precision="19" />
+    <Property Type="Boolean" Name="IsBounce" Nullable="false" />
+    <Property Type="Int32" Name="CustomerID" Nullable="true" />
+    <Property Type="Int32" Name="FlatID" Nullable="true" />
+    <Property Type="Decimal" Name="TotalAmount1" Nullable="true" Precision="17" Scale="2" />
+    <Property Type="DateTime" Name="SaleDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="AppTitle" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="FName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="MName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="LName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Title" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="PName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Address" Nullable="true" MaxLength="454" />
+    <Property Type="String" Name="MobileNo" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="ProjectID" Nullable="true" />
+    <Property Type="String" Name="PName1" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="CompanyName" Nullable="true" MaxLength="256" />
+    <Property Type="String" Name="Location" Nullable="true" MaxLength="256" />
+    <Property Type="String" Name="CompanyAddress" Nullable="true" MaxLength="256" />
+  </ComplexType>
+  <ComplexType Name="Rem_GetFlatPlanCharge_Result">
+    <Property Type="Int32" Name="PlanID" Nullable="false" />
+    <Property Type="String" Name="FlatName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="FullName" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="PlanName" Nullable="true" MaxLength="500" />
+    <Property Type="Decimal" Name="AmountSqFt" Nullable="true" Precision="19" />
+    <Property Type="Decimal" Name="Size" Nullable="true" Precision="19" Scale="2" />
+  </ComplexType>
+  <ComplexType Name="spGetProjectByFlatid_Result">
+    <Property Type="Int32" Name="ProjectID" Nullable="false" />
+    <Property Type="DateTime" Name="CrDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="CrBy" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="PName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="CompanyName" Nullable="true" MaxLength="256" />
+    <Property Type="String" Name="Location" Nullable="true" MaxLength="256" />
+    <Property Type="String" Name="Address" Nullable="true" MaxLength="256" />
+    <Property Type="String" Name="ReceiptPrefix" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="RecordStatus" Nullable="true" />
+    <Property Type="String" Name="OfficeAddress" Nullable="true" MaxLength="256" />
+    <Property Type="String" Name="District" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Village" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Tehsil" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Jurisdiction" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="PossessionDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="ReceiptNo" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="AuthoritySign" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <EntityType Name="PaymentMaster">
+    <Key>
+      <PropertyRef Name="PaymentMasterID" />
+    </Key>
+    <Property Name="PaymentMasterID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="SerialNo" Type="Int32" />
+    <Property Name="CrDate" Type="DateTime" Precision="3" />
+    <Property Name="PriTag" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <ComplexType Name="Get_PaymentOther_Result">
+    <Property Type="Int32" Name="PaymentOtherID" Nullable="false" />
+    <Property Type="Int64" Name="TransactionID" Nullable="true" />
+    <Property Type="String" Name="PaymentNo" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="SaleID" Nullable="true" />
+    <Property Type="DateTime" Name="PaymentDate" Nullable="true" Precision="23" />
+    <Property Type="Decimal" Name="Amount" Nullable="true" Precision="17" Scale="2" />
+    <Property Type="String" Name="PaymentMode" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="ChequeNo" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="BankName" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="ChequeDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="PaymentStatus" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="CustomerName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Remarks" Nullable="true" MaxLength="150" />
+    <Property Type="Decimal" Name="BankCharges" Nullable="true" Precision="17" Scale="2" />
+    <Property Type="DateTime" Name="BankClearanceDate" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="RecordStatus" Nullable="true" />
+    <Property Type="String" Name="BankBranch" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="AmtRcvdinWords" Nullable="true" MaxLength="250" />
+    <Property Type="Boolean" Name="IsReceipt" Nullable="true" />
+    <Property Type="String" Name="Activity" Nullable="true" MaxLength="10" />
+    <Property Type="DateTime" Name="ModifyDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="FlatName" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="TransferDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="isrefund" Nullable="true" MaxLength="10" />
+    <Property Type="DateTime" Name="CrDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="ModifyBy" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="CreatedBy" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="RefundRemark" Nullable="true" MaxLength="300" />
+    <Property Type="Decimal" Name="ClearanceCharge" Nullable="false" Precision="19" />
+    <Property Type="Boolean" Name="IsBounce" Nullable="false" />
+    <Property Type="Int32" Name="CustomerID" Nullable="true" />
+    <Property Type="String" Name="PaymentFor" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="FlatID" Nullable="true" />
+    <Property Type="DateTime" Name="SaleDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="AppTitle" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="FName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="MName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="LName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Title" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="PName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Address" Nullable="true" MaxLength="454" />
+    <Property Type="String" Name="MobileNo" Nullable="true" MaxLength="50" />
+    <Property Type="Decimal" Name="TotalAmount" Nullable="true" Precision="17" Scale="2" />
+    <Property Type="Int32" Name="ProjectID" Nullable="true" />
+    <Property Type="String" Name="PName1" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="CompanyName" Nullable="true" MaxLength="256" />
+    <Property Type="String" Name="Location" Nullable="true" MaxLength="256" />
+    <Property Type="String" Name="CompanyAddress" Nullable="true" MaxLength="256" />
+  </ComplexType>
+  <ComplexType Name="spPlanSummary_Result">
+    <Property Type="Int32" Name="PlanTypeMasterID" Nullable="false" />
+    <Property Type="Int32" Name="FlatTypeSizeID" Nullable="true" />
+    <Property Type="Int32" Name="PlanID" Nullable="true" />
+    <Property Type="String" Name="PlanName" Nullable="true" MaxLength="500" />
+    <Property Type="Decimal" Name="AmountSqFt" Nullable="true" Precision="19" />
+    <Property Type="DateTime" Name="CrDate" Nullable="true" Precision="23" />
+    <Property Type="Decimal" Name="TotalAmount" Nullable="true" Precision="38" Scale="6" />
+  </ComplexType>
+  <EntityType Name="SaleFlat">
+    <Key>
+      <PropertyRef Name="SaleID" />
+    </Key>
+    <Property Name="SaleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FlatID" Type="Int32" />
+    <Property Name="Aggrement" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="SaleDate" Type="DateTime" Precision="3" />
+    <Property Name="TotalAmount" Type="Decimal" Precision="17" Scale="2" />
+    <Property Name="TotalAmtInWords" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Remarks" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="ProjectID" Type="Int32" />
+    <Property Name="DemandStatus" Type="Int32" />
+    <NavigationProperty Name="Customers" Relationship="REMSDBModel.FK_Customer_SaleFlat" FromRole="SaleFlat" ToRole="Customer" />
+    <NavigationProperty Name="Flat" Relationship="REMSDBModel.FK_SaleFlat_Flat" FromRole="SaleFlat" ToRole="Flat" />
+    <NavigationProperty Name="LatePayments" Relationship="REMSDBModel.FK_LatePayment_SaleFlat" FromRole="SaleFlat" ToRole="LatePayment" />
+    <NavigationProperty Name="Payments" Relationship="REMSDBModel.FK_Payment_SaleFlat" FromRole="SaleFlat" ToRole="Payment" />
+    <NavigationProperty Name="PaymentCancels" Relationship="REMSDBModel.FK_PaymentCancel_SaleFlat" FromRole="SaleFlat" ToRole="PaymentCancel" />
+    <NavigationProperty Name="PaymentOthers" Relationship="REMSDBModel.FK_PaymentOther_SaleFlat" FromRole="SaleFlat" ToRole="PaymentOther" />
+    <NavigationProperty Name="PaymentOtherCancels" Relationship="REMSDBModel.FK_PaymentOtherCancel_SaleFlat" FromRole="SaleFlat" ToRole="PaymentOtherCancel" />
+    <NavigationProperty Name="PaymentRecords" Relationship="REMSDBModel.FK_PaymentRecord_SaleFlat" FromRole="SaleFlat" ToRole="PaymentRecord" />
+    <NavigationProperty Name="PaymentRefunds" Relationship="REMSDBModel.FK_PaymentRefund_SaleFlat" FromRole="SaleFlat" ToRole="PaymentRefund" />
+    <NavigationProperty Name="PayServiceTaxes" Relationship="REMSDBModel.FK_PayServiceTax_SaleFlat" FromRole="SaleFlat" ToRole="PayServiceTax" />
+    <NavigationProperty Name="PropertyRemarks" Relationship="REMSDBModel.FK_PropertyRemark_SaleFlat" FromRole="SaleFlat" ToRole="PropertyRemark" />
+    <NavigationProperty Name="PropertyTransfers" Relationship="REMSDBModel.FK_PropertyTransfer_SaleFlat" FromRole="SaleFlat" ToRole="PropertyTransfer" />
+    <NavigationProperty Name="RefundProperties" Relationship="REMSDBModel.FK_RefundProperty_SaleFlat" FromRole="SaleFlat" ToRole="RefundProperty" />
+    <NavigationProperty Name="ReminderLetters" Relationship="REMSDBModel.FK_ReminderLetter_SaleFlat" FromRole="SaleFlat" ToRole="ReminderLetter" />
+    <NavigationProperty Name="UploadAgreements" Relationship="REMSDBModel.FK_UploadAgreement_SaleFlat" FromRole="SaleFlat" ToRole="UploadAgreement" />
+  </EntityType>
+  <Association Name="FK_Customer_SaleFlat">
+    <End Type="REMSDBModel.SaleFlat" Role="SaleFlat" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="REMSDBModel.Customer" Role="Customer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SaleFlat">
+        <PropertyRef Name="SaleID" />
+      </Principal>
+      <Dependent Role="Customer">
+        <PropertyRef Name="SaleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SaleFlat_Flat">
+    <End Type="REMSDBModel.Flat" Role="Flat" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="REMSDBModel.SaleFlat" Role="SaleFlat" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Flat">
+        <PropertyRef Name="FlatID" />
+      </Principal>
+      <Dependent Role="SaleFlat">
+        <PropertyRef Name="FlatID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LatePayment_SaleFlat">
+    <End Type="REMSDBModel.SaleFlat" Role="SaleFlat" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="REMSDBModel.LatePayment" Role="LatePayment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SaleFlat">
+        <PropertyRef Name="SaleID" />
+      </Principal>
+      <Dependent Role="LatePayment">
+        <PropertyRef Name="SaleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Payment_SaleFlat">
+    <End Type="REMSDBModel.SaleFlat" Role="SaleFlat" Multiplicity="0..1" />
+    <End Type="REMSDBModel.Payment" Role="Payment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SaleFlat">
+        <PropertyRef Name="SaleID" />
+      </Principal>
+      <Dependent Role="Payment">
+        <PropertyRef Name="SaleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PaymentCancel_SaleFlat">
+    <End Type="REMSDBModel.SaleFlat" Role="SaleFlat" Multiplicity="0..1" />
+    <End Type="REMSDBModel.PaymentCancel" Role="PaymentCancel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SaleFlat">
+        <PropertyRef Name="SaleID" />
+      </Principal>
+      <Dependent Role="PaymentCancel">
+        <PropertyRef Name="SaleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PaymentOther_SaleFlat">
+    <End Type="REMSDBModel.SaleFlat" Role="SaleFlat" Multiplicity="0..1" />
+    <End Type="REMSDBModel.PaymentOther" Role="PaymentOther" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SaleFlat">
+        <PropertyRef Name="SaleID" />
+      </Principal>
+      <Dependent Role="PaymentOther">
+        <PropertyRef Name="SaleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PaymentOtherCancel_SaleFlat">
+    <End Type="REMSDBModel.SaleFlat" Role="SaleFlat" Multiplicity="0..1" />
+    <End Type="REMSDBModel.PaymentOtherCancel" Role="PaymentOtherCancel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SaleFlat">
+        <PropertyRef Name="SaleID" />
+      </Principal>
+      <Dependent Role="PaymentOtherCancel">
+        <PropertyRef Name="SaleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PaymentRecord_SaleFlat">
+    <End Type="REMSDBModel.SaleFlat" Role="SaleFlat" Multiplicity="1" />
+    <End Type="REMSDBModel.PaymentRecord" Role="PaymentRecord" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SaleFlat">
+        <PropertyRef Name="SaleID" />
+      </Principal>
+      <Dependent Role="PaymentRecord">
+        <PropertyRef Name="SaleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PaymentRefund_SaleFlat">
+    <End Type="REMSDBModel.SaleFlat" Role="SaleFlat" Multiplicity="0..1" />
+    <End Type="REMSDBModel.PaymentRefund" Role="PaymentRefund" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SaleFlat">
+        <PropertyRef Name="SaleID" />
+      </Principal>
+      <Dependent Role="PaymentRefund">
+        <PropertyRef Name="SaleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PayServiceTax_SaleFlat">
+    <End Type="REMSDBModel.SaleFlat" Role="SaleFlat" Multiplicity="0..1" />
+    <End Type="REMSDBModel.PayServiceTax" Role="PayServiceTax" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SaleFlat">
+        <PropertyRef Name="SaleID" />
+      </Principal>
+      <Dependent Role="PayServiceTax">
+        <PropertyRef Name="SaleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PropertyRemark_SaleFlat">
+    <End Type="REMSDBModel.SaleFlat" Role="SaleFlat" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="REMSDBModel.PropertyRemark" Role="PropertyRemark" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SaleFlat">
+        <PropertyRef Name="SaleID" />
+      </Principal>
+      <Dependent Role="PropertyRemark">
+        <PropertyRef Name="SaleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PropertyTransfer_SaleFlat">
+    <End Type="REMSDBModel.SaleFlat" Role="SaleFlat" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="REMSDBModel.PropertyTransfer" Role="PropertyTransfer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SaleFlat">
+        <PropertyRef Name="SaleID" />
+      </Principal>
+      <Dependent Role="PropertyTransfer">
+        <PropertyRef Name="SaleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RefundProperty_SaleFlat">
+    <End Type="REMSDBModel.SaleFlat" Role="SaleFlat" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="REMSDBModel.RefundProperty" Role="RefundProperty" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SaleFlat">
+        <PropertyRef Name="SaleID" />
+      </Principal>
+      <Dependent Role="RefundProperty">
+        <PropertyRef Name="SaleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReminderLetter_SaleFlat">
+    <End Type="REMSDBModel.SaleFlat" Role="SaleFlat" Multiplicity="0..1" />
+    <End Type="REMSDBModel.ReminderLetter" Role="ReminderLetter" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SaleFlat">
+        <PropertyRef Name="SaleID" />
+      </Principal>
+      <Dependent Role="ReminderLetter">
+        <PropertyRef Name="SaleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UploadAgreement_SaleFlat">
+    <End Type="REMSDBModel.SaleFlat" Role="SaleFlat" Multiplicity="0..1" />
+    <End Type="REMSDBModel.UploadAgreement" Role="UploadAgreement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SaleFlat">
+        <PropertyRef Name="SaleID" />
+      </Principal>
+      <Dependent Role="UploadAgreement">
+        <PropertyRef Name="SaleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

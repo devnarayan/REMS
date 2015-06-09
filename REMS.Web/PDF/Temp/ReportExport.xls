@@ -1,0 +1,99 @@
+
+                                                            <table class="table table-bordered table-striped particular_tbl">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th data-ng-click="reverse=!reverse;orderSearchList('TransferDateSt', reverse)" class="pointer">Transfer Date <i class="fa fa-sort-down"></i> </th>
+                                                                        <th data-ng-click="reverse=!reverse;orderSearchList('SaleDateSt', reverse)" class="pointer">Sale Date <i class="fa fa-sort-down"></i> </th>
+                                                                        <th data-ng-click="reverse=!reverse;orderSearchList('TransferAmount', reverse)" class="pointer">Amount <i class="fa fa-sort-down"></i> </th>
+                                                                        <th data-ng-click="reverse=!reverse;orderSearchList('PropertyName', reverse)" class="pointer">PropertyName  <i class="fa fa-sort-down"></i> </th>
+                                                                        <th data-ng-click="reverse=!reverse;orderSearchList('CustomerFrom', reverse)" class="pointer">CustomerFrom  <i class="fa fa-sort-down"></i> </th>
+                                                                        <th data-ng-click="reverse=!reverse;orderSearchList('CustomerTo', reverse)" class="pointer">CustomerTo <i class="fa fa-sort-down"></i> </th>
+                                                                        <th data-ng-click="reverse=!reverse;orderSearchList('NewPlanType', reverse)" class="pointer">PlanType <i class="fa fa-sort-down"></i> </th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <!-- ngRepeat: sr in SearchList --><tr data-ng-repeat="sr in SearchList" class="ng-scope">
+                                                                        <td class="ng-binding">20-05-2015</td>
+                                                                        <td class="ng-binding">20-05-2015</td>
+                                                                        <td class="ng-binding">942840</td>
+                                                                        <td class="ng-binding">130</td>
+                                                                        <td class="ng-binding">Mr. user test mnage lname</td>
+                                                                        <td class="ng-binding"> Mr. New UserName Mname LLname</td>
+                                                                        <td class="ng-binding"> </td>
+                                                                    </tr><!-- end ngRepeat: sr in SearchList --><tr data-ng-repeat="sr in SearchList" class="ng-scope">
+                                                                        <td class="ng-binding">20-05-2015</td>
+                                                                        <td class="ng-binding">20-05-2015</td>
+                                                                        <td class="ng-binding">942840</td>
+                                                                        <td class="ng-binding">130</td>
+                                                                        <td class="ng-binding">Mr. user test mnage lname</td>
+                                                                        <td class="ng-binding"> test test2 test3</td>
+                                                                        <td class="ng-binding"> </td>
+                                                                    </tr><!-- end ngRepeat: sr in SearchList --><tr data-ng-repeat="sr in SearchList" class="ng-scope">
+                                                                        <td class="ng-binding">22-05-2015</td>
+                                                                        <td class="ng-binding">20-05-2015</td>
+                                                                        <td class="ng-binding">942840</td>
+                                                                        <td class="ng-binding">130</td>
+                                                                        <td class="ng-binding">Mr. user test mnage lname</td>
+                                                                        <td class="ng-binding"> navdeep2  singh</td>
+                                                                        <td class="ng-binding"> </td>
+                                                                    </tr><!-- end ngRepeat: sr in SearchList --><tr data-ng-repeat="sr in SearchList" class="ng-scope">
+                                                                        <td class="ng-binding">27-05-2015</td>
+                                                                        <td class="ng-binding">20-05-2015</td>
+                                                                        <td class="ng-binding">3000</td>
+                                                                        <td class="ng-binding">130</td>
+                                                                        <td class="ng-binding"> Mr. New UserName Mname LLname</td>
+                                                                        <td class="ng-binding"> Mr. Dev N Nagar</td>
+                                                                        <td class="ng-binding"> </td>
+                                                                    </tr><!-- end ngRepeat: sr in SearchList --><tr data-ng-repeat="sr in SearchList" class="ng-scope">
+                                                                        <td class="ng-binding">26-05-2015</td>
+                                                                        <td class="ng-binding">20-05-2015</td>
+                                                                        <td class="ng-binding">3200</td>
+                                                                        <td class="ng-binding">130</td>
+                                                                        <td class="ng-binding"> navdeep2  singh</td>
+                                                                        <td class="ng-binding"> Dev Narayan Nagar</td>
+                                                                        <td class="ng-binding"> </td>
+                                                                    </tr><!-- end ngRepeat: sr in SearchList --><tr data-ng-repeat="sr in SearchList" class="ng-scope">
+                                                                        <td class="ng-binding">26-05-2015</td>
+                                                                        <td class="ng-binding">20-05-2015</td>
+                                                                        <td class="ng-binding">400</td>
+                                                                        <td class="ng-binding">130</td>
+                                                                        <td class="ng-binding"> Mr. Dev N Nagar</td>
+                                                                        <td class="ng-binding"> Namrata Dev Nagar</td>
+                                                                        <td class="ng-binding"> </td>
+                                                                    </tr><!-- end ngRepeat: sr in SearchList --><tr data-ng-repeat="sr in SearchList" class="ng-scope">
+                                                                        <td class="ng-binding">26-05-2015</td>
+                                                                        <td class="ng-binding">20-05-2015</td>
+                                                                        <td class="ng-binding">39</td>
+                                                                        <td class="ng-binding">130</td>
+                                                                        <td class="ng-binding"> Dev Narayan Nagar</td>
+                                                                        <td class="ng-binding"> dev d dev</td>
+                                                                        <td class="ng-binding"> </td>
+                                                                    </tr><!-- end ngRepeat: sr in SearchList --><tr data-ng-repeat="sr in SearchList" class="ng-scope">
+                                                                        <td class="ng-binding">26-05-2015</td>
+                                                                        <td class="ng-binding">20-05-2015</td>
+                                                                        <td class="ng-binding">303</td>
+                                                                        <td class="ng-binding">130</td>
+                                                                        <td class="ng-binding"> Namrata Dev Nagar</td>
+                                                                        <td class="ng-binding"> Dev N NAAR</td>
+                                                                        <td class="ng-binding"> </td>
+                                                                    </tr><!-- end ngRepeat: sr in SearchList --><tr data-ng-repeat="sr in SearchList" class="ng-scope">
+                                                                        <td class="ng-binding">26-05-2015</td>
+                                                                        <td class="ng-binding">20-05-2015</td>
+                                                                        <td class="ng-binding">400</td>
+                                                                        <td class="ng-binding">130</td>
+                                                                        <td class="ng-binding"> dev d dev</td>
+                                                                        <td class="ng-binding"> namrata N Dev</td>
+                                                                        <td class="ng-binding"> </td>
+                                                                    </tr><!-- end ngRepeat: sr in SearchList --><tr data-ng-repeat="sr in SearchList" class="ng-scope">
+                                                                        <td class="ng-binding">26-05-2015</td>
+                                                                        <td class="ng-binding">20-05-2015</td>
+                                                                        <td class="ng-binding">343</td>
+                                                                        <td class="ng-binding">130</td>
+                                                                        <td class="ng-binding"> Dev N NAAR</td>
+                                                                        <td class="ng-binding"> dev n nagar</td>
+                                                                        <td class="ng-binding"> </td>
+                                                                    </tr><!-- end ngRepeat: sr in SearchList -->
+                                                                    <tr><td><b>Total</b></td><td><b class="ng-binding">2836205</b></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                                                                </tbody>
+                                                            </table>
+                                                        

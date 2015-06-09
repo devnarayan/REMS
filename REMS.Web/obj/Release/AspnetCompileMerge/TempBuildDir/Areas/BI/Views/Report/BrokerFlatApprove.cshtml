@@ -1,0 +1,438 @@
+﻿
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div data-ng-app="BIApp" role="main">
+    <!-- MAIN CONTENT -->
+    <div id="content" data-ng-controller="ReportController">
+        <div class="row">
+            <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                <h1 class="page-title txt-color-blueDark">
+                    <!-- PAGE HEADER -->
+                    <i class="fa-fw fa fa-building-o"></i>
+                    Report
+                    <span>
+                        >
+                        Broker approved
+                    </span>
+                </h1>
+            </div>
+            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                <!-- Button trigger modal -->
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+                <h1 class="page-title txt-color-blueDark"><i class="fa fa-user "></i> Broker's Payment </h1>
+            </div>
+            <div class="col-xs-12 col-sm-5 col-md-5 col-lg-8">
+                <br />
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="row">
+                            <div class="col-md-8"><input id="reportmail" placeholder="Enter Email Address......" name="reportmail" class="form-control" type="text" /></div>
+                            <div class="col-md-4">
+                                <a name="rptSendMail" data-ng-click="ReportSendMail()" id="rptSendMail" class="btn btn-primary" value="Print"><i class="fa fa-envelope"></i> Send Mail</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <a name="rptExport" id="rptExport" data-ng-click="ReportExport()" class="btn btn-info" value="Export"><i class="fa fa-download"></i> Export</a>
+                        <a name="rptPrint" id="rptPrint" data-ng-click="ReportPrint()" class="btn btn-warning" value="Print"><i class="fa fa-print"></i> Print</a>
+                    </div>
+                </div>
+            </div>
+            <!-- widget grid -->
+            <section id="widget-grid" class="" data-ng-init="ApprovePaymentBrokerInit()">
+                <!-- row -->
+                <div class="row">
+                    <!-- NEW WIDGET START -->
+                    <article class="col-sm-12 col-md-12">
+                        <!-- Widget ID (each widget will need unique ID)-->
+                        <div class="jarviswidget" id="wid-id-2" data-widget-editbutton="false" data-widget-deletebutton="false">
+                            <header>
+                                <h2> Broker Payment Wizard</h2>
+                            </header>
+                            <!-- widget div-->
+                            <div id="dvStep">
+                                <!-- widget content -->
+                                <div class="widget-body fuelux">
+                                    <div class="step-content">
+                                        <div class="form-horizontal" id="fuelux-wizard">
+                                            <div class="form-content">
+                                                <fieldset>
+                                                    <div class="row">
+                                                        <div class="col-md-4 input">
+                                                            Broker Name:<br />
+                                                            <select name="BrokerName" class="form-control" id="BrokerName">
+                                                                <option data-ng-repeat="br in BrokerList" value="{{br.BrokerID}}">{{br.BrokerName}}</option>
+                                                            </select>
+                                                            <br />
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            Status:<br />
+                                                            <select id="StatusSr" name="StatusSr" class="form-control">
+                                                                <option value="All">All</option>
+                                                                <option value="Pending">Pending</option>
+                                                                <option value="Approved">Approved</option>
+                                                                <option value="Cancled">Cancled</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <br />
+                                                            <a href="#" class="btn btn-primary" title="Search" data-ng-click="BrokerPaymentSearch()"><i class="fa fa-search"></i> View</a>
+                                                        </div>
+                                                    </div>
+                                                    <input type="hidden" id="hidBrokerID" name="hidBrokerID" value="@ViewBag.ID" />
+                                                    <input type="hidden" id="hidBroerToPropertyID" name="hidBroerToPropertyID" value="0" />
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="table-responsive" id="rptTableContent">
+                                                                <table class="table table-bordered table-striped particular_tbl">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th data-ng-click="reverse=!reverse;orderBrokerPaidList('InstallmentNo', reverse)" class="pointer">Particular <i class="fa fa-sort-down"></i> </th>
+                                                                                <th data-ng-click="reverse=!reverse;orderBrokerPaidList('InstallmentNo', reverse)" class="pointer">Property Name <i class="fa fa-sort-down"></i> </th>
+                                                                                <th data-ng-click="reverse=!reverse;orderBrokerPaidList('Amount', reverse)" class="pointer">Amount <i class="fa fa-sort-down"></i> </th>
+                                                                                <th data-ng-click="reverse=!reverse;orderBrokerPaidList('PaymentMode', reverse)" class="pointer">Payment Mode <i class="fa fa-sort-down"></i> </th>
+                                                                                <th><b>ChequeNo</b></th>
+                                                                                <th data-ng-click="reverse=!reverse;orderBrokerPaidList('ChequeDateSt', reverse)" class="pointer">Cheque Date <i class="fa fa-sort-down"></i> </th>
+                                                                                <th data-ng-click="reverse=!reverse;orderBrokerPaidList('BankName', reverse)" class="pointer">Bank Name <i class="fa fa-sort-down"></i> </th>
+                                                                                <th data-ng-click="reverse=!reverse;orderBrokerPaidList('PaymentNo', reverse)" class="pointer">>Branch <i class="fa fa-sort-down"></i> </th>
+                                                                                <th>Remarks</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <tr data-ng-repeat="sr in BrokerPaidList">
+                                                                                <td>{{sr.PaymentDateSt}}</td>
+                                                                                <td>{{sr.PropertyName}}</td>
+                                                                                <td>{{sr.AmountPaid}}</td>
+                                                                                <td>{{sr.PaymentMode}}</td>
+                                                                                <td>{{sr.ChequeNo}}</td>
+                                                                                <td>{{sr.ChequeDateSt}}</td>
+                                                                                <td>{{sr.BankName}}</td>
+                                                                                <td>{{sr.BankBranch}}</td>
+                                                                                <td>{{sr.Remarks}}</td>
+                                                                            </tr>
+                                                                            <tr><td></td><td><b>Total</b></td><td><b>{{TotalAmountPaid}}</b></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </fieldset>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end widget content -->
+                        </div>
+                        <!-- end widget div -->
+                        <!-- end widget -->
+                    </article>
+                    <!-- WIDGET END -->
+                </div>
+                <!-- end row -->
+            </section>
+            <!-- end widget grid -->
+        </div>
+        <!-- END MAIN CONTENT -->
+     </div>
+</div>
+
+@section pagespecific {
+    <script src="~/AgController/Reportjs.js"></script>
+    <script type="text/javascript">
+
+        // DO NOT REMOVE : GLOBAL FUNCTIONS!
+
+    </script>
+<script>
+    $(document).ready(function () {
+        $("#datediv").hide();
+        $("#alldiv").hide();
+        if (localStorage.getItem("searchby") != null) {
+            $("#searchby").val(localStorage.getItem("searchby"));
+            $("#sortby").val(localStorage.getItem("sortby"));
+            $("#datefrom").val(localStorage.getItem("datefrom"));
+            $("#dateto").val(localStorage.getItem("dateto"));
+            $("#searchtext").val(localStorage.getItem("stext"));
+
+            var v = $("#sortby").val();
+            var vv = $("#searchby").val();
+            var df = $("#datefrom").val();
+            var dt = $("#dateto").val();
+            var stext = $("#searchtext").val();
+            if (vv.toString() == "All" || vv.toString() == "This Month" || vv.toString() == "Last 7 Days") {
+                $("#alldiv").hide();
+                $("#datediv").hide(); $("#subtypediv").hide();
+            }
+            else {
+                if (vv.toString() == "BookingDate" || vv.toString() == "SaleDate") {
+                    $("#datediv").show();
+                    $("#alldiv").hide(); $("#subtypediv").hide();
+                }
+                else if (vv.toString() == "SubType") {
+                    $("#alldiv").hide();
+                    $("#datediv").hide();
+                    $("#subtypediv").show();
+                }
+                else {
+                    $("#alldiv").show();
+                    $("#datediv").hide();
+                    $("#subtypediv").hide();
+                }
+            }
+        }
+    })
+    $("#sortby").change(function () {
+        var v = $("#sortby").val();
+        var vv = $("#searchby").val();
+        var df = $("#datefrom").val();
+        var dt = $("#dateto").val();
+        var stext = $("#searchtext").val();
+        localStorage.setItem("searchby", vv);
+        localStorage.setItem("sortby", v);
+        localStorage.setItem("datefrom", df);
+        localStorage.setItem("dateto", dt);
+        localStorage.setItem("stext", stext);
+
+        $("#hidsortby").val(v);
+        if (vv.toString() == "All" || vv.toString() == "This Month" || vv.toString() == "Last 7 Days") {
+            $("#alldiv").hide();
+            $("#datediv").hide(); $("#subtypediv").hide();
+        }
+        else {
+            if (vv.toString() == "BookingDate" || vv.toString() == "SaleDate") {
+                $("#datediv").show();
+                $("#alldiv").hide(); $("#subtypediv").hide();
+            }
+            else if (vv.toString() == "SubType") {
+                $("#subtypediv").show();
+                $("#alldiv").hide();
+                $("#datediv").hide();
+            }
+            else {
+                $("#alldiv").show();
+                $("#datediv").hide();
+                $("#subtypediv").hide();
+            }
+        }
+    })
+
+    $("#searchby").change(function () {
+        var v = $("#sortby").val();
+        var vv = $("#searchby").val();
+        var df = $("#datefrom").val();
+        var dt = $("#dateto").val();
+        var stext = $("#searchtext").val();
+        localStorage.setItem("searchby", vv);
+        localStorage.setItem("sortby", v);
+        localStorage.setItem("datefrom", df);
+        localStorage.setItem("dateto", dt);
+        localStorage.setItem("stext", stext);
+
+        $("#hidsortby").val(v);
+        if (vv.toString() == "All" || vv.toString() == "This Month" || vv.toString() == "Last 7 Days") {
+            $("#alldiv").hide();
+
+            $("#datefrom").val("");
+            $("#dateto").val("");
+            $("#datediv").hide(); $("#subtypediv").hide();
+        }
+        else {
+            if (vv.toString() == "BookingDate" || vv.toString() == "SaleDate") {
+                $("#datediv").show();
+                $("#alldiv").hide(); $("#subtypediv").hide();
+            }
+            else if (vv.toString() == "SubType") {
+                $("#subtypediv").show();
+                $("#alldiv").hide();
+                $("#datediv").hide();
+            }
+            else {
+                $("#alldiv").show();
+                $("#datediv").hide();
+                $("#subtypediv").hide();
+            }
+        }
+    })
+    $("#datefrom").blur(function () {
+        var df = $("#datefrom").val();
+        localStorage.setItem("datefrom", df);
+    })
+    $("#dateto").blur(function () {
+        var df = $("#dateto").val();
+        localStorage.setItem("dateto", df);
+    })
+    $("#searchtext").blur(function () {
+        var df = $("#searchtext").val();
+        localStorage.setItem("stext", df);
+    })
+</script>
+    <script type="text/javascript">
+
+        // DO NOT REMOVE : GLOBAL FUNCTIONS!
+
+        $(document).ready(function () {
+
+            /* // DOM Position key index //
+
+            l - Length changing (dropdown)
+            f - Filtering input (search)
+            t - The Table! (datatable)
+            i - Information (records)
+            p - Pagination (paging)
+            r - pRocessing
+            < and > - div elements
+            <"#id" and > - div with an id
+            <"class" and > - div with a class
+            <"#id.class" and > - div with an id and class
+
+            Also see: http://legacy.datatables.net/usage/features
+            */
+
+            /* BASIC ;*/
+            var responsiveHelper_dt_basic = undefined;
+            var responsiveHelper_datatable_fixed_column = undefined;
+            var responsiveHelper_datatable_col_reorder = undefined;
+            var responsiveHelper_datatable_tabletools = undefined;
+
+            var breakpointDefinition = {
+                tablet: 1024,
+                phone: 480
+            };
+
+            $('#dt_basic').dataTable({
+                "sDom": "<'dt-toolbar'<'col-xs-12 col-sm-6'f><'col-sm-6 col-xs-12 hidden-xs'l>r>" +
+                    "t" +
+                    "<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-6'p>>",
+                "autoWidth": true,
+                "preDrawCallback": function () {
+                    // Initialize the responsive datatables helper once.
+                    if (!responsiveHelper_dt_basic) {
+                        responsiveHelper_dt_basic = new ResponsiveDatatablesHelper($('#dt_basic'), breakpointDefinition);
+                    }
+                },
+                "rowCallback": function (nRow) {
+                    responsiveHelper_dt_basic.createExpandIcon(nRow);
+                },
+                "drawCallback": function (oSettings) {
+                    responsiveHelper_dt_basic.respond();
+                }
+            });
+
+            /* END BASIC */
+
+            /* COLUMN FILTER  */
+            var otable = $('#datatable_fixed_column').DataTable({
+                //"bFilter": false,
+                //"bInfo": false,
+                //"bLengthChange": false
+                //"bAutoWidth": false,
+                //"bPaginate": false,
+                //"bStateSave": true // saves sort state using localStorage
+                "sDom": "<'dt-toolbar'<'col-xs-12 col-sm-6 hidden-xs'f><'col-sm-6 col-xs-12 hidden-xs'<'toolbar'>>r>" +
+                        "t" +
+                        "<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-6'p>>",
+                "autoWidth": true,
+                "preDrawCallback": function () {
+                    // Initialize the responsive datatables helper once.
+                    if (!responsiveHelper_datatable_fixed_column) {
+                        responsiveHelper_datatable_fixed_column = new ResponsiveDatatablesHelper($('#datatable_fixed_column'), breakpointDefinition);
+                    }
+                },
+                "rowCallback": function (nRow) {
+                    responsiveHelper_datatable_fixed_column.createExpandIcon(nRow);
+                },
+                "drawCallback": function (oSettings) {
+                    responsiveHelper_datatable_fixed_column.respond();
+                }
+
+            });
+
+            // custom toolbar
+            $("div.toolbar").html('<div class="text-right"><img src="/Content/img/logo.png" alt="SmartAdmin" style="width: 111px; margin-top: 3px; margin-right: 10px;"></div>');
+
+            // Apply the filter
+            $("#datatable_fixed_column thead th input[type=text]").on('keyup change', function () {
+
+                otable
+                    .column($(this).parent().index() + ':visible')
+                    .search(this.value)
+                    .draw();
+
+            });
+            /* END COLUMN FILTER */
+
+            /* COLUMN SHOW - HIDE */
+            $('#datatable_col_reorder').dataTable({
+                "sDom": "<'dt-toolbar'<'col-xs-12 col-sm-6'f><'col-sm-6 col-xs-6 hidden-xs'C>r>" +
+                        "t" +
+                        "<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-sm-6 col-xs-12'p>>",
+                "autoWidth": true,
+                "preDrawCallback": function () {
+                    // Initialize the responsive datatables helper once.
+                    if (!responsiveHelper_datatable_col_reorder) {
+                        responsiveHelper_datatable_col_reorder = new ResponsiveDatatablesHelper($('#datatable_col_reorder'), breakpointDefinition);
+                    }
+                },
+                "rowCallback": function (nRow) {
+                    responsiveHelper_datatable_col_reorder.createExpandIcon(nRow);
+                },
+                "drawCallback": function (oSettings) {
+                    responsiveHelper_datatable_col_reorder.respond();
+                }
+            });
+
+            /* END COLUMN SHOW - HIDE */
+
+            /* TABLETOOLS */
+            $('#datatable_tabletools').dataTable({
+
+                // Tabletools options:
+                //   https://datatables.net/extensions/tabletools/button_options
+                "sDom": "<'dt-toolbar'<'col-xs-12 col-sm-6'f><'col-sm-6 col-xs-6 hidden-xs'T>r>" +
+                        "t" +
+                        "<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-sm-6 col-xs-12'p>>",
+                "oTableTools": {
+                    "aButtons": [
+                    "copy",
+                    "csv",
+                    "xls",
+                       {
+                           "sExtends": "pdf",
+                           "sTitle": "SmartAdmin_PDF",
+                           "sPdfMessage": "SmartAdmin PDF Export",
+                           "sPdfSize": "letter"
+                       },
+                       {
+                           "sExtends": "print",
+                           "sMessage": "Generated by SmartAdmin <i>(press Esc to close)</i>"
+                       }
+                    ],
+                    "sSwfPath": "/Scripts/plugin/datatables/swf/copy_csv_xls_pdf.swf"
+                },
+                "autoWidth": true,
+                "preDrawCallback": function () {
+                    // Initialize the responsive datatables helper once.
+                    if (!responsiveHelper_datatable_tabletools) {
+                        responsiveHelper_datatable_tabletools = new ResponsiveDatatablesHelper($('#datatable_tabletools'), breakpointDefinition);
+                    }
+                },
+                "rowCallback": function (nRow) {
+                    responsiveHelper_datatable_tabletools.createExpandIcon(nRow);
+                },
+                "drawCallback": function (oSettings) {
+                    responsiveHelper_datatable_tabletools.respond();
+                }
+            });
+
+            /* END TABLETOOLS */
+
+        })
+
+    </script>
+}

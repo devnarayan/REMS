@@ -1,0 +1,4308 @@
+<html>
+<head>
+    <meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+    <meta name=ProgId content=Word.Document>
+    <meta name=Generator content="Microsoft Word 12">
+    <meta name=Originator content="Microsoft Word 12">
+
+    <title>CityHeartAgreement</title>
+    <style>
+        @font-face {
+            font-family: Wingdings;
+            panose-1: 5 0 0 0 0 0 0 0 0 0;
+            mso-font-charset: 2;
+            mso-generic-font-family: auto;
+            mso-font-pitch: variable;
+            mso-font-signature: 0 268435456 0 0 -2147483648 0;
+        }
+
+        @font-face {
+            font-family:;
+            panose-1: 2 2 6 9 4 2 5 8 3 4;
+            mso-font-alt: "\FF2D\FF33 \660E\671D";
+            mso-font-charset: 128;
+            mso-generic-font-family: modern;
+            mso-font-pitch: fixed;
+            mso-font-signature: -536870145 1791491579 18 0 131231 0;
+        }
+
+        @font-face {
+            font-family: "MS Gothic";
+            panose-1: 2 11 6 9 7 2 5 8 2 4;
+            mso-font-alt: "\FF2D\FF33 \30B4\30B7\30C3\30AF";
+            mso-font-charset: 128;
+            mso-generic-font-family: modern;
+            mso-font-pitch: fixed;
+            mso-font-signature: -536870145 1791491579 18 0 131231 0;
+        }
+
+        @font-face {
+            font-family: "Cambria Math";
+            panose-1: 2 4 5 3 5 4 6 3 2 4;
+            mso-font-charset: 0;
+            mso-generic-font-family: roman;
+            mso-font-pitch: variable;
+            mso-font-signature: -1610611985 1107304683 0 0 415 0;
+        }
+
+        @font-face {
+            font-family: Cambria;
+            panose-1: 2 4 5 3 5 4 6 3 2 4;
+            mso-font-charset: 0;
+            mso-generic-font-family: roman;
+            mso-font-pitch: variable;
+            mso-font-signature: -1610611985 1073741899 0 0 415 0;
+        }
+
+        @font-face {
+            font-family: Calibri;
+            panose-1: 2 15 5 2 2 2 4 3 2 4;
+            mso-font-charset: 0;
+            mso-generic-font-family: swiss;
+            mso-font-pitch: variable;
+            mso-font-signature: -520092929 1073786111 9 0 415 0;
+        }
+
+        @font-face {
+            font-family: Tahoma;
+            panose-1: 2 11 6 4 3 5 4 4 2 4;
+            mso-font-charset: 0;
+            mso-generic-font-family: swiss;
+            mso-font-pitch: variable;
+            mso-font-signature: -520081665 -1073717157 41 0 66047 0;
+        }
+
+        @font-face {
+            font-family: "\@MS Mincho";
+            panose-1: 2 2 6 9 4 2 5 8 3 4;
+            mso-font-charset: 128;
+            mso-generic-font-family: modern;
+            mso-font-pitch: fixed;
+            mso-font-signature: -536870145 1791491579 18 0 131231 0;
+        }
+
+        @font-face {
+            font-family: "\@MS Gothic";
+            panose-1: 2 11 6 9 7 2 5 8 2 4;
+            mso-font-charset: 128;
+            mso-generic-font-family: modern;
+            mso-font-pitch: fixed;
+            mso-font-signature: -536870145 1791491579 18 0 131231 0;
+        }
+        /* Style Definitions */
+        p.MsoNormal, li.MsoNormal, div.MsoNormal {
+            mso-style-unhide: no;
+            mso-style-qformat: yes;
+            mso-style-parent: "";
+            margin: 0in;
+            margin-bottom: .0001pt;
+            text-align: justify;
+            mso-pagination: none;
+            text-autospace: none;
+            word-break: break-all;
+            font-size: 10.0pt;
+            font-family: "Tahoma","sans-serif";
+            Tahoma;
+            mso-hansi-font-family: "Times New Roman";
+            mso-bidi-font-family: "Times New Roman";
+            mso-font-kerning: 1.0pt;
+            mso-fareast-language: KO;
+        }
+
+        h2 {
+            mso-style-priority: 9;
+            mso-style-unhide: no;
+            mso-style-qformat: yes;
+            mso-style-link: "Heading 2 Char";
+            mso-style-next: Normal;
+            margin-top: 12.0pt;
+            margin-right: 0in;
+            margin-bottom: 3.0pt;
+            margin-left: 0in;
+            text-align: justify;
+            mso-pagination: none;
+            page-break-after: avoid;
+            mso-outline-level: 2;
+            text-autospace: none;
+            word-break: break-all;
+            font-size: 14.0pt;
+            font-family: "Calibri","sans-serif";
+            "MS Gothic";
+            mso-bidi-font-family: "Times New Roman";
+            mso-font-kerning: 1.0pt;
+            mso-fareast-language: KO;
+            font-style: italic;
+        }
+
+        p.MsoHeader, li.MsoHeader, div.MsoHeader {
+            mso-style-priority: 99;
+            mso-style-link: "Header Char";
+            margin: 0in;
+            margin-bottom: .0001pt;
+            text-align: justify;
+            mso-pagination: none;
+            tab-stops: center 3.25in right 6.5in;
+            text-autospace: none;
+            word-break: break-all;
+            font-size: 10.0pt;
+            font-family: "Tahoma","sans-serif";
+            Tahoma;
+            mso-hansi-font-family: "Times New Roman";
+            mso-bidi-font-family: "Times New Roman";
+            mso-font-kerning: 1.0pt;
+            mso-fareast-language: KO;
+        }
+
+        p.MsoFooter, li.MsoFooter, div.MsoFooter {
+            mso-style-priority: 99;
+            mso-style-link: "Footer Char";
+            margin: 0in;
+            margin-bottom: .0001pt;
+            text-align: justify;
+            mso-pagination: none;
+            tab-stops: center 3.25in right 6.5in;
+            text-autospace: none;
+            word-break: break-all;
+            font-size: 10.0pt;
+            font-family: "Tahoma","sans-serif";
+            Tahoma;
+            mso-hansi-font-family: "Times New Roman";
+            mso-bidi-font-family: "Times New Roman";
+            mso-font-kerning: 1.0pt;
+            mso-fareast-language: KO;
+        }
+
+        p.MsoAcetate, li.MsoAcetate, div.MsoAcetate {
+            mso-style-noshow: yes;
+            mso-style-priority: 99;
+            mso-style-link: "Balloon Text Char";
+            margin: 0in;
+            margin-bottom: .0001pt;
+            text-align: justify;
+            mso-pagination: none;
+            text-autospace: none;
+            word-break: break-all;
+            font-size: 8.0pt;
+            font-family: "Tahoma","sans-serif";
+            Tahoma;
+            mso-font-kerning: 1.0pt;
+            mso-fareast-language: KO;
+        }
+
+        span.HeaderChar {
+            mso-style-name: "Header Char";
+            mso-style-priority: 99;
+            mso-style-unhide: no;
+            mso-style-locked: yes;
+            mso-style-parent: "";
+            mso-style-link: Header;
+            font-family: "Tahoma","sans-serif";
+            mso-ascii-font-family: Tahoma;
+            mso-font-kerning: 1.0pt;
+            mso-fareast-language: KO;
+        }
+
+        span.FooterChar {
+            mso-style-name: "Footer Char";
+            mso-style-priority: 99;
+            mso-style-unhide: no;
+            mso-style-locked: yes;
+            mso-style-parent: "";
+            mso-style-link: Footer;
+            font-family: "Tahoma","sans-serif";
+            mso-ascii-font-family: Tahoma;
+            mso-font-kerning: 1.0pt;
+            mso-fareast-language: KO;
+        }
+
+        span.BalloonTextChar {
+            mso-style-name: "Balloon Text Char";
+            mso-style-noshow: yes;
+            mso-style-priority: 99;
+            mso-style-unhide: no;
+            mso-style-locked: yes;
+            mso-style-parent: "";
+            mso-style-link: "Balloon Text";
+            mso-ansi-font-size: 8.0pt;
+            mso-bidi-font-size: 8.0pt;
+            font-family: "Tahoma","sans-serif";
+            mso-ascii-font-family: Tahoma;
+            mso-hansi-font-family: Tahoma;
+            mso-bidi-font-family: Tahoma;
+            mso-font-kerning: 1.0pt;
+            mso-fareast-language: KO;
+        }
+
+        p.NoSpacing, li.NoSpacing, div.NoSpacing {
+            mso-style-name: "No Spacing";
+            mso-style-priority: 1;
+            mso-style-unhide: no;
+            mso-style-qformat: yes;
+            mso-style-parent: "";
+            margin: 0in;
+            margin-bottom: .0001pt;
+            text-align: justify;
+            mso-pagination: none;
+            text-autospace: none;
+            word-break: break-all;
+            font-size: 10.0pt;
+            font-family: "Tahoma","sans-serif";
+            Tahoma;
+            mso-hansi-font-family: "Times New Roman";
+            mso-bidi-font-family: "Times New Roman";
+            mso-font-kerning: 1.0pt;
+            mso-fareast-language: KO;
+        }
+
+        span.Heading2Char {
+            mso-style-name: "Heading 2 Char";
+            mso-style-priority: 9;
+            mso-style-unhide: no;
+            mso-style-locked: yes;
+            mso-style-parent: "";
+            mso-style-link: "Heading 2";
+            mso-ansi-font-size: 14.0pt;
+            mso-bidi-font-size: 14.0pt;
+            font-family: "Calibri","sans-serif";
+            mso-ascii-font-family: Calibri;
+            "MS Gothic";
+            mso-hansi-font-family: Calibri;
+            mso-bidi-font-family: "Times New Roman";
+            mso-font-kerning: 1.0pt;
+            mso-ansi-language: EN-US;
+            mso-fareast-language: KO;
+            font-weight: bold;
+            font-style: italic;
+        }
+
+        .MsoChpDefault {
+            mso-style-type: export-only;
+            mso-default-props: yes;
+            Tahoma;
+        }
+        /* Page Definitions */
+        @page {
+            mso-page-border-surround-header: no;
+            mso-page-border-surround-footer: no;
+            mso-footnote-separator: url("Final%20Agreement%20City%20Heart_files/header.htm") fs;
+            mso-footnote-continuation-separator: url("Final%20Agreement%20City%20Heart_files/header.htm") fcs;
+            mso-endnote-separator: url("Final%20Agreement%20City%20Heart_files/header.htm") es;
+            mso-endnote-continuation-separator: url("Final%20Agreement%20City%20Heart_files/header.htm") ecs;
+            mso-endnote-numbering-style: arabic;
+        }
+
+        @page Section1 {
+            size: 595.45pt 841.7pt;
+            margin: .5in .5in .5in .5in;
+            mso-header-margin: .5in;
+            mso-footer-margin: .5in;
+            mso-title-page: yes;
+            mso-header: url("Final%20Agreement%20City%20Heart_files/header.htm") h1;
+            mso-footer: url("Final%20Agreement%20City%20Heart_files/header.htm") f1;
+            mso-first-footer: url("Final%20Agreement%20City%20Heart_files/header.htm") ff1;
+            mso-paper-source: 0;
+        }
+
+        div.Section1 {
+            page: Section1;
+            mso-endnote-numbering-style: arabic;
+        }
+
+        @list l0 {
+            mso-list-id: -227;
+            mso-list-template-ids: -1920160466;
+        }
+
+        @list l0:level1 {
+            mso-level-number-format: bullet;
+            mso-level-text: "";
+            mso-level-tab-stop: 0in;
+            mso-level-number-position: left;
+            margin-left: 0in;
+            text-indent: 0in;
+            font-family: Symbol;
+        }
+
+        @list l0:level2 {
+            mso-level-number-format: bullet;
+            mso-level-text: \F0B7;
+            mso-level-tab-stop: .5in;
+            mso-level-number-position: left;
+            margin-left: .75in;
+            text-indent: -.25in;
+            font-family: Symbol;
+        }
+
+        @list l0:level3 {
+            mso-level-number-format: bullet;
+            mso-level-text: o;
+            mso-level-tab-stop: 1.0in;
+            mso-level-number-position: left;
+            margin-left: 1.25in;
+            text-indent: -.25in;
+            font-family: "Courier New";
+        }
+
+        @list l0:level4 {
+            mso-level-number-format: bullet;
+            mso-level-text: \F0A7;
+            mso-level-tab-stop: 1.5in;
+            mso-level-number-position: left;
+            margin-left: 1.75in;
+            text-indent: -.25in;
+            font-family: Wingdings;
+        }
+
+        @list l0:level5 {
+            mso-level-number-format: bullet;
+            mso-level-text: \F0FA;
+            mso-level-tab-stop: 2.0in;
+            mso-level-number-position: left;
+            margin-left: 2.25in;
+            text-indent: -.25in;
+            font-family: Wingdings;
+        }
+
+        @list l0:level6 {
+            mso-level-number-format: bullet;
+            mso-level-text: \F0B7;
+            mso-level-tab-stop: 2.5in;
+            mso-level-number-position: left;
+            margin-left: 2.75in;
+            text-indent: -.25in;
+            font-family: Symbol;
+        }
+
+        @list l0:level7 {
+            mso-level-number-format: bullet;
+            mso-level-text: o;
+            mso-level-tab-stop: 3.0in;
+            mso-level-number-position: left;
+            margin-left: 3.25in;
+            text-indent: -.25in;
+            font-family: "Courier New";
+        }
+
+        @list l0:level8 {
+            mso-level-number-format: bullet;
+            mso-level-text: \F0A7;
+            mso-level-tab-stop: 3.5in;
+            mso-level-number-position: left;
+            margin-left: 3.75in;
+            text-indent: -.25in;
+            font-family: Wingdings;
+        }
+
+        @list l0:level9 {
+            mso-level-number-format: bullet;
+            mso-level-text: \F0FA;
+            mso-level-tab-stop: 4.0in;
+            mso-level-number-position: left;
+            margin-left: 4.25in;
+            text-indent: -.25in;
+            font-family: Wingdings;
+        }
+
+        @list l1 {
+            mso-list-id: 693773129;
+            mso-list-type: hybrid;
+            mso-list-template-ids: 35795936 67698711 1770579580 67698715 67698703 67698713 67698715 67698703 67698713 67698715;
+        }
+
+        @list l1:level1 {
+            mso-level-number-format: alpha-lower;
+            mso-level-text: "%1\)";
+            mso-level-tab-stop: none;
+            mso-level-number-position: left;
+            text-indent: -.25in;
+        }
+
+        @list l1:level2 {
+            mso-level-number-format: alpha-lower;
+            mso-level-text: "\(%2\)";
+            mso-level-tab-stop: none;
+            mso-level-number-position: left;
+            text-indent: -.25in;
+        }
+
+        @list l2 {
+            mso-list-id: 906182997;
+            mso-list-type: hybrid;
+            mso-list-template-ids: 509271654 67698689 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;
+        }
+
+        @list l2:level1 {
+            mso-level-number-format: bullet;
+            mso-level-text: \F0B7;
+            mso-level-tab-stop: none;
+            mso-level-number-position: left;
+            text-indent: -.25in;
+            font-family: Symbol;
+        }
+
+        @list l3 {
+            mso-list-id: 1072780470;
+            mso-list-type: hybrid;
+            mso-list-template-ids: 1633829686 2083268358 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;
+        }
+
+        @list l3:level1 {
+            mso-level-start-at: 3;
+            mso-level-number-format: alpha-lower;
+            mso-level-text: "\(%1\)";
+            mso-level-tab-stop: none;
+            mso-level-number-position: left;
+            margin-left: 45.0pt;
+            text-indent: -.25in;
+        }
+
+        @list l4 {
+            mso-list-id: 1205677578;
+            mso-list-type: hybrid;
+            mso-list-template-ids: -918627814 -1487767140 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;
+        }
+
+        @list l4:level1 {
+            mso-level-tab-stop: none;
+            mso-level-number-position: left;
+            margin-left: .75in;
+            text-indent: -.5in;
+        }
+
+        @list l5 {
+            mso-list-id: 1392732069;
+            mso-list-type: hybrid;
+            mso-list-template-ids: -103248614 67698703 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;
+        }
+
+        @list l5:level1 {
+            mso-level-tab-stop: none;
+            mso-level-number-position: left;
+            text-indent: -.25in;
+        }
+
+        @list l6 {
+            mso-list-id: 1553228443;
+            mso-list-template-ids: -846933918;
+        }
+
+        @list l6:level1 {
+            mso-level-start-at: 0;
+            mso-level-number-format: none;
+            mso-level-text: "";
+            mso-level-tab-stop: .25in;
+            mso-level-number-position: left;
+            margin-left: 0in;
+            text-indent: 0in;
+        }
+
+        @list l6:level2 {
+            mso-level-number-format: bullet;
+            mso-level-text: \F0B7;
+            mso-level-tab-stop: .25in;
+            mso-level-number-position: left;
+            margin-left: 0in;
+            text-indent: 0in;
+            font-family: Symbol;
+        }
+
+        @list l6:level3 {
+            mso-level-start-at: 0;
+            mso-level-number-format: none;
+            mso-level-text: "";
+            mso-level-tab-stop: .25in;
+            mso-level-number-position: left;
+            margin-left: 0in;
+            text-indent: 0in;
+        }
+
+        @list l6:level4 {
+            mso-level-start-at: 0;
+            mso-level-number-format: none;
+            mso-level-text: "";
+            mso-level-tab-stop: .25in;
+            mso-level-number-position: left;
+            margin-left: 0in;
+            text-indent: 0in;
+        }
+
+        @list l6:level5 {
+            mso-level-start-at: 0;
+            mso-level-number-format: none;
+            mso-level-text: "";
+            mso-level-tab-stop: .25in;
+            mso-level-number-position: left;
+            margin-left: 0in;
+            text-indent: 0in;
+        }
+
+        @list l6:level6 {
+            mso-level-start-at: 0;
+            mso-level-number-format: none;
+            mso-level-text: "";
+            mso-level-tab-stop: .25in;
+            mso-level-number-position: left;
+            margin-left: 0in;
+            text-indent: 0in;
+        }
+
+        @list l6:level7 {
+            mso-level-start-at: 0;
+            mso-level-number-format: none;
+            mso-level-text: "";
+            mso-level-tab-stop: .25in;
+            mso-level-number-position: left;
+            margin-left: 0in;
+            text-indent: 0in;
+        }
+
+        @list l6:level8 {
+            mso-level-start-at: 0;
+            mso-level-number-format: none;
+            mso-level-text: "";
+            mso-level-tab-stop: .25in;
+            mso-level-number-position: left;
+            margin-left: 0in;
+            text-indent: 0in;
+        }
+
+        @list l6:level9 {
+            mso-level-start-at: 0;
+            mso-level-number-format: none;
+            mso-level-text: "";
+            mso-level-tab-stop: .25in;
+            mso-level-number-position: left;
+            margin-left: 0in;
+            text-indent: 0in;
+        }
+
+        @list l7 {
+            mso-list-id: 1553228446;
+            mso-list-template-ids: -1378073954;
+        }
+
+        @list l7:level1 {
+            mso-level-number-format: roman-upper;
+            mso-level-tab-stop: none;
+            mso-level-number-position: right;
+            margin-left: 9.0pt;
+            text-indent: -9.0pt;
+        }
+
+        @list l7:level2 {
+            mso-level-start-at: 0;
+            mso-level-number-format: none;
+            mso-level-text: "";
+            mso-level-tab-stop: .25in;
+            mso-level-number-position: left;
+            margin-left: 0in;
+            text-indent: 0in;
+        }
+
+        @list l7:level3 {
+            mso-level-start-at: 0;
+            mso-level-number-format: none;
+            mso-level-text: "";
+            mso-level-tab-stop: .25in;
+            mso-level-number-position: left;
+            margin-left: 0in;
+            text-indent: 0in;
+        }
+
+        @list l7:level4 {
+            mso-level-start-at: 0;
+            mso-level-number-format: none;
+            mso-level-text: "";
+            mso-level-tab-stop: .25in;
+            mso-level-number-position: left;
+            margin-left: 0in;
+            text-indent: 0in;
+        }
+
+        @list l7:level5 {
+            mso-level-start-at: 0;
+            mso-level-number-format: none;
+            mso-level-text: "";
+            mso-level-tab-stop: .25in;
+            mso-level-number-position: left;
+            margin-left: 0in;
+            text-indent: 0in;
+        }
+
+        @list l7:level6 {
+            mso-level-start-at: 0;
+            mso-level-number-format: none;
+            mso-level-text: "";
+            mso-level-tab-stop: .25in;
+            mso-level-number-position: left;
+            margin-left: 0in;
+            text-indent: 0in;
+        }
+
+        @list l7:level7 {
+            mso-level-start-at: 0;
+            mso-level-number-format: none;
+            mso-level-text: "";
+            mso-level-tab-stop: .25in;
+            mso-level-number-position: left;
+            margin-left: 0in;
+            text-indent: 0in;
+        }
+
+        @list l7:level8 {
+            mso-level-start-at: 0;
+            mso-level-number-format: none;
+            mso-level-text: "";
+            mso-level-tab-stop: .25in;
+            mso-level-number-position: left;
+            margin-left: 0in;
+            text-indent: 0in;
+        }
+
+        @list l7:level9 {
+            mso-level-start-at: 0;
+            mso-level-number-format: none;
+            mso-level-text: "";
+            mso-level-tab-stop: .25in;
+            mso-level-number-position: left;
+            margin-left: 0in;
+            text-indent: 0in;
+        }
+
+        @list l8 {
+            mso-list-id: 1553228448;
+            mso-list-template-ids: 857102776;
+        }
+
+        @list l8:level1 {
+            mso-level-start-at: 0;
+            mso-level-number-format: none;
+            mso-level-text: "";
+            mso-level-tab-stop: .25in;
+            mso-level-number-position: left;
+            margin-left: 0in;
+            text-indent: 0in;
+        }
+
+        @list l8:level2 {
+            mso-level-start-at: 0;
+            mso-level-number-format: none;
+            mso-level-text: "";
+            mso-level-tab-stop: .25in;
+            mso-level-number-position: left;
+            margin-left: 0in;
+            text-indent: 0in;
+        }
+
+        @list l8:level3 {
+            mso-level-start-at: 0;
+            mso-level-number-format: none;
+            mso-level-text: "";
+            mso-level-tab-stop: .25in;
+            mso-level-number-position: left;
+            margin-left: 0in;
+            text-indent: 0in;
+        }
+
+        @list l8:level4 {
+            mso-level-start-at: 0;
+            mso-level-number-format: none;
+            mso-level-text: "";
+            mso-level-tab-stop: .25in;
+            mso-level-number-position: left;
+            margin-left: 0in;
+            text-indent: 0in;
+        }
+
+        @list l8:level5 {
+            mso-level-start-at: 0;
+            mso-level-number-format: none;
+            mso-level-text: "";
+            mso-level-tab-stop: .25in;
+            mso-level-number-position: left;
+            margin-left: 0in;
+            text-indent: 0in;
+        }
+
+        @list l8:level6 {
+            mso-level-start-at: 0;
+            mso-level-number-format: none;
+            mso-level-text: "";
+            mso-level-tab-stop: .25in;
+            mso-level-number-position: left;
+            margin-left: 0in;
+            text-indent: 0in;
+        }
+
+        @list l8:level7 {
+            mso-level-start-at: 0;
+            mso-level-number-format: none;
+            mso-level-text: "";
+            mso-level-tab-stop: .25in;
+            mso-level-number-position: left;
+            margin-left: 0in;
+            text-indent: 0in;
+        }
+
+        @list l8:level8 {
+            mso-level-start-at: 0;
+            mso-level-number-format: none;
+            mso-level-text: "";
+            mso-level-tab-stop: .25in;
+            mso-level-number-position: left;
+            margin-left: 0in;
+            text-indent: 0in;
+        }
+
+        @list l8:level9 {
+            mso-level-start-at: 0;
+            mso-level-number-format: none;
+            mso-level-text: "";
+            mso-level-tab-stop: .25in;
+            mso-level-number-position: left;
+            margin-left: 0in;
+            text-indent: 0in;
+        }
+
+        @list l9 {
+            mso-list-id: 1553228449;
+            mso-list-template-ids: 1385847192;
+        }
+
+        @list l9:level1 {
+            mso-level-start-at: 0;
+            mso-level-number-format: none;
+            mso-level-text: "";
+            mso-level-tab-stop: .25in;
+            mso-level-number-position: left;
+            margin-left: 0in;
+            text-indent: 0in;
+        }
+
+        @list l9:level2 {
+            mso-level-start-at: 0;
+            mso-level-number-format: none;
+            mso-level-text: "";
+            mso-level-tab-stop: .25in;
+            mso-level-number-position: left;
+            margin-left: 0in;
+            text-indent: 0in;
+        }
+
+        @list l9:level3 {
+            mso-level-start-at: 0;
+            mso-level-number-format: none;
+            mso-level-text: "";
+            mso-level-tab-stop: .25in;
+            mso-level-number-position: left;
+            margin-left: 0in;
+            text-indent: 0in;
+        }
+
+        @list l9:level4 {
+            mso-level-start-at: 0;
+            mso-level-number-format: none;
+            mso-level-text: "";
+            mso-level-tab-stop: .25in;
+            mso-level-number-position: left;
+            margin-left: 0in;
+            text-indent: 0in;
+        }
+
+        @list l9:level5 {
+            mso-level-start-at: 0;
+            mso-level-number-format: none;
+            mso-level-text: "";
+            mso-level-tab-stop: .25in;
+            mso-level-number-position: left;
+            margin-left: 0in;
+            text-indent: 0in;
+        }
+
+        @list l9:level6 {
+            mso-level-start-at: 0;
+            mso-level-number-format: none;
+            mso-level-text: "";
+            mso-level-tab-stop: .25in;
+            mso-level-number-position: left;
+            margin-left: 0in;
+            text-indent: 0in;
+        }
+
+        @list l9:level7 {
+            mso-level-start-at: 0;
+            mso-level-number-format: none;
+            mso-level-text: "";
+            mso-level-tab-stop: .25in;
+            mso-level-number-position: left;
+            margin-left: 0in;
+            text-indent: 0in;
+        }
+
+        @list l9:level8 {
+            mso-level-start-at: 0;
+            mso-level-number-format: none;
+            mso-level-text: "";
+            mso-level-tab-stop: .25in;
+            mso-level-number-position: left;
+            margin-left: 0in;
+            text-indent: 0in;
+        }
+
+        @list l9:level9 {
+            mso-level-start-at: 0;
+            mso-level-number-format: none;
+            mso-level-text: "";
+            mso-level-tab-stop: .25in;
+            mso-level-number-position: left;
+            margin-left: 0in;
+            text-indent: 0in;
+        }
+
+        @list l10 {
+            mso-list-id: 1763448907;
+            mso-list-template-ids: 857102776;
+        }
+
+        @list l10:level1 {
+            mso-level-start-at: 0;
+            mso-level-number-format: none;
+            mso-level-text: "";
+            mso-level-tab-stop: .25in;
+            mso-level-number-position: left;
+            margin-left: 0in;
+            text-indent: 0in;
+        }
+
+        @list l10:level2 {
+            mso-level-start-at: 0;
+            mso-level-number-format: none;
+            mso-level-text: "";
+            mso-level-tab-stop: .25in;
+            mso-level-number-position: left;
+            margin-left: 0in;
+            text-indent: 0in;
+        }
+
+        @list l10:level3 {
+            mso-level-start-at: 0;
+            mso-level-number-format: none;
+            mso-level-text: "";
+            mso-level-tab-stop: .25in;
+            mso-level-number-position: left;
+            margin-left: 0in;
+            text-indent: 0in;
+        }
+
+        @list l10:level4 {
+            mso-level-start-at: 0;
+            mso-level-number-format: none;
+            mso-level-text: "";
+            mso-level-tab-stop: .25in;
+            mso-level-number-position: left;
+            margin-left: 0in;
+            text-indent: 0in;
+        }
+
+        @list l10:level5 {
+            mso-level-start-at: 0;
+            mso-level-number-format: none;
+            mso-level-text: "";
+            mso-level-tab-stop: .25in;
+            mso-level-number-position: left;
+            margin-left: 0in;
+            text-indent: 0in;
+        }
+
+        @list l10:level6 {
+            mso-level-start-at: 0;
+            mso-level-number-format: none;
+            mso-level-text: "";
+            mso-level-tab-stop: .25in;
+            mso-level-number-position: left;
+            margin-left: 0in;
+            text-indent: 0in;
+        }
+
+        @list l10:level7 {
+            mso-level-start-at: 0;
+            mso-level-number-format: none;
+            mso-level-text: "";
+            mso-level-tab-stop: .25in;
+            mso-level-number-position: left;
+            margin-left: 0in;
+            text-indent: 0in;
+        }
+
+        @list l10:level8 {
+            mso-level-start-at: 0;
+            mso-level-number-format: none;
+            mso-level-text: "";
+            mso-level-tab-stop: .25in;
+            mso-level-number-position: left;
+            margin-left: 0in;
+            text-indent: 0in;
+        }
+
+        @list l10:level9 {
+            mso-level-start-at: 0;
+            mso-level-number-format: none;
+            mso-level-text: "";
+            mso-level-tab-stop: .25in;
+            mso-level-number-position: left;
+            margin-left: 0in;
+            text-indent: 0in;
+        }
+
+        @list l11 {
+            mso-list-id: 1796681677;
+            mso-list-template-ids: 857102776;
+        }
+
+        @list l11:level1 {
+            mso-level-start-at: 0;
+            mso-level-number-format: none;
+            mso-level-text: "";
+            mso-level-tab-stop: .25in;
+            mso-level-number-position: left;
+            margin-left: 0in;
+            text-indent: 0in;
+        }
+
+        @list l11:level2 {
+            mso-level-start-at: 0;
+            mso-level-number-format: none;
+            mso-level-text: "";
+            mso-level-tab-stop: .25in;
+            mso-level-number-position: left;
+            margin-left: 0in;
+            text-indent: 0in;
+        }
+
+        @list l11:level3 {
+            mso-level-start-at: 0;
+            mso-level-number-format: none;
+            mso-level-text: "";
+            mso-level-tab-stop: .25in;
+            mso-level-number-position: left;
+            margin-left: 0in;
+            text-indent: 0in;
+        }
+
+        @list l11:level4 {
+            mso-level-start-at: 0;
+            mso-level-number-format: none;
+            mso-level-text: "";
+            mso-level-tab-stop: .25in;
+            mso-level-number-position: left;
+            margin-left: 0in;
+            text-indent: 0in;
+        }
+
+        @list l11:level5 {
+            mso-level-start-at: 0;
+            mso-level-number-format: none;
+            mso-level-text: "";
+            mso-level-tab-stop: .25in;
+            mso-level-number-position: left;
+            margin-left: 0in;
+            text-indent: 0in;
+        }
+
+        @list l11:level6 {
+            mso-level-start-at: 0;
+            mso-level-number-format: none;
+            mso-level-text: "";
+            mso-level-tab-stop: .25in;
+            mso-level-number-position: left;
+            margin-left: 0in;
+            text-indent: 0in;
+        }
+
+        @list l11:level7 {
+            mso-level-start-at: 0;
+            mso-level-number-format: none;
+            mso-level-text: "";
+            mso-level-tab-stop: .25in;
+            mso-level-number-position: left;
+            margin-left: 0in;
+            text-indent: 0in;
+        }
+
+        @list l11:level8 {
+            mso-level-start-at: 0;
+            mso-level-number-format: none;
+            mso-level-text: "";
+            mso-level-tab-stop: .25in;
+            mso-level-number-position: left;
+            margin-left: 0in;
+            text-indent: 0in;
+        }
+
+        @list l11:level9 {
+            mso-level-start-at: 0;
+            mso-level-number-format: none;
+            mso-level-text: "";
+            mso-level-tab-stop: .25in;
+            mso-level-number-position: left;
+            margin-left: 0in;
+            text-indent: 0in;
+        }
+
+        ol {
+            margin-bottom: 0in;
+        }
+
+        ul {
+            margin-bottom: 0in;
+        }
+    </style>
+
+</head>
+
+<body bgcolor=white lang=EN-US style='tab-interval:.5in'>
+
+    <div class=Section1>
+
+        <p class="MsoNormal"><span style='font-family:"Arial","sans-serif"'></span></p>
+
+        <p class="MsoNormal" align=center style='text-align:center;line-height:15.0pt;
+
+word-break:normal'>
+            <b>
+                <i>
+                    <span style='font-size:11.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                        <o:p>
+                            <span style='text-decoration:'>&nbsp;</span>
+                        </o:p>
+                    </span>
+                </i>
+            </b>
+        </p>
+
+        <p class="MsoNormal" align=center style='text-align:center;line-height:15.0pt;
+
+word-break:normal'>
+            <b>
+                <i>
+                    <span style='font-size:11.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                        <o:p>
+                            <span style='text-decoration:'>&nbsp;</span>
+                        </o:p>
+                    </span>
+                </i>
+            </b>
+        </p>
+
+        <p class="MsoNormal" align=center style='text-align:center;line-height:15.0pt;
+
+word-break:normal'>
+            <b>
+                <i>
+                    <span style='font-size:11.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                        <o:p>
+                            <span style='text-decoration:'>&nbsp;</span>
+                        </o:p>
+                    </span>
+                </i>
+            </b>
+        </p>
+
+        <p class="MsoNormal" align=center style='text-align:center;line-height:15.0pt;
+  word-break:normal'>
+            <b><i><span style='font-size:11.0pt;font-family:"Arial","sans-serif"; color:black'><o:p><span style='text-decoration:'>&nbsp;</span></o:p></span></i></b>
+        </p>
+
+        <p class="MsoNormal" align=center style='text-align:center;line-height:15.0pt;
+
+word-break:normal'>
+            <b>
+                <i>
+                    <span style='font-size:11.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                        <o:p>
+                            <span style='text-decoration:'>&nbsp;</span>
+                        </o:p>
+                    </span>
+                </i>
+            </b>
+        </p>
+
+        <p class="MsoNormal" align=center style='text-align:center;line-height:15.0pt;
+
+word-break:normal'>
+            <b>
+                <i>
+                    <span style='font-size:11.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                        <o:p>
+                            <span style='text-decoration:'>&nbsp;</span>
+                        </o:p>
+                    </span>
+                </i>
+            </b>
+        </p>
+
+        <p class="MsoNormal" align=center style='text-align:center;line-height:15.0pt;
+
+word-break:normal'>
+            <b>
+                <i>
+                    <span style='font-size:11.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                        <o:p>
+                            <span style='text-decoration:'>&nbsp;</span>
+                        </o:p>
+                    </span>
+                </i>
+            </b>
+        </p>
+
+        <p class="MsoNormal" align=center style='text-align:center;line-height:15.0pt;
+
+word-break:normal'>
+            <b>
+                <i>
+                    <span style='font-size:11.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                        <o:p>
+                            <span style='text-decoration:'>&nbsp;</span>
+                        </o:p>
+                    </span>
+                </i>
+            </b>
+        </p>
+
+        <p class="MsoNormal" align=center style='text-align:center;line-height:15.0pt;
+
+word-break:normal'>
+            <b>
+                <i>
+                    <span style='font-size:11.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                        <o:p>
+                            <span style='text-decoration:'>&nbsp;</span>
+                        </o:p>
+                    </span>
+                </i>
+            </b>
+        </p>
+
+        <p class="MsoNormal" align=center style='text-align:center;line-height:15.0pt;
+
+word-break:normal'>
+            <b>
+                <i>
+                    <span style='font-size:11.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                        <o:p>
+                            <span style='text-decoration:'>&nbsp;</span>
+                        </o:p>
+                    </span>
+                </i>
+            </b>
+        </p>
+
+        <p class="MsoNormal" align=center style='text-align:center;line-height:15.0pt;
+
+word-break:normal'>
+            <b>
+                <i>
+                    <span style='font-size:11.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                        <o:p>
+                            <span style='text-decoration:'>&nbsp;</span>
+                        </o:p>
+                    </span>
+                </i>
+            </b>
+        </p>
+
+        <p class="MsoNormal" align=center style='text-align:center;line-height:15.0pt;
+
+word-break:normal'>
+            <b>
+                <i>
+                    <span style='font-size:11.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                        <o:p>
+                            <span style='text-decoration:'>&nbsp;</span>
+                        </o:p>
+                    </span>
+                </i>
+            </b>
+        </p>
+
+        <p class="MsoNormal" align=center style='text-align:center;line-height:15.0pt;
+
+word-break:normal'>
+            <b>
+                <i>
+                    <span style='font-size:11.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                        <o:p>
+                            <span style='text-decoration:'>&nbsp;</span>
+                        </o:p>
+                    </span>
+                </i>
+            </b>
+        </p>
+
+        <p class="MsoNormal" align=center style='text-align:center;line-height:15.0pt;
+
+word-break:normal'>
+            <b>
+                <i>
+                    <span style='font-size:11.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                        <o:p>
+                            <span style='text-decoration:'>&nbsp;</span>
+                        </o:p>
+                    </span>
+                </i>
+            </b>
+        </p>
+
+        <p class="MsoNormal" align=center style='text-align:center;line-height:15.0pt;
+
+word-break:normal'>
+            <b>
+                <i>
+                    <span style='font-size:11.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                        <o:p>
+                            <span style='text-decoration:'>&nbsp;</span>
+                        </o:p>
+                    </span>
+                </i>
+            </b>
+        </p>
+
+        <p class="MsoNormal" align=center style='text-align:center;line-height:15.0pt;
+
+word-break:normal'>
+            <b>
+                <i>
+                    <span style='font-size:11.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                        <o:p>
+                            <span style='text-decoration:'>&nbsp;</span>
+                        </o:p>
+                    </span>
+                </i>
+            </b>
+        </p>
+
+        <p class="MsoNormal" align=center style='text-align:center;line-height:15.0pt;
+
+word-break:normal'>
+            <b>
+                <i>
+                    <span style='font-size:11.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                        <o:p>
+                            <span style='text-decoration:'>&nbsp;</span>
+                        </o:p>
+                    </span>
+                </i>
+            </b>
+        </p>
+
+        <p class="MsoNormal" align=center style='text-align:center;line-height:15.0pt;
+
+word-break:normal'>
+            <b>
+                <i>
+                    <span style='font-size:11.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                        <o:p>
+                            <span style='text-decoration:'>&nbsp;</span>
+                        </o:p>
+                    </span>
+                </i>
+            </b>
+        </p>
+
+        <p class="MsoNormal" align=center style='text-align:center;line-height:15.0pt;
+
+word-break:normal'>
+            <b>
+                <i>
+                    <span style='font-size:11.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                        <o:p>
+                            <span style='text-decoration:'>&nbsp;</span>
+                        </o:p>
+                    </span>
+                </i>
+            </b>
+        </p>
+
+        <p class="MsoNormal" align=center style='text-align:center;line-height:15.0pt;
+
+word-break:normal'>
+            <b>
+                <i>
+                    <span style='font-size:11.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                        <o:p>
+                            <span style='text-decoration:'>&nbsp;</span>
+                        </o:p>
+                    </span>
+                </i>
+            </b>
+        </p>
+
+        <p class="MsoNormal" align=center style='text-align:center;line-height:15.0pt;
+
+word-break:normal'>
+            <b>
+                <u>
+                    <span style='font-size:11.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                        ALLOTMENT LETTER FOR
+                        BUILTUP SHOP-CUM-OFFICE IN PROJECT KNOWN AS &quot;City Heart &quot;,R/0 303, Shivalik Enclave, Landran Road, Kharar, Distt Mohali, PUNJAB 140301
+                    </span>
+                </u>
+            </b>
+        </p>
+
+        <p class="MsoNormal" align=center style='text-align:center;line-height:15.0pt;
+
+word-break:normal'>
+            <b>
+                <u>
+                    <span style='font-size:11.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                        <o:p>
+                            <span style='text-decoration:'>&nbsp;</span>
+                        </o:p>
+                    </span>
+                </u>
+            </b>
+        </p>
+
+        <p class="MsoNormal" align="left" style='text-align:left;line-height:15.0pt;
+
+word-break:normal'>
+            <span style='font-size:11.0pt;
+font-family:"Arial","sans-serif";
+color:black'>This Agreement is made at Chandigarh on this dated 07/01/2015.</span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='text-align:left;line-height:15.0pt;
+
+word-break:normal'>
+            <span style='font-size:11.0pt;
+font-family:"Arial","sans-serif";
+color:black'></span>
+        </p>
+
+        <p class="MsoNormal" align=center style='text-align:center;line-height:15.0pt;
+
+word-break:normal'>
+            <b>
+                <span style='font-size:11.0pt;font-family:"Arial","sans-serif";
+color:black'>BETWEEN</span>
+            </b>
+        </p>
+
+        <p class="MsoNormal" align=center style='text-align:center;line-height:15.0pt;
+
+word-break:normal'>
+            <b>
+                <span style='font-size:11.0pt;font-family:"Arial","sans-serif";color:black'></span>
+            </b>
+        </p>
+
+        <p class="MsoNormal" align="left" style='text-align:left;line-height:15.0pt;word-break:normal'>
+            <b>
+                <span style='font-size:11.0pt;font-family:"Arial","sans-serif";color:black'>M/S. SkyCity Builders and Promoters P Ltd,</span>
+            </b><span style='font-size:11.0pt;font-family:"Arial","sans-serif";color:black'>
+                a company registered under the Companies Act, 1956 having its
+                registered office at <b>City Heart, Kharar, Distt SAS Nagar PUNJAB</b>( herein after
+                referred to the as <b>COMPANY</b> which expression shall, unless repugnant to the
+                context or meaning there of, be deemed to include its successors and assigns)
+                through its duly authorized signatory <b>
+                    Rishav Garg
+                </b>of the first part.
+            </span>
+        </p>
+
+        <p class="MsoNormal" align=center style='text-align:center;line-height:15.0pt;
+
+word-break:normal'>
+            <b>
+                <br />
+                <span style='font-size:11.0pt;font-family:"Arial","sans-serif";
+color:black'>AND<br /></span>
+            </b>
+        </p>
+
+        <p class="MsoNormal" style='line-height:15.0pt;
+word-break:normal'>
+            <b>
+                <span style='font-size:11.0pt;font-family:"Arial","sans-serif";
+color:black'></span>
+            </b>
+        </p>
+
+        <p class="MsoNormal" style='margin-left:.75in;line-height:15.0pt'>
+            <b>
+                <span style='font-size:11.0pt;font-family:"Arial","sans-serif";
+color:black'>dfasdfadsf  </span>
+            </b>
+        </p>
+
+        <p class="MsoNormal" style='margin-left:.75in;line-height:15.0pt;'>
+            <b>
+                <span style='font-size:11.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                    <span>
+                    </span>    
+                </span>
+            </b>
+        </p>
+
+        <p class="MsoNormal" style='margin-left:.75in;line-height:15.0pt;'>
+            <b>
+                <br />
+                <span style='font-size:11.0pt;font-family:"Arial","sans-serif";
+color:black'></span>
+            </b>
+        </p>
+
+        <p class="MsoNormal" style='margin-left:.75in;line-height:15.0pt;'>
+            <b>
+                <span style='font-size:11.0pt;font-family:"Arial","sans-serif";
+color:black'>   </span>
+            </b>
+        </p>
+
+        <p class="MsoNormal" style='margin-left:.75in;line-height:15.0pt;'>
+            <b>
+                <span style='font-size:11.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                    <span>
+                    </span> <span></span>
+                </span>
+            </b>
+        </p>
+
+        <p class="MsoNormal" style='line-height:15.0pt;
+word-break:normal'>
+            <br /><br />
+            <b>
+                <span style='font-size:11.0pt;font-family:"Arial","sans-serif";
+color:black'>.</span>
+            </b>
+        </p>
+        <p class="MsoNormal" style='line-height:15.0pt;
+word-break:normal'>
+            <span style='font-size:11.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                (Hereinafter
+                singly/jointly, as the case may be referred to as <b> the BUYER(s) </b>which
+                expression shall unless repugnant to the context of meaning thereof, includes
+                his/her/their respective heirs, executors, administrators, legal
+                representatives, successors and assigns) of the Other Part.
+            </span>
+        </p>
+
+        <p class="MsoNormal" style='text-indent:.5in;line-height:15.0pt'>
+            <br />
+            <span style='font-size:11.0pt;font-family:"Arial","sans-serif"; color:black'></span>
+        </p>
+        <p>For  SkyCity Builders and Promoters P Ltd.</p>
+        <p><br /></p>
+        <p></p>
+        <p style="float:right;">Allotee(s)  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Allotee(s)</p>
+        <p>Authorized Signatory  </p>
+        <p class="MsoNormal" style='margin-left:45.0pt;text-indent:-45.0pt;line-height:
+15.0pt;
+word-break:normal'>
+            <i>
+                <span style='font-size:11.0pt;font-family:"Arial","sans-serif";
+color:black'></span>
+            </i>
+        </p>
+
+        <p class="MsoNormal" style='margin-left:45.0pt;text-indent:-45.0pt;line-height:
+15.0pt;
+word-break:normal'>
+            <b>
+                <i style='mso-bidi-font-style:
+normal'>
+                    <span style='font-size:11.0pt;font-family:
+"Arial","sans-serif";color:black'>
+                        Sub:
+                        Allotment Letter for builtup Shop-cum-Office in Project known as &quot; City Heart &quot; R/0 303, Shivalik Enclave, Landran Road, Kharar, Distt Mohali, PUNJAB 140301
+                    </span>
+                </i>
+            </b><b>
+                <u>
+                    <span style='font-size:11.0pt;
+font-family:"Arial","sans-serif";
+"Times New Roman";color:black'></span>
+                </u>
+            </b>
+        </p>
+
+        <p class="MsoNormal" style='line-height:15.0pt;
+word-break:normal'>
+            <b>
+                <span style='font-size:11.0pt;mso-bidi-font-size:
+12.0pt;font-family:"Arial","sans-serif";
+color:black'></span>
+            </b>
+        </p>
+
+        <p class="MsoNormal" style='line-height:15.0pt;
+word-break:normal'>
+            <span style='font-size:11.0pt;font-family:"Arial","sans-serif";
+color:black'></span>
+        </p>
+
+        <p class="MsoNormal" style='line-height:15.0pt;
+word-break:normal'>
+            <span style='font-size:11.0pt;font-family:"Arial","sans-serif";
+color:black'>Dear Sir/Madam,</span>
+        </p>
+
+        <p class="MsoNormal" align=center style='text-align:center;line-height:15.0pt;
+
+word-break:normal'>
+            <span style='font-size:11.0pt;
+font-family:"Arial","sans-serif";
+color:black'></span>
+        </p>
+
+        <p class="MsoNormal" style='line-height:15.0pt;
+word-break:normal'>
+            <span style='font-size:11.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                This has reference to
+                your application submitted to M/s. SkyCity Builders and Promoters P Ltd,
+                for allotment of Builtup Shop-cum-Office no.<b style=''></b>in the Project known as <b>&quot; City Heart &quot;</b>(hereinafter referred to as said <b style='mso-bidi-font-weight:
+normal'>&quot;Project&quot;</b>) proposed to be developed on land falling in the
+                City Heart, Kharar, Distt SAS Nagar PUNJAB(hereinafter referred
+                to as the said &quot;<b>Land&quot;)</b>.
+            </span>
+        </p>
+
+        <p class="MsoNormal" style='line-height:15.0pt;
+word-break:normal'>
+            <span style='font-size:11.0pt;font-family:"Arial","sans-serif";
+color:black'></span>
+        </p>
+
+        <p class="MsoNormal" style='line-height:15.0pt;
+word-break:normal'>
+            <span style='font-size:11.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                In response to your
+                application, the Company hereby provisionally allots to you {hereinafter you
+                shall be referred to as the <b>&quot;Allottee(s)&quot;</b>},
+                a Commercial Builtup Shop-cum-Office meant for the purpose only which its name
+                suggests, more particularly described in <b>
+                    Annexure-
+                    A
+                </b>annexed herewith (herein after referred to as <b style='mso-bidi-font-weight:
+normal'>&quot;said Unit&quot;</b>) in the said Project proposed to be
+                developed/ constructed on the said Land. The allotment is subject to the terms
+                and conditions contained herein below:
+            </span>
+        </p>
+
+        <p class="MsoNormal" style='line-height:16.0pt;
+word-break:normal'>
+            <br />
+            <span style='font-size:11.0pt;font-family:"Arial","sans-serif";
+color:black'></span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='margin-left:.5in;text-align:left;
+text-indent:-.25in;line-height:15.0pt;'>
+            <![if !supportLists]><span style='font-size:11.0pt;font-family:"Arial","sans-serif"
+Arial;color:black'>
+                <span style='mso-list:Ignore'>
+                    1.<span style='font:7.0pt "Times New Roman"'></span>
+                </span>
+            </span><![endif]><span style='font-size:11.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                <span></span>The Allottee(s) agrees that he has applied
+                for allotment of said Unit with full knowledge of all laws/notifications and
+                rules applicable to the purchase and acquisition of immovable properties in
+                India and the arrangement pertaining to the said Project in particular which
+                have been explained by the Company and understood by him. The Allottee(s)
+                agrees that the allotment shall be made and confirmed by notice on completion
+                of Project and registration of Conveyance Deed/ Sub-Lease Deed in Allottee(s)
+                favour.
+            </span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='text-align:left;line-height:15.0pt;
+word-break:normal'>
+            <br />
+            <span style='font-size:11.0pt;font-family:"Arial","sans-serif";color:black'></span>
+        </p>
+        <p class="MsoNormal" align="left" style='margin-left:.5in;text-align:left;
+text-indent:-.25in;line-height:15.0pt;word-break:normal'>
+            <![if !supportLists]><span style='font-size:11.0pt;font-family:"Arial","sans-serif"
+Arial;color:black'>
+                <span style='mso-list:Ignore'>
+                    2.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;</span>
+                </span>
+            </span><![endif]><span style='font-size:11.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                The Allottee(s) has seen
+                the relevant documents/papers pertaining to the said Project and has/have fully
+                satisfied himself/themselves that the title on the Land of the said Project is
+                marketable and the Company has right and authority to develop the said Project
+                on the said Land and to sell the said Unit and other Plots there at to any
+                party under the terms and conditions mentioned in the Sanction/Permission
+                Letter issued by concerned Development Authority or other Authorities
+                (hereinafter referred to as the said &quot;<b>Authority</b>&quot;)
+                to the Company and the Allottee(s) hereby accepts and agrees to abide by the
+                terms and conditions of the Allotment Letter.
+            </span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='text-align:left;line-height:15.0pt; tab-stops:-4.5pt .5in;
+word-break:normal'><br />
+            <span style='font-size:11.0pt;font-family:"Arial","sans-serif";color:black'></span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='margin-left:.5in;text-align:left;
+text-indent:-.25in;line-height:15.0pt;word-break:normal'>
+            <![if !supportLists]><span style='font-size:11.0pt;
+font-family:"Arial","sans-serif";color:black'>
+                <span style='mso-list:Ignore'>
+                    3.<span style='font:7.0pt "Times New Roman"'>
+                        &nbsp;
+                    </span>
+                </span>
+            </span><![endif]><span style='font-size:11.0pt;mso-bidi-font-size:
+12.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                The Allottee(s) has examined the tentative plans, designs and
+                specifications of the said unit and has agreed that the Company may effect such
+                variations and modifications therein as may be necessary or as it may deem
+                appropriate and fit in the best interest of the Project or as may be done by
+                any competent authority. The necessary changes/ alterations may involve change
+                in position/ location, including change in dimensions, area or number etc. of
+                the said Unit.
+            </span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='text-align:left;line-height:15.0pt;
+word-break:normal'><br />
+            <span style='font-size:11.0pt;
+font-family:"Arial","sans-serif";
+color:black'></span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='margin-left:.5in;text-align:left;
+text-indent:-.25in;line-height:15.0pt;word-break:normal'>
+            <![if !supportLists]><span style='font-size:11.0pt;
+font-family:"Arial","sans-serif";color:black'>
+                <span style='mso-list:Ignore'>
+                    4.<span style='font:7.0pt "Times New Roman"'>
+                        &nbsp;
+                    </span>
+                </span>
+            </span><![endif]><span style='font-size:11.0pt;mso-bidi-font-size:
+12.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                Allottee(s) agrees that he shall pay the price of the said unit
+                and other costs calculated on the basis of area of the said unit, which is
+                understood to include pro-rata share of the common areas in the Project. It is
+                further understood and agreed by the Allottee(s) that the area of the said unit
+                given in this Allotment Letter is tentative and subject to change as per
+                direction of the Sanctioning Authority
+            </span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='text-align:left;line-height:15.0pt;
+word-break:normal'>
+            <span style='font-size:11.0pt;
+font-family:"Arial","sans-serif";
+color:black'></span>
+        </p>
+        <p class="MsoNormal" align="left" style='margin-left:.5in;text-align:left;line-height:15.0pt;word-break:normal'>
+            <span style='font-size:11.0pt;font-family:"Arial","sans-serif";
+color:black'></span>
+        </p>
+        <p class="MsoNormal" align="left" style='margin-left:.5in;text-align:left;
+line-height:15.0pt;word-break:normal'>
+            <span style='font-size:11.0pt;font-family:"Arial","sans-serif";
+color:black'></span>
+        </p>
+        <p class="MsoNormal" align="left" style='margin-left:.5in;text-align:left;
+line-height:15.0pt;word-break:normal'>
+            <span style='font-size:11.0pt;font-family:"Arial","sans-serif";
+color:black'></span>
+        </p>
+
+
+        <p class="MsoNormal" align="left" style='margin-left:.5in;text-align:left;
+line-height:15.0pt;word-break:normal'>
+            <span style='font-size:11.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                or Architect or
+                Structural Engineers of the Company which may result in change
+                (decrease/increase) in the area of the said unit, change in its dimension,
+                size, location, number, boundaries etc. The final size, location, number,
+                boundaries etc. shall be confirmed on completion of development of the Project.
+                In case of increase in the allotted area of the said unit, the Allottee(s)
+                shall pay for the initial 10% of increase in area at the rate of booking of the
+                said unit and shall pay for balance increased area at the then prevailing
+                company's rate/ market rate. In case of decrease of the allotted area of the
+                said unit, the amount received in excess over and above the total cost of the
+                said unit based on the changed area, shall be refunded/ adjusted (as the case
+                may be) by the Company without any interest.
+            </span>
+        </p>
+        <p><br />For  SkyCity Builders and Promoters P Ltd</p>
+        <p><br /></p>
+        <p></p>
+        <p style="float:right;">Allotee(s)  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Allotee(s)</p>
+        <p>Authorized Signatory  </p>
+
+        <p class="MsoNormal" align="left" style='text-align:left;line-height:15.0pt;
+word-break:normal'>
+            <span style='font-size:11.0pt;
+font-family:"Arial","sans-serif";
+color:black'></span>
+        </p>
+
+        <ol style='margin-top:0in' start=5 type=1>
+            <li class="MsoNormal" style='color:black;text-align:left;line-height:15.0pt;
+   mso-list:l5 level1 lfo5;
+   tab-stops:0in .5in;
+   word-break:normal'>
+                <span style='font-size:11.0pt;
+   font-family:"Arial","sans-serif";"Times New Roman"'>
+                    <span></span>The Allottee(s) agrees that
+                    specifications shown in the brochure/ pamphlet/ advertisings<span></span>etc. are indicative only and that the
+                    Company may on its own provide any additional/ better specifications
+                    and/or facilities other than those mentioned in the brochure/ pamphlet/
+                    advertisings etc. due to technical or aesthetic reasons which may include<span></span>non availability of certain materials of
+                    acceptable quality and price or due to popular demand or for reasons of
+                    the overall betterment of the said Project/ said unit. The Allottee(s)
+                    agrees to pay for the cost of additional/ better specifications and/or
+                    facilities as additional charges proportionately or as the case may be, as
+                    and when demanded by the Company.
+                </span>
+            </li>
+        </ol>
+
+        <p class="MsoNormal" align="left" style='text-align:left;line-height:15.0pt;
+word-break:normal'><br /><span style='font-size:11.0pt;font-family:"Arial","sans-serif";color:black'></span>
+        </p>
+        <p class="MsoNormal" align="left" style='margin-left:.5in;text-align:left;
+text-indent:-.25in;line-height:15.0pt;word-break:normal'>
+            <![if !supportLists]><span style='font-size:11.0pt;
+font-family:"Arial","sans-serif";color:black'>
+                <span style='mso-list:Ignore'>
+                    6.<span style='font:7.0pt "Times New Roman"'>
+                        &nbsp;
+                    </span>
+                </span>
+            </span><![endif]><span style='font-size:11.0pt;mso-bidi-font-size:
+12.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                The Allottee(s) specifically agrees to pay
+                directly or if paid by the Company then reimburse to the <span></span><span></span>Company
+                on demand any Govt. levies, Property Taxes, service tax, Freehold Charges,
+                other charges etc. leviable in future on the said Land and/or Project
+                developed/ constructed on the said Land or the said unit, as the case may be,
+                as assessable/applicable from the date of offer of possession of the said unit
+                to the Allottee(s) and the same shall be borne and paid by the Allottee(s) in
+                proportion to the area of the said unit to the area of all the Plots in the
+                said<span></span>Project<span></span>as determined by the Company.
+            </span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='text-align:left;line-height:15.0pt;word-break:normal'><br />
+            <span style='font-size:11.0pt;font-family:"Arial","sans-serif";color:black'></span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='margin-left:.5in;text-align:left;
+text-indent:-.25in;line-height:15.0pt;word-break:normal'>
+            <![if !supportLists]><span style='font-size:11.0pt;
+font-family:"Arial","sans-serif";color:black'>
+                <span style='mso-list:Ignore'>
+                    7.<span style='font:7.0pt "Times New Roman"'>
+                        &nbsp;
+                    </span>
+                </span>
+            </span><![endif]><span style='font-size:11.0pt;mso-bidi-font-size:
+12.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                The Allottee(s) hereby agrees to pay to the Company in timely
+                manner the Basic Sale Price, Additional Cost, Preferential location charges,
+                etc. as per the payment plan opted by the Allottee(s) in <b style='mso-bidi-font-weight:
+normal'>Annexure-A</b>, which is the essence of this allotment. In addition to
+                the above, the Allottee(s) specifically agrees to pay promptly to the Company,
+                the applicable Service Tax, Cess etc. levied/ to be levied by the Government on
+                services undertaken/ to be undertaken by the Company while constructing or
+                developing the said unit/ Project. The Allottee(s) further agrees to pay
+                directly or if paid by the Company then reimburse to the Company on demand any
+                Govt. levies, Property Taxes, other charges etc. leviable in future on the said
+                Land and/or Project developed/ constructed on the said Land or the said unit,
+                as the case may be, as assessable/applicable in respect of the said unit to the
+                Allottee(s) and the same shall be borne and paid by the Allottee(s) in
+                proportion to the area of the said unit to the area of all the Plots in the
+                said<span></span>Project<span></span>as determined by the Company.
+            </span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='margin-left:9.0pt;text-align:left;
+text-indent:-9.0pt;line-height:15.0pt;word-break:normal'><br />
+            <span style='font-size:11.0pt;font-family:"Arial","sans-serif";color:black'></span>
+        </p>
+        <p class="MsoNormal" align="left" style='margin-left:.5in;text-align:left;
+text-indent:-.25in;line-height:15.0pt;'>
+            <span style='font-size:11.0pt;
+font-family:"Arial","sans-serif";color:black'>
+                <span style='mso-list:Ignore'>
+                    8.<span style='font:7.0pt "Times New Roman"'>
+                        &nbsp;&nbsp;&nbsp;
+                    </span>
+                </span>
+            </span>
+            <span style='font-size:11.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                The Allottee(s)
+                satisfies and confirms that the cost pointed out in <b style=''>Annexure A</b>, does not include any tax paid or payable by the Company
+                and/or its contractors by way of value added tax, state sales tax, central
+                sales tax, works contract tax, service tax, educational cess, luxury tax if any
+                and any other allied welfare fund or cess or any other taxes, charges, levies
+                by whatever name called, in connection with the development work of the said
+                Project/said unit and Allottee(s) hereby agrees to
+            </span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='text-align:left;line-height:15.0pt;word-break:normal'>
+            <span style='font-size:11.0pt;
+font-family:"Arial","sans-serif";
+color:black'></span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='margin-left:.5in;text-align:left;
+line-height:15.0pt;word-break:normal'>
+            <span style='font-size:11.0pt;
+font-family:"Arial","sans-serif";color:black'>
+                pay the Company, in addition to the cost pointed
+                out in <b>Annexure A</b>of the said
+                unit<span></span>a price equal to the proportionate
+                share of Taxes and the proportionate share being calculated in the ratio of the
+                area of the said unit to the total area of the all the other units in the said
+                Project.
+            </span>
+        </p>
+        <p></p>
+        <ol style='margin-top:0in' start=9 type=1>
+            <li class="MsoNormal" style='color:black;text-align:left;line-height:15.0pt;'>
+                <span style='font-size:11.0pt;
+   font-family:"Arial","sans-serif";'>
+                    The Allottee(s) undertakes to pay additionally to the
+                    Company, the External Development Charges (EDC) and Infrastructural
+                    Development Charges<span></span>(IDC), City
+                    Development Charges levied (if applicable), by whatever name called or in
+                    whatever form and with all such conditions imposed by the concerned
+                    Government and/or any Competent Authority (ies) and any increase thereof
+                    and such increase in EDC, IDC and City Development Charges shall be borne
+                    and paid by the Allottee(s) in proportion to the area of the said unit to
+                    the total<span></span>area of all the Plots/units
+                    in the said Project as determined by the Company. If such charges are
+                    increased (including with retrospective effect) after the Conveyance Deed
+                    has been executed then such charges shall be treated as unpaid sale price
+                    of the said unit and the Company shall have the first charge/lien on the
+                    said unit for recovery of such charges from the Allottee(s).
+                </span>
+            </li>
+        </ol>
+
+        <p class="MsoNormal" align="left" style='text-align:left;line-height:15.0pt; word-break:normal'>
+            <span style='font-size:11.0pt;
+font-family:"Arial","sans-serif";
+color:black'></span>
+        </p>
+        <p>For  SkyCity Builders and Promoters P Ltd.</p>
+        <p><br /></p>
+        <p style="float:right;">Allotee(s)  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Allotee(s)</p>
+        <p>Authorized Signatory  </p>
+        <p><br /></p>
+        <ol style='margin-top:0in' start=10 type=1>
+            <li class="MsoNormal" style='color:black;text-align:left;line-height:15.0pt;'>
+                <span style='font-size:11.0pt;
+   font-family:"Arial","sans-serif";'>
+                    It shall be an essential condition of this allotment
+                    that the said unit shall always be used for <b style=''>commercial</b>purpose only. Any change in the specified use,
+                    which is not in consonance with the theme of the said Project or is
+                    detrimental to the public interest will be treated as a breach of the
+                    terms of Allotment entitling the Company to cancel the allotment and forfeit
+                    the entire amount deposited by the Allottee(s). Thereafter, the
+                    Allottee(s) shall not have any right, title or interest in the said allotted
+                    unit to him.
+                </span>
+            </li>
+        </ol>
+
+        <p class="MsoNormal" align="left" style='text-align:left;line-height:15.0pt;word-break:normal'><br />
+            <span style='font-size:11.0pt;font-family:"Arial","sans-serif";color:black'></span>
+        </p>
+        <p class="MsoNormal" align="left" style='margin-left:.5in;text-align:left;
+text-indent:-.25in;line-height:15.0pt;word-break:normal'>
+            <![if !supportLists]><span style='font-size:11.0pt;
+font-family:"Arial","sans-serif";color:black'>
+                <span style='mso-list:Ignore'>
+                    11.<span style='font:7.0pt "Times New Roman"'>
+                        &nbsp;
+                    </span>
+                </span>
+            </span><![endif]><span style='font-size:11.0pt;mso-bidi-font-size:
+12.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                Subject to other clauses
+                herein, the Company has allotted to the Allottee(s), the Commercial Built up as
+                per <span></span><span></span><b>
+                    Annexure
+                    - B
+                </b>as annexed to this Allotment Letter in the said Project as per payment
+                plans and specifications inspected, seen and agreed by the Allottee(s) for a
+                basic sale price and additional cost as described in <b style=''>Annexure - A</b>annexed to this Allotment Letter in respect of the
+                said unit. The sale price, additional cost and preferential location charges
+                shall be paid by the Allottee(s) to the Company as per the Payment Plan opted
+                by the Allottee(s) in <b>Annexure - B</b>.
+            </span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='text-align:left;line-height:15.0pt;word-break:normal'><br />
+            <span style='font-size:11.0pt;font-family:"Arial","sans-serif";color:black'></span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='margin-left:.5in;text-align:left;
+text-indent:-.25in;line-height:15.0pt;word-break:normal'>
+            <![if !supportLists]><span style='font-size:11.0pt;
+font-family:"Arial","sans-serif";color:black'>
+                <span style='mso-list:Ignore'>
+                    12.<span style='font:7.0pt "Times New Roman"'>
+                        &nbsp;
+                    </span>
+                </span>
+            </span><![endif]><span style='font-size:11.0pt;mso-bidi-font-size:
+12.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                The standard of internal
+                development has been defined by the Company and in case of any change at a
+                later stage in the specifications of internal development which thereby results
+                to the Company, incurring of any extra cost/charges on account of such changes,
+                the same shall be recovered on pro-rata basis from the Allottee(s) and shall be
+                payable as and when demanded by the Company.
+            </span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='text-align:left;line-height:15.0pt;
+word-break:normal'><br /><span style='font-size:11.0pt;font-family:"Arial","sans-serif";color:black'></span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='margin-left:.5in;text-align:left;
+text-indent:-.25in;line-height:15.0pt;word-break:normal'>
+            <![if !supportLists]><span style='font-size:11.0pt;
+font-family:"Arial","sans-serif";color:black'>
+                <span style='mso-list:Ignore'>
+                    13.<span style='font:7.0pt "Times New Roman"'>
+                        &nbsp;
+                    </span>
+                </span>
+            </span><![endif]><span style='font-size:11.0pt;mso-bidi-font-size:
+12.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                It is clarified that the
+                roof rights of the commercial built-up Sco/Floor shall remain with the company
+                and will not be given to any of the Allottee.
+            </span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='text-align:left;line-height:15.0pt;
+word-break:normal'><br /><span style='font-size:11.0pt;font-family:"Arial","sans-serif";color:black'></span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='margin-left:.5in;text-align:left;
+text-indent:-.25in;line-height:15.0pt;word-break:normal'>
+            <![if !supportLists]><span style='font-size:11.0pt;
+font-family:"Arial","sans-serif";color:black'>
+                <span style='mso-list:Ignore'>
+                    14.<span style='font:7.0pt "Times New Roman"'>
+                        &nbsp;
+                    </span>
+                </span>
+            </span><![endif]><span style='font-size:11.0pt;mso-bidi-font-size:
+12.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                It is clarified that the
+                External Development Charge (EDC), Internal Development Charge (IDC), Electric
+                Connection, EEC&amp;FFEC, Water Connection, Sewerage Connection, Malba etc. and
+                IFMS and other costs are not included in the Basic Selling Price of the said unit
+                detailed in <b>Annexure A</b>and shall be
+                payable by the Allottee(s) in addition to the price of the said unit. The
+                Allottee(s) shall pay the following amounts, on demand, to the Company as may
+                be determined at the time of providing necessary connections from the Main line
+                laid along the road servicing the Plot/ unit or as the case may be:
+            </span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='text-align:left;line-height:15.0pt;
+word-break:normal'>
+            <br /><span style='font-size:11.0pt;font-family:"Arial","sans-serif";color:black'></span>
+        </p>
+        <p class="MsoNormal" align="left" style='margin-left:.5in;text-align:left;
+text-indent:-.25in;line-height:15.0pt;'>
+            <span style='font-size:11.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                <span></span>The Electricity Load for the entire Project
+                shall be obtained from concerned Electricity authority by the Company or as the
+                case may be, and the cost of installation of Sub-Station/Power
+            </span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='margin-left:.5in;text-align:left;
+line-height:15.0pt
+ 40.5pt;word-break:normal'>
+            <span style='font-size:11.0pt;
+font-family:"Arial","sans-serif";color:black'>
+                House/Transformers shall be charged extra on pro
+                rata basis and shall be payable by the Allottee(s) on demand.
+            </span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='margin-left:.5in;text-align:left;
+line-height:15.0pt;word-break:normal'>
+            <span style='font-size:11.0pt;font-family:"Arial","sans-serif";
+color:black'></span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='margin-left:.5in;text-align:left;
+text-indent:-.25in;line-height:15.0pt;'>
+            <span style='font-size:11.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                The individual Electricity Connection cost including any deposits
+                and Meter cost shall be borne by the Allottee(s).
+            </span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='margin-left:.5in;text-align:left;
+line-height:15.0pt;word-break:normal'>
+            <br />
+            <span style='font-size:11.0pt;font-family:"Arial","sans-serif";
+color:black'></span>
+        </p>
+        <p class="MsoNormal" align="left" style='margin-left:.5in;text-align:left;text-indent:-.25in;line-height:15.0pt;'>
+            <span style='font-size:11.0pt;font-family:"Arial","sans-serif";color:black'>
+                The individual Water Connection cost from the Main supply line
+                shall be borne by the Allottee(s).
+            </span>
+        </p>
+        <p class="MsoNormal" align="left" style='margin-left:.5in;text-align:left;
+text-indent:-.25in;line-height:15.0pt;'>
+            <span style='font-size:11.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                The Sewerage Connection cost from the said unit to the Main
+                Sewerage line shall be borne by the Allottee(s).
+            </span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='text-align:left;line-height:15.0pt;
+word-break:normal'>
+            <span style='font-size:11.0pt;font-family:"Arial","sans-serif";color:black'></span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='margin-left:.5in;text-align:left;
+text-indent:-.25in;line-height:15.0pt;word-break:normal'>
+            <span style='font-size:11.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                The Storm Water Connection cost from the said unit to the Main
+                line and Malba charges shall be borne by the Allottee(s).
+            </span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='text-align:left;line-height:15.0pt;word-break:normal'>
+            <span style='font-size:11.0pt;
+font-family:"Arial","sans-serif";color:black'></span>
+        </p>
+        <p class="MsoNormal" align="left" style='text-align:left;line-height:15.0pt;
+word-break:normal'><br /><span style='font-size:11.0pt;font-family:"Arial","sans-serif";color:black'></span>
+        </p>
+
+
+        <p class="MsoNormal" align="left" style='margin-left:.5in;text-align:left;
+text-indent:-.25in;line-height:15.0pt;word-break:normal'>
+            <![if !supportLists]><span style='font-size:11.0pt;
+font-family:"Arial","sans-serif";color:black'>
+                <span style='mso-list:Ignore'>
+                    15.<span style='font:7.0pt "Times New Roman"'>
+                        &nbsp;
+                    </span>
+                </span>
+            </span><![endif]><span style='font-size:11.0pt;mso-bidi-font-size:
+12.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                Firefighting equipment
+                and/or preventive measures may be installed by the Company in the <span></span>common area/township if required by any
+                law/ byelaws, order or directions or guidelines of the Govt./ any Statutory
+                Authority/ Body or if deemed necessary by the Allottee(s) and the costs thereof
+                shall be chargeable extra from the Allottee(s) on prorata basis.
+            </span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='margin-left:.5in;text-align:left;
+line-height:15.0pt;word-break:normal'>
+            <span style='font-size:11.0pt;
+font-family:"Arial","sans-serif";color:black'></span>
+        </p>
+        <p>For  SkyCity Builders and Promoters P Ltd.</p>
+        <p><br /></p>
+        <p style="float:right;">Allotee(s)  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Allotee(s)</p>
+        <p>Authorized Signatory  </p>
+        <p class="MsoNormal" align="left" style='margin-left:.5in;text-align:left;
+text-indent:-.25in;line-height:15.0pt;word-break:normal'>
+            <span style='font-size:11.0pt;
+font-family:"Arial","sans-serif"
+Arial;color:black'>
+                <span style='mso-list:Ignore'>
+                    16.<span style='font:7.0pt "Times New Roman"'>
+                        &nbsp;
+                    </span>
+                </span>
+            </span>
+            <span style='font-size:11.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                The cost of development
+                of the said unit is escalation-free, save and except increases, which the
+                Allottee(s) hereby agrees to pay due to increase in area, increase in External
+                Development charges, Infrastructural Development Charges, City Development
+                Charges, Government rates, taxes, cases etc. and/or any other charges which may
+                be levied or imposed by the Government/Statutory Authorities from time to time.
+                If any provision of the existing and future Laws, guidelines, directions etc.
+                of any Government or the Competent Authorities made applicable to the said
+                unit/said Project requiring the Company to provide pollution control devices,
+                effluent treatment plant etc. in the said Project, then the cost of such
+                additional devices, equipments etc. shall also be borne and paid by the
+                Allottee(s) in proportion to the area of his Plot to the total area of all the
+                Plots in the said Project, as and when demanded by the Company.
+            </span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='text-align:left;line-height:15.0pt;word-break:normal'>
+            <br />
+            <span style='font-size:11.0pt;font-family:"Arial","sans-serif";color:black'></span>
+        </p>
+        <p class="MsoNormal" align="left" style='margin-left:.5in;text-align:left;
+text-indent:-.25in;line-height:15.0pt;'>
+            <![if !supportLists]><span style='font-size:11.0pt;
+font-family:"Arial","sans-serif"
+Arial;color:black'>
+                <span style='mso-list:Ignore'>
+                    17.<span style='font:7.0pt "Times New Roman"'>
+                        &nbsp;
+                    </span>
+                </span>
+            </span><![endif]><span style='font-size:11.0pt;mso-bidi-font-size:
+12.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                The Allottee(s) hereby agrees to pay Preferential Location Charges
+                (PLC) (if applicable) for preferential location as described in this Allotment
+                Letter in the manner and within the time as stated in the Payment plan.
+                However, the Allottee(s) has specifically agreed that if due to any change in
+                the layout plan, the said unit ceases to be in a preferential location, the
+                Company may adjust or refund only the amount of preferential location charges
+                paid by the Allottee(s) and such amount shall be adjusted in the last
+                installment as stated in the Payment plan. If due to any change in the layout
+                plan, the said unit becomes preferentially located, in such case, the
+                Allottee(s) shall be liable and agrees to pay the amount as and when demanded
+                by the Company as �preferential location charges�.
+            </span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='text-align:left;line-height:15.0pt;word-break:normal'>
+            <span style='font-size:11.0pt;font-family:"Arial","sans-serif";color:black'></span><br />
+        </p>
+
+        <p class="MsoNormal" align="left" style='margin-left:.5in;text-align:left;
+text-indent:-.25in;line-height:15.0pt;mso-list:l5 level1 lfo5;word-break:normal'>
+            <![if !supportLists]><span style='font-size:11.0pt;font-family:"Arial","sans-serif";color:black'>
+                <span style='mso-list:Ignore'>
+                    18.<span style='font:7.0pt "Times New Roman"'>&nbsp;</span>
+                </span>
+            </span><![endif]><span style='font-size:11.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                The Allottee(s) shall
+                make all payments within the time as per the terms of Schedule of Payments as
+                mentioned in <b>Annexure-B</b>and/or as
+                may be demanded by the Company from time to time
+            </span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='margin-left:.5in;text-align:left;
+line-height:15.0pt;word-break:normal'>
+            <span style='font-size:11.0pt;mso-bidi-font-size:
+12.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                without any reminders from the Company through A/c Payee
+                Cheque(s)/ Demand Draft(s) in favour of <b>&quot; SkyCity Builders and Promoters P Ltd&quot;</b>payable at par. The receipt of
+                payment shall be issued by the Company in the name of first Allottee(s) (in
+                case the said unit is allotted to joint Allottees) irrespective of payment
+                received from any other person.
+            </span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='text-align:left;line-height:15.0pt;
+word-break:normal'><br /><span style='font-size:11.0pt;font-family:"Arial","sans-serif";color:black'></span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='margin-left:.5in;text-align:left;
+text-indent:-.25in;line-height:15.0pt;word-break:normal'>
+            <![if !supportLists]><span style='font-size:11.0pt;
+font-family:"Arial","sans-serif";color:black'>
+                <span style='mso-list:Ignore'>
+                    19.<span style='font:7.0pt "Times New Roman"'>
+                        &nbsp;
+                    </span>
+                </span>
+            </span><![endif]><span style='font-size:11.0pt;mso-bidi-font-size:
+12.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                The Allottee(s) may
+                obtain finance from any financial institution/ bank or any other source for
+                purchase of the said unit, but the Allottee's obligation to purchase the said
+                unit pursuant to this Allotment Letter shall not be contingent on the
+                Allottee's ability or competency to obtain such finances and the Allottee(s) shall
+                remain bound under this Allotment Letter. Whereas, if any bank/ financial
+                institution refuses/ makes delay in granting financial assistance and/or
+                disbursement of loan on any ground(s), then Allottee(s) shall not make such
+                refusal/ delay an excuse for non-payment of any installments/ dues to the
+                Company within stipulated time as per the payment plan. Further, in case the
+                Allottee(s) fails to repay the loan amount to the bank/ financial institution
+                or fails to comply with any terms and conditions of the loan/ financing
+                agreement entered into with such bank/ financial institution, then the bank/
+                financial institution may enforce the security by the sale of the said unit and
+                the Company may accept the Purchaser of the said unit in place of the
+                Allottee(s), after the Purchaser complies with the necessary formalities of the
+                Company in this respect. The amount standing to the credit in the account of
+                the Allottee(s) after forfeiting the amount as per Clause 20 of this Allotment
+                Letter will be transferred to the account of the purchaser. Further, in case
+                the bank/ financial institution ask the company to cancel the booking of said
+                unit and call for repayment of outstanding loan amount, then the Company may
+                cancel the booking and after forfeiting the amount as per Clause 20 of this
+                Allotment Letter, pay the balance amount to the bank/ financial institution
+                against outstanding loan amount for and on behalf of the Allottee(s).
+            </span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='text-align:left;line-height:15.0pt;word-break:normal'>
+            <span style='font-size:11.0pt;font-family:"Arial","sans-serif";color:black'></span>
+        </p>
+        <p>For  SkyCity Builders and Promoters P Ltd.</p>
+        <p><br /></p>
+        <p style="float:right;">Allotee(s)  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Allotee(s)</p>
+        <p>Authorized Signatory  </p>
+        <p><br /></p>
+        <p class="MsoNormal" align="left" style='margin-left:.5in;text-align:left;
+text-indent:-.25in;line-height:15.0pt;mso-pagination:
+widow-orphan;mso-list:l5 level1 lfo5;
+word-break:normal'>
+            <![if !supportLists]><span style='font-size:11.0pt;
+font-family:"Arial","sans-serif";color:black'>
+                <span style='mso-list:Ignore'>
+                    20.<span style='font:7.0pt "Times New Roman"'>
+                        &nbsp;
+                    </span>
+                </span>
+            </span><![endif]><span style='font-size:11.0pt;mso-bidi-font-size:
+12.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                The Allottee(s) has agreed that out of the amount(s) paid/ payable
+                by him for the said unit allotted to him, the Company shall treat 20% of sale consideration
+                as earnest money to ensure fulfillment, by the Allottee(s), of all the terms
+                and conditions as contained in this letter of Allotment.
+            </span>
+        </p>
+        <p class="MsoNormal" align="left" style='text-align:left;line-height:15.0pt;
+word-break:normal'><br />
+            <span style='font-size:11.0pt;font-family:"Arial","sans-serif";color:black'></span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='margin-left:.5in;text-align:left;
+text-indent:-.25in;line-height:15.0pt;word-break:normal'>
+            <![if !supportLists]><span style='font-size:11.0pt;
+font-family:"Arial","sans-serif";color:black'>
+                <span style='mso-list:Ignore'>
+                    21.<span style='font:7.0pt "Times New Roman"'>
+                        &nbsp;
+                    </span>
+                </span>
+            </span><![endif]><span style='font-size:11.0pt;mso-bidi-font-size:
+12.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                Timely payment of installments and other allied charges indicated
+                herein is the essence of this Allotment. It shall be incumbent upon the
+                Allottee(s) to comply with the terms of payment and the Allottee(s) herein has
+                agreed that Company is under no obligation to send reminders for payments. If the
+                Company does not receive payment within the period as indicated in the Payment
+                plan opted by the Allottee(s) or if there is any other breach of terms of this
+                Allotment Letter, then this Allotment may be cancelled.
+            </span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='text-align:left;line-height:15.0pt;
+word-break:normal'><br /><span style='font-size:11.0pt;font-family:"Arial","sans-serif";color:black'></span>
+        </p>
+
+
+        <p class="MsoNormal" align="left" style='margin-left:.5in;text-align:left;
+text-indent:-.25in;line-height:15.0pt;word-break:normal'>
+            <![if !supportLists]><span style='font-size:11.0pt;
+font-family:"Arial","sans-serif";color:black'>
+                <span style='mso-list:Ignore'>
+                    22.<span style='font:7.0pt "Times New Roman"'>
+                        &nbsp;
+                    </span>
+                </span>
+            </span><![endif]><span style='font-size:11.0pt;mso-bidi-font-size:
+12.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                In the event of the
+                failure of the Allottee(s) to perform his obligations or fulfill all the terms
+                and conditions set out in the Allotment Letter, the Allottee(s) hereby authorizes
+                the Company to cancel the Allotment of the said unit and forfeit out of the
+                amounts paid by him, the earnest money as aforementioned together with any
+                interest on delayed payment due or payable, brokerage, dealer commission etc.
+                The amount, if any, paid over and above the earnest money, interest on delayed
+                payment due or payable, brokerage, dealer commission etc. shall, however be
+                refunded to the Allottee(s)/ the financial institution as the case may be by
+                the Company without any interest after re-allotment of the said unit and after
+                compliance of certain formalities by the Allottee(s). However, in exceptional
+                circumstances the Company may, in its absolute discretion, condone the delay in
+            </span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='margin-left:.5in;text-align:left;
+line-height:15.0pt;word-break:normal'><br />
+            <span style='font-size:11.0pt;mso-bidi-font-size:
+12.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                Payment by charging penal interest at the rate of 18% p.a. on the
+                amount outstanding up to one month delay from the due date of outstanding and
+                at the rate of 24% per annum thereafter on all outstanding dues from their
+                respective due dates. Further, if any discount/ concession has been given by
+                the Company in the Basic Sale Price/ in the payment term to the Allottee(s) in
+                lieu of consensus of the Allottee(s) for timely payment of installments and
+                other allied charges, then the Allottee(s) hereby authorizes the Company to
+                withdraw such discount/ concession and demand the payment of such discount/
+                concession amount as a part of sale consideration amount, which the Allottee(s)
+                hereby agrees to pay immediately. The Allottee(s) may opt for cancellation only
+                within six months from the date of allotment of the said unit and in case, the
+                allotment of the said unit is cancelled at the behest of the Allottee(s), then
+                the Allottee(s) hereby authorizes the Company to forfeit the earnest money and
+                the amount, if any, paid over and above the earnest money shall be refunded by
+                the Company to the Allottee(s) without any interest after re-allotment of the
+                said unit. Upon cancellation of the said unit, this Allotment Letter shall
+                stand cancelled and the Allottee(s) shall be left with no right, title,
+                interest, lien etc. on the said unit.
+            </span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='text-align:left;line-height:15.0pt;
+word-break:normal'>
+            <br />
+            <span style='font-size:11.0pt;
+font-family:"Arial","sans-serif";
+color:black'></span>
+        </p>
+
+
+        <p class="MsoNormal" align="left" style='margin-left:.5in;text-align:left;
+text-indent:-.25in;line-height:15.0pt;word-break:normal'>
+            <![if !supportLists]><span style='font-size:11.0pt;
+font-family:"Arial","sans-serif";color:black'>
+                <span style='mso-list:Ignore'>
+                    23.<span style='font:7.0pt "Times New Roman"'>
+                        &nbsp;
+                    </span>
+                </span>
+            </span><![endif]><span style='font-size:11.0pt;mso-bidi-font-size:
+12.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                The Allottee(s), if resident of outside Indian territory, shall be
+                solely responsible for complying with the necessary formalities as laid down in
+                Foreign Exchange Management Act, 1999, Reserve Bank of India Act and Rules made
+                there under or any statutory amendment(s), modification(s) made thereof and all
+                other applicable laws including that of remittance of payment,
+                acquisition/sale/transfer of immovable properties in India etc. and provide the
+                Company with such permissions, approvals etc. which would enable the Company to
+                fulfill its obligations under this letter of Allotment. The Allottee(s)
+                understands and agrees that in the event of any failure on his part to comply
+                with the applicable guidelines issued by the Reserve Bank of India, he shall be
+                liable for any action under the Foreign Exchange Management Act, 1999 and rules
+                made thereunder as amended from time to time. The Company accepts no
+                responsibility in this regard.
+            </span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='text-align:left;line-height:15.0pt;
+word-break:normal'>
+            <span style='font-size:11.0pt;
+font-family:"Arial","sans-serif";
+color:black'></span>
+        </p>
+        <p>For  SkyCity Builders and Promoters P Ltd.</p>
+        <p><br /></p>
+        <p style="float:right;">Allotee(s)  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Allotee(s)</p>
+        <p>Authorized Signatory  </p>
+        <p><br /></p>
+
+        <p class="MsoNormal" align="left" style='margin-left:.5in;text-align:left;
+text-indent:-.25in;line-height:15.0pt;word-break:normal'>
+            <![if !supportLists]><span style='font-size:11.0pt;
+font-family:"Arial","sans-serif";color:black'>
+                <span style='mso-list:Ignore'>
+                    24.<span style='font:7.0pt "Times New Roman"'>
+                        &nbsp;
+                    </span>
+                </span>
+            </span><![endif]><span style='font-size:11.0pt;mso-bidi-font-size:
+12.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                The Allottee(s) hereby
+                agrees, undertakes and assures the Company that all the works like excavation/
+                digging of the Basement in the said unit, construction/ erection of structure
+                on the said unit, laying and setting up of Sewerage, water, electricity lines/
+                pipes in the said unit etc. to be carried out by the Allottee shall be
+                restricted and limited only to the area of said unit and shall not cause any hindrance/
+                chocking/ damage of any kind to the sewerage, water, electricity lines/ pipes
+                etc. catering the entire Township/ Project which have been laid down / set up
+                by the Company beneath/ around the said unit. If so, any such hindrance/
+                chocking/ damage caused, shall be rectified/ repaired/ fixed by the Allottee(s)
+                within 24 hours from such hindrance/ chocking/ damage on its own cost. In case
+                the Allottee(s) fails to rectify such hindrance/ chocking/ damage then the
+                Company/ Maintenance Agency is authorized to enter the Said unit and rectify/
+                repair/ fix such hindrance/ chocking/ damage and the Company/ Maintenance Agency
+                shall raise the expense bill to the Allottee(s) towards the cost of such
+                rectification/ repair/ fix along with any other concurrent/ consequential
+                expense/ loss incurred by the Company/ Maintenance Agency/ other Allottees/
+                Occupiers of other Units/ Villas/ Plots etc., which the Allottee(s) hereby
+                agrees and undertakes to pay within 7 days of the receipt of such Bill.
+            </span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='text-align:left;text-indent:28.05pt;
+line-height:15.0pt;word-break:normal'><br /><span style='font-size:11.0pt;mso-bidi-font-size:12.0pt;font-family:"Arial","sans-serif";color:black'></span>
+        </p>
+
+
+        <p class="MsoNormal" align="left" style='margin-left:.5in;text-align:left;
+text-indent:-.25in;line-height:15.0pt;word-break:normal'>
+            <![if !supportLists]><span style='font-size:11.0pt;
+font-family:"Arial","sans-serif";color:black'>
+                <span style='mso-list:Ignore'>
+                    25.<span style='font:7.0pt "Times New Roman"'>
+                        &nbsp;
+                    </span>
+                </span>
+            </span><![endif]><span style='font-size:11.0pt;mso-bidi-font-size:
+12.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                The Allottee(s) hereby
+                agrees to comply with all the administrative/legal percepts/orders with regard
+                to letting out the unit to any tenant on rent/lease whatsoever. To be specific,
+                the police verification
+            </span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='text-align:left;line-height:15.0pt;
+
+word-break:normal'>
+            <span style='font-size:11.0pt;
+font-family:"Arial","sans-serif";
+color:black'></span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='margin-left:.5in;text-align:left;
+line-height:15.0pt;
+word-break:normal'>
+            <span style='font-size:11.0pt;mso-bidi-font-size:
+12.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                shall get done by the allotter of the tenant. Further the allotter
+                shall be directly liable for any misconduct/nuisance/hindrance/damage, if done
+                by his/there tenant.<br style='mso-special-character:line-break'>
+                <![if !supportLineBreakNewLine]><br style='mso-special-character:line-break'>
+                <![endif]>
+            </span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='text-align:left;line-height:15.0pt;
+
+word-break:normal'>
+            <br />
+            <span style='font-size:11.0pt;
+font-family:"Arial","sans-serif";
+color:black'></span>
+        </p>
+
+
+        <p class="MsoNormal" align="left" style='margin-left:.5in;text-align:left;
+text-indent:-.25in;line-height:15.0pt;word-break:normal'>
+            <![if !supportLists]><span style='font-size:11.0pt;
+font-family:"Arial","sans-serif";color:black'>
+                <span style='mso-list:Ignore'>
+                    26.<span style='font:7.0pt "Times New Roman"'>
+                        &nbsp;
+                    </span>
+                </span>
+            </span><![endif]><span style='font-size:11.0pt;mso-bidi-font-size:
+12.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                The Allottee(s) hereby
+                also agrees, undertakes and assures the Company and the Maintenance Agency that
+                the Allottee(s) shall not encroach upon any part of the Common Area/ Common
+                Path of the Township or upon the adjoining Plots of the said unit either by
+                erecting/constructing any structure or by installing any kind of machine/
+                equipment/ fixture (temporary or permanent) thereupon. In case, the Allottee(s)
+                encroaches upon any part of the Common Area/ Common Path of the Township or
+                upon the adjoining Plots of the said unit by erecting/ constructing/ installing
+                any kind of structure/ machine/ equipment/ fixture (temporary or permanent)
+                thereupon, the Company/ Maintenance Agency is authorized to remove or demolish,
+                as the case may be, such erection/ fixture/ installation and the Company/
+                Maintenance Agency shall raise the expense bill to the Allottee(s) towards the
+                cost of such demolishing/ removal along with any other concurrent/
+                consequential expense/ loss incurred by the Company/ Maintenance Agency/ other
+                Allottees/ Occupiers of other Units which the Allottee(s) hereby agrees and
+                undertakes to pay to the Company/ Maintenance Agency<span></span>within 7 days of the receipt of such Bill.
+                The Company/ Maintenance Agency shall not be responsible for any kind of loss/
+                damage caused to any machine/ installation while removing/ demolishing the same
+                or consequential thereupon.
+            </span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='text-align:left;line-height:15.0pt;word-break:normal'><br />
+            <span style='font-size:11.0pt;font-family:"Arial","sans-serif";
+color:black'></span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='margin-left:.5in;text-align:left;
+text-indent:-.25in;line-height:15.0pt;word-break:normal'>
+            <![if !supportLists]><span style='font-size:11.0pt;
+font-family:"Arial","sans-serif";color:black'>
+                <span style='mso-list:Ignore'>
+                    27.<span style='font:7.0pt "Times New Roman"'>
+                        &nbsp;
+                    </span>
+                </span>
+            </span><![endif]><span style='font-size:11.0pt;mso-bidi-font-size:
+12.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                Unless a Conveyance Deed/ Sub-Lease Deed is executed and
+                registered, the Company shall continue to have all authority over the said unit
+                and all amounts paid by the Allottee(s) under this Allotment shall merely be
+                deemed to be a token payment for purchase of the allotted unit and shall not
+                give him any lien or interest on the said unit until he has complied with all
+                the terms and conditions of this Allotment and a Conveyance of the said unit
+                has been executed and registered in his favour.
+            </span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='text-align:left;line-height:15.0pt;
+word-break:normal'><br /><span style='font-size:11.0pt;font-family:"Arial","sans-serif";color:black'></span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='margin-left:.5in;text-align:left;
+text-indent:-.25in;line-height:15.0pt;mso-pagination:
+widow-orphan;mso-list:l5 level1 lfo5;;
+word-break:normal'>
+            <![if !supportLists]><span style='font-size:11.0pt;
+font-family:"Arial","sans-serif";
+Arial;color:black'>
+                <span style='mso-list:Ignore'>
+                    28.<span style='font:7.0pt "Times New Roman"'>
+                        &nbsp;
+                    </span>
+                </span>
+            </span><![endif]><span style='font-size:11.0pt;mso-bidi-font-size:
+12.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                The Allottee(s) hereby agrees and understands that the external or
+                peripheral services such as Services like bandh road, further connection of
+                master plan roads and other town level services are to be provided by the
+                Government or the concerned Local Authority.
+            </span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='text-align:left;line-height:15.0pt;
+word-break:normal'>
+            <span style='font-size:11.0pt;
+font-family:"Arial","sans-serif";
+color:black'></span>
+        </p>
+        <p>For  SkyCity Builders and Promoters P Ltd.</p>
+        <p><br /></p>
+        <p style="float:right;">Allotee(s)  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Allotee(s)</p>
+        <p>Authorized Signatory  </p>
+        <p><br /></p>
+        <p class="MsoNormal" align="left" style='margin-left:.5in;text-align:left;
+text-indent:-.25in;line-height:15.0pt;mso-pagination:
+widow-orphan;mso-list:l5 level1 lfo5;;
+word-break:normal'>
+            <![if !supportLists]><span style='font-size:11.0pt;
+font-family:"Arial","sans-serif";
+Arial;color:black'>
+                <span style='mso-list:Ignore'>
+                    29.<span style='font:7.0pt "Times New Roman"'>
+                        &nbsp;
+                    </span>
+                </span>
+            </span><![endif]><span style='font-size:11.0pt;mso-bidi-font-size:
+12.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                This Allotment is subject to the terms and conditions of sanction
+                of layout plan and/or licenses issued by concerned Development Authority or any
+                other Competent Authorities in respect of the said Land/said Project to the
+                Company and the Allottee(s) hereby accept and agrees to abide by the same.
+            </span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='text-align:left;line-height:15.0pt;
+word-break:normal'>
+            <span style='font-size:11.0pt;
+font-family:"Arial","sans-serif";
+color:black'></span>
+        </p>
+
+        <p class="MsoNormal" style='margin-left:.5in;text-indent:-.25in;mso-list:l1 level1 lfo9'>
+            <![if !supportLists]><span style='font-size:11.0pt;font-family:"Arial","sans-serif";'>
+                <span style='mso-list:Ignore'>
+                    a)<span style='font:7.0pt "Times New Roman"'>
+                        &nbsp;&nbsp;&nbsp;
+                    </span>
+                </span>
+            </span><![endif]><span style='font-size:11.0pt;font-family:"Arial","sans-serif"'>
+                The
+                Allottee(s) is not entitled to get the name(s) of his nominees(s) substituted
+                in his place. The company may however, in its discretion, permit such
+                substitution (which will not be withheld unreasonably), on such terms and
+                conditions including payment of administrative cost and other costs as it may
+                deem fit. Any change in name (including addition/deletion) of the Allottee(s)
+                will be deemed as substitution for this purpose.
+            </span>
+        </p>
+
+        <p class="MsoNormal" style='margin-left:.5in'>
+            <span style='font-size:11.0pt;
+font-family:"Arial","sans-serif"'></span>
+        </p>
+
+        <p class="MsoNormal" style='margin-left:.5in;text-indent:-.25in;mso-list:l1 level1 lfo9'>
+            <![if !supportLists]><span style='font-size:11.0pt;font-family:"Arial","sans-serif";'>
+                <span style='mso-list:Ignore'>
+                    b)<span style='font:7.0pt "Times New Roman"'>
+                        &nbsp;&nbsp;&nbsp;
+                    </span>
+                </span>
+            </span><![endif]><span style='font-size:11.0pt;mso-bidi-font-size:
+12.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                The Company shall put its best efforts to complete the development
+                of the unit within 15 (fifteen) months or within an extended period of six
+                months from the date of execution of this Agreement/Allotment Letter, subject
+                to force majeure conditions [as mentioned in Clause (b)
+            </span><span style='font-size:11.0pt;font-family:"Arial","sans-serif"'></span><span style='font-size:11.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                hereunder] and subject
+                to various Unit Allottee(s) making timely payment or subject to any other
+                reasons beyond the control of the Company. No claim by way of
+                damages/compensation shall lie against the Company in case of delay in handing
+                over the possession on account of any of the aforesaid reasons and the Company
+                shall be entitled to a reasonable extension of time for the delivery of
+                possession of the said unit to the Allotter(s). However, If there is any
+                further delay in possession even after the extended period mutually agreed
+                above than the company shall liable to pay penalty to the Allotter @ Rs10/-per
+                sq. ft. of super area per month till offer of possession. The aforesaid period
+                of development shall be computed by excluding Sundays, Bank Holidays, enforced
+                Govt. holidays and the days of cessation of work at site in compliance of order
+                of any Judicial/ concerned State Legislative Body.
+            </span><span style='font-size:11.0pt;font-family:"Arial","sans-serif"'></span>
+        </p>
+
+        <p class="MsoNormal" style='margin-left:.5in'>
+            <span style='font-size:11.0pt;
+font-family:"Arial","sans-serif"'></span>
+        </p>
+
+        <p class="MsoNormal" style='margin-left:.5in;text-indent:-.25in;mso-list:l1 level1 lfo9'>
+            <![if !supportLists]><span style='font-size:11.0pt;font-family:"Arial","sans-serif";'>
+                <span style='mso-list:Ignore'>
+                    c)<span style='font:7.0pt "Times New Roman"'>
+                        &nbsp;&nbsp;&nbsp;
+                    </span>
+                </span>
+            </span><![endif]><span style='font-size:11.0pt;mso-bidi-font-size:
+12.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                The Company shall not be held responsible or liable for not
+                performing any of its obligations or undertakings provided for in this Letter
+                of Allotment if such performance is prevented, delayed or hindered by an act of
+                God, fire, flood, explosion, war, riot, terrorist acts, sabotage, inability to
+                procure or general shortage of energy, labour, equipment, facilities, materials
+                or supplies, failure of transportation, strikes, lock outs, action of labour
+                unions or any other cause (whether similar or dissimilar to the foregoing) not
+                within the reasonable control of the Company. Further, the Company shall not be
+                held liable for any delay in offer of possession of the said unit to the
+                Allottee(s), if the delay is caused as a result of any Act, Order, Rule,
+                Notifications etc. of the Government or any competent Authority/judicial
+                percept or due to delay in sanction of layout/ zoning plans/ grant of
+                completion/ occupation certificate by the Competent authority or due to
+                carrying out any alternate/additional work demanded by the Allottee(s) in the
+                said unit at any point of time during development of the said unit.
+            </span><span style='font-size:11.0pt;font-family:"Arial","sans-serif"'></span>
+        </p>
+
+        <p class="MsoNormal">
+            <span style='font-size:11.0pt;
+font-family:"Arial","sans-serif";
+color:black'></span>
+        </p>
+
+        <p class="MsoNormal" style='margin-left:.5in;text-indent:-.25in;mso-list:l1 level1 lfo9'>
+            <![if !supportLists]><span style='font-size:11.0pt;font-family:"Arial","sans-serif";'>
+                <span style='mso-list:Ignore'>
+                    d)<span style='font:7.0pt "Times New Roman"'>
+                        &nbsp;&nbsp;&nbsp;
+                    </span>
+                </span>
+            </span><![endif]><span style='font-size:11.0pt;mso-bidi-font-size:
+12.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                If for force majeure reasons or for reasons beyond the control of
+                the Company, the whole or part of the project is abandoned or abnormally
+                delayed, no other claim will be preferred except that Allottee's money will be
+                refunded after compliance of certain formalities by the Allottee(s).
+            </span><span style='font-size:11.0pt;font-family:"Arial","sans-serif"'></span>
+        </p>
+
+        <p class="MsoNormal"><span style='font-size:11.0pt;font-family:"Arial","sans-serif"'></span></p>
+
+        <p class="MsoNormal" style='margin-left:.5in;text-indent:-.25in;mso-list:l1 level1 lfo9'>
+            <![if !supportLists]><span style='font-size:11.0pt;font-family:"Arial","sans-serif";'>
+                <span style='mso-list:Ignore'>
+                    e)<span style='font:7.0pt "Times New Roman"'>
+                        &nbsp;&nbsp;&nbsp;
+                    </span>
+                </span>
+            </span><![endif]><span style='font-size:11.0pt;mso-bidi-font-size:
+12.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                Allottee(s) further understands and agrees that<b></b>timely completion of the Project is
+                entirely dependent upon his/their timely payment of due amounts as per payment
+                plan opted by him/them and incase of default in making payment of due amount
+                within stipulated period, than the same shall not only hamper the overall
+                progress of the Project, but will also be prejudicial to the interest of all
+                Allottees of the units of the Project..
+            </span><span style='font-size:11.0pt;
+font-family:"Arial","sans-serif"'></span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='text-align:left;line-height:15.0pt;
+tab-stops:28.05pt .5in;
+word-break:normal'>
+            <span style='font-size:11.0pt;
+font-family:"Arial","sans-serif";
+color:black'></span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='margin-left:.5in;text-align:left;
+text-indent:-.25in;line-height:15.0pt;mso-pagination:
+widow-orphan;mso-list:l5 level1 lfo5;;
+word-break:normal'>
+            <![if !supportLists]><span style='font-size:11.0pt;
+font-family:"Arial","sans-serif";color:black'>
+                <span style='mso-list:Ignore'>
+                    30.<span style='font:7.0pt "Times New Roman"'>
+                        &nbsp;
+                    </span>
+                </span>
+            </span><![endif]><span style='font-size:11.0pt;mso-bidi-font-size:
+12.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                The Allottee(s) shall, after taking possession or deemed
+                possession of the said unit, as the case may be, or at any time thereafter
+                shall have no objection to the Company developing or continuing with the
+                development of other Plots adjoining the said unit sold to <span></span>the Plot Allottee(s).
+            </span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='margin-left:.5in;text-align:left;
+line-height:15.0pt;word-break:normal'>
+            <span style='font-size:11.0pt;font-family:"Arial","sans-serif";
+color:black'></span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='margin-left:.5in;text-align:left;
+text-indent:-.25in;line-height:15.0pt;mso-pagination:
+widow-orphan;mso-list:l5 level1 lfo5;;
+word-break:normal'>
+            <![if !supportLists]><span style='font-size:11.0pt;
+font-family:"Arial","sans-serif";color:black'>
+                <span style='mso-list:Ignore'>
+                    31.<span style='font:7.0pt "Times New Roman"'>
+                        &nbsp;
+                    </span>
+                </span>
+            </span><![endif]><span style='font-size:11.0pt;mso-bidi-font-size:
+12.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                The Company is authorized to raise loan by creating mortgage of
+                the project land from any financial <span></span>institution and the Allottee(s) will have
+                no objection in this regard. However, such mortgage, if created will be got
+                vacated before handing over possession of the said unit to the Allottee(s).
+            </span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='text-align:left;line-height:15.0pt;word-break:normal'>
+            <span style='font-size:11.0pt;
+font-family:"Arial","sans-serif";
+color:black'></span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='margin-left:.5in;text-align:left;
+text-indent:-.25in;line-height:15.0pt;mso-pagination:
+widow-orphan;mso-list:l5 level1 lfo5;;
+word-break:normal'>
+            <![if !supportLists]><span style='font-size:11.0pt;
+font-family:"Arial","sans-serif";color:black'>
+                <span style='mso-list:Ignore'>
+                    32.<span style='font:7.0pt "Times New Roman"'>
+                        &nbsp;
+                    </span>
+                </span>
+            </span><![endif]><span style='font-size:11.0pt;mso-bidi-font-size:
+12.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                Upon completion of the Project, the Company shall (subject to the
+                whole of the consideration money and other charges and dues being received),
+                complete the Conveyance Deed of the unit in favour of the Allottee(s) in such
+                manner as may be permissible at the cost and expense of the Allottee(s) and on
+                the terms and conditions of this Allotment except those omitted by the Company
+                as unnecessary and the terms and conditions, if any, imposed by the Authorities
+                in this behalf.
+            </span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='text-align:left;line-height:15.0pt;
+word-break:normal'>
+            <span style='font-size:11.0pt;
+font-family:"Arial","sans-serif";
+color:black'></span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='margin-left:.5in;text-align:left;
+text-indent:-.25in;line-height:15.0pt;mso-pagination:
+widow-orphan;mso-list:l5 level1 lfo5;;
+word-break:normal'>
+            <![if !supportLists]><span style='font-size:11.0pt;
+font-family:"Arial","sans-serif";color:black'>
+                <span style='mso-list:Ignore'>
+                    33.<span style='font:7.0pt "Times New Roman"'>
+                        &nbsp;
+                    </span>
+                </span>
+            </span><![endif]><span style='font-size:11.0pt;mso-bidi-font-size:
+12.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                The stamp duty, registration fee, freehold conversion charges and
+                other charges for execution and registration of this Allotment, Conveyance Deed
+                or any other Deed with respect to the said unit shall be payable by the Allottee(s)
+                within the time specified in call notice given by the Company to the
+                Allottee(s).
+            </span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='text-align:left;line-height:15.0pt;
+word-break:normal'>
+            <span style='font-size:11.0pt;
+font-family:"Arial","sans-serif";
+color:black'></span>
+        </p>
+        <p>For  SkyCity Builders and Promoters P Ltd.</p>
+        <p><br /></p>
+        <p style="float:right;">Allotee(s)  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Allotee(s)</p>
+        <p>Authorized Signatory  </p>
+        <p><br /></p>
+        <p class="MsoNormal" align="left" style='margin-left:.5in;text-align:left;
+text-indent:-.25in;line-height:15.0pt;mso-pagination:
+widow-orphan;mso-list:l5 level1 lfo5;;
+word-break:normal'><br />
+            <![if !supportLists]><span style='font-size:11.0pt;
+font-family:"Arial","sans-serif";color:black'>
+                <span style='mso-list:Ignore'>
+                    34.<span style='font:7.0pt "Times New Roman"'>
+                        &nbsp;
+                    </span>
+                </span>
+            </span><![endif]><span style='font-size:11.0pt;mso-bidi-font-size:
+12.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                <span></span>The Allottee hereby
+                declares that:
+            </span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='margin-left:1.0in;text-align:left;
+text-indent:-1.0in;line-height:15.0pt;mso-pagination:
+widow-orphan;word-break:normal'>
+            <span style='font-size:11.0pt;
+font-family:"Arial","sans-serif";
+"Times New Roman";color:black;background:yellow'></span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='text-align:left;
+word-break:normal'>
+            <span style='font-size:11.0pt;mso-bidi-font-size:
+12.0pt;font-family:"Arial","sans-serif";
+color:black'>In case allotter is:</span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='text-align:left;
+word-break:normal'>
+            <span style='font-size:11.0pt;mso-bidi-font-size:
+12.0pt;font-family:"Arial","sans-serif";
+color:black'><span></span><span style=''></span>
+            </span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='margin-left:36.75pt;text-align:left;
+text-indent:-36.75pt;mso-text-indent-alt:-18.75pt;line-height:12.0pt;
+mso-list:l7 level1 lfo2;
+word-break:normal'><br />
+            <![if !supportLists]><span style='font-size:
+11.0pt;font-family:"Arial","sans-serif";color:black'>
+                <span style='mso-list:Ignore'>
+                    <span style='font:7.0pt "Times New Roman"'>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </span>I.<span style='font:7.0pt "Times New Roman"'>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </span>
+                </span>
+            </span><![endif]><b>
+                <span style='font-size:11.0pt;font-family:"Arial","sans-serif";
+color:black'>Individual:</span>
+            </b><span style='font-size:11.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                <span></span>No other unit (other than said unit) in said
+                Project has been applied for/allotted to the Allottee(s), his/her spouse, minor
+                children, Hindu undivided family in which Allottee(s) is the karta; and any
+                person representing Allottee(s), the spouse or minor children of such
+                Allottee(s) or the Hindu undivided family in which such Allottee(s) is the
+                karta&quot;.
+            </span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='margin-left:36.75pt;text-align:left;
+line-height:12.0pt;word-break:normal'><br />
+            <span style='font-size:11.0pt;mso-bidi-font-size:
+12.0pt;font-family:"Arial","sans-serif";
+color:black'><span></span></span>
+        </p>
+
+        
+        <p class="MsoNormal" align="left" style='margin-left:36.75pt;text-align:left;
+text-indent:-36.75pt;mso-text-indent-alt:-18.75pt;line-height:12.0pt;
+mso-list:l7 level1 lfo2;
+word-break:normal'>
+            <b>
+                <span style='font-size:11.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                    A Company/ Partnership
+                    Firm/or any other entity OTHER than individual:
+                </span>
+            </b><span style='font-size:11.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                No other unit (other
+                than said unit) in the said Project has been applied for/allotted to the
+                Allottee(s).
+            </span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='text-align:left;line-height:12.0pt;
+word-break:normal'><br /><span style='font-size:11.0pt;font-family:"Arial","sans-serif";color:black'></span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='margin-left:.5in;text-align:left;
+text-indent:-.25in;line-height:12.0pt;mso-pagination:
+widow-orphan;mso-list:l5 level1 lfo5;word-break:normal'>
+            <![if !supportLists]><span style='font-size:11.0pt;font-family:"Arial","sans-serif";color:black'>
+                <span style='mso-list:Ignore'>
+                    35.<span style='font:7.0pt "Times New Roman"'>&nbsp;</span>
+                </span>
+            </span><![endif]><span style='font-size:11.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                (a) The Allottee(s)
+                shall be entitled to possession of the said unit only after all the amount payable
+                under this Allotment Letter are paid and the Conveyance Deed in respect of the
+                said unit is executed and duly registered with the Sub-Registrar concerned.
+            </span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='margin-left:46.75pt;text-align:left;
+text-indent:-46.75pt;line-height:15.0pt;
+tab-stops:28.05pt .5in;
+word-break:normal'>
+            <span style='font-size:11.0pt;
+font-family:"Arial","sans-serif";
+color:black'></span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='margin-left:.5in;text-align:left;line-height:15.0pt;
+tab-stops:28.05pt .5in;
+word-break:normal'>
+            <span style='font-size:11.0pt;
+font-family:"Arial","sans-serif";
+color:black'>
+                <span style='mso-tab-count:1'> </span><span></span>(b) The Allottee(s) after taking possession
+                of the said unit shall have no claim against the Company in respect of any item
+                of work which may be alleged to not to have been carried out or completed in
+                the said unit or for any reason whatsoever. All complaints, if any, shall be
+                deemed to have been rectified/ removed before taking the possession by the
+                Allottee(s).
+            </span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='margin-left:27.75pt;text-align:left;
+line-height:15.0pt;tab-stops:28.05pt .5in;word-break:normal'><br /><span style='font-size:11.0pt;font-family:"Arial","sans-serif";color:black'></span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='margin-left:.5in;text-align:left;
+text-indent:-.25in;line-height:15.0pt;word-break:normal'>
+            <![if !supportLists]><span style='font-size:11.0pt;
+font-family:"Arial","sans-serif";color:black'>
+                <span style='mso-list:Ignore'>
+                    36.<span style='font:7.0pt "Times New Roman"'>
+                        &nbsp;
+                    </span>
+                </span>
+            </span><![endif]><span style='font-size:11.0pt;mso-bidi-font-size:
+12.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                The Company alone shall be entitled to obtain the refund of
+                various securities deposited by it during development of the Project with
+                various Governmental/Local Authorities for electric and sewer connection etc.
+            </span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='margin-left:.5in;text-align:left;
+line-height:15.0pt;tab-stops:27.0ptword-break:
+normal'><br /><span style='font-size:11.0pt;font-family:
+"Arial","sans-serif";color:black'></span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='margin-left:.5in;text-align:left;
+text-indent:-.25in;line-height:15.0pt;mso-pagination:
+widow-orphan;mso-list:l5 level1 lfo5;tab-stops:27.0pt
+word-break:normal'>
+            <![if !supportLists]><span style='font-size:11.0pt;
+font-family:"Arial","sans-serif";color:black'>
+                <span style='mso-list:Ignore'>
+                    37.<span style='font:7.0pt "Times New Roman"'>
+                        &nbsp;
+                    </span>
+                </span>
+            </span><![endif]><span style='font-size:11.0pt;mso-bidi-font-size:
+12.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                The common areas and facilities shall remain under the control of
+                the Company whose responsibility will <span></span>be
+                to maintain and upkeep the said spaces, sites until the same are transferred/
+                assigned to any other body or any other maintenance agency.
+            </span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='text-align:left;line-height:15.0pt;
+tab-stops:27.0pt;word-break:normal'><br />
+            <span style='font-size:11.0pt;font-family:"Arial","sans-serif";color:black'></span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='margin-left:.5in;text-align:left;
+text-indent:-.25in;line-height:15.0pt;mso-pagination:
+widow-orphan;mso-list:l5 level1 lfo5;tab-stops:27.0pt
+word-break:normal'>
+            <![if !supportLists]><span style='font-size:11.0pt;
+font-family:"Arial","sans-serif";color:black'>
+                <span style='mso-list:Ignore'>
+                    38.<span style='font:7.0pt "Times New Roman"'>
+                        &nbsp;
+                    </span>
+                </span>
+            </span><![endif]><span style='font-size:11.0pt;mso-bidi-font-size:
+12.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                (a) In order to provide necessary maintenance services the Company
+                may hand over the <span></span><span></span>maintenance of the said Project to any body
+                corporate or an association (hereinafter referred to as &quot;Maintenance
+                Agency&quot;) after offer of possession of the said unit to the Allottee(s), as
+                the Company may in its sole discretion deem fit. The maintenance, upkeep,
+                repairs, lighting, security etc. of the Project buildings including landscaping
+                and common lawns, water bodies and other common areas of the Project will be undertaken
+                by the Company or its nominated Maintenance Agency. The Allottee(s) agrees and
+                consents to the said arrangements. The Allottee(s) shall pay maintenance
+                charges, which will be fixed by the Company or its nominated Maintenance Agency
+                from time to time depending upon the maintenance cost.
+            </span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='margin-left:.75in;text-align:left;
+text-indent:-.5in;line-height:15.0pt;mso-pagination:widow-orphan; 
+word-break:normal'><br />
+            <span style='font-size:11.0pt;
+font-family:"Arial","sans-serif";
+color:black'></span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='margin-left:.25in;text-align:left;
+line-height:15.0pt;word-break:normal'>
+            <span style='font-size:11.0pt;
+font-family:"Arial","sans-serif";color:black'>
+                <span> </span>(b) The
+                Allottee(s) agrees to pay the interest free Maintenance Security in order to
+                secure adequate <span></span>provision of the
+                maintenance services and for due performance of the Allottee(s) in paying the
+                maintenance charges and other charges as raised by the maintenance agency from
+                time to time.
+            </span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='margin-left:.25in;text-align:left;
+line-height:15.0pt;word-break:normal'><br />
+            <span style='font-size:11.0pt;
+font-family:"Arial","sans-serif";color:black'></span>
+        </p>
+        <p><br /></p>
+        <p><br /></p>
+
+        <p>For  SkyCity Builders and Promoters P Ltd.</p>
+        <p><br /></p>
+        <p><br /></p>
+        <p style="float:right;">Allotee(s)  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Allotee(s)</p>
+        <p>Authorized Signatory  </p>
+        <p><br /></p>
+        <p class="MsoNormal" align="left" style='margin-left:.25in;text-align:left;line-height:15.0pt;mso-pagination:
+widow-orphan;word-break:normal'>
+            <span style='font-size:
+11.0pt;font-family:"Arial","sans-serif";color:black'>
+                <span>
+                </span>(c) The Allottee(s) hereby agrees to pay the maintenance charges along
+                with applicable taxes, cesses <span></span>etc. to
+                the Company/ the Maintenance Agency from the date of commencement<span></span>of maintenance services by the Company/ the
+                Maintenance Agency in the said Project, irrespective of the fact that actual/physical
+                possession of the said unit is taken over by the Allottee(s) or not. Further,
+                in order to smooth the function and mechanism of payment of monthly Maintenance
+                Charges, the Allottee(s) hereby authorizes the Company to consider/ treat the
+                aforesaid Interest Free Maintenance Security as Advance Maintenance Charges for
+                all purposes from the date of offer of possession of the said unit and further
+                the Allottee(s) hereby authorizes the Company/ Maintenance Agency, to be
+                appointed for this purpose, to adjust the monthly Maintenance Charges along
+                with applicable taxes, cesses etc. payable to the Company/ Maintenance Agency
+                from the date of commencement of maintenance services in the said Project
+                against the aforesaid Advance Maintenance Charges and hereby agrees that the
+                Company/ the Maintenance Agency shall not deliver the bills for the Maintenance
+                Charges on monthly basis till such period the interest free Advance Maintenance
+                Charges are fully exhausted. After the exhaustion of Advance Maintenance
+                charges, the Allottee(s) hereby agrees to pay maintenance charges in respect of
+                the said unit regularly on monthly basis as per the Bills/ Invoices raised by
+                such Maintenance Agency and in case of non-payment of maintenance charges
+                within the time specified, the Allottee(s) shall pay maintenance charges along with
+                interest at the rate of 18% per annum. Further non-payment of maintenance
+                charges shall also disentitle the Allottee(s) to the enjoyment of common services.
+                The Allottee(s) agrees to pay the said interest free Maintenance Security as
+                per the schedule of payment given in Allotment Letter. A separate Maintenance
+                Agreement between the Allottee(s) and the company shall be signed at the time
+                of handing/taking over the physical possession of the said unit.
+            </span>
+        </p>
+
+        <p class=MsoTableColorfulListAccent1 align="left" style='text-align:left;'>
+            <span style='font-size:11.0pt;font-family:"Arial","sans-serif";color:black'></span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='margin-left:13.5pt;text-align:left;
+text-indent:-13.5pt;line-height:15.0pt;word-break:normal'>
+            <span style='font-size:11.0pt;font-family:"Arial","sans-serif";color:black'>
+                (d) Subject to Clause (b) stated herein above,
+                in case at any time, the Maintenance Services of the Project is handed over to
+                the appointed Maintenance Agency/ Local Authority/ the Resident Welfare
+                Association (RWA)/ other Welfare Association of the Project, then the Company
+                shall have the right to transfer the balance Advance Maintenance Charges after
+                adjusting therefrom any outstanding maintenance bills and/ or other outgoings
+                of the Allottee(s) to such Maintenance Agency/ Local Authority/ Resident
+                Welfare Association (RWA)/other Welfare Association, as the Company may deem
+                fit, and thereupon the Company shall stand completely absolved/ discharged of
+                all its obligations and responsibilities concerning the interest free
+                Maintenance Security or Advance Maintenance Charges including but not limited
+                to issues of repayment, refund and/ or claims, if any, of the Allottee(s) on account
+                of the same. Further, if any concession/ discount in Common Area Maintenance
+                Charges has been given by the Company to the Allottee(s), then such concession/
+                discount shall be subject to the timely payment of remaining Common Area
+                Maintenance Charges by the Allottee(s) to the Company or to the nominated
+                Maintenance Agency and only till the time the Company hands over the
+                Maintenance Services of the said unit/ Project to the Resident Welfare
+                Association (RWA).
+            </span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='margin-left:13.5pt;text-align:left;
+text-indent:-13.5pt;line-height:15.0pt;mso-pagination:
+widow-orphan;word-break:normal'>
+            <span style='font-size:11.0pt;
+font-family:"Arial","sans-serif";
+"Times New Roman";color:black'></span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='margin-left:13.5pt;text-align:left;
+line-height:15.0pt;
+ 65.45pt;word-break:normal'>
+            <span style='font-size:11.0pt;
+font-family:"Arial","sans-serif";
+"Times New Roman";color:black'>
+                (e) The Company or Maintenance Agency and their
+                representatives, employees etc. shall be permitted at all reasonable times to
+                enter into and upon the said unit/ building constructed on the said unit, its
+                roof top, terrace, balconies etc.<span></span>for
+                carrying out any repair, alterations, cleaning etc., or for any other purpose
+                in connection with the obligations and rights under this Allotment Letter
+                including for connections/ disconnections of the electricity and water and/or
+                for repairing/ changing wires, gutters, pipes, drains, part structure etc. In
+                case of urgency or exigency situation like, fire, short-circuit, gas-leakage,
+                etc. the Allottee(s) hereby authorizes the Company or Maintenance Agency and
+                their representatives, employees etc. to break the locks, doors, windows etc.
+                of the building constructed on the said unit to enter into the said building in
+                order to prevent any further damages/ losses to life/ property in the said unit
+                or adjoining Units/ Building/ Project.
+            </span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='margin-left:.25in;text-align:left;
+line-height:15.0pt;word-break:normal'>
+            <span style='font-size:11.0pt;font-family:"Arial","sans-serif";
+color:black'></span>
+        </p>
+        <p>For  SkyCity Builders and Promoters P Ltd.</p>
+        <p><br /></p>
+        <p><br /></p>
+        <p style="float:right;">Allotee(s)  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Allotee(s)</p>
+        <p>Authorized Signatory  </p>
+        <p class="MsoNormal" align="left" style='margin-left:.5in;text-align:left;
+text-indent:-.25in;line-height:15.0pt;mso-pagination:
+widow-orphan;mso-list:l5 level1 lfo5;word-break:normal'>
+            <![if !supportLists]><span style='font-size:11.0pt;font-family:"Arial","sans-serif";color:black'>
+                <span style='mso-list:Ignore'>
+                    39.<span style='font:7.0pt "Times New Roman"'>&nbsp;</span>
+                </span>
+            </span><![endif]><span style='font-size:11.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                The said Project shall
+                always be known as <b>&quot;City Heart &quot; </b>and this name shall never be changed by the Allottee(s) or
+                anybody else.
+            </span>
+        </p>
+      
+        <p class="MsoNormal" align="left" style='margin-left:.5in;text-align:left;
+line-height:15.0pt;word-break:normal'><br />
+            <span style='font-size:11.0pt;mso-bidi-font-size:
+12.0pt;font-family:"Arial","sans-serif";
+color:black'></span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='margin-left:.5in;text-align:left;
+text-indent:-.25in;line-height:15.0pt;mso-pagination:
+widow-orphan;mso-list:l5 level1 lfo5;word-break:normal'>
+            <![if !supportLists]><span style='font-size:11.0pt;font-family:"Arial","sans-serif";color:black'>
+                <span style='mso-list:Ignore'>
+                    40.<span style='font:7.0pt "Times New Roman"'>&nbsp;</span>
+                </span>
+            </span><![endif]><span style='font-size:11.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                The Company shall have
+                the first lien and charge on the said unit, in the event of the Allottee(s)
+                parting with any interest therein, for all its dues that may become due and
+                payable by the Allottee(s) to the Company under this Allotment.
+            </span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='text-align:left;line-height:15.0pt;
+word-break:normal'><br /><span style='font-size:11.0pt;font-family:"Arial","sans-serif";color:black'></span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='margin-left:.5in;text-align:left;
+text-indent:-.25in;line-height:15.0pt;mso-pagination:widow-orphan;mso-list:l5 level1 lfo5;word-break:normal'>
+            <![if !supportLists]><span style='font-size:11.0pt;font-family:"Arial","sans-serif";color:black'>
+                <span style='mso-list:Ignore'>
+                    41.<span style='font:7.0pt "Times New Roman"'>&nbsp;</span>
+                </span>
+            </span><![endif]><span style='font-size:11.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                The terms and conditions
+                contained herein shall be binding on the Occupier of the said unit and default
+                of the Occupier shall be treated as that of the Allottee(s), unless context
+                requires otherwise.
+            </span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='text-align:left;line-height:15.0pt;word-break:normal'><br />
+            <span style='font-size:11.0pt;font-family:"Arial","sans-serif";color:black'></span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='margin-left:.5in;text-align:left;
+text-indent:-.25in;line-height:15.0pt;mso-pagination:
+widow-orphan;mso-list:l5 level1 lfo5;word-break:normal'>
+            <![if !supportLists]><span style='font-size:11.0pt;font-family:"Arial","sans-serif";color:black'>
+                <span style='mso-list:Ignore'>
+                    42.<span style='font:7.0pt "Times New Roman"'>&nbsp;</span>
+                </span>
+            </span><![endif]><span style='font-size:11.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                That the Allottee(s)
+                shall not make noise pollution by use of loudspeaker or otherwise and/or throw
+                or accumulate rubbish, dust, rages, garbage or refuse etc. anywhere in the said
+                project; save and except at areas/places specifically earmarked for these
+                purposes in the said Project.
+            </span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='text-align:left;line-height:15.0pt;word-break:normal'><br />
+            <span style='font-size:11.0pt;font-family:"Arial","sans-serif";color:black'></span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='margin-left:.5in;text-align:left;
+text-indent:-.25in;line-height:15.0pt;mso-pagination:
+widow-orphan;mso-list:l5 level1 lfo5;word-break:normal'>
+            <![if !supportLists]><span style='font-size:11.0pt;font-family:"Arial","sans-serif";color:black'>
+                <span style='mso-list:Ignore'>
+                    43.<span style='font:7.0pt "Times New Roman"'>&nbsp;</span>
+                </span>
+            </span><![endif]><span style='font-size:11.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                Delay or indulgence by
+                the Company in enforcing the terms of this Allotment or any forbearance or
+                giving of time to Allottee(s) shall not be construed as a waiver on the part of
+                the Company of any breach or non-compliance of any of the terms and conditions
+                of this Allotment by the Allottee(s) nor shall the same in any manner prejudice
+                the rights of the Company.
+            </span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='text-align:left;line-height:15.0pt;word-break:normal'><br />
+            <span style='font-size:11.0pt;font-family:"Arial","sans-serif";color:black'></span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='margin-left:.5in;text-align:left;
+text-indent:-.25in;line-height:15.0pt;mso-pagination:
+widow-orphan;mso-list:l5 level1 lfo5;word-break:normal'>
+            <![if !supportLists]><span style='font-size:11.0pt;font-family:"Arial","sans-serif";color:black'>
+                <span style='mso-list:Ignore'>
+                    44.<span style='font:7.0pt "Times New Roman"'>&nbsp;</span>
+                </span>
+            </span><![endif]><span style='font-size:11.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                That in case the
+                Allottee(s) has availed loan facility for the purchase of the said unit, the
+                Allottee(s) hereby covenants with the Company that after the execution and
+                registration of Conveyance Deed regarding the said unit, the original
+                Conveyance Deed shall be received by the Company on behalf of the Allottee(s)
+                from the registration office directly and shall be deposited with the concerned
+                financer/banker to create equitable mortgage thereon in accordance with the
+                Banking Rules &amp; Regulations.
+            </span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='text-align:left;line-height:15.0pt;word-break:normal'><br />
+            <span style='font-size:11.0pt;font-family:"Arial","sans-serif";color:black'></span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='margin-left:.5in;text-align:left;
+text-indent:-.25in;line-height:15.0pt;mso-pagination:
+widow-orphan;mso-list:l5 level1 lfo5;word-break:normal'>
+            <![if !supportLists]><span style='font-size:11.0pt;font-family:"Arial","sans-serif";color:black'>
+                <span style='mso-list:Ignore'>
+                    45.<span style='font:7.0pt "Times New Roman"'>&nbsp;</span>
+                </span>
+            </span><![endif]><span style='font-size:11.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                If any provision of this
+                Allotment is determined to be void or unenforceable under any applicable law,
+                such provision shall be deemed to have been amended or deleted in as far as it
+                may reasonably be consistent with the purpose of this Allotment and to the
+                extent necessary to confirm to applicable law and the remaining provisions of
+                this Allotment shall remain valid and enforceable in accordance with other
+                terms. In no circumstances it shall render this Allotment void.
+            </span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='text-align:left;line-height:15.0pt;word-break:normal'><br />
+            <span style='font-size:11.0pt;font-family:"Arial","sans-serif";color:black'></span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='margin-left:.5in;text-align:left;
+text-indent:-.25in;line-height:15.0pt;mso-pagination:widow-orphan;mso-list:l5 level1 lfo5;word-break:normal'>
+            <![if !supportLists]><span style='font-size:11.0pt;font-family:"Arial","sans-serif";color:black'>
+                <span style='mso-list:Ignore'>
+                    46.<span style='font:7.0pt "Times New Roman"'>&nbsp;</span>
+                </span>
+            </span><![endif]><span style='font-size:11.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                (a) The Allottee(s)
+                shall get his complete address registered with the Company at the time of
+                booking and it shall be his responsibility to inform the Company by Registered
+                AD letter about all subsequent changes, if any, in his address.<span></span>The address given in the application for
+                allotment of the said unit shall be deemed to be the Registered Address of the
+                Allottee(s) until the same is changed in the manner aforesaid.
+            </span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='margin-left:46.75pt;text-align:left;text-indent:-46.75pt;line-height:15.0pt;tab-stops:28.05pt .5in;word-break:normal'><br />
+            <span style='font-size:11.0pt;font-family:"Arial","sans-serif";
+color:black'></span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='margin-left:49.5pt;text-align:left;
+text-indent:-31.5pt;line-height:15.0pt;mso-pagination:
+widow-orphan;tab-stops:28.05pt 45.0pt;word-break:normal'>
+            <span style='font-size:11.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                <span></span>(b) In case of joint Allottee(s), all
+                communication shall be sent by the Company to the Allottee(s) whose name
+                appears first and at the address given by him and this shall for all purpose be
+                considered as served on all the Allottee(s) and no separate communication shall
+                be necessary to the other named Allottee(s).
+            </span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='margin-left:27.75pt;text-align:left;line-height:15.0pt;tab-stops:28.05pt .5in;word-break:normal'>
+            <span style='font-size:11.0pt;font-family:"Arial","sans-serif";color:black'></span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='margin-left:.75in;text-align:left;
+text-indent:-22.5pt;line-height:15.0pt;mso-pagination:
+widow-orphan;mso-list:l8 level1 lfo3;tab-stops:list .25in left 28.05pt .5in;
+word-break:normal'>
+            <![if !supportLists]><span style='font-size:11.0pt;
+font-family:"Arial","sans-serif";color:black'>
+                <span style='mso-list:Ignore'>
+                    <span style='font:7.0pt "Times New Roman"'>
+                        &nbsp;
+                    </span>
+                </span>
+            </span><![endif]><span style='font-size:11.0pt;mso-bidi-font-size:
+12.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                (c) All letters, receipts, and/or notices issued by the Company or
+                its nominee and<span> </span>dispatched Under
+                Certificate of Posting/ Regd. AD/Speed Post/ Courier Service to the last known
+                address of the Allottee(s) shall be sufficient proof of receipt of the same by
+                the Allottee(s) and which shall fully and effectually discharge the Company
+                /nominee.
+            </span>
+        </p>
+
+       
+        <p>For  SkyCity Builders and Promoters P Ltd.</p>
+        <p><br /></p>
+        <p style="float:right;">Allotee(s)  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Allotee(s)</p>
+        <p>Authorized Signatory  </p>
+        <p><br /></p>
+        <p class="MsoNormal" align="left" style='margin-left:.5in;text-align:left;
+text-indent:-.25in;line-height:15.0pt;mso-pagination:
+widow-orphan;mso-list:l5 level1 lfo5;tab-stops:28.05pt .5in;word-break:normal'>
+            <![if !supportLists]><span style='font-size:11.0pt;font-family:"Arial","sans-serif";color:black'>
+                <span style='mso-list:Ignore'>
+                    47.<span style='font:7.0pt "Times New Roman"'>&nbsp;</span>
+                </span>
+            </span><![endif]><span style='font-size:11.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                For all intents and
+                purposes singular shall include plural and masculine gender shall include the
+                feminine gender. These expressions shall also be deemed to have been modified
+                and read suitably wherever Allottee(s) is a joint stock company, a firm or any
+                other body corporate or organization or an association.
+            </span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='margin-left:.5in;text-align:left;line-height:15.0pt;tab-stops:28.05pt .5in;word-break:normal'><br />
+            <span style='font-size:11.0pt;font-family:"Arial","sans-serif";"Times New Roman";color:black'></span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='margin-left:.5in;text-align:left;
+text-indent:-.25in;line-height:15.0pt;mso-pagination:
+widow-orphan;mso-list:l5 level1 lfo5;tab-stops:28.05pt .5in;word-break:normal'>
+            <![if !supportLists]><span style='font-size:11.0pt;font-family:"Arial","sans-serif";
+Arial;color:black'>
+                <span style='mso-list:Ignore'>
+                    48.<span style='font:7.0pt "Times New Roman"'>&nbsp;</span>
+                </span>
+            </span><![endif]><span style='font-size:11.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                That if at any stage
+                this document requires to be registered under any law or necessity, the
+                Allottee(s) binds himself and agrees to have the same registered through the
+                Company in his favour at his cost and expenses and keeps the Company fully
+                absolved and indemnified in this connection.
+            </span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='text-align:left;line-height:15.0pt;tab-stops:28.05pt .5in;word-break:normal'><br />
+            <span style='font-size:11.0pt;font-family:"Arial","sans-serif";color:black'></span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='margin-left:.5in;text-align:left;
+text-indent:-.25in;line-height:15.0pt;mso-pagination:
+widow-orphan;mso-list:l5 level1 lfo5;tab-stops:28.05pt .5in;word-break:normal'>
+            <![if !supportLists]><span style='font-size:11.0pt;font-family:"Arial","sans-serif";
+Arial;color:black'>
+                <span style='mso-list:Ignore'>
+                    49.<span style='font:7.0pt "Times New Roman"'>&nbsp;</span>
+                </span>
+            </span><![endif]><span style='font-size:11.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                <span></span>(a)<span></span>The
+                terms and conditions contained hereinabove shall be interpreted in a manner so<span></span>as to cover the laws and rules prevailing in
+                India and conform to Public Policy and/or Fair Trade Practices.
+            </span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='marg-in-left:28.05pt;text-align:left;text-indent:-.25in;line-height:15.0pt;mso-pagination:widow-orphan;tab-stops:.25in .5in 37.4pt;word-break:normal'><br />
+            <span style='font-size:11.0pt;font-family:"Arial","sans-serif";color:black'></span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='margin-left:46.75pt;text-align:left;text-indent:-18.7pt;line-height:15.0pt;mso-pagination:widow-orphan;mso-list:l9 level1 lfo4;tab-stops:list .25in left 28.05pt .5in 45.75pt 65.45pt;
+word-break:normal'>
+            <span style='font-size:11.0pt;font-family:"Arial","sans-serif";color:black'>
+                (b)That the rights and obligations of the parties under or arising
+                out of this Letter of Allotment shall be construed and enforced in accordance
+                with the laws of India.
+            </span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='margin-left:46.75pt;text-align:left;text-indent:-18.7pt;line-height:15.0pt;mso-pagination:widow-orphan;mso-list:l9 level1 lfo4;tab-stops:list .25in left 28.05pt .5in 45.75pt 65.45pt;
+word-break:normal'><br /><span style='font-size:11.0pt;font-family:"Arial","sans-serif";color:black'></span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='margin-left:45.0pt;text-align:left;text-indent:-.25in;line-height:15.0pt;mso-pagination:widow-orphan;mso-list:l3 level1 lfo6; 37.4pt;word-break:normal'>
+            <![if !supportLists]><span style='font-size:11.0pt;font-family:"Arial","sans-serif";color:black'>
+                <span style='mso-list:Ignore'>
+                    (c)<span style='font:7.0pt "Times New Roman"'>&nbsp;</span>
+                </span>
+            </span><![endif]><span style='font-size:11.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                All or any disputes
+                arising out of or touching upon or in relation to the terms of this Letter of
+                Allotment including the interpretation and validity of the terms thereof and
+                the respective rights and obligations of the parties shall be settled amicably
+                by mutual discussion failing which the same shall be settled through
+                arbitration. The arbitration proceedings shall be governed by the Arbitration
+                &amp; Conciliation Act, 1996 and/or any statutory amendments/ modifications
+                thereof for the time being in force. The arbitration proceedings shall be held
+                at an appropriate location in Chandigarh. <span></span>
+            </span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='margin-left:27.0pt;text-align:left;
+line-height:15.0pt;
+word-break:normal'><br />
+            <span style='font-size:11.0pt;mso-bidi-font-size:
+12.0pt;font-family:"Arial","sans-serif";
+color:black'></span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='margin-left:27.0pt;text-align:left;
+line-height:15.0pt;
+word-break:normal'>
+            <span style='font-size:11.0pt;mso-bidi-font-size:
+12.0pt;font-family:"Arial","sans-serif";
+color:black'></span>
+        </p>
+        <p class="MsoNormal" align="left" style='margin-left:27.0pt;text-align:left;
+line-height:15.0pt;
+word-break:normal'>
+            <span style='font-size:11.0pt;mso-bidi-font-size:
+12.0pt;font-family:"Arial","sans-serif";
+color:black'></span>
+        </p>
+       
+        <p class="MsoNormal" align="left" style='text-align:left;line-height:15.0pt;
+
+word-break:normal'>
+            <span style='font-size:11.0pt;
+font-family:"Arial","sans-serif";
+color:black'></span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='margin-left:27.0pt;text-align:left;
+line-height:15.0pt;
+word-break:normal'>
+            <span style='font-size:11.0pt;mso-bidi-font-size:
+12.0pt;font-family:"Arial","sans-serif";
+color:black'></span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='text-align:left;line-height:15.0pt;
+
+word-break:normal'>
+            <span style='font-size:11.0pt;
+font-family:"Arial","sans-serif";
+color:black'></span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='text-align:left;line-height:15.0pt;
+
+word-break:normal'>
+            <span style='font-size:11.0pt;
+font-family:"Arial","sans-serif";
+color:black'></span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='text-align:left;line-height:15.0pt;
+
+word-break:normal'>
+            <span style='font-size:11.0pt;
+font-family:"Arial","sans-serif";
+color:black'></span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='text-align:left;line-height:15.0pt;
+
+word-break:normal'>
+            <span style='font-size:11.0pt;
+font-family:"Arial","sans-serif";
+color:black'></span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='text-align:left;line-height:15.0pt;
+
+word-break:normal'>
+            <span style='font-size:11.0pt;
+font-family:"Arial","sans-serif";
+color:black'></span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='text-align:left;line-height:15.0pt;
+
+word-break:normal'>
+            <span style='font-size:11.0pt;
+font-family:"Arial","sans-serif";
+color:black'></span>
+        </p>
+        <p>
+            <br /><br /><br />
+            <br /><br /><br />
+            <br /><br /><br />
+        </p>
+        <p>
+            <br /><br /><br />
+            <br /><br /><br />
+            <br /><br /><br />
+        </p>
+        <p>
+            <br /><br /><br />
+        </p>
+        <p>For  SkyCity Builders and Promoters P Ltd.</p>
+        <p><br /></p>
+        <p style="float:right;">Allotee(s)  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Allotee(s)</p>
+        <p>Authorized Signatory  </p>
+        <br /><br /><br />
+         <p class="MsoNormal" align="left" style='text-align:left;line-height:15.0pt;
+
+word-break:normal'>
+            <span style='font-size:11.0pt;
+font-family:"Arial","sans-serif";
+color:black'>
+                You are requested to sign in both copies of this Allotment Letter
+                (on each page) in token of your acceptance of the terms &amp; conditions stated
+                hereinabove.
+            </span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='text-align:left;line-height:15.0pt;
+
+word-break:normal'>
+            <span style='font-size:11.0pt;
+font-family:"Arial","sans-serif";
+color:black'></span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='text-align:left;line-height:15.0pt;
+
+word-break:normal'>
+            <span style='font-size:11.0pt;
+font-family:"Arial","sans-serif";
+color:black'>Thanking you,</span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='text-align:left;line-height:15.0pt;
+
+word-break:normal'>
+            <span style='font-size:11.0pt;
+font-family:"Arial","sans-serif";
+color:black'></span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='margin-left:27.0pt;text-align:left;
+line-height:15.0pt;
+word-break:normal'>
+            <b>
+                <span style='font-size:11.0pt;font-family:"Arial","sans-serif";
+color:black'><span></span>I/We hereby accept the allotment</span>
+            </b>
+        </p>
+
+        <p class="MsoNormal" align="left" style='text-align:left;line-height:15.0pt;
+
+word-break:normal'>
+            <b>
+                <span style='font-size:11.0pt;font-family:"Arial","sans-serif";
+color:black'>For SkyCity Builders and Promoters P Ltd mentioned hereinabove.</span>
+            </b>
+        </p>
+
+        <p class="MsoNormal" align="left" style='text-align:left;line-height:15.0pt;
+
+word-break:normal'>
+            <br />
+            <b>
+                <span style='font-size:11.0pt;font-family:"Arial","sans-serif";color:black'>
+                    <span></span>
+                </span>
+            </b>
+        </p>
+
+        <p class="MsoNormal" align="left" style='text-align:left;line-height:15.0pt;
+
+word-break:normal'>
+            <br />
+            <b>
+                <span style='font-size:11.0pt;font-family:"Arial","sans-serif";
+color:black'></span>
+            </b>
+        </p>
+
+        <p class="MsoNormal" align="left" style='text-align:left;line-height:15.0pt;
+
+word-break:normal'>
+            <br />
+            <b>
+                <span style='font-size:11.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                    <span style='mso-tab-count:
+8'></span>
+                </span>
+            </b>
+        </p>
+        <p class="MsoNormal" align="left" style='text-align:left;line-height:15.0pt;
+
+word-break:normal'>
+            <b>
+                <span style='font-size:11.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                    Authorized Signatory<span></span><span></span><span style='text-transform:uppercase'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(</span>_____________<span style='text-transform:
+uppercase'>) (</span>_____________<span style='text-transform:uppercase'>)</span>
+                </span>
+            </b>
+        </p>
+
+        <p class="MsoNormal" align="left" style='margin-left:27.0pt;text-align:left;
+line-height:15.0pt;
+word-break:normal'>
+            <b>
+                <span style='font-size:11.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                    (Company)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span></span><span></span><span></span><span></span>Allottee &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span> </span><span></span>Allottee
+                </span>
+            </b>
+        </p>
+
+        <p class="MsoNormal" align="left" style='text-align:left;line-height:15.0pt;
+
+word-break:normal'>
+            <span style='font-size:11.0pt;
+font-family:"Arial","sans-serif";
+color:black'>Dated: __________________</span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='text-align:left;line-height:15.0pt;
+
+word-break:normal'>
+            <b>
+                <u>
+                    <span style='font-size:11.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                        <o:p>
+                            <span style='text-decoration:'>&nbsp;</span>
+                        </o:p>
+                    </span>
+                </u>
+            </b>
+        </p>
+
+        <p class="MsoNormal" align="left" style='text-align:left;line-height:15.0pt;
+
+word-break:normal'>
+            <b>
+                <u>
+                    <span style='font-size:11.0pt;font-family:"Arial","sans-serif";
+color:black'>
+                        <o:p>
+                            <span style='text-decoration:'>&nbsp;</span>
+                        </o:p>
+                    </span>
+                </u>
+            </b>
+        </p>
+
+        <p class="MsoNormal" align="left" style='text-align:left;line-height:15.0pt;
+
+word-break:normal'>
+            <b>
+                <u>
+                    <span style='font-size:11.0pt;font-family:"Arial","sans-serif";
+color:black'>Witnesses</span>
+                </u>
+            </b>
+        </p>
+
+        <p class="MsoNormal" align="left" style='text-align:left;line-height:15.0pt;
+
+word-break:normal'>
+            <span style='font-size:11.0pt;
+font-family:"Arial","sans-serif";
+color:black'></span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='margin-left:18.7pt;text-align:left;
+text-indent:-18.7pt;line-height:15.0pt;mso-pagination:
+widow-orphan;word-break:normal'>
+            <span style='font-size:11.0pt;
+font-family:"Arial","sans-serif";
+"Times New Roman";color:black'>
+                1. <span style='mso-tab-count:1'></span>Name<span style='mso-tab-count:1'></span>____________________<span></span>2.<span style='mso-tab-count:
+1'></span>Name<span style='mso-tab-count:1'></span><span></span>__________________
+            </span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='margin-left:18.7pt;text-align:left;
+text-indent:-18.7pt;line-height:15.0pt;mso-pagination:
+widow-orphan;word-break:normal'>
+            <span style='font-size:11.0pt;
+font-family:"Arial","sans-serif";
+"Times New Roman";color:black'>
+                <span style='mso-tab-count:1'> </span>S/W/D/of
+                <span style='mso-tab-count:1'></span>____________________<span style='mso-tab-count:3'></span>S/W/D/of
+                __________________
+            </span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='margin-left:18.7pt;text-align:left;
+text-indent:-18.7pt;line-height:15.0pt;mso-pagination:
+widow-orphan;word-break:normal'>
+            <span style='font-size:11.0pt;
+font-family:"Arial","sans-serif";
+"Times New Roman";color:black'>
+                <span style='mso-tab-count:1'> </span>Address<span style='mso-tab-count:1'></span>____________________<span style='mso-tab-count:
+3'></span>Address __________________
+            </span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='margin-left:18.7pt;text-align:left;
+text-indent:-18.7pt;line-height:15.0pt;mso-pagination:
+widow-orphan;word-break:normal'>
+            <span style='font-size:11.0pt;
+font-family:"Arial","sans-serif";color:black'>
+                <span style='mso-tab-count:3'> </span>____________________<span></span><span></span>__________________
+            </span>
+        </p>
+
+      <p><br /><br /></p>
+
+
+        <p class="MsoNormal" align="right" style='text-align:right'>
+            <b style='mso-bidi-font-weight:
+normal'>
+                <span style='font-size:11.0pt;font-family:"Arial","sans-serif"'>
+                    Annexure
+                    �A
+                </span>
+            </b>
+        </p>
+
+        <p class="MsoNormal" align=center style='text-align:center'>
+            <b style='mso-bidi-font-weight:
+normal'>
+                <u>
+                    <span style='font-size:14.0pt;font-family:"Arial","sans-serif"'>
+                        DETAILS
+                        OF THE COMMERCIAL FLOOR
+                    </span>
+                </u>
+            </b>
+        </p>
+
+        <p class="MsoNormal" align="left" style='text-align:left'>
+            <b style='mso-bidi-font-weight:
+normal'><span style='font-size:14.0pt;font-family:"Arial","sans-serif"'></span></b>
+        </p>
+
+        <p class="MsoNormal" style='line-height:15.0pt;
+word-break:normal'>
+            <span style='font-size:11.0pt;font-family:"Arial","sans-serif"'>
+                All that Commercial
+                Floor bearing no. <% FlatName %>(ground+basement) having an approximate area of <% PropertySize %>
+                (Super Area) at � City Heart � situated at  City Heart, Kharar, Distt SAS Nagar PUNJAB
+            </span>
+        </p>
+
+        <p class="MsoNormal" align="left" style='text-align:left'>
+            <span style='font-size:
+11.0pt;font-family:"Arial","sans-serif"'></span>
+        </p>
+
+        <p class="MsoNormal" align=center style='text-align:center'>
+            <b style='mso-bidi-font-weight:
+normal'>
+                <u>
+                    <span style='font-size:12.0pt;font-family:"Arial","sans-serif"'>
+                        COST
+                        DETAILS
+                    </span>
+                </u>
+            </b>
+        </p>
+
+        <p class="MsoNormal" align=center style='text-align:center'><b></b></p>
+
+        <table class="MsoNormal" table border=1 cellspacing=0 cellpadding=0
+               width=682 style='width:511.35pt;border-collapse:collapse;border:none;margin-left:6.75pt;margin-right:6.75pt;'>
+            <tr style='height:34.5pt'>
+                <td width=682 colspan=2 valign=top style='width:511.35pt;border:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt;height:34.5pt'>
+                    <p class="MsoNormal" style='line-height:115%;'><span style='font-family:"Arial","sans-serif"'></span></p>
+                    <p class="MsoNormal" style='line-height:115%;'>
+                        <span style='font-family:"Arial","sans-serif"'>(</span><b>
+                            <span style='font-size:11.0pt;line-height:
+  115%;font-family:"Arial","sans-serif"'>A) BASIC COST</span>
+                        </b>
+                    </p>
+                    <p class="MsoNormal" style=''>
+                        <b style=''><span style='font-size:11.0pt;font-family:"Arial","sans-serif"'></span></b>
+                    </p>
+                    <p class=MsoTableColorfulListAccent1 style='margin-left:37.0pt;'>
+                        <b>
+                            <span style='font-size:11.0pt;font-family:"Arial","sans-serif"'>
+                                (i) BASIC SALE
+                                PRICE (BSP)
+                            </span>
+                        </b>
+                    </p>
+                    <p class=MsoTableColorfulListAccent1 style='margin-left:37.0pt;'><span style='font-family:"Arial","sans-serif"'></span></p>
+                </td>
+            </tr>
+            <tr style='height:20.15pt'>
+                <td width=682 colspan=2 valign=top style='width:511.35pt;border:solid windowtext 1.0pt;
+  border-top:none; padding:0in 5.4pt 0in 5.4pt;height:20.15pt'>
+                    <p class="MsoNormal" style=''>
+                        <span style='font-size:12.0pt;font-family:"Arial","sans-serif"'></span>
+                    </p>
+                    <p class="MsoNormal" style=''>
+                        <span style='font-size:12.0pt;font-family:"Arial","sans-serif"'>Rs.50000000.00</span>
+                    </p>
+                    <p class="MsoNormal" style=''>
+                        <span style='font-size:12.0pt;font-family:"Arial","sans-serif"'></span>
+                    </p>
+                </td>
+            </tr>
+            <tr style='mso-yfti-irow:2'>
+                <td width=682 colspan=2 valign=top style='width:511.35pt;border:solid windowtext 1.0pt;
+  border-top:none;  padding:0in 5.4pt 0in 5.4pt'>
+                    <p class="MsoNormal" style=''>
+                        <b style=''><span style='font-size:11.0pt;font-family:"Arial","sans-serif"'></span></b>
+                    </p>
+                    <p class="MsoNormal" style=''>
+                        <b style=''>
+                            <span style='font-size:11.0pt;font-family:"Arial","sans-serif"'>
+                                (ii)
+                                PREFERETIAL LOCATION CHARGES (PLC)
+                            </span>
+                        </b>
+                    </p>
+                    <p class="MsoNormal" style=''>
+                        <b style=''><span style='font-size:11.0pt;font-family:"Arial","sans-serif"'></span></b>
+                    </p>
+                </td>
+            </tr>
+            <tr style='height:32.9pt'>
+                <td width=253 valign=top style='width:189.7pt;border:solid windowtext 1.0pt;
+  border-top:none;  padding:0in 5.4pt 0in 5.4pt;height:32.9pt'>
+                    <p class="MsoNormal" style=''>
+                        <span style='font-family:"Arial","sans-serif"'></span>
+                    </p>
+                    <p class="MsoNormal" style=''>
+                        <span style='font-family:"Arial","sans-serif"'>DESCREPTION: nil</span>
+                    </p>
+                </td>
+                <td width=429 valign=top style='width:321.65pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt;height:32.9pt'>
+                    <p class="MsoNormal" style=''>
+                        <span style='font-family:"Arial","sans-serif"'></span>
+                    </p>
+                    <p class="MsoNormal" style=''>
+                        <span style='font-family:"Arial","sans-serif"'>CHARGES: nil</span>
+                    </p>
+                </td>
+            </tr>
+            <tr style='mso-yfti-irow:4'>
+                <td width=682 colspan=2 valign=top style='width:511.35pt;border:solid windowtext 1.0pt;
+  border-top:none;  padding:0in 5.4pt 0in 5.4pt'>
+                    <p class="MsoNormal" style=''>
+                        <b style='mso-bidi-font-weight:normal'><span style='font-size:11.0pt;font-family:"Arial","sans-serif"'></span></b>
+                    </p>
+                    <p class="MsoNormal" style=''>
+                        <b style='mso-bidi-font-weight:normal'>
+                            <span style='font-size:11.0pt;font-family:"Arial","sans-serif"'>
+                                (B) ADDITIONAL COST
+                            </span>
+                        </b>
+                    </p>
+                    <p class="MsoNormal" style=''>
+                        <b style='mso-bidi-font-weight:normal'><span style='font-size:11.0pt;font-family:"Arial","sans-serif"'></span></b>
+                    </p>
+                </td>
+            </tr>
+            <tr style='mso-yfti-irow:5'>
+                <td width=253 valign=top style='width:189.7pt;border:solid windowtext 1.0pt;
+  border-top:none; padding:0in 5.4pt 0in 5.4pt'>
+                    <p class="MsoNormal" style=''>
+                        <span style='font-family:"Arial","sans-serif"'></span>
+                    </p>
+                    <p class="MsoNormal" style=''>
+                        <span style='font-family:"Arial","sans-serif"'>EDC</span>
+                    </p>
+                </td>
+                <td width=429 valign=top style='width:321.65pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+                    <p class="MsoNormal" style=''>
+                        <span style='font-family:"Arial","sans-serif"'></span>
+                    </p>
+                    <p class="MsoNormal" style=''>
+                        <span style='font-family:"Arial","sans-serif"'>nil</span>
+                    </p>
+                    <p class="MsoNormal" style=''>
+                        <span style='font-family:"Arial","sans-serif"'></span>
+                    </p>
+                </td>
+            </tr>
+            <tr style='mso-yfti-lastrow:yes'>
+                <td width=253 valign=top style='width:189.7pt;border:solid windowtext 1.0pt;
+  border-top:none;  padding:0in 5.4pt 0in 5.4pt'>
+                    <p class="MsoNormal" style=''>
+                        <span style='font-family:"Arial","sans-serif"'></span>
+                    </p>
+                    <p class="MsoNormal" style=''>
+                        <span style='font-family:"Arial","sans-serif"'>ELECTRICITY METER CONNECTION COST</span>
+                    </p>
+                </td>
+                <td width=429 valign=top style='width:321.65pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+                    <p class="MsoNormal" style=''>
+                        <span style='font-family:"Arial","sans-serif"'></span>
+                    </p>
+                    <p class="MsoNormal" style=''>
+                        <span style='font-family:"Arial","sans-serif"'>As Applicable</span>
+                    </p>
+                    <p class="MsoNormal" style=''>
+                        <span style='font-family:"Arial","sans-serif"'></span>
+                    </p>
+                </td>
+            </tr>
+            <tr style='
+  height:50.35pt'>
+                <td colspan="2" width=683 valign=top style='width:512.5pt;border:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt;height:50.35pt'>
+                    <p class="MsoNormal" align="left" style='text-align:left;'>
+                        <span style='font-size:
+  11.0pt;font-family:"Arial","sans-serif";
+  color:black'>
+                            *Cost towards individual Electricity Meter, individual *Water
+                            Connection, *Sewerage Connection, *Storm Water Connection, *Malba etc. are
+                            not included in the total Additional Cost amount and shall be payable by the
+                            Allotee(s) on the demand by the Company on offer of the above said unit(as
+                            and when demanded by the concerned Authority.
+                        </span>
+                    </p>
+                </td>
+            </tr>
+            <tr style='
+  height:28.05pt'>
+                <td colspan="2" width=680 valign=top style='width:510.3pt;border:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt;height:28.05pt'>
+                    <p class="MsoNormal" style=''>
+                        <span style='font-size:12.0pt;font-family:"Arial","sans-serif";'>TOTAL (A+B)=</span><span style='font-size:12.0pt;font-family:
+  "Arial","sans-serif"'>___________________</span>
+                    </p>
+                    <p class="MsoNormal" style=''>
+                        <span style='font-size:12.0pt;font-family:"Arial","sans-serif";'></span>
+                    </p>
+                </td>
+            </tr>
+        </table>
+        <p><br /><br /><br /></p>
+        <p><br /><br /><br /></p>
+       
+        <p class="MsoNormal" align="right" style='text-align:right;'>
+            <span style='font-family:"Arial","sans-serif";
+color:black'><span></span></span><b>
+                <span style='font-size:11.0pt;font-family:"Arial","sans-serif";color:black'>
+                    ANNEXURE-(B)
+                </span>
+            </b>
+        </p>
+
+        <p class="MsoNormal" align=center style='text-align:center;'>
+            <b>
+                <span style='font-size:16.0pt;font-family:"Arial","sans-serif";
+color:black'>PAYMENT PLAN</span>
+            </b>
+        </p>
+
+        <p class="MsoNormal" align=center style='text-align:center;'>
+            <b>
+                <span style='font-size:16.0pt;font-family:"Arial","sans-serif";color:black'></span>
+            </b>
+        </p><p><br /></p>
+
+        <p class="MsoNormal" align=center style='text-align:center;'>
+            <b>
+                <span style='font-size:12.0pt;font-family:"Arial","sans-serif";
+color:black'></span>
+            </b>
+        </p>
+
+        <table class="MsoNormal" table border=0 cellspacing=0 cellpadding=0 width=639
+               style='width:478.9pt;margin-left:19.6pt;border-collapse:collapse;'>
+            <tr style='height:15.25pt'>
+                <td colspan="3" width=639 valign=top style='width:478.9pt;border:solid black 1.0pt;
+  background:#CCCCCC;padding:0in 5.4pt 0in 5.4pt;
+  height:15.25pt'>
+                    <p class="MsoNormal" align=center style='text-align:center;'>
+                        <b>
+                            <span style='font-size:14.0pt;font-family:"Arial","sans-serif";  color:black'>Combo Payment Plan With Assured Return(12.5%)</span>
+                        </b>
+                    </p>
+                    
+                </td>
+            </tr>
+             <tr><td width='321' style='width:240.95pt;border:solid black 1.0pt; padding: 3pt 5.4pt 3pt 5.4pt; font-size:12.0pt;font-family:Arial,sans-serif'>  <p>'Booking Amount'</p></td><td width='18' style='width:13.5pt;border-top:none;border-left:none; border-bottom:solid black 1.0pt;border-right:solid black 1.0pt; padding:0in 5.4pt 0in 5.4pt;'>
+                    <p class='MsoNormal'>:</p>
+                </td>
+                <td width='301' style='width:225.95pt;border:solid black 1.0pt;  border-left:none;  padding: 3pt 5.4pt 3pt 5.4pt;'>
+                    <p class='MsoNormal' style='margin-right:-81.0pt;  font-size:12.0pt;font-family:Arial,sans-serif'> 25000000.00</p>
+                </td>
+                </tr> <tr><td width='321' style='width:240.95pt;border:solid black 1.0pt; padding: 3pt 5.4pt 3pt 5.4pt; font-size:12.0pt;font-family:Arial,sans-serif'>  <p>'Within 60 days Booking:'</p></td><td width='18' style='width:13.5pt;border-top:none;border-left:none; border-bottom:solid black 1.0pt;border-right:solid black 1.0pt; padding:0in 5.4pt 0in 5.4pt;'>
+                    <p class='MsoNormal'>:</p>
+                </td>
+                <td width='301' style='width:225.95pt;border:solid black 1.0pt;  border-left:none;  padding: 3pt 5.4pt 3pt 5.4pt;'>
+                    <p class='MsoNormal' style='margin-right:-81.0pt;  font-size:12.0pt;font-family:Arial,sans-serif'> 2277777.50</p>
+                </td>
+                </tr> <tr><td width='321' style='width:240.95pt;border:solid black 1.0pt; padding: 3pt 5.4pt 3pt 5.4pt; font-size:12.0pt;font-family:Arial,sans-serif'>  <p>'On completion of Basement Roof :'</p></td><td width='18' style='width:13.5pt;border-top:none;border-left:none; border-bottom:solid black 1.0pt;border-right:solid black 1.0pt; padding:0in 5.4pt 0in 5.4pt;'>
+                    <p class='MsoNormal'>:</p>
+                </td>
+                <td width='301' style='width:225.95pt;border:solid black 1.0pt;  border-left:none;  padding: 3pt 5.4pt 3pt 5.4pt;'>
+                    <p class='MsoNormal' style='margin-right:-81.0pt;  font-size:12.0pt;font-family:Arial,sans-serif'> 3277777.50</p>
+                </td>
+                </tr> <tr><td width='321' style='width:240.95pt;border:solid black 1.0pt; padding: 3pt 5.4pt 3pt 5.4pt; font-size:12.0pt;font-family:Arial,sans-serif'>  <p>'On completion of Ground Floor Roof:'</p></td><td width='18' style='width:13.5pt;border-top:none;border-left:none; border-bottom:solid black 1.0pt;border-right:solid black 1.0pt; padding:0in 5.4pt 0in 5.4pt;'>
+                    <p class='MsoNormal'>:</p>
+                </td>
+                <td width='301' style='width:225.95pt;border:solid black 1.0pt;  border-left:none;  padding: 3pt 5.4pt 3pt 5.4pt;'>
+                    <p class='MsoNormal' style='margin-right:-81.0pt;  font-size:12.0pt;font-family:Arial,sans-serif'> 2777778.00</p>
+                </td>
+                </tr> <tr><td width='321' style='width:240.95pt;border:solid black 1.0pt; padding: 3pt 5.4pt 3pt 5.4pt; font-size:12.0pt;font-family:Arial,sans-serif'>  <p>'On completion of Second Floor Roof:'</p></td><td width='18' style='width:13.5pt;border-top:none;border-left:none; border-bottom:solid black 1.0pt;border-right:solid black 1.0pt; padding:0in 5.4pt 0in 5.4pt;'>
+                    <p class='MsoNormal'>:</p>
+                </td>
+                <td width='301' style='width:225.95pt;border:solid black 1.0pt;  border-left:none;  padding: 3pt 5.4pt 3pt 5.4pt;'>
+                    <p class='MsoNormal' style='margin-right:-81.0pt;  font-size:12.0pt;font-family:Arial,sans-serif'> 2777778.00</p>
+                </td>
+                </tr> <tr><td width='321' style='width:240.95pt;border:solid black 1.0pt; padding: 3pt 5.4pt 3pt 5.4pt; font-size:12.0pt;font-family:Arial,sans-serif'>  <p>'On completion of Brick Work :'</p></td><td width='18' style='width:13.5pt;border-top:none;border-left:none; border-bottom:solid black 1.0pt;border-right:solid black 1.0pt; padding:0in 5.4pt 0in 5.4pt;'>
+                    <p class='MsoNormal'>:</p>
+                </td>
+                <td width='301' style='width:225.95pt;border:solid black 1.0pt;  border-left:none;  padding: 3pt 5.4pt 3pt 5.4pt;'>
+                    <p class='MsoNormal' style='margin-right:-81.0pt;  font-size:12.0pt;font-family:Arial,sans-serif'> 2777778.00</p>
+                </td>
+                </tr> <tr><td width='321' style='width:240.95pt;border:solid black 1.0pt; padding: 3pt 5.4pt 3pt 5.4pt; font-size:12.0pt;font-family:Arial,sans-serif'>  <p>'on Completion of plastering'</p></td><td width='18' style='width:13.5pt;border-top:none;border-left:none; border-bottom:solid black 1.0pt;border-right:solid black 1.0pt; padding:0in 5.4pt 0in 5.4pt;'>
+                    <p class='MsoNormal'>:</p>
+                </td>
+                <td width='301' style='width:225.95pt;border:solid black 1.0pt;  border-left:none;  padding: 3pt 5.4pt 3pt 5.4pt;'>
+                    <p class='MsoNormal' style='margin-right:-81.0pt;  font-size:12.0pt;font-family:Arial,sans-serif'> 2777778.00</p>
+                </td>
+                </tr> <tr><td width='321' style='width:240.95pt;border:solid black 1.0pt; padding: 3pt 5.4pt 3pt 5.4pt; font-size:12.0pt;font-family:Arial,sans-serif'>  <p>'On completion of Flooring :'</p></td><td width='18' style='width:13.5pt;border-top:none;border-left:none; border-bottom:solid black 1.0pt;border-right:solid black 1.0pt; padding:0in 5.4pt 0in 5.4pt;'>
+                    <p class='MsoNormal'>:</p>
+                </td>
+                <td width='301' style='width:225.95pt;border:solid black 1.0pt;  border-left:none;  padding: 3pt 5.4pt 3pt 5.4pt;'>
+                    <p class='MsoNormal' style='margin-right:-81.0pt;  font-size:12.0pt;font-family:Arial,sans-serif'> 2777778.00</p>
+                </td>
+                </tr> <tr><td width='321' style='width:240.95pt;border:solid black 1.0pt; padding: 3pt 5.4pt 3pt 5.4pt; font-size:12.0pt;font-family:Arial,sans-serif'>  <p>'On completion of Flooring :'</p></td><td width='18' style='width:13.5pt;border-top:none;border-left:none; border-bottom:solid black 1.0pt;border-right:solid black 1.0pt; padding:0in 5.4pt 0in 5.4pt;'>
+                    <p class='MsoNormal'>:</p>
+                </td>
+                <td width='301' style='width:225.95pt;border:solid black 1.0pt;  border-left:none;  padding: 3pt 5.4pt 3pt 5.4pt;'>
+                    <p class='MsoNormal' style='margin-right:-81.0pt;  font-size:12.0pt;font-family:Arial,sans-serif'> 2777778.00</p>
+                </td>
+                </tr> <tr><td width='321' style='width:240.95pt;border:solid black 1.0pt; padding: 3pt 5.4pt 3pt 5.4pt; font-size:12.0pt;font-family:Arial,sans-serif'>  <p>'At the time of Allotment:'</p></td><td width='18' style='width:13.5pt;border-top:none;border-left:none; border-bottom:solid black 1.0pt;border-right:solid black 1.0pt; padding:0in 5.4pt 0in 5.4pt;'>
+                    <p class='MsoNormal'>:</p>
+                </td>
+                <td width='301' style='width:225.95pt;border:solid black 1.0pt;  border-left:none;  padding: 3pt 5.4pt 3pt 5.4pt;'>
+                    <p class='MsoNormal' style='margin-right:-81.0pt;  font-size:12.0pt;font-family:Arial,sans-serif'> 2777778.00</p>
+                </td>
+                </tr>
+        </table>
+
+
+        <p class="MsoNormal">
+            <span style='font-size:
+12.0pt;font-family:"Arial","sans-serif"'>
+                * <b>
+                    Service
+                    Tax as applicable
+                </b>
+            </span>
+        </p>
+        <p><br /><br /><br /></p>
+        <p>For  SkyCity Builders and Promoters P Ltd.</p>
+        <p><br /></p>
+        <p></p>
+        <p style="float:right;">Allotee(s)  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Allotee(s)</p>
+        <p>Authorized Signatory  </p>
+        <p><br /><br /><br /></p>
+        
+
+       
+
+       
+
+
+    </div>
+
+</body>
+
+</html>

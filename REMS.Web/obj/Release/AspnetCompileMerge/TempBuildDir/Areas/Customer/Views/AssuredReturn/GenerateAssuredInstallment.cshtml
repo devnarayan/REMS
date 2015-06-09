@@ -1,0 +1,168 @@
+﻿
+@{
+    ViewBag.Title = "GenerateAssuredInstallment";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div  data-ng-app="ASReturnApp" role="main">
+    <!-- RIBBON -->
+    
+    <!-- END RIBBON -->
+    <!-- MAIN CONTENT -->
+    <div id="content" data-ng-controller="ASReturnController">
+
+        <div class="row">
+            <div class="col-xs-12 col-sm-7 col-md-7 col-lg-8">
+                <h1 class="page-title txt-color-blueDark"><i class="fa fa-pencil-square-o fa-fw "></i>Generate/Update Assured Return Installments </h1>
+            </div>
+        </div>
+
+        <!-- widget grid -->
+        <section id="widget-grid" class="" data-ng-init="RefundInit()">
+            <input type="hidden" id="hidFlatID" name="hidFlatID" value="@ViewBag.ID" />
+            <!-- row -->
+            <div class="row">
+
+                <!-- NEW WIDGET START -->
+                <article class="col-sm-12 col-md-12">
+                    @*@using (Html.BeginForm("Search", "Payment", null))
+                    {*@
+
+                    <!-- Widget ID (each widget will need unique ID)-->
+                    <div class="jarviswidget" id="wid-id-2" data-widget-editbutton="false" data-widget-deletebutton="false">
+
+                        <header>
+                            <h2>Search Assured Return Installment</h2>
+                        </header>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <b>Search By Property:</b><br />
+                                <select name="TowerID" class="form-control" data-ng-change="TowerChange()" data-ng-model="Flat.TowerID" id="searchby" required>
+                                    <option data-ng-repeat="pro in TowerList" value="{{ pro.TowerID }}">{{pro.TowerName }}</option>
+                                </select>
+                                @*<select name="newCust.PropertyID" class="form-control" data-ng-model="PropertyID" id="PropertyID" required>
+                                    <option data-ng-repeat="pro in Properties" value="{{ pro.PropertyID }}">{{ pro.PropertyName }}</option>
+                                </select>*@
+                            </div>
+                            <div class="col-md-3">
+                                <b>Property Name</b><br />
+                                <select name="FlatID" class="form-control" data-ng-model="Flat.FlatID" id="FlatID" required>
+                                    <option data-ng-repeat="fl in FlatList" value="{{ fl.FlatID }}">{{ fl.FlatNo }}</option>
+                                </select>
+                                @*<input type="text" name="propertyname" id="propertyname" class="form-control" />*@
+                            </div>
+                            <div class="col-md-3">
+                                <br /><input type="hidden" id="hidsid" name="hidsid" />
+                                <input type="submit" value="Search" data-ng-click="CheckGeneratedAssuredReturn()" class="btn btn-primary" id="Srch1" />
+                                <button id="btnGenerate" name="btnGenerate" data-ng-click="UpdateChequeDetails()" value="Generate" class="btn btn-primary">Update All</button>
+
+                            </div>
+                            <div class="col-md-3" id="downdoc" style="display:none;">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <b>Assured Return Agreement:</b>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <a href="../../../{{Agreement.AssuredHTMLURL}}" target="_blank" class="text-info"><i class="fa fa-html5"></i> Download HTML File</a><br />
+                                        <a href="../../../{{Agreement.AssuredDocURL}}" target="_blank" class="text-info"><i class="fa fa-file-word-o"></i> Download Doc File </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" id="gendiv">
+                            <div class="col-md-3">
+                                <b>Start Date</b><br />
+                                <input type="text" id="SDate" name="SDate" class="form-control datecal" />
+                            </div>
+                            <div class="col-md-3">
+                                <b>Possession Date</b><br />
+                                <select name="PDate" class="form-control" id="PDate">
+                                    <option value="31/08/2015">31st Aug 2015</option>
+                                    <option value="31/12/2015">31st Dec 2015</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <b>Amount</b><br />
+                                <input type="text" id="txtAmount" name="txtAmount" class="form-control" />
+                            </div>
+                            <div class="col-md-3">
+                                <b></b><br />
+                                <button id="btnGenerate" name="btnGenerate" data-ng-click="GenerateInstallmentClick()" value="Generate" class="btn btn-primary">Generate</button>
+                            </div>
+                            <div class="col-md-3"></div>
+                        </div>
+                        <!-- widget div-->
+                        <div>
+
+                            <!-- widget content -->
+                            <div class="widget-body fuelux">
+                                <div class="step-content">
+                                    <div class="form-horizontal" id="fuelux-wizard">
+                                        <div class="form-content">
+                                            <br />
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="table-responsive">
+                                                        <table class="table table-bordered table-striped particular_tbl">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th><b>Month</b></th>
+                                                                    <th><b>Duration (Days)</b></th>
+                                                                    <th><b>Property Name</b></th>
+                                                                    <th><b>Amount</b></th>
+                                                                    <th><b>ChequeNo</b></th>
+                                                                    <th><b>ChequeDate</b></th>
+                                                                    @*<th><b>Action</b></th>*@
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr data-ng-repeat="sr in SearchList">
+                                                                    <td>{{sr.MonthName}}</td>
+                                                                    <td>{{sr.Duration}}</td>
+                                                                    <td>{{sr.FlatName}}</td>
+                                                                    <td>{{sr.Amount}}</td>
+                                                                    <td>
+                                                                        <input type="hidden" id="aids" name="aids" value="{{sr.AssuredReturnID}}" class="asidlist" />
+                                                                        <input type="text" id="{{sr.AssuredReturnID}}-ChequeNo" value="{{sr.ChequeNo}}" name="ChequeNo" class="form-control clistno" />
+                                                                    </td>
+                                                                    <td><input type="text" id="{{sr.AssuredReturnID}}-ChequeDate" value="{{sr.ChequeDateSt}}" name="ChequeDate" class="form-control datecal clistdate" /></td>
+                                                                    @*<td>
+                                                                        <a href="#" data-ng-click="UpdateAssuredCheque(sr.AssuredReturnID)" title="Update Cheque Details" class="btn  btn-xs btn-info btn-sm {{sr.PayStatus}}"><i class="fa fa-edit"></i> Update</a>
+                                                                    </td>*@
+                                                                </tr>
+                                                                <tr><td></td><td></td><td><b>Total</b></td><td><b>{{TotalSearchAmount}}</b></td><td></td><td></td></tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end widget content -->
+                        </div>
+                        <!-- end widget div -->
+                    </div>
+                    <!-- end widget -->
+                    @*}*@
+                </article>
+                <!-- WIDGET END -->
+            </div>
+            <!-- end row -->
+        </section>
+        <!-- end widget grid -->
+    </div>
+    <!-- END MAIN CONTENT -->
+    @*<script src="~/Content/js/jquery-1.7.2.min.js"></script>
+    <script src="~/Content/js/jquery-ui-1.8.19.custom.min.js"></script>
+    <link href="~/Content/css/jquery-ui-1.8.19.custom.css" rel="stylesheet" />
+    <script src="~/Scripts/ngController/ASReturnjs.js"></script>*@
+</div>
+@section pagespecific {
+    <script src="~/AgController/ASReturnjs.js"></script>
+}
+

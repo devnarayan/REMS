@@ -1,0 +1,138 @@
+﻿
+@{
+    ViewBag.Title = "Update FlaType";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="content" data-ng-app="PropertyApp" data-ng-controller="PropertyController">
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+            <h1 class="page-title txt-color-blueDark">
+                <!-- PAGE HEADER -->
+                <i class="fa-fw fa fa-flag"></i>
+                Flat/Property Types 
+                <span>
+                    >
+                    Update
+                </span>
+            </h1>
+        </div>
+        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+            <!-- Button trigger modal -->
+        </div>
+    </div>
+    <div id="MessageArea" class="alert alert-block alert-{{MessageClass}}" style="display:none;">
+        <a class="close" data-dismiss="alert" href="#">×</a>
+        <h4 class="alert-heading"><i class="fa fa-check-square-o"></i> {{MessageTitle}}</h4>
+        <p>
+            {{Message}}
+        </p>
+    </div>
+    <!-- widget grid -->
+    <section id="widget-grid" class="" data-ng-init="EditFlatInit()">
+
+        <!-- START ROW -->
+        <div class="row">
+            <!-- NEW COL START -->
+            <article class="col-sm-12 col-md-12 col-lg-12">
+                <!-- Widget ID (each widget will need unique ID)-->
+                <div class="jarviswidget" id="wid-id-1" data-widget-editbutton="false" data-widget-custombutton="false">
+                    <!-- widget options:
+                        usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+
+                        data-widget-colorbutton="false"
+                        data-widget-editbutton="false"
+                        data-widget-togglebutton="false"
+                        data-widget-deletebutton="false"
+                        data-widget-fullscreenbutton="false"
+                        data-widget-custombutton="false"
+                        data-widget-collapsed="true"
+                        data-widget-sortable="false"
+
+                    -->
+                    <header>
+                        <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+                        <h2>Manage FlatType of Towers</h2>
+                    </header>
+                    <!-- widget div-->
+                    <div>
+                        <!-- widget edit box -->
+                        <div class="jarviswidget-editbox">
+                            <!-- This area used as dropdown edit box -->
+                        </div>
+                        <!-- end widget edit box -->
+                        <!-- widget content -->
+                        <div class="widget-body no-padding">
+                            <form id="checkout-form" class="smart-form" novalidate="novalidate">
+                                <header>
+                                    <div class="row">
+                                        <section class="col col-4">
+                                            <label class="label">Select Tower</label>
+                                            <label class="select">
+                                                <select name="TowerID" data-ng-model="flat.TowerID" data-ng-change="towerChange()" id="TowerID">
+                                                    <option value="0" selected="">All Tower</option>
+                                                    <option data-ng-repeat="flat in TowerList" value="{{flat.TowerID}}">{{flat.TowerName}}</option>"
+                                                </select>
+                                            </label>
+                                        </section>
+                                        <section class="col col-4">
+                                            <label class="label">Select Floor</label>
+                                            <label class="select">
+                                                <select name="FloorID" data-ng-model="flat.FloorID" id="FloorID">
+                                                    <option value="0" selected="">All Floor</option>
+                                                    <option data-ng-repeat="tw in FloorList" value="{{tw.FloorID}}">{{tw.FloorName}}</option>"
+                                                </select>
+                                            </label>
+                                        </section>
+                                    </div>
+                                    <div class="row">
+                                        <section class="col col-4">
+                                            <label class="label">Flat Type</label>
+                                            <label class="select">
+                                                <select name="FlatTypeList" id="FlatTypeList" data-ng-change="ChangeFlatTypeByID()" data-ng-model="flat.FlatType">
+                                                    <option value="0" selected="" disabled="">Select Flat Type</option>
+                                                    <option data-ng-repeat="ftl in FlatTypeList" value="{{ftl.FlatTypeID}}">{{ftl.FType}}</option>
+                                                </select> <i></i>
+                                            </label>
+                                        </section>
+                                        <section class="col col-4">
+                                            <label class="label">Flat Type Size</label>
+                                            <label class="select">
+                                                <select name="TowerList" data-ng-model="flat.FlatSize">
+                                                    <option value="0" selected="" disabled="">Select Flat Type Size</option>
+                                                    <option data-ng-repeat="ftsl in FlatTypeSizeList" value="{{ftsl.Size}}">{{ftsl.Size}}</option>
+                                                </select> <i></i>
+                                            </label>
+                                        </section>
+                                    </div>
+                                </header>
+                                
+                                <footer>
+                                    <button type="submit" data-ng-click="UpdateAllFlatType()" id="btnSave" class="btn btn-primary">
+                                        Save
+                                    </button>
+                                </footer>
+                            </form>
+                        </div>
+                        <!-- end widget content -->
+                    </div>
+                    <!-- end widget div -->
+                </div>
+                <!-- end widget -->
+
+            </article>
+            <!-- END COL -->
+            <!-- NEW COL START -->
+            
+            <!-- END COL -->
+        </div>
+        <!-- END ROW -->
+    </section>
+    <!-- end widget grid -->
+</div>
+<!-- END MAIN CONTENT -->
+@section pagespecific {
+    <script src="~/AgController/Propertyjs.js"></script>
+
+}

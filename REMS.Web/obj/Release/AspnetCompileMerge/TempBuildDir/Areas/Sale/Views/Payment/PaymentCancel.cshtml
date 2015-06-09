@@ -1,0 +1,176 @@
+﻿@model REMS.Data.DataModel.PaymentCancelModel
+@{
+    ViewBag.Title = "PaymentCancel";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div id="content" data-ng-app="PaymentApp" data-ng-controller="CancelController">
+    <div class="row">
+        <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+            <h1 class="page-title txt-color-blueDark">
+                <!-- PAGE HEADER -->
+                <i class="fa-fw fa fa-flag"></i>
+                Installment Payments
+                <span>
+                    >
+                    Search
+                </span>
+            </h1>
+        </div>
+        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+            <!-- Button trigger modal -->
+        </div>
+    </div>
+    <div id="MessageArea" class="alert alert-block alert-{{MessageClass}}" style="display:none;">
+        <a class="close" data-dismiss="alert" href="#">×</a>
+        <h4 class="alert-heading"><i class="fa fa-check-square-o"></i> {{MessageTitle}}</h4>
+        <p>
+            {{Message}}
+        </p>
+    </div>
+
+    <!-- widget grid -->
+    <section id="widget-grid" class="" data-ng-init="RefundInit()">
+        <input type="hidden" id="hidFlatID" name="hidFlatID" value="@ViewBag.ID" />
+        <!-- row -->
+        <div class="row">
+            <!-- NEW WIDGET START -->
+            <article class="col-sm-12 col-md-12">
+                @*@using (Html.BeginForm("Search", "Payment", null))
+                    {*@
+                <!-- Widget ID (each widget will need unique ID)-->
+                <div class="jarviswidget" id="wid-id-2" data-widget-editbutton="false" data-widget-deletebutton="false">
+
+                    <header>
+                        <h2>Cancel Payment</h2>
+                    </header>
+                    <div>
+
+                        <!-- widget content -->
+                        <div class="widget-body fuelux">
+                            <div class="row">
+                                <div class="col-sm-12 smart-form">
+                                    <div id="comment-form" class="smart-form">
+                                        <fieldset>
+                                            <div class="row">
+                                                <div class="col-md-12 text-center">
+                                                    {{status}}
+                                                </div>
+                                            </div>
+                                            <input type="hidden" value="@ViewBag.TransactionID" id="TransactionID" data-ng-model="Pay.TransactionID" name="TransactionID" />
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="row">
+                                                        <div class="col-md-1"></div>
+                                                        <section class="col col-sm-8">
+                                                            <label class="label">Date</label>
+                                                            <label class="input">
+                                                                <input type="text" class="datecal" id="CancelDate" data-ng-model="Pay.CancelDate" name="CancelDate" required>
+                                                            </label>
+                                                        </section>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-1"></div>
+                                                        <section class="col col-sm-8">
+                                                            <label class="label">Remark</label>
+                                                            <label class="textarea">
+                                                                <textarea rows="4" class="custom-scroll" cols="45" data-ng-model="Pay.Remarks" id="Remarks" name="Remarks"></textarea>
+                                                            </label>
+                                                        </section>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="row">
+                                                        <div class="col-md-4">Payment Status:</div>
+                                                        <div class="col-md-7">@Model.Status </div>
+                                                        <input type="hidden" id="PayStatus" data-ng-model="Pay.Status" name="PayStatus" value="@Model.Status" />
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-4">Amount:</div>
+                                                        <div class="col-md-7">@Model.Amount </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-4">Receipt No:</div>
+                                                        <div class="col-md-7">@ViewBag.ReceiptNo </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-4">Cancel Date:</div>
+                                                        <div class="col-md-7">@Model.CancelDate </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-4">Cancel Remarks:</div>
+                                                        <div class="col-md-7">@Model.Remarks </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-4">Cancel By:</div>
+                                                        <div class="col-md-7">@Model.CancelBy </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-4">Undo Cancel Date:</div>
+                                                        <div class="col-md-7">@Model.UnCancelDate</div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-4">Undo Cancel Remarks:</div>
+                                                        <div class="col-md-7">@Model.UnCancelRemark </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-4">Cancel Undo By:</div>
+                                                        <div class="col-md-7">@Model.UnCancelBy </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12"><hr /></div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-4">Customer Name:</div>
+                                                        <div class="col-md-7">@Model.CustomerName </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-4">Property Name:</div>
+                                                        <div class="col-md-7">@Model.FlatName </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-actions">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <button class="btn btn-primary pull-left" data-ng-click="CancelPayment()" type="submit">
+                                            <i class="fa fa-save"></i>
+                                            Save
+                                        </button>
+                                        <button class="btn btn-default pull-left btn_marg" type="submit">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end widget content -->
+                    </div>
+                    <!-- end widget div -->
+                </div>
+                <!-- end widget -->
+                @*}*@
+            </article>
+            <!-- WIDGET END -->
+        </div>
+        <!-- end row -->
+    </section>
+    <!-- end widget grid -->
+
+</div>
+@section pagespecific {
+    <script src="~/AgController/CancelPayjs.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $(".datecal").datepicker({
+            changeMonth: true,
+            changeYear: true,
+            yearRange: '1970:2090'
+        });
+    });
+</script>
+
+}

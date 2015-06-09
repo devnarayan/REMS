@@ -1,0 +1,24 @@
+     <br />
+                <div style='text-align: center'>
+<h2>SBP GROUPS</h2>
+<p><b>Kharar, Mohali</b></p>
+<p> <b>New Delhi</b></p>
+<p><b>Ph. 011-43111111</b></p>
+<p><b>Fax. 011-43111111</b></p><br/>
+<h3>RECEIPT</h3>
+                    <br />
+                </div>
+           <table style='border: 2px solid gray;
+            width: 100%;'><thead style='border: 1px solid gray;
+                background-color: rgb(59, 57, 61);
+                padding: 0;
+                margin: 0;
+                color: rgb(247, 13, 13);'>
+<tr style='border-bottom: 1px solid;border-color: gray;'><td><b>PaymentDate</b></td><td><b>Amount </b></td><td><b>CustomerName</b></td><td><b>Property Name</b></td><td><b>ReceiptNo</b></td><td><b>PaymentMode</b></td><td><b>ChequeNo</b></td><td><b>BankName</b></td><td><b>ChequeDate</b></td><td><b>Status</b></td></tr>
+</thead>
+<tbody> 
+<tr><td>20-05-2015</td><td>0.00</td><td>null null null null</td><td>130</td><td>SBP15</td><td>Cheque</td><td>3k33</td><td>SBI</td><td>20-May-15 12:00:00 AM</td><td>Clearance</td></tr><tr><td>21-05-2015</td><td>10002.00</td><td>Mr. user test mnage lname</td><td>130</td><td>SBP20</td><td>Cash</td><td></td><td></td><td></td><td>Uncanceled</td></tr> 
+<tbody>
+</table>
+<br/>
+               

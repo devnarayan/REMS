@@ -1,0 +1,208 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- MAIN CONTENT -->
+<div id="content" data-ng-app="MasterApp" data-ng-controller="InstallmentPlanController">
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+            <h1 class="page-title txt-color-blueDark">
+                <!-- PAGE HEADER -->
+                <i class="fa-fw fa fa-pencil-square-o"></i>
+                Plan Installment
+                <span>
+                    >
+                    Manage
+                </span>
+            </h1>
+        </div>
+        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+            <!-- Button trigger modal -->
+        </div>
+    </div>
+    <div id="MessageArea" class="alert alert-block {{MessageClass}}" style="display:none;">
+        <a class="close" data-dismiss="alert" href="#">×</a>
+        <h4 class="alert-heading"><i class="fa fa-check-square-o"></i> {{MessageTitle}}</h4>
+        <p>
+            {{Message}}
+        </p>
+    </div>
+    <!-- widget grid -->
+    <section id="widget-grid" class="" data-ng-init="InstallmentPlanInit()">
+
+        <!-- START ROW -->
+        <div class="row">
+            <!-- NEW COL START -->
+            <article class="col-sm-12 col-md-12 col-lg-6">
+                <!-- Widget ID (each widget will need unique ID)-->
+                <div class="jarviswidget" id="wid-id-1" data-widget-editbutton="false" data-widget-custombutton="false">
+                    <!-- widget options:
+                        usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+
+                        data-widget-colorbutton="false"
+                        data-widget-editbutton="false"
+                        data-widget-togglebutton="false"
+                        data-widget-deletebutton="false"
+                        data-widget-fullscreenbutton="false"
+                        data-widget-custombutton="false"
+                        data-widget-collapsed="true"
+                        data-widget-sortable="false"
+
+                    -->
+                    <header>
+                        <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+                        <h2>Add Installment</h2>
+                    </header>
+                    <!-- widget div-->
+                    <div>
+                        <!-- widget edit box -->
+                        <div class="jarviswidget-editbox">
+                            <!-- This area used as dropdown edit box -->
+                        </div>
+                        <!-- end widget edit box -->
+                        <!-- widget content -->
+                        <div class="widget-body">
+                            <form id="checkout-form" class="smart-form" novalidate="novalidate">
+                                <fieldset>
+                                    <div class="row">
+                                        <section class="col col-10">
+                                            <label>Select Plan Type</label>
+                                            <label class="select">
+                                                <select name="PlanID" id="PlanID" data-ng-change="ChangePlanInstallment()" data-ng-model="installment.PlanID">
+                                                    <option value="0" selected="" disabled="">Select Plan Type</option>
+                                                    <option data-ng-repeat="pl in PlanList" value="{{pl.PlanID}}">{{pl.PlanName}}</option>
+                                                </select> <i></i>
+                                            </label>
+                                        </section>
+                                    </div>
+                                    <div class="row">
+                                        <section class="col col-10">
+                                            <label>Serial No of Installment</label>
+                                            <label class="input">
+                                                <i class="icon-prepend fa fa-check-circle"></i>
+                                                <input type="number" min="0" max="99" name="InstallmentNo" id="InstallmentNo" data-ng-model="installment.InstallmentNo" placeholder="Installment Serial No">
+                                            </label>
+                                        </section>
+                                    </div>
+                                    <div class="row">
+                                        <section class="col col-10">
+                                            <label>Installment Name</label>
+                                            <label class="input">
+                                                <i class="icon-prepend fa fa-check-circle"></i>
+                                                <input type="text" name="Installment" id="Installment" data-ng-model="installment.Installment" placeholder="Installment Name">
+                                            </label>
+                                        </section>
+                                    </div>
+                                    <div class="row">
+                                        <section class="col col-10">
+                                            <label>Percentage of BSP Amount</label>
+                                            <label class="input">
+                                                <i class="icon-prepend fa fa-rupee"></i>
+                                                <input type="number" min="0" id="Amount" data-ng-model="installment.Amount" max="999999999999.99" name="Amount" placeholder=" % of BSP">
+                                            </label>
+                                        </section>
+                                    </div>
+                                    <div class="row">
+                                        <section class="col col-10">
+                                            <label>Interval do days between installment</label>
+                                            <label class="input">
+                                                <i class="icon-prepend fa fa-rupee"></i>
+                                                <input type="number" min="0" id="IntervalDays" data-ng-model="installment.IntervalDays" max="999999999999.99" name="IntervalDays" placeholder="Interval do days between installment">
+                                            </label>
+                                        </section>
+                                    </div>
+                                </fieldset>
+
+                                <footer>
+                                    <button type="submit" id="btnSave" data-ng-click="AddPlanInstallmentSave()" class="btn btn-primary">
+                                        Save
+                                    </button>
+                                    <button type="submit" id="btnEdit" data-ng-click="UpdatePlanInstallment()" class="btn btn-primary">
+                                        Update
+                                    </button>
+                                </footer>
+                            </form>
+                        </div>
+                        <!-- end widget content -->
+                    </div>
+                    <!-- end widget div -->
+                </div>
+                <!-- end widget -->
+
+            </article>
+            <!-- END COL -->
+            <!-- NEW COL START -->
+            <article class="col-sm-12 col-md-12 col-lg-6">
+                <!-- Widget ID (each widget will need unique ID)-->
+                <div class="jarviswidget" id="wid-id-4" data-widget-editbutton="false" data-widget-custombutton="false">
+                    <!-- widget options:
+                        usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+
+                        data-widget-colorbutton="false"
+                        data-widget-editbutton="false"
+                        data-widget-togglebutton="false"
+                        data-widget-deletebutton="false"
+                        data-widget-fullscreenbutton="false"
+                        data-widget-custombutton="false"
+                        data-widget-collapsed="true"
+                        data-widget-sortable="false"
+
+                    -->
+                    <header>
+                        <span class="widget-icon"> <i class="fa fa-dot-circle-o"></i> </span>
+                        <h2>Installment Plan </h2>
+                    </header>
+                    <!-- widget div-->
+                    <div>
+                        <!-- widget edit box -->
+                        <div class="jarviswidget-editbox">
+                            <!-- This area used as dropdown edit box -->
+                        </div>
+                        <!-- end widget edit box -->
+                        <!-- widget content -->
+                        <div class="widget-body">
+                            <fieldset class="smart-form">
+                                <table id="dt_basic" class="table table-striped table-bordered table-hover" width="100%">
+                                    <thead>
+                                        <tr>
+                                            <th data-hide="phone">SN. No</th>
+                                            <th data-class="expand"><i class="fa fa-fw fa-user text-muted hidden-md hidden-sm hidden-xs"></i>Installment</th>
+                                            <th>Days Interval</th>
+                                            <th data-hide="phone"><i class="fa fa-fw fa-rupee text-muted hidden-md hidden-sm hidden-xs"></i> % of BSP</th>
+                                            <th data-hide="phone,tablet"><i class="fa fa-fw fa-map-marker txt-color-blue hidden-md hidden-sm hidden-xs"></i> Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr data-ng-repeat="ad in InstallmentPlanList">
+                                            <td>{{ad.InstallmentNo}}</td>
+                                            <td>{{ad.Installment}}</td>
+                                            <td>{{ad.IntervalDays}}</td>
+                                            <td>{{ad.Amount}}</td>
+                                            <td>
+                                                <span><i class="fa fa-edit pointer" data-ng-click="EditPlanInstallment(ad.PlanInstallmentID)"></i> &nbsp;<i class="fa fa-trash-o pointer"></i></span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </fieldset>
+                        </div>
+                        <!-- end widget content -->
+                    </div>
+                    <!-- end widget div -->
+                </div>
+                <!-- end widget -->
+                <!-- end widget -->
+            </article>
+            <!-- END COL -->
+        </div>
+        <!-- END ROW -->
+    </section>
+    <!-- end widget grid -->
+
+</div>
+<!-- END MAIN CONTENT -->
+@section pagespecific {
+    <script src="~/AgController/InstallmentPlanJs.js"></script>
+}

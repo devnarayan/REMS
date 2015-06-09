@@ -1,0 +1,299 @@
+﻿
+@{
+    ViewBag.Title = "CancelPayments";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div  data-ng-app="ManageApp" role="main">
+    <!-- RIBBON -->
+    
+    <!-- END RIBBON -->
+    <div id="content" data-ng-controller="ManageController">
+
+        <div class="row">
+            <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+                <h1 class="page-title txt-color-blueDark"><i class="fa fa-building fa-fw "></i>Search Canceled Payments</h1>
+            </div>
+            <div class="col-xs-12 col-sm-5 col-md-5 col-lg-8">
+
+            </div>
+        </div>
+
+        <!-- widget grid -->
+        <section id="widget-grid" class="" data-ng-init="RefundInit()">
+            <input type="hidden" id="hidFlatID" name="hidFlatID" value="@ViewBag.ID" />
+            @*data-ng-init="CancelPaymentInit()"*@
+            <!-- row -->
+            <div class="row">
+
+                <!-- NEW WIDGET START -->
+                <article class="col-sm-12 col-md-12">
+
+                    <!-- Widget ID (each widget will need unique ID)-->
+                    <div class="jarviswidget" id="wid-id-2" data-widget-editbutton="false" data-widget-deletebutton="false">
+
+                        <header>
+                            <h2>Search Wizard </h2>
+
+                        </header>
+
+                        <!-- widget div-->
+                        <div>
+
+                            <!-- widget content -->
+                            <div class="widget-body fuelux">
+                                <div class="step-content">
+                                    <div class="form-horizontal" id="fuelux-wizard">
+                                        @*@using (Html.BeginForm("Search", "Home", new { area = "" }, FormMethod.Post)) {*@
+                                        <div class="form-content">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <b>Property:</b><br />
+                                                    <select name="TowerID" class="form-control" data-ng-change="TowerChange1()" data-ng-model="Flat.TowerID" id="searchby" required>
+                                                        <option data-ng-repeat="pro in TowerList" value="{{ pro.TowerID }}">{{pro.TowerName }}</option>
+                                                        <option value="All" selected="selected">All</option>
+                                                        <option value="Customer Name">Customer Name</option>
+                                                        <option value="CancelDate">Cancel Date</option>
+                                                        <option value="PaymentDate">Payment Date</option>
+                                                        <option value="This Month">This Month</option>
+                                                        <option value="Last 7 Days">Last 7 Days</option>
+                                                    </select>
+                                                    @*<select name="PropertyID" data-ng-change="PropertyName()" data-ng-model="newCust.PropertyID" id="PropertyID" class="form-control">
+                                                        <option value="All" selected="selected">All</option>
+                                                        <option data-ng-repeat="pro in Properties" value="{{ pro.PropertyID }}">{{ pro.PropertyName }}</option>
+                                                    </select>*@
+                                                </div>
+                                                <div class="col-md-4" id="searchflatname">
+                                                    <b>Search By:</b><br />
+                                                    <select name="FlatID" class="form-control" data-ng-model="Flat.FlatID" id="FlatID" required>
+                                                        <option data-ng-repeat="fl in FlatList" value="{{ fl.FlatID }}">{{ fl.FlatNo }}</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <br />
+                                                    <input type="submit" value="Search" data-ng-click="SearchCancelPayment()" class="btn btn-primary" />
+                                                </div>
+                                            </div>
+                                            <div class="row" id="datediv">
+                                                <div class="col-md-4">
+                                                    <b>Date From:</b>
+                                                    <input type="date" name="datefrom" id="datefrom" class="form-control" />
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <b>Date To:</b>
+                                                    <input type="date" name="dateto" id="dateto" class="form-control" />
+                                                </div>
+
+                                            </div>
+                                            <div class="row" id="alldiv">
+                                                <div class="col-md-8">
+                                                    <b>Enter Search Query</b><br />
+                                                    <input type="text" id="searchtext" name="searchtext" class="form-control" />
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <br />
+                                                </div>
+                                            </div>
+                                            <input type="hidden" name="hidsortby" id="hidsortby" />
+                                            <br />
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <div class="table-responsive">
+                                                        <table class="table table-bordered table-striped particular_tbl">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th data-ng-click="reverse=!reverse;orderSearchList('FlatName', reverse)" class="pointer">PropertyName <i class="fa fa-sort-down"></i> </th>
+                                                                    <th data-ng-click="reverse=!reverse;orderSearchList('Amount', reverse)" class="pointer">Amount <i class="fa fa-sort-down"></i> </th>
+                                                                    <th data-ng-click="reverse=!reverse;orderSearchList('CancelDateSt', reverse)" class="pointer">Cancel Date <i class="fa fa-sort-down"></i> </th>
+                                                                    <th data-ng-click="reverse=!reverse;orderSearchList('CustomerName', reverse)" class="pointer">Customer Name <i class="fa fa-sort-down"></i> </th>
+                                                                    <th data-ng-click="reverse=!reverse;orderSearchList('Remarks', reverse)" class="pointer">Remarks <i class="fa fa-sort-down"></i> </th>
+                                                                    <th data-ng-click="reverse=!reverse;orderSearchList('Status', reverse)" class="pointer">Status <i class="fa fa-sort-down"></i> </th>
+                                                                    <th>
+                                                                        <b>Action</b>
+                                                                    </th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr data-ng-repeat="sr in SearchList">
+                                                                    <td>{{sr.FlatName}}</td>
+                                                                    <td>{{sr.Amount}}</td>
+                                                                    <td> {{sr.CancelDateSt}}</td>
+                                                                    <td>{{sr.CustomerName}}</td>
+                                                                    <td>{{sr.Remarks}}</td>
+                                                                    <td>{{sr.Status}}</td>
+                                                                    <td>
+                                                                        <a target="_blank" href="/Sale/Manage/PaymentCancel/{{sr.TransactionID}}" title="Manage Payments" class="btn btn-xs btn-info btn-sm"><i class="fa fa-cog"></i> Manage</a>
+                                                                        @*<a target="_blank" href="/OtherPayment/PaymentCancel/{{sr.TransactionID}}" title="Manage Payments" class="btn btn-xs btn-info btn-sm"><i class="fa fa-cog"></i> Manage</a>*@
+                                                                    </td>
+                                                                </tr>
+                                                                <tr><td><b>Total</b></td><td><b>{{TotalSearchAmount}}</b></td><td></td><td></td><td></td><td></td><td></td></tr>
+                                                            </tbody>
+
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            @*<div class="row" data-ng-repeat="sr in SearchList">
+                                                <div class="col-md-1">{{sr.FlatName}}</div>
+                                                <div class="col-md-1">{{sr.TransactionID}}</div>
+                                                <div class="col-md-2">{{sr.Amount}}</div>
+                                                <div class="col-md-1"> {{sr.CancelDate}}</div>
+                                                <div class="col-md-2">{{sr.CustomerName}}</div>
+                                                <div class="col-md-2">{{sr.Remarks}}</div>
+                                                <div class="col-md-1">{{sr.Status}}</div>
+                                                <div class="col-md-2">
+                                                </div>
+                                            </div>*@
+                                        </div>
+
+                                        @*}*@
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end widget content -->
+                        </div>
+                        <!-- end widget div -->
+                    </div>
+                    <!-- end widget -->
+                </article>
+                <!-- WIDGET END -->
+            </div>
+            <!-- end row -->
+        </section>
+        <!-- end widget grid -->
+    </div>
+</div>
+    @section pagespecific {
+        <script src="~/AgController/ManagePayJs.js"></script>
+
+        <script>
+            $(document).ready(function () {
+                $("#datediv").hide();
+                $("#alldiv").hide();
+                $("#searchflatname").hide();
+                $scope.Flat.FlatID = 0;
+
+                if (localStorage.getItem("searchby") != null) {
+                    $("#searchby").val(localStorage.getItem("searchby"));
+                    $("#sortby").val(localStorage.getItem("sortby"));
+                    $("#datefrom").val(localStorage.getItem("datefrom"));
+                    $("#dateto").val(localStorage.getItem("dateto"));
+                    $("#searchtext").val(localStorage.getItem("stext"));
+
+
+                    var v = $("#sortby").val();
+                    var vv = $("#searchby").val();
+                    var df = $("#datefrom").val();
+                    var dt = $("#dateto").val();
+                    var stext = $("#searchtext").val();
+                    if (vv.toString() == "All" || vv.toString() == "This Month" || vv.toString() == "Last 7 Days") {
+                        $("#alldiv").hide();
+                        $("#datediv").hide(); $("#subtypediv").hide(); $("#searchflatname").hide();
+                    }
+                    else {
+                        if (vv.toString() == "CancelDate" || vv.toString() == "PaymentDate") {
+                            $("#datediv").show();
+                            $("#alldiv").hide(); $("#subtypediv").hide(); $("#searchflatname").hide();
+                        }
+                        else if (vv.toString() == "Customer Name") {
+                            $("#alldiv").show();
+                            $("#datediv").hide();
+                           $("#searchflatname").hide();
+                        }
+                        else {
+                            $("#alldiv").hide();
+                            $("#datediv").hide();
+                            $("#searchflatname").show();
+                        }
+                    }
+                }
+            })
+            $("#sortby").change(function () {
+                var v = $("#sortby").val();
+                var vv = $("#searchby").val();
+                var df = $("#datefrom").val();
+                var dt = $("#dateto").val();
+                var stext = $("#searchtext").val();
+                localStorage.setItem("searchby", vv);
+                localStorage.setItem("sortby", v);
+                localStorage.setItem("datefrom", df);
+                localStorage.setItem("dateto", dt);
+                localStorage.setItem("stext", stext);
+
+                $("#hidsortby").val(v);
+                if (vv.toString() == "All" || vv.toString() == "This Month" || vv.toString() == "Last 7 Days") {
+                    $("#alldiv").hide();
+                    $("#datediv").hide(); $("#subtypediv").hide(); $("#searchflatname").hide();
+                }
+                else {
+                    if (vv.toString() == "CancelDate" || vv.toString() == "PaymentDate") {
+                        $("#datediv").show();
+                        $("#alldiv").hide(); $("#subtypediv").hide(); $("#searchflatname").hide();
+                    }
+                    else if (vv.toString() == "Customer Name") {
+                      
+                        $("#alldiv").show();
+                        $("#datediv").hide();
+                       $("#searchflatname").hide();
+                    }
+                    else {
+                        $("#alldiv").hide();
+                        $("#datediv").hide();                     
+                        $("#searchflatname").show();
+                    }
+                }
+            })
+
+            $("#searchby").change(function () {
+                var v = $("#sortby").val();
+                var vv = $("#searchby").val();
+                var df = $("#datefrom").val();
+                var dt = $("#dateto").val();
+                var stext = $("#searchtext").val();
+                localStorage.setItem("searchby", vv);
+                localStorage.setItem("sortby", v);
+                localStorage.setItem("datefrom", df);
+                localStorage.setItem("dateto", dt);
+                localStorage.setItem("stext", stext);
+
+                $("#hidsortby").val(v);
+                if (vv.toString() == "All" || vv.toString() == "This Month" || vv.toString() == "Last 7 Days") {
+                    $("#alldiv").hide();
+
+                    $("#datefrom").val("");
+                    $("#dateto").val("");
+                    $("#datediv").hide(); $("#searchflatname").hide();
+                }
+                else {
+                    if (vv.toString() == "CancelDate" || vv.toString() == "PaymentDate") {
+                        $("#datediv").show();
+                        $("#alldiv").hide(); $("#searchflatname").hide();
+                    }
+                    else if (vv.toString() == "Customer Name") {
+                      
+                        $("#alldiv").show();
+                        $("#datediv").hide();
+                        $("#searchflatname").hide();
+                    }
+                    else {
+                        $("#alldiv").hide();
+                        $("#datediv").hide();
+                       
+                        $("#searchflatname").show();
+                    }
+                }
+            })
+            $("#datefrom").blur(function () {
+                var df = $("#datefrom").val();
+                localStorage.setItem("datefrom", df);
+            })
+            $("#dateto").blur(function () {
+                var df = $("#dateto").val();
+                localStorage.setItem("dateto", df);
+            })
+            $("#searchtext").blur(function () {
+                var df = $("#searchtext").val();
+                localStorage.setItem("stext", df);
+            })
+        </script>
+    }
+

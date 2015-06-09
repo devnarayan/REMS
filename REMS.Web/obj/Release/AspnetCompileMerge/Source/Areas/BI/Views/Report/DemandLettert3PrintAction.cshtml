@@ -1,0 +1,82 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Demand Letter 3</title>
+
+    <script src="~/Scripts/moment.min.js"></script>
+    <script src="~/Scripts/moment-with-locales.min.js"></script>
+    <script src="~/Scripts/angular.js"></script>
+    <link rel="stylesheet" type="text/css" media="screen" href="~/Content/css/style.css">
+    <script src="~/Scripts/ngController/Reportjs.js"></script>
+    @* <script src="~/Scripts/ngController/ManagePayjs.js"></script>*@
+</head>
+<body data-ng-app="BIApp" lang="EN-US">
+    <div id="ReceiptPritable" data-ng-controller="ReportController">
+        <div id="loading">
+            <img id="loading-image" src="~/images/loading.gif" alt="Loading..." />
+        </div>
+        <div data-ng-init="DemandLettertPrintReport3()">
+            <input type="hidden" id="hidID" name="hidID" value="@ViewBag.ID" />
+            <div data-ng-repeat="pr in PrintReceiptList">
+                <div>
+                    <p style="font-size: 15px">
+                        <p>
+                        @*<p style="text-align: center">DEMAND LETTER </p>*@
+                        To,<span style="float: right">Date: {{pr.SaleDateSt}}</span>
+                        <br />
+                        <br />
+                        <br />
+                        MR. {{pr.FName}}
+                        <br />
+                        <br />
+                        Dear Sir/Madam,
+                        <br />
+                        <br />
+                        <br />
+
+                    <span style="margin-left: 50px">
+                        Re:  FINAL DEMAND LETTER IN RESEPCT OF Property as Booked by you in the Project Called CITY HEART.
+                    </span>
+                    <br />
+                    <br />
+                    <br />
+
+                    This is in continuation of our First Demand letter dated {{pr.FtRDateSt}} and 2nd Demand Letter dated {{pr.StRDateSt}} and letter of allotment dated, whereby you had booked COMMERCIAL CUM OFFICE SPACE in our project called CITY HEART
+                    <br />
+                    <br />
+                    <br />
+                    As already intimated to you that as per the schedule of payment duly agreed by you, you were required to remit the installment, but till date the same remains unpaid despite our repeated request letters. Further, we are now constrained to refer to various oral discussions as well for the same, but unfortunately you are not taking them seriously at all.
+                    <br />
+                    Though as per the application itself and apartment buyer agreement, your allotment could have been got cancelled by the company long back but as a matter of goodwill gesture, we are finally affording you one final opportunity to make the entire outstanding payment as noted hereunder and in case the said total amount of Rs.{{pr.DueAmount}} is not received on or before   DATE {{pr.DueDateST}}, the allotment of your COMMERCIAL CUM OFFICE SPACE shall automatically stand cancelled as per the terms of the agreement to sell and the company shall be free to allot the COMMERCIAL SPACE to someone else.
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    Thanking you and assuring you of our cooperation at all times.
+                    Yours Faithfully,
+                    <br />
+                    <br />
+                    For SKYCITY BUILDERS AND PROMOTERS PVT.LTD
+                    <br />
+                    <br />
+
+                    Auth. Signatory
+                    </p>
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script src="~/Content/js/jquery-1.7.2.min.js"></script>
+    <script src="~/Content/js/jquery-ui-1.8.19.custom.min.js"></script>
+    <link href="~/Content/css/jquery-ui-1.8.19.custom.css" rel="stylesheet" />
+</body>
+</html>
+

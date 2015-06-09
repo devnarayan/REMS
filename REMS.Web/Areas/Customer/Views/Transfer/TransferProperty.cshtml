@@ -1,0 +1,334 @@
+﻿
+@{
+    ViewBag.Title = "TransferProperty";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="content" data-ng-app="TransferApp" data-ng-controller="TransferPropertyController">
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+            <h1 class="page-title txt-color-blueDark">
+                <!-- PAGE HEADER -->
+                <i class="fa-fw fa fa-flag"></i>
+                Transfer Poeperty
+                <span>
+                    >
+                    SALE
+                </span>
+            </h1>
+        </div>
+        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+            <!-- Button trigger modal -->
+        </div>
+    </div>
+    <div id="MessageArea" class="alert alert-block alert-{{MessageClass}}" style="display:none;">
+        <a class="close" data-dismiss="alert" href="#">×</a>
+        <h4 class="alert-heading"><i class="fa fa-check-square-o"></i><b id="MessageTitle"></b> {{MessageTitle}}</h4>
+        <p id="Message">
+            {{Message}}
+        </p>
+    </div>
+    <!-- widget grid -->
+    <section id="widget-grid" class="" data-ng-init="TransferProeprtyInit()">
+        <input type="hidden" id="hidFlatID" value="@ViewBag.FlatID" />
+        <!-- START ROW -->
+        <div class="row" id="Newsaletower" style="display:none;">
+            <article class="col-sm-12 col-md-12 col-lg-12">
+                <div class="jarviswidget" id="wid-id-1" data-widget-editbutton="false" data-widget-custombutton="false">
+                    <header>
+                        <span class="widget-icon"><i class="fa fa-user"></i></span>
+                        <h2>Property</h2>
+                    </header>
+                    <div>
+                        <!-- widget edit box -->
+                        <div class="jarviswidget-editbox">
+                            <!-- This area used as dropdown edit box -->
+                        </div>
+                        <!-- end widget edit box -->
+                        <div class="widget-body">
+                            <div class="step-content">
+                                <div class="form-horizontal" id="fuelux-wizard">
+                                    <div class="form-content">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <b>Property:</b><br />
+                                                <select name="TowerID" class="form-control" data-ng-change="TowerChange()" data-ng-model="Flat.TowerID" id="searchby" required>
+                                                    <option data-ng-repeat="pro in TowerList" value="{{ pro.TowerID }}">{{pro.TowerName }}</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-4" id="searchflatname">
+                                                <b>Search By:</b><br />
+                                                <select name="FlatID" class="form-control" data-ng-model="Flat.FlatID" id="FlatID" required>
+                                                    <option data-ng-repeat="fl in FlatList" value="{{ fl.FlatID }}">{{ fl.FlatNo }}</option>
+                                                </select>
+
+                                            </div>
+                                            <div class="col-md-4">
+                                                <br />
+                                                <input type="submit" value="Search" data-ng-click="SearchsaleTransferProperty()" class="btn btn-primary" id="Srch1" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+        <div class="row">
+            <!-- NEW COL START -->
+            <article class="col-sm-12 col-md-12 col-lg-12">
+                <!-- Widget ID (each widget will need unique ID)-->
+                <div class="jarviswidget" id="wid-id-1" data-widget-editbutton="false" data-widget-custombutton="false">
+                    <!-- widget options:
+                        usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+
+                        data-widget-colorbutton="false"
+                        data-widget-editbutton="false"
+                        data-widget-togglebutton="false"
+                        data-widget-deletebutton="false"
+                        data-widget-fullscreenbutton="false"
+                        data-widget-custombutton="false"
+                        data-widget-collapsed="true"
+                        data-widget-sortable="false"
+
+                    -->
+                    <header>
+                        <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+                        <h2>Property Details</h2>                       
+                    </header>
+                    <!-- widget div-->
+                    <div>
+                        <!-- widget edit box -->
+                        <div class="jarviswidget-editbox">
+                            <!-- This area used as dropdown edit box -->
+                        </div>
+                        <!-- end widget edit box -->
+                        <!-- widget content -->
+                        <div class="widget-body">
+                            <form id="checkout-form" class="smart-form" novalidate="novalidate">
+                                <div class="row">
+                                    <div class="col col-4">
+                                        <div class="row">
+                                            <div class="col col-6">
+                                                Tower:
+                                            </div>
+                                            <div class="col col-6">
+                                                {{FlatDetails.TowerNo}}
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col col-6">
+                                                Floor:
+                                            </div>
+                                            <div class="col col-6">
+                                                {{FlatDetails.FloorNo}}
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col col-6">
+                                                Flat/Property No:
+                                            </div>
+                                            <div class="col col-6">
+                                                {{FlatDetails.FlatNo}}
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col col-6">
+                                                Flat Type:
+                                            </div>
+                                            <div class="col col-6">
+                                                {{FlatDetails.FlatType}}
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col col-6">
+                                                Size:
+                                            </div>
+                                            <div class="col col-6" id="FlatSize">{{FlatDetails.FlatSize}}</div>
+                                        </div>
+                                        <div class="divider"><hr /></div>
+                                        <div class="row">
+                                            <div class="col col-6">
+                                                Sale Price:
+                                            </div>
+                                            <div class="col col-6">
+                                                {{FlatDetails.SalePrice}}
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col col-6">
+                                                 Total Amount:
+                                            </div>
+                                            <div class="col col-6">
+                                                <b id="InstallmentTotal">{{GTotal}} </b>
+                                                <input type="hidden" value="{{GTotal}}" id="GAmount" ></div>
+                                        </div>
+                                    </div>                                    
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                    <!-- end widget div -->
+                </div>
+                <!-- end widget -->
+            </article>
+            <!-- END COL -->
+        </div>
+        <div class="row">
+            <article class="col-sm-12 col-md-12 col-lg-12">
+                <!-- Widget ID (each widget will need unique ID)-->
+                <div class="jarviswidget" id="wid-id-3" data-widget-editbutton="false" data-widget-custombutton="false">
+                    <header>
+                        <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+                        <h2>Transefer Property</h2>
+                    </header>
+                    <!-- widget div-->
+                    <div>
+                        <!-- widget edit box -->
+                        <div class="jarviswidget-editbox">
+                            <!-- This area used as dropdown edit box -->
+                        </div>
+                        <!-- end widget edit box -->
+                        <!-- widget content -->
+                        <div class="widget-body">
+                            <form id="checkout-form" class="smart-form" novalidate="novalidate">
+                                <fieldset>
+                                    <div class="row">
+                                        <section class="col-md-12">
+                                            <div class="col col-12">
+                                                <div class="row">
+                                                    <div class="col col-6">
+                                                        Old Customer Name:
+                                                    </div>
+                                                    <div class="col col-6">
+                                                        <input type="text" id="OldCustFname" name="OldCustFname" value="{{Cust.Sale[0].CustomerName}}" class="form-control" />
+                                                        <input type="hidden" id="custId" name="custId" value="{{Cust.Sale[0].SaleID}}" class="form-control" />
+                                                        <input type="hidden" id="custmerid" name="custmerid" value="{{Cust.Sale[0].CustomerID}}" class="form-control" />
+                                                    </div>
+                                                    <div class="col col-6">
+                                                        New Customer FirstName:
+                                                    </div>
+                                                    <div class="col col-6">
+                                                        <input type="text" id="NewCustFname" name="NewCustFname" class="form-control" />
+
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col col-6">
+                                                        Middle Name:
+                                                    </div>
+                                                    <div class="col col-6">
+                                                        <input type="text" id="NewCustMname" name="NewCustMname" class="form-control" />
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col col-6">
+                                                        Last Name:
+                                                    </div>
+                                                    <div class="col col-6">
+                                                        <input type="text" id="NewCustLname" name="NewCustLname" class="form-control" />
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col col-6">
+                                                        Transfer Date:
+                                                    </div>
+                                                    <div class="col col-6">
+                                                        <label class="input">
+                                                            <i class="icon-append fa fa-calendar"></i>
+                                                            <input type="text" name="txtTDate" id="txtTDate" placeholder="Transfer Date" class="datepicker" data-dateformat='dd/mm/yy'>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col col-6">
+                                                      Transfer Amount
+                                                    </div>
+                                                    <div class="col col-6">
+                                                        <label class="input">
+                                                            <input type="text" name="txtTAmount" id="txtTAmount" planceholder="Transfer Amount" />
+                                                            
+                                                        </label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col col-6">
+
+                                                    </div>
+                                                    <div class="col col-6"><br />
+                                                        <button type="submit" data-ng-click="SaveTransfer()" class="btn btn-success btn-sm pull-right ">
+                                                            Transfer
+                                                        </button>
+                                                        @*<a data-toggle="modal" href="#myModal" id="btnSaveSale" class="btn btn-success btn-sm pull-right"><i class="fa fa-plus-circle"></i> Transfer</a> &nbsp;&nbsp;*@
+                                                    </div>
+                                                </div>
+                                                <div class="divider"><hr /></div>
+
+                                            </div>
+
+                                        </section>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                        <!-- end widget content -->
+                    </div>
+                    <!-- end widget div -->
+                </div>
+                <!-- end widget -->
+                <!-- end widget -->
+            </article>
+            <!-- END COL -->
+            <!-- END COL -->
+        </div>        
+        <!-- END ROW -->
+    </section>
+    <!-- end widget grid -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title">
+                        <img src="/content/img/logo.png" width="150" alt="SmartAdmin">
+                    </h4>
+                </div>
+                <div class="modal-body no-padding">
+                    <form id="login-form" class="smart-form">
+                        <fieldset>
+                            <section>
+                                <div class="row">
+                                    <div class="col col-2"></div>
+                                    <div class="col col-10">
+                                        <label class="label-danger">
+                                            Confirm Submit Flat Sale/Booking
+                                        </label>
+                                    </div>
+                                </div>
+                            </section>
+                        </fieldset>
+                        <footer>
+                            <button type="submit" data-ng-click="SaveSale()" class="btn btn-primary">
+                                Submit
+                            </button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">
+                                Cancel
+                            </button>
+                        </footer>
+                    </form>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
+</div>
+
+@section pagespecific {
+    <script src="~/AgController/Transferpropertyjs.js"></script>
+}

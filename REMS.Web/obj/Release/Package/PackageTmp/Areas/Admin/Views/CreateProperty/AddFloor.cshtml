@@ -1,0 +1,242 @@
+﻿@{
+    ViewBag.Title = "AddCharges";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- MAIN CONTENT -->
+<div id="content" data-ng-app="PropertyApp" data-ng-controller="PropertyController">
+   
+    <div class="row">
+        <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+            <h1 class="page-title txt-color-blueDark">
+                <!-- PAGE HEADER -->
+                <i class="fa-fw fa fa-flag"></i>
+                Floor
+                <span>
+                    >
+                    Manage
+                </span>
+            </h1>
+        </div>
+        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+            <!-- Button trigger modal -->
+        </div>
+    </div>
+    <div id="MessageArea" class="alert alert-block alert-{{MessageClass}}" style="display:none;">
+        <a class="close" data-dismiss="alert" href="#">×</a>
+        <h4 class="alert-heading"><i class="fa fa-check-square-o"></i> {{MessageTitle}}</h4>
+        <p>
+            {{Message}}
+        </p>
+    </div>
+    <!-- widget grid -->
+    <section id="widget-grid" class="" data-ng-init="AddFloorInit()">
+
+        <!-- START ROW -->
+        <div class="row">
+            <!-- NEW COL START -->
+            <article class="col-sm-12 col-md-12 col-lg-6">
+                <!-- Widget ID (each widget will need unique ID)-->
+                <div class="jarviswidget" id="wid-id-1" data-widget-editbutton="false" data-widget-custombutton="false">
+                    <!-- widget options:
+                        usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+
+                        data-widget-colorbutton="false"
+                        data-widget-editbutton="false"
+                        data-widget-togglebutton="false"
+                        data-widget-deletebutton="false"
+                        data-widget-fullscreenbutton="false"
+                        data-widget-custombutton="false"
+                        data-widget-collapsed="true"
+                        data-widget-sortable="false"
+
+                    -->
+                    <header>
+                        <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+                        <h2>Manage Floor</h2>
+                    </header>
+                    <!-- widget div-->
+                    <div>
+                        <!-- widget edit box -->
+                        <div class="jarviswidget-editbox">
+                            <!-- This area used as dropdown edit box -->
+                        </div>
+                        <!-- end widget edit box -->
+                        <!-- widget content -->
+                        <div class="widget-body no-padding">
+                            <form id="checkout-form" class="smart-form" novalidate="novalidate">
+                                <header>
+                                    <div class="row">
+                                        <section class="col col-6">
+                                            <label class="select">
+                                                <select name="TowerID" data-ng-model="floor.TowerID" id="TowerID">
+                                                    <option value="0" selected="" disabled="">Select Tower</option>
+                                                    <option data-ng-repeat="tw in TowerList" value="{{tw.TowerID}}">{{tw.TowerName}}</option>"
+                                                </select>
+                                            </label>
+                                        </section>
+                                        <section class="col col-6">
+                                            <p class="btn btn-primary btn-lg" data-ng-click="ViewAllFloorsClick()"><i class="fa fa-search"></i> View</p>
+                                        </section>
+                                    </div>
+                                </header>
+                                <fieldset>
+                                    <div class="row">
+                                        <section class="col col-10">
+                                            <label class="input">
+                                                <i class="icon-prepend fa fa-check-circle"></i>
+                                                <input type="text" name="FloorName" data-ng-model="floor.FloorName" placeholder="Floor Name">
+                                            </label>
+                                        </section>
+
+                                    </div>
+                                    <div class="row">
+                                        <section class="col col-10">
+                                            <label class="input">
+                                                <i class="icon-prepend fa fa-check-circle"></i>
+                                                <input type="text" data-ng-keydown="CheckFloorNo()" name="FloorNo" data-ng-model="floor.FloorNo" placeholder="Floor Number">
+                                            </label>
+                                        </section>
+                                    </div>
+                                </fieldset>
+                                <footer>
+                                    <button type="button" id="btnCancel" data-ng-click="CancelFloorSave()" class="btn btn-default">
+                                        Cancel
+                                    </button>
+                                    <button type="button" id="btnUpdate" data-ng-click="UpdateFloorSave()" class="btn btn-primary">
+                                        Update
+                                    </button>
+                                    <button type="submit" data-ng-click="AddFloorSave()" id="btnSave" class="btn btn-primary">
+                                        Save
+                                    </button>
+                                </footer>
+                            </form>
+                        </div>
+                        <!-- end widget content -->
+                    </div>
+                    <!-- end widget div -->
+                </div>
+                <!-- end widget -->
+
+            </article>
+            <!-- END COL -->
+            <!-- NEW COL START -->
+            <article class="col-sm-12 col-md-12 col-lg-6">
+                <!-- Widget ID (each widget will need unique ID)-->
+                <div class="jarviswidget" id="wid-id-4" data-widget-editbutton="false" data-widget-custombutton="false">
+                    <!-- widget options:
+                        usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+                        data-widget-colorbutton="false"
+                        data-widget-editbutton="false"
+                        data-widget-togglebutton="false"
+                        data-widget-deletebutton="false"
+                        data-widget-fullscreenbutton="false"
+                        data-widget-custombutton="false"
+                        data-widget-collapsed="true"
+                        data-widget-sortable="false"
+                    -->
+                    <header>
+                        <span class="widget-icon"> <i class="fa fa-flag-o"></i> </span>
+                        <h2>Floor List </h2>
+                    </header>
+                    <!-- widget div-->
+                    <div>
+                        <!-- widget edit box -->
+                        <div class="jarviswidget-editbox">
+                            <!-- This area used as dropdown edit box -->
+                        </div>
+                        <!-- end widget edit box -->
+                        <!-- widget content -->
+                        <div class="widget-body">
+                            <fieldset class="smart-form">
+                                <table id="dt_basic" class="table table-striped table-bordered table-hover" width="100%">
+                                    <thead>
+                                        <tr>
+                                            <th data-hide="phone">ID</th>
+                                            <th data-class="expand"><i class="fa fa-fw fa-user text-muted hidden-md hidden-sm hidden-xs"></i> Tower</th>
+                                            <th data-hide="phone"><i class="fa fa-fw fa-rupee text-muted hidden-md hidden-sm hidden-xs"></i> Floor</th>
+                                            <th>No of Flats</th>
+                                            <th data-hide="phone,tablet"><i class="fa fa-fw fa-map-marker txt-color-blue hidden-md hidden-sm hidden-xs"></i> Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr data-ng-repeat="fl in FloorList">
+                                            <td>{{fl.FloorID}}</td>
+                                            <td>{{fl.TowerName}}</td>
+                                            <td>{{fl.FloorNo}}</td>
+                                            <td>{{fl.NoOfFlat}}</td>
+                                            <td><i class="fa fa-edit" data-ng-click="EditFloorClick(fl.FloorID)"></i> &nbsp;&nbsp;<i class="fa fa-trash-o" data-ng-click="EditFloorClick(fl.FloorID)" data-toggle="modal" href="#myModal"></i></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </fieldset>
+                        </div>
+                        <!-- end widget content -->
+                    </div>
+                    <!-- end widget div -->
+                </div>
+                <!-- end widget -->
+                <!-- end widget -->
+            </article>
+            <!-- END COL -->
+        </div>
+        <!-- END ROW -->
+    </section>
+    <!-- end widget grid -->
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title">
+                        <img src="/content/img/logo.png" width="150" alt="SmartAdmin">
+                    </h4>
+                </div>
+                <div class="modal-body no-padding">
+                    <form id="login-form" class="smart-form">
+                        <fieldset>
+                            <section>
+                                <div class="row">
+                                    <div class="col col-2"></div>
+                                    <div class="col col-10">
+                                        <label class="label-danger">
+                                           Are you sure want to delete floor ?
+                                        </label>
+                                    </div>
+                                </div>
+                            </section>
+                        </fieldset>
+                        <footer>
+                            <button type="submit" data-ng-click="DeleteFloor()" class="btn btn-primary">
+                                Delete
+                            </button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">
+                                Cancel
+                            </button>
+                        </footer>
+                    </form>
+
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+</div>
+<!-- END MAIN CONTENT -->
+@section pagespecific {
+    <script src="~/AgController/Propertyjs.js"></script>
+    <script type="text/javascript">
+
+        // DO NOT REMOVE : GLOBAL FUNCTIONS!
+
+
+    </script>
+}
+
+
+
+
+

@@ -1,0 +1,976 @@
+﻿@{
+    ViewBag.Title = "EditCustomer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="content" data-ng-app="CustomerApp" data-ng-controller="customerController">
+    <div class="row">
+        <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+            <h1 class="page-title txt-color-blueDark">
+                <!-- PAGE HEADER -->
+                <i class="fa-fw fa fa-flag"></i>
+                Edit Customer
+                <span>
+                    >
+                    Manage
+                </span>
+            </h1>
+        </div>
+        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+            <!-- Button trigger modal -->
+        </div>
+    </div>
+    <div id="MessageArea" class="alert alert-block alert-{{MessageClass}}" style="display:none;">
+        <a class="close" data-dismiss="alert" href="#">×</a>
+        <h4 class="alert-heading"><i class="fa fa-check-square-o"></i> {{MessageTitle}}</h4>
+        <p>
+            {{Message}}
+        </p>
+    </div>
+    <section id="widget-grid" class="" data-ng-init="showCustomer()">
+        <input type="hidden" id="hidFlatID" value="@ViewBag.FlatID" />
+        <!-- START ROW -->
+        <div class="row">
+            <!-- NEW COL START -->
+            <article class="col-sm-12 col-md-12 col-lg-12">
+                <!-- Widget ID (each widget will need unique ID)-->
+                <div class="jarviswidget" id="wid-id-1" data-widget-editbutton="false" data-widget-custombutton="false">
+                    <!-- widget options:
+                        usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+                        data-widget-colorbutton="false"
+                        data-widget-editbutton="false"
+                        data-widget-togglebutton="false"
+                        data-widget-deletebutton="false"
+                        data-widget-fullscreenbutton="false"
+                        data-widget-custombutton="false"
+                        data-widget-collapsed="true"
+                        data-widget-sortable="false"
+                    -->
+                    <header>
+                        <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+                        <h2>Property Details</h2>
+                        <input type="hidden" id="hidSaled" name="hidSaled" value="@ViewBag.ID" />
+                        <input type="text" name="CustomerID" id="CustomerID" data-ng-model="custDetail.CustomerID" class="form-control hidden" />
+                    </header>
+                    <!-- widget div-->
+                    <div>
+                        <!-- widget edit box -->
+                        <div class="jarviswidget-editbox">
+                            <!-- This area used as dropdown edit box -->
+                        </div>
+                        <!-- end widget edit box -->
+                        <div class="step-content">
+                            <div class="form-horizontal" id="fuelux-wizard" method="post">
+                                <div class="step-pane active" id="step1">
+                                    <!-- step1 -->
+                                    <div id="bootstrap-wizard-1" class="col-sm-12 top_padding">
+                                        <div class="form-bootstrapWizard">
+                                            <ul class="bootstrapWizard form-wizard bot_margin">
+                                                @*<li class="active" data-target="#step1">
+                                                    <a href="#tab1" data-toggle="tab"><span class="step">1</span> <span class="title">Flat Details</span> </a>
+                                                               </li>*@
+                                                <li data-target="#step2" class="active">
+                                                    <a href="#tab2" data-toggle="tab"><span class="step">1</span> <span class="title">Applicant Details</span> </a>
+                                                </li>
+                                                <li data-target="#step3">
+                                                    <a href="#tab3" data-toggle="tab"><span class="step">2</span> <span class="title">Co-Applicant Details</span> </a>
+                                                </li>
+                                                <li data-target="#step4">
+                                                    <a href="#tab4" data-toggle="tab"><span class="step">3</span> <span class="title">Loan Details</span> </a>
+                                                </li>
+                                            </ul>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="tab-content">
+                                            <!-- tab -->
+                                            <div class="tab-pane active" id="tab2">
+                                                <!-- 2 -->
+                                                <div class="jarviswidget" id="wid-id-16" data-widget-editbutton="false" data-widget-custombutton="false">
+                                                    <header>
+                                                        <span class="widget-icon"><i class="fa fa-edit"></i></span>
+                                                        <h2>Applicant Detail</h2>
+                                                    </header>
+                                                    <!-- widget div-->
+                                                    <div>
+                                                        <!-- widget edit box -->
+                                                        <div class="jarviswidget-editbox">
+                                                            <!-- This area used as dropdown edit box -->
+                                                        </div>
+                                                        <!-- end widget edit box -->
+                                                        <!-- widget content -->
+                                                        <div class="widget-body no-padding">
+                                                            <div class="row">
+                                                                <div class="col-sm-6">
+                                                                    <form action="" method="post" id="comment-form" class="smart-form">
+                                                                        <fieldset>
+                                                                            <div class="row">
+                                                                                <div class=" col col-sm-12">
+                                                                                    <label class="label">First Name</label>
+                                                                                </div>
+                                                                                <section class="col col-sm-4">
+                                                                                    <label class="select">
+                                                                                        <select name="budget" data-ng-model="custDetail.AppTitle">
+                                                                                            <option value="Select" selected="" disabled="">Select</option>
+                                                                                            <option value="Mr.">Mr.</option>
+                                                                                            <option value="Mrs.">Mrs.</option>
+                                                                                            <option value="Miss">Miss</option>
+                                                                                        </select>
+                                                                                    </label>
+                                                                                </section>
+                                                                                <section class="col col-sm-8">
+                                                                                    <label class="input">
+                                                                                        <input type="text" name="FName" id="FName" data-ng-model="custDetail.FName" class="form-control" />
+                                                                                    </label>
+                                                                                </section>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <section class="col col-sm-12">
+                                                                                    <label class="label">Middle Name</label>
+                                                                                    <label class="input">
+                                                                                        <input type="text" name="MName" id="MName" data-ng-model="custDetail.MName" class="form-control" />
+                                                                                    </label>
+                                                                                </section>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <section class="col col-sm-12">
+                                                                                    <label class="label">Last Name</label>
+                                                                                    <label class="input">
+                                                                                        <input type="text" name="LName" id="LName" data-ng-model="custDetail.LName" class="form-control" />
+                                                                                    </label>
+                                                                                </section>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class=" col col-sm-12">
+                                                                                    <label class="label">S/O,W/O,D/O</label>
+                                                                                </div>
+                                                                                <section class="col col-sm-4">
+                                                                                    <label class="select">
+                                                                                        <select name="budget" data-ng-model="custDetail.Title">
+                                                                                            <option value="0" selected="" disabled="">Select</option>
+                                                                                            <option value="W/O">W/O</option>
+                                                                                            <option value="D/O">D/O</option>
+                                                                                            <option value="/O">S/O</option>
+                                                                                        </select>
+                                                                                        <i></i>
+                                                                                    </label>
+
+                                                                                </section>
+                                                                                <section class="col col-sm-8">
+                                                                                    <label class="input">
+
+                                                                                        <input type="text" name="PName" id="PName" data-ng-model="custDetail.PName" class="form-control" />
+                                                                                    </label>
+                                                                                </section>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <section class="col col-sm-12">
+                                                                                    <label class="label">Mobile No</label>
+                                                                                    <label class="input">
+                                                                                        <input type="text" name="MobileNo" id="MobileNo" data-ng-model="custDetail.MobileNo" class="form-control" />
+                                                                                    </label>
+                                                                                </section>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <section class="col col-sm-12">
+                                                                                    <label class="label">Pan No</label>
+                                                                                    <label class="input">
+                                                                                        <input type="text" name="PAN" id="PAN" data-ng-model="custDetail.PAN" class="form-control" />
+                                                                                    </label>
+                                                                                </section>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <section class="col col-sm-12">
+                                                                                    <label class="label">Alternate Mobile No</label>
+                                                                                    <label class="input">
+
+                                                                                        <input type="text" name="AlternateMobile" id="AlternateMobile" data-ng-model="custDetail.AlternateMobile" class="form-control" />
+                                                                                    </label>
+                                                                                </section>
+                                                                            </div>
+
+                                                                        </fieldset>
+
+
+
+                                                                        <div class="message">
+                                                                            <i class="fa fa-check fa-lg"></i>
+                                                                            <p>
+                                                                                Your comment was successfully added!
+                                                                            </p>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                                <div class="col-sm-6">
+                                                                    <form action="" method="post" id="comment-form" class="smart-form">
+                                                                        <fieldset>
+                                                                            <div class="row">
+                                                                                <section class="col col-sm-12">
+                                                                                    <label class="label">Address 1</label>
+                                                                                    <label class="input">
+                                                                                        <input type="text" name="Address1" id="Address1" data-ng-model="custDetail.Address1" class="form-control" />
+                                                                                    </label>
+                                                                                </section>
+                                                                                <section class="col col-sm-12">
+                                                                                    <label class="label">Address 2</label>
+                                                                                    <label class="input">
+                                                                                        <input type="text" name="Address2" id="Address2" data-ng-model="custDetail.Address2" class="form-control" />
+                                                                                    </label>
+                                                                                </section>
+                                                                                <section class="col col-sm-12">
+                                                                                    <label class="label">City</label>
+                                                                                    <label class="input">
+                                                                                        <input type="text" name="City" id="City" data-ng-model="custDetail.City" class="form-control" />
+                                                                                    </label>
+                                                                                </section>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class="col-sm-12 col">
+                                                                                    <label class="label">State</label>
+                                                                                </div>
+                                                                                <section class="col col-sm-12">
+                                                                                    <label class="select">
+                                                                                        <select data-ng-model="custDetail.State" name="budget">
+                                                                                            <option value="0" selected="" disabled="">Select</option>
+                                                                                            <option value="1">Punjab</option>
+                                                                                            <option value="2">Himachal Pradesh</option>
+                                                                                            <option value="3">Delhi</option>
+                                                                                            <option value="4">Uttar Pradesh</option>
+                                                                                            <option value="5">Haryana</option>
+                                                                                        </select>
+                                                                                        <i></i>
+                                                                                    </label>
+                                                                                </section>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class="col-sm-12 col">
+                                                                                    <label class="label">Country</label>
+                                                                                </div>
+                                                                                <section class="col col-sm-12">
+                                                                                    <label class="select">
+                                                                                        <select name="budget" data-ng-model="custDetail.Country">
+                                                                                            <option value="0" selected="" disabled="">Select</option>
+                                                                                            <option value="1">India</option>
+                                                                                        </select>
+
+                                                                                    </label>
+                                                                                </section>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <section class="col col-sm-12">
+                                                                                    <label class="label">Pin Code</label>
+                                                                                    <label class="input">
+                                                                                        <input type="text" name="PinCode" id="PinCode" data-ng-model="custDetail.PinCode" class="form-control" />
+                                                                                    </label>
+                                                                                </section>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class="col-sm-4 col">
+                                                                                    <label class="label">Date Of Birth</label>
+                                                                                    <label class="input">
+                                                                                        <input type="text" name="DateOfBirth" id="DateOfBirth" data-ng-model="custDetail.DateOfBirthst" class="datecal" />
+                                                                                    </label>
+                                                                                </div>
+                                                                            </div>
+                                                                        </fieldset>
+                                                                        <div class="message">
+                                                                            <i class="fa fa-check fa-lg"></i>
+                                                                            <p>
+                                                                                Your comment was successfully added!
+                                                                            </p>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- end widget content -->
+                                                    </div>
+                                                    <!-- end widget div -->
+                                                </div>
+
+                                                <div class="jarviswidget" id="wid-id-17" data-widget-editbutton="false" data-widget-custombutton="false">
+
+                                                    <header>
+                                                        <span class="widget-icon"><i class="fa fa-edit"></i></span>
+                                                        <h2>Other Details</h2>
+                                                    </header>
+
+                                                    <!-- widget div-->
+                                                    <div>
+
+                                                        <!-- widget edit box -->
+                                                        <div class="jarviswidget-editbox">
+                                                            <!-- This area used as dropdown edit box -->
+
+                                                        </div>
+                                                        <!-- end widget edit box -->
+                                                        <!-- widget content -->
+                                                        <div class="widget-body no-padding">
+
+                                                            <div class="row">
+                                                                <div class="col-sm-6">
+                                                                    <form action="" method="post" id="comment-form" class="smart-form">
+
+
+                                                                        <fieldset>
+                                                                            <div class="row">
+                                                                                <section class="col col-sm-12">
+                                                                                    <label class="label">Land Line No</label>
+                                                                                    <label class="input col-sm-4">
+                                                                                        <input type="text" name="LandLine" id="LandLine" data-ng-model="custDetail.LandLine" class="form-control" />
+
+                                                                                    </label>
+                                                                                    <label class="input col-sm-8 col">
+                                                                                        <input type="text" name="name">
+                                                                                    </label>
+                                                                                </section>
+                                                                                <section class="col col-sm-12">
+                                                                                    <label class="label">Email ID</label>
+                                                                                    <label class="input">
+                                                                                        <input type="text" name="EmailID" id="EmailID" data-ng-model="custDetail.EmailID" class="form-control" />
+
+                                                                                    </label>
+                                                                                </section>
+                                                                            </div>
+
+                                                                        </fieldset>
+                                                                        <div class="message">
+                                                                            <i class="fa fa-check fa-lg"></i>
+                                                                            <p>
+                                                                                Your comment was successfully added!
+                                                                            </p>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                                <div class="col-sm-6">
+                                                                    <form action="" method="post" id="comment-form" class="smart-form">
+
+                                                                        <fieldset>
+                                                                            <div class="row">
+                                                                                <section class="col col-sm-12">
+                                                                                    <label class="label">Alternate Email ID</label>
+                                                                                    <label class="input">
+                                                                                        <input type="text" name="AlternateEmail" id="AlternateEmail" data-ng-model="custDetail.AlternateEmail" class="form-control" />
+
+                                                                                    </label>
+                                                                                </section>
+                                                                            </div>
+                                                                        </fieldset>
+                                                                        <div class="message">
+                                                                            <i class="fa fa-check fa-lg"></i>
+                                                                            <p>
+                                                                                Your comment was successfully added!
+                                                                            </p>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+
+
+
+
+                                                        </div>
+                                                        <!-- end widget content -->
+
+                                                    </div>
+                                                    <!-- end widget div -->
+
+                                                </div>
+
+                                            </div>
+
+
+
+                                            <div class="tab-pane" id="tab3">
+                                                <!-- 3 -->
+                                                <div class="jarviswidget" id="wid-id-18" data-widget-editbutton="false" data-widget-custombutton="false">
+                                                    <header>
+                                                        <span class="widget-icon"><i class="fa fa-edit"></i></span>
+                                                        <h2>Co-Applicant Detail</h2>
+                                                    </header>
+
+                                                    <!-- widget div-->
+                                                    <div>
+
+                                                        <!-- widget edit box -->
+                                                        <div class="jarviswidget-editbox">
+                                                            <!-- This area used as dropdown edit box -->
+
+                                                        </div>
+                                                        <!-- end widget edit box -->
+                                                        <!-- widget content -->
+                                                        <div class="widget-body no-padding">
+
+                                                            <div class="row">
+                                                                <div class="col-sm-6">
+                                                                    <form action="" method="post" id="comment-form" class="smart-form">
+                                                                        <fieldset>
+                                                                            <div class="row">
+                                                                                <div class=" col col-sm-12">
+                                                                                    <label class="label">First Name</label>
+                                                                                </div>
+                                                                                <section class="col col-sm-4">
+                                                                                    <label class="select">
+                                                                                        <select name="budget">
+                                                                                            <option value="0" selected="" disabled="">-----</option>
+                                                                                            <option value="1">Mr.</option>
+                                                                                            <option value="2">Mrs.</option>
+                                                                                            <option value="3">Miss</option>
+                                                                                        </select>
+                                                                                        <i></i>
+                                                                                    </label>
+                                                                                </section>
+                                                                                <section class="col col-sm-8">
+                                                                                    <label class="input">
+                                                                                        <input type="text" name="CoFName" id="CoFName" data-ng-model="custDetail.CoFName" class="form-control" />
+
+                                                                                    </label>
+                                                                                </section>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <section class="col col-sm-12">
+                                                                                    <label class="label">Middle Name</label>
+                                                                                    <label class="input">
+                                                                                        <input type="text" name="CoMName" id="CoMName" data-ng-model="custDetail.CoMName" class="form-control" />
+                                                                                    </label>
+                                                                                </section>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <section class="col col-sm-12">
+                                                                                    <label class="label">Last Name</label>
+                                                                                    <label class="input">
+                                                                                        <input type="text" name="CoLName" id="CoLName" data-ng-model="custDetail.CoLName" class="form-control" />
+                                                                                    </label>
+                                                                                </section>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class=" col col-sm-12">
+                                                                                    <label class="label">S/O,W/O,D/O</label>
+                                                                                </div>
+                                                                                <section class="col col-sm-4">
+
+                                                                                    <label class="select">
+                                                                                        <select name="budget" data-ng-model="custDetail.CoTitle">
+                                                                                            <option value="0" selected="" disabled="">S/O</option>
+                                                                                            <option value="1">W/O</option>
+                                                                                            <option value="2">D/O</option>
+                                                                                            <option value="3">S/O</option>
+
+                                                                                        </select>
+                                                                                        <i></i>
+                                                                                    </label>
+
+                                                                                </section>
+                                                                                <section class="col col-sm-8">
+                                                                                    <label class="input">
+                                                                                        <input type="text" name="AppTitle" id="CoPName" data-ng-model="custDetail.CoPName" class="form-control" />
+                                                                                    </label>
+                                                                                </section>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <section class="col col-sm-12">
+                                                                                    <label class="label">Mobile No</label>
+                                                                                    <label class="input">
+                                                                                        <input type="text" name="CoMobileNo" id="CoMobileNo" data-ng-model="custDetail.CoMobileNo" class="form-control" />
+                                                                                    </label>
+                                                                                </section>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <section class="col col-sm-12">
+                                                                                    <label class="label">Pan No</label>
+                                                                                    <label class="input">
+                                                                                        <input type="text" name="CoPAN" id="CoPAN" data-ng-model="custDetail.CoPAN" class="form-control" />
+                                                                                    </label>
+                                                                                </section>
+                                                                            </div>
+                                                                        </fieldset>
+
+                                                                        <div class="message">
+                                                                            <i class="fa fa-check fa-lg"></i>
+                                                                            <p>
+                                                                                Your comment was successfully added!
+                                                                            </p>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                                <div class="col-sm-6">
+                                                                    <div id="comment-form" class="smart-form">
+                                                                        <fieldset>
+                                                                            <div class="row">
+                                                                                <section class="col col-sm-12">
+                                                                                    <label class="label">Address 1</label>
+                                                                                    <label class="input">
+                                                                                        <input type="text" name="CoAddress1" id="CoAddress1" data-ng-model="custDetail.CoAddress1" class="form-control" />
+                                                                                    </label>
+                                                                                </section>
+                                                                                <section class="col col-sm-12">
+                                                                                    <label class="label">Address 2</label>
+                                                                                    <label class="input">
+                                                                                        <input type="text" name="CoAddress2" id="CoAddress2" data-ng-model="custDetail.CoAddress2" class="form-control" />
+                                                                                    </label>
+                                                                                </section>
+                                                                                <section class="col col-sm-12">
+                                                                                    <label class="label">City</label>
+                                                                                    <label class="input">
+                                                                                        <input type="text" name="CoCity" id="CoCity" data-ng-model="custDetail.CoCity" class="form-control" />
+                                                                                    </label>
+                                                                                </section>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class="col-sm-12 col">
+                                                                                    <label class="label">State</label>
+                                                                                </div>
+                                                                                <section class="col col-sm-12">
+                                                                                    <label class="select">
+                                                                                        <select name="budget" data-ng-model="custDetail.CoState">
+                                                                                            <option value="0" selected="" disabled="">Select</option>
+                                                                                            <option value="1">Punjab</option>
+                                                                                            <option value="2">Himachal Pradesh</option>
+                                                                                            <option value="3">Delhi</option>
+                                                                                            <option value="4">Uttar Pradesh</option>
+                                                                                            <option value="4">Haryana</option>
+                                                                                        </select>
+                                                                                        <i></i>
+                                                                                    </label>
+                                                                                </section>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class="col-sm-12 col">
+                                                                                    <label class="label">Country</label>
+                                                                                </div>
+                                                                                <section class="col col-sm-12">
+                                                                                    <label class="select">
+                                                                                        <select name="budget" data-ng-model="custDetail.CoCountry">
+                                                                                            <option value="0" selected="" disabled="">Select</option>
+                                                                                            <option value="1">India</option>
+
+                                                                                        </select>
+                                                                                        <i></i>
+                                                                                    </label>
+                                                                                </section>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <section class="col col-sm-12">
+                                                                                    <label class="label">Pin Code</label>
+                                                                                    <label class="input">
+                                                                                        </i>
+                                                                                        <input type="text" name="CoPinCode" id="CoPinCode" data-ng-model="custDetail.CoPinCode" class="form-control" />
+                                                                                    </label>
+                                                                                </section>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class="col-sm-4 col">
+                                                                                    <label class="label">Date Of Birth</label>
+                                                                                    <label class="input">
+                                                                                        <input type="text" name="CoDOB" id="CoDOB" data-ng-model="custDetail.CoDOBst" class="datecal" />
+
+                                                                                    </label>
+                                                                                </div>
+
+                                                                            </div>
+                                                                        </fieldset>
+                                                                        <div class="message">
+                                                                            <i class="fa fa-check fa-lg"></i>
+                                                                            <p>
+                                                                                Your comment was successfully added!
+                                                                            </p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- end widget content -->
+                                                    </div>
+                                                    <!-- end widget div -->
+                                                </div>
+                                                <div class="jarviswidget" id="wid-id-19" data-widget-editbutton="false" data-widget-custombutton="false">
+                                                    <header>
+                                                        <span class="widget-icon"><i class="fa fa-edit"></i></span>
+                                                        <h2>Sec Co-Applicant Detail</h2>
+                                                    </header>
+                                                    <!-- widget div-->
+                                                    <div>
+                                                        <!-- widget edit box -->
+                                                        <div class="jarviswidget-editbox">
+                                                            <!-- This area used as dropdown edit box -->
+                                                        </div>
+                                                        <!-- end widget edit box -->
+                                                        <!-- widget content -->
+                                                        <div class="widget-body no-padding">
+                                                            <div class="row">
+                                                                <div class="col-sm-6">
+                                                                    <form action="" method="post" id="comment-form" class="smart-form">
+                                                                        <fieldset>
+                                                                            <div class="row">
+                                                                                <div class=" col col-sm-12">
+                                                                                    <label class="label">First Name</label>
+                                                                                </div>
+                                                                                <section class="col col-sm-4">
+                                                                                    <label class="select">
+                                                                                        <select name="budget" data-ng-model="custDetail.SecCoTitle">
+                                                                                            <option value="0" selected="" disabled=""></option>
+                                                                                            <option value="1">Mr.</option>
+                                                                                            <option value="2">Mrs.</option>
+                                                                                            <option value="3">Miss</option>
+                                                                                        </select>
+                                                                                        <i></i>
+                                                                                    </label>
+
+                                                                                </section>
+                                                                                <section class="col col-sm-8">
+                                                                                    <label class="input">
+                                                                                        </i>
+                                                                                        <input type="text" name="SecCoFName" id="SecCoFName" data-ng-model="custDetail.SecCoFName" class="form-control" />
+                                                                                    </label>
+                                                                                </section>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <section class="col col-sm-12">
+                                                                                    <label class="label">Middle Name</label>
+                                                                                    <label class="input">
+                                                                                        </i>
+                                                                                        <input type="text" name="SecCoMName" id="SecCoMName" data-ng-model="custDetail.SecCoMName" class="form-control" />
+                                                                                    </label>
+                                                                                </section>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <section class="col col-sm-12">
+                                                                                    <label class="label">Last Name</label>
+                                                                                    <label class="input">
+                                                                                        </i>
+                                                                                        <input type="text" name="SecCoLName" id="SecCoLName" data-ng-model="custDetail.SecCoLName" class="form-control" />
+                                                                                    </label>
+                                                                                </section>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class=" col col-sm-12">
+                                                                                    <label class="label">S/O,W/O,D/O</label>
+                                                                                </div>
+                                                                                <section class="col col-sm-4">
+
+                                                                                    <label class="select">
+                                                                                        <select name="budget" data-ng-model="custDetail.SecCoTitle">
+                                                                                            <option value="0" selected="" disabled="">S/O</option>
+                                                                                            <option value="1">W/O</option>
+                                                                                            <option value="2">D/O</option>
+                                                                                            <option value="3">S/O</option>
+
+                                                                                        </select>
+                                                                                        <i></i>
+                                                                                    </label>
+                                                                                </section>
+                                                                                <section class="col col-sm-8">
+                                                                                    <label class="input">
+                                                                                        </i>
+                                                                                        <input type="text" name="SecCoPName" id="SecCoPName" data-ng-model="custDetail.SecCoPName" class="form-control" />
+                                                                                    </label>
+                                                                                </section>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <section class="col col-sm-12">
+                                                                                    <label class="label">Mobile No</label>
+                                                                                    <label class="input">
+                                                                                        </i>
+                                                                                        <input type="text" name="SecCoMobileNo" id="SecCoMobileNo" data-ng-model="custDetail.SecCoMobileNo" class="form-control" />
+                                                                                    </label>
+                                                                                </section>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <section class="col col-sm-12">
+                                                                                    <label class="label">Pan No</label>
+                                                                                    <label class="input">
+                                                                                        </i>
+                                                                                        <input type="text" name="SecCoPAN" id="SecCoPAN" data-ng-model="custDetail.SecCoPAN" class="form-control" />
+                                                                                    </label>
+                                                                                </section>
+                                                                            </div>
+                                                                        </fieldset>
+                                                                        <div class="message">
+                                                                            <i class="fa fa-check fa-lg"></i>
+                                                                            <p>
+                                                                                Your comment was successfully added!
+                                                                            </p>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                                <div class="col-sm-6">
+                                                                    <div id="comment-form" class="smart-form">
+
+                                                                        <fieldset>
+                                                                            <div class="row">
+                                                                                <section class="col col-sm-12">
+                                                                                    <label class="label">Address 1</label>
+                                                                                    <label class="input">
+                                                                                        </i>
+                                                                                        <input type="text" name="SecCoAddress1" id="SecCoAddress1" data-ng-model="custDetail.SecCoAddress1" class="form-control" />
+                                                                                    </label>
+                                                                                </section>
+                                                                                <section class="col col-sm-12">
+                                                                                    <label class="label">Address 2</label>
+                                                                                    <label class="input">
+                                                                                        </i>
+                                                                                        <input type="text" name="SecCoAddress2" id="SecCoAddress2" data-ng-model="custDetail.SecCoAddress2" class="form-control" />
+                                                                                    </label>
+                                                                                </section>
+                                                                                <section class="col col-sm-12">
+                                                                                    <label class="label">City</label>
+                                                                                    <label class="input">
+                                                                                        </i>
+                                                                                        <input type="text" name="SecCoCity" id="SecCoCity" data-ng-model="custDetail.SecCoCity" class="form-control" />
+                                                                                    </label>
+                                                                                </section>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class="col-sm-12 col">
+                                                                                    <label class="label">State</label>
+                                                                                </div>
+                                                                                <section class="col col-sm-12">
+                                                                                    <label class="select">
+                                                                                        <select name="budget" data-ng-model="custDetail.SecCoState">
+                                                                                            <option value="0" selected="" disabled="">Select</option>
+                                                                                            <option value="1">Punjab</option>
+                                                                                            <option value="2">Himachal Pradesh</option>
+                                                                                            <option value="3">Delhi</option>
+                                                                                            <option value="4">Uttar Pradesh</option>
+                                                                                            <option value="4">Haryana</option>
+                                                                                        </select>
+                                                                                        <i></i>
+                                                                                    </label>
+
+                                                                                </section>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class="col-sm-12 col">
+                                                                                    <label class="label">Country</label>
+                                                                                </div>
+                                                                                <section class="col col-sm-12">
+                                                                                    <label class="select">
+                                                                                        <select name="budget">
+                                                                                            <option value="0" selected="" disabled="" data-ng-model="custDetail.SecCoCountry">Select</option>
+                                                                                            <option value="1">India</option>
+
+                                                                                        </select>
+                                                                                        <i></i>
+                                                                                    </label>
+                                                                                </section>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <section class="col col-sm-12">
+                                                                                    <label class="label">Pin Code</label>
+                                                                                    <label class="input">
+                                                                                        </i>
+                                                                                        <input type="text" name="SecCoPinCode" id="SecCoPinCode" data-ng-model="custDetail.SecCoPinCode" class="form-control" />
+                                                                                    </label>
+                                                                                </section>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class="col-sm-12 col">
+                                                                                    <label class="label">Date Of Birth</label>
+                                                                                    <label class="input">
+                                                                                        <input type="text" name="SecCoDOB" id="SecCoDOB" data-ng-model="custDetail.SecCoDOBst" class="datecal" />
+                                                                                        @*<input type="text" id="SecCoDOB" class="datecal" required="required">*@
+                                                                                    </label>
+                                                                                </div>
+
+                                                                            </div>
+                                                                        </fieldset>
+
+                                                                        <div class="message">
+                                                                            <i class="fa fa-check fa-lg"></i>
+                                                                            <p>
+                                                                                Your comment was successfully added!
+                                                                            </p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+
+
+
+                                                        </div>
+                                                        <!-- end widget content -->
+
+                                                    </div>
+                                                    <!-- end widget div -->
+
+                                                </div>
+                                            </div>
+
+
+                                            <div class="tab-pane" id="tab4">
+                                                <!-- 4 -->
+                                                <div class="jarviswidget" id="wid-id-20" data-widget-editbutton="false" data-widget-custombutton="false">
+                                                    <header>
+                                                        <span class="widget-icon"><i class="fa fa-edit"></i></span>
+                                                        <h2>Loan Detail</h2>
+                                                    </header>
+
+                                                    <!-- widget div-->
+                                                    <div>
+
+                                                        <!-- widget edit box -->
+                                                        <div class="jarviswidget-editbox">
+                                                            <!-- This area used as dropdown edit box -->
+
+                                                        </div>
+                                                        <!-- end widget edit box -->
+                                                        <!-- widget content -->
+                                                        <div class="widget-body no-padding">
+
+                                                            <div class="row">
+                                                                <div class="col-sm-6">
+                                                                    <div id="comment-form" class="smart-form">
+                                                                        <fieldset>
+                                                                            <div class="row">
+                                                                                <section class="col col-sm-12">
+                                                                                    <label class="label">Executive Name</label>
+                                                                                    <label class="input">
+                                                                                        </i>
+                                                                                        <input type="text" name="ExecutiveName" id="ExecutiveName" data-ng-model="custDetail.ExecutiveName" class="form-control" />
+                                                                                    </label>
+                                                                                </section>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <section class="col col-sm-12">
+                                                                                    <label class="label">Loan Ammont</label>
+                                                                                    <label class="input">
+                                                                                        </i>
+                                                                                        <input type="text" name="LoanAmount" id="LoanAmount" data-ng-model="custDetail.LoanAmount" class="form-control" />
+                                                                                    </label>
+                                                                                </section>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class="col-sm-12 col">
+                                                                                    <label class="label">Bank Name</label>
+                                                                                </div>
+                                                                                <section class="col col-sm-12">
+
+                                                                                    <label class="select">
+                                                                                        <select name="budget" data-ng-model="custDetail.bankid">
+                                                                                            <option value="0" selected="" disabled="">select</option>
+                                                                                            <option value="1">sbi</option>
+                                                                                            <option value="2">sbp</option>
+                                                                                            <option value="3">icici</option>
+                                                                                            <option value="4">pnb</option>
+                                                                                        </select>
+                                                                                        <i></i>
+                                                                                    </label>
+                                                                                </section>
+                                                                            </div>
+                                                                        </fieldset>
+                                                                        <div class="message">
+                                                                            <i class="fa fa-check fa-lg"></i>
+                                                                            <p>
+                                                                                Your comment was successfully added!
+                                                                            </p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-6">
+                                                                    <div id="comment-form" class="smart-form">
+                                                                        <fieldset>
+                                                                            <div class="row">
+                                                                                <section class="col col-sm-12">
+                                                                                    <label class="label col-sm-2">Lien</label>
+                                                                                    <div class="inline-group col-sm-10">
+                                                                                        <label class="radio">
+                                                                                            <input type="radio" name="radio-inline" value="Yes" checked="">
+                                                                                            <i></i>Yes
+                                                                                        </label>
+                                                                                        <label class="radio">
+                                                                                            <input type="radio" name="radio-inline" value="No">
+                                                                                            <i></i>No
+                                                                                        </label>
+                                                                                    </div>
+                                                                                </section>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <section class="col col-sm-12">
+                                                                                    <label class="label">Bank Branch</label>
+                                                                                    <label class="input">
+                                                                                        <input type="text" name="BankBranch" id="BankBranch" data-ng-model="custDetail.BankBranch" class="form-control" />
+                                                                                    </label>
+                                                                                </section>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <section class="col col-sm-12">
+                                                                                    <label class="label">Remarks</label>
+                                                                                    <label class="input">
+                                                                                        <input type="text" name="Remarks" id="Remarks" data-ng-model="custDetail.Remarks" class="form-control" />
+                                                                                    </label>
+                                                                                </section>
+                                                                            </div>
+                                                                        </fieldset>
+                                                                        <div class="message">
+                                                                            <i class="fa fa-check fa-lg"></i>
+                                                                            <p>
+                                                                                Your comment was successfully added!
+                                                                            </p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- end widget content -->
+                                                    </div>
+                                                    <!-- end widget div -->
+                                                </div>
+
+                                                <div class="form-actions">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <button class="btn btn-primary pull-left" id="btnSubmit" data-ng-click="UpdateCustomer()" type="submit">
+                                                                <i class="fa fa-save"></i>
+                                                                Update
+                                                            </button>
+                                                            <button class="btn btn-default pull-left btn_marg" type="submit">Cancel</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-actions form-actions_bot">
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <ul class="pager wizard no-margin no_brdr">
+                                                            <li class="previous disabled">
+                                                                <a href="javascript:void(0);" class="btn btn-lg btn-default">Previous </a>
+                                                            </li>
+                                                            <li class="next">
+                                                                <a href="javascript:void(0);" class="btn btn-lg btn-primary">Next </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="clear-fix"></div>
+
+                                        </div>
+                                    </div>
+                                    <!-- step1 -->
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <!-- widget content -->
+                        <div class="widget-body">
+
+                        </div>
+                        <!-- end widget content -->
+
+
+                    </div>
+                    <!-- end widget div -->
+                </div>
+                <!-- end widget -->
+            </article>
+            <!-- END COL -->
+            <!-- NEW COL START -->
+            <!-- END COL -->
+        </div>
+        <!-- END ROW -->
+    </section>
+</div>
+@section pagespecific {
+<script src="~/AgController/Customerjs.js"></script>
+}

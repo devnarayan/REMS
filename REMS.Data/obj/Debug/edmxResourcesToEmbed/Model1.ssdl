@@ -1,0 +1,1770 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="REMSDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AdditionalCharge">
+    <Key>
+      <PropertyRef Name="AdditionalChargeID" />
+    </Key>
+    <Property Name="AdditionalChargeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TowerID" Type="int" />
+    <Property Name="Name" Type="nvarchar" MaxLength="256" />
+    <Property Name="Amount" Type="money" />
+    <Property Name="Unit" Type="nvarchar" MaxLength="50" />
+    <Property Name="ChargeType" Type="nvarchar" MaxLength="256" />
+    <Property Name="CrDate" Type="datetime" />
+    <Property Name="CrBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="TaxPer" Type="decimal" Precision="17" Scale="2" />
+    <Property Name="Mandatory" Type="bit" />
+  </EntityType>
+  <EntityType Name="AddOnCharge">
+    <Key>
+      <PropertyRef Name="AddOnChargeID" />
+    </Key>
+    <Property Name="AddOnChargeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="256" />
+    <Property Name="Amount" Type="money" />
+    <Property Name="ChargeType" Type="nvarchar" MaxLength="256" />
+    <Property Name="CrDate" Type="datetime" />
+    <Property Name="CrBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="TaxPer" Type="decimal" Precision="17" Scale="2" />
+    <Property Name="Mandatory" Type="bit" />
+  </EntityType>
+  <EntityType Name="Agreement">
+    <Key>
+      <PropertyRef Name="AgreementID" />
+    </Key>
+    <Property Name="AgreementID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SaleID" Type="int" />
+    <Property Name="AgreementAmount" Type="nvarchar" MaxLength="100" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="ModifyBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="CrDate" Type="datetime" />
+    <Property Name="ModifyDate" Type="datetime" />
+    <Property Name="DocURL" Type="nvarchar" MaxLength="300" />
+    <Property Name="HTMLURL" Type="nvarchar" MaxLength="400" />
+    <Property Name="UploadDate" Type="datetime" />
+    <Property Name="UploadBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="UploadURL" Type="nvarchar" MaxLength="500" />
+    <Property Name="AllotmentLetter" Type="nvarchar" MaxLength="500" />
+    <Property Name="AllotmentLetterBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="AllotmentLetterDate" Type="datetime" />
+    <Property Name="WelComeLetter" Type="nvarchar" MaxLength="500" />
+    <Property Name="AssuredDocURL" Type="nvarchar" MaxLength="400" />
+    <Property Name="AssuredHTMLURL" Type="nvarchar" MaxLength="400" />
+  </EntityType>
+  <EntityType Name="AssuredReturn">
+    <Key>
+      <PropertyRef Name="AssuredReturnID" />
+    </Key>
+    <Property Name="AssuredReturnID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SaleID" Type="int" />
+    <Property Name="Duration" Type="nvarchar" MaxLength="100" />
+    <Property Name="Amount" Type="money" />
+    <Property Name="Status" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="ModifyBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="CrDate" Type="datetime" />
+    <Property Name="ModifyDate" Type="datetime" />
+    <Property Name="PropertyID" Type="int" />
+    <Property Name="FlatName" Type="nvarchar" MaxLength="100" />
+    <Property Name="MonthName" Type="nvarchar" MaxLength="50" />
+    <Property Name="ChequeNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="ChequeDate" Type="datetime" />
+    <Property Name="TDS" Type="numeric" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="AssuredReturnPayment">
+    <Key>
+      <PropertyRef Name="ARPaymentID" />
+    </Key>
+    <Property Name="ARPaymentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ReceiptNo" Type="varchar" MaxLength="50" />
+    <Property Name="SaleID" Type="int" />
+    <Property Name="PaymentDate" Type="datetime" />
+    <Property Name="Amount" Type="decimal" Precision="17" Scale="2" />
+    <Property Name="PaymentMode" Type="nvarchar" MaxLength="10" />
+    <Property Name="ChequeNo" Type="varchar" MaxLength="50" />
+    <Property Name="BankName" Type="varchar" MaxLength="50" />
+    <Property Name="ChequeDate" Type="datetime" />
+    <Property Name="PaymentStatus" Type="nvarchar" MaxLength="10" />
+    <Property Name="CustomerName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Remarks" Type="nvarchar" MaxLength="150" />
+    <Property Name="BankCharges" Type="decimal" Precision="17" Scale="2" />
+    <Property Name="BankClearanceDate" Type="datetime" />
+    <Property Name="BankBranch" Type="nvarchar" MaxLength="50" />
+    <Property Name="AmtRcvdinWords" Type="nvarchar" MaxLength="250" />
+    <Property Name="IsReceipt" Type="bit" />
+    <Property Name="Activity" Type="nvarchar" MaxLength="10" />
+    <Property Name="ModifyDate" Type="datetime" />
+    <Property Name="FlatName" Type="nvarchar" MaxLength="50" />
+    <Property Name="CrDate" Type="datetime" />
+    <Property Name="ModifyBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="RefundRemark" Type="nvarchar" MaxLength="300" />
+    <Property Name="ClearanceCharge" Type="money" Nullable="false" />
+    <Property Name="IsBounce" Type="bit" Nullable="false" />
+    <Property Name="CustomerID" Type="int" />
+    <Property Name="AssuredReturnID" Type="int" />
+    <Property Name="TransactionID" Type="int" />
+  </EntityType>
+  <EntityType Name="BankMaster">
+    <Key>
+      <PropertyRef Name="BankID" />
+    </Key>
+    <Property Name="BankID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BankName" Type="nvarchar" MaxLength="50" />
+    <Property Name="BankBranch" Type="nvarchar" MaxLength="50" />
+    <Property Name="BankAddress" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="BrokerMaster">
+    <Key>
+      <PropertyRef Name="BrokerID" />
+    </Key>
+    <Property Name="BrokerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BrokerName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Address1" Type="nvarchar" MaxLength="50" />
+    <Property Name="Address2" Type="nvarchar" MaxLength="50" />
+    <Property Name="MobileNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="PanNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="ModifyDate" Type="datetime" />
+    <Property Name="RecordStatus" Type="int" />
+  </EntityType>
+  <EntityType Name="BrokerPayment">
+    <Key>
+      <PropertyRef Name="BrokerPaymentID" />
+    </Key>
+    <Property Name="BrokerPaymentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FlatID" Type="int" />
+    <Property Name="SaleID" Type="int" />
+    <Property Name="BrokerID" Type="int" />
+    <Property Name="AmountPaid" Type="decimal" Precision="17" Scale="2" />
+    <Property Name="PaidDate" Type="datetime" />
+    <Property Name="PID" Type="int" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="ModifyDate" Type="datetime" />
+    <Property Name="RecordStatus" Type="int" />
+    <Property Name="PaymentMode" Type="nvarchar" MaxLength="200" />
+    <Property Name="ChequeNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="ChequeDate" Type="datetime" />
+    <Property Name="BankName" Type="nvarchar" MaxLength="50" />
+    <Property Name="BankBranch" Type="nvarchar" MaxLength="50" />
+    <Property Name="Remarks" Type="nvarchar" MaxLength="250" />
+    <Property Name="Status" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="BrokerToProperty">
+    <Key>
+      <PropertyRef Name="BrokerToPropertyID" />
+    </Key>
+    <Property Name="BrokerToPropertyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FlatID" Type="int" />
+    <Property Name="SaleID" Type="int" />
+    <Property Name="BrokerID" Type="int" />
+    <Property Name="BrokerAmount" Type="decimal" Precision="17" Scale="2" />
+    <Property Name="PID" Type="int" />
+    <Property Name="Date" Type="datetime" />
+    <Property Name="Createdate" Type="datetime" />
+    <Property Name="ModifyDate" Type="datetime" />
+    <Property Name="RecordStatus" Type="int" />
+    <Property Name="ApproveStatus" Type="int" />
+    <Property Name="Remarks" Type="nvarchar" MaxLength="300" />
+    <Property Name="Status" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="CityMaster">
+    <Key>
+      <PropertyRef Name="CityID" />
+    </Key>
+    <Property Name="CityID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CityName" Type="nvarchar" MaxLength="50" />
+    <Property Name="StateName" Type="nvarchar" MaxLength="50" />
+    <Property Name="CityCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="StateCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="CrDate" Type="datetime" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="AreaID" Type="int" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="CustomerID" />
+    </Key>
+    <Property Name="CustomerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SaleID" Type="int" />
+    <Property Name="AppTitle" Type="nvarchar" MaxLength="50" />
+    <Property Name="FName" Type="varchar" MaxLength="50" />
+    <Property Name="MName" Type="varchar" MaxLength="50" />
+    <Property Name="LName" Type="varchar" MaxLength="50" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" />
+    <Property Name="PName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Address1" Type="varchar" MaxLength="250" />
+    <Property Name="Address2" Type="varchar" MaxLength="50" />
+    <Property Name="City" Type="varchar" MaxLength="50" />
+    <Property Name="State" Type="varchar" MaxLength="50" />
+    <Property Name="Country" Type="varchar" MaxLength="50" />
+    <Property Name="PAN" Type="varchar" MaxLength="50" />
+    <Property Name="MobileNo" Type="varchar" MaxLength="50" />
+    <Property Name="DateOfBirth" Type="datetime" />
+    <Property Name="CoAppTitle" Type="nvarchar" MaxLength="50" />
+    <Property Name="CoFName" Type="nvarchar" MaxLength="50" />
+    <Property Name="CoMName" Type="nvarchar" MaxLength="50" />
+    <Property Name="CoLName" Type="nvarchar" MaxLength="50" />
+    <Property Name="CoAddress1" Type="nvarchar" MaxLength="50" />
+    <Property Name="CoAddress2" Type="nvarchar" MaxLength="50" />
+    <Property Name="CoCity" Type="nvarchar" MaxLength="50" />
+    <Property Name="CoState" Type="nvarchar" MaxLength="50" />
+    <Property Name="CoCountry" Type="nvarchar" MaxLength="50" />
+    <Property Name="CoPAN" Type="nvarchar" MaxLength="50" />
+    <Property Name="CoMobileNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="Address1Out" Type="varchar" MaxLength="50" />
+    <Property Name="Address2Out" Type="varchar" MaxLength="50" />
+    <Property Name="CityOut" Type="varchar" MaxLength="50" />
+    <Property Name="StateOut" Type="varchar" MaxLength="50" />
+    <Property Name="CountryOut" Type="varchar" MaxLength="50" />
+    <Property Name="PANOut" Type="varchar" MaxLength="50" />
+    <Property Name="MobileOut" Type="varchar" MaxLength="50" />
+    <Property Name="AlternateMobile" Type="varchar" MaxLength="50" />
+    <Property Name="LandLine" Type="varchar" MaxLength="50" />
+    <Property Name="EmailID" Type="varchar" MaxLength="50" />
+    <Property Name="AlternateEmail" Type="varchar" MaxLength="50" />
+    <Property Name="Website" Type="varchar" MaxLength="200" />
+    <Property Name="LoanAmount" Type="decimal" Precision="17" Scale="2" />
+    <Property Name="LienField" Type="varchar" MaxLength="50" />
+    <Property Name="BankID" Type="int" />
+    <Property Name="BankAddress" Type="varchar" MaxLength="50" />
+    <Property Name="BankBranch" Type="nvarchar" MaxLength="50" />
+    <Property Name="IsPAN" Type="bit" />
+    <Property Name="IsPhoto" Type="bit" />
+    <Property Name="IsAddressPf" Type="bit" />
+    <Property Name="IsRationCard" Type="bit" />
+    <Property Name="IsDrivingLicence" Type="bit" />
+    <Property Name="IsPassport" Type="bit" />
+    <Property Name="IsVoterCard" Type="bit" />
+    <Property Name="IsTransfer" Type="int" />
+    <Property Name="Status" Type="nvarchar" MaxLength="50" />
+    <Property Name="RecordStatus" Type="nvarchar" MaxLength="50" />
+    <Property Name="PlanID" Type="int" />
+    <Property Name="SecCoAppTitle" Type="nvarchar" MaxLength="50" />
+    <Property Name="SecCoFName" Type="nvarchar" MaxLength="50" />
+    <Property Name="SecCoMName" Type="nvarchar" MaxLength="50" />
+    <Property Name="SecCoLName" Type="nvarchar" MaxLength="50" />
+    <Property Name="SecCoAddress1" Type="nvarchar" MaxLength="50" />
+    <Property Name="SecCoAddress2" Type="nvarchar" MaxLength="50" />
+    <Property Name="SecCoCity" Type="nvarchar" MaxLength="50" />
+    <Property Name="SecCoState" Type="nvarchar" MaxLength="50" />
+    <Property Name="SecCoCountry" Type="nvarchar" MaxLength="50" />
+    <Property Name="SecCoMobileNo" Type="varchar" MaxLength="50" />
+    <Property Name="SecCoPAN" Type="varchar" MaxLength="50" />
+    <Property Name="CoTitle" Type="nvarchar" MaxLength="50" />
+    <Property Name="CoPName" Type="nvarchar" MaxLength="50" />
+    <Property Name="SecCoTitle" Type="nvarchar" MaxLength="50" />
+    <Property Name="SecCoPName" Type="nvarchar" MaxLength="50" />
+    <Property Name="IsConstruction" Type="int" />
+    <Property Name="PhotoImagePath" Type="nvarchar" MaxLength="50" />
+    <Property Name="AddPfImagePath" Type="nvarchar" MaxLength="50" />
+    <Property Name="DVImagePath" Type="nvarchar" MaxLength="50" />
+    <Property Name="VoterCardImagePath" Type="nvarchar" MaxLength="50" />
+    <Property Name="PassportImagePath" Type="nvarchar" MaxLength="50" />
+    <Property Name="RationCardImagePath" Type="nvarchar" MaxLength="50" />
+    <Property Name="Remarks" Type="nvarchar" MaxLength="500" />
+    <Property Name="CoDOB" Type="datetime" />
+    <Property Name="SecCoDOB" Type="datetime" />
+    <Property Name="PANImagePath" Type="nvarchar" MaxLength="50" />
+    <Property Name="CoIsPAN" Type="bit" />
+    <Property Name="CoIsPhoto" Type="bit" />
+    <Property Name="CoIsAddressPf" Type="bit" />
+    <Property Name="CoIsRationCard" Type="bit" />
+    <Property Name="CoIsDrivingLicence" Type="bit" />
+    <Property Name="CoIsVoterCard" Type="bit" />
+    <Property Name="CoIsPassport" Type="bit" />
+    <Property Name="SecCoIsPAN" Type="bit" />
+    <Property Name="SecCoIsPhoto" Type="bit" />
+    <Property Name="SecCoIsAddressPf" Type="bit" />
+    <Property Name="SecCoIsRationCard" Type="bit" />
+    <Property Name="SecCoIsDrivingLicence" Type="bit" />
+    <Property Name="SecCoIsVoterCard" Type="bit" />
+    <Property Name="SecCoIsPassport" Type="bit" />
+    <Property Name="CoPhotoImagePath" Type="nvarchar" MaxLength="50" />
+    <Property Name="CoAddPfImagePath" Type="nvarchar" MaxLength="50" />
+    <Property Name="CoDVImagePath" Type="nvarchar" MaxLength="50" />
+    <Property Name="CoVoterCardImagePath" Type="nvarchar" MaxLength="50" />
+    <Property Name="CoPassportImagePath" Type="nvarchar" MaxLength="50" />
+    <Property Name="CoRationCardImagePath" Type="nvarchar" MaxLength="50" />
+    <Property Name="CoPANImagePath" Type="nvarchar" MaxLength="50" />
+    <Property Name="SecCoPhotoImagePath" Type="nvarchar" MaxLength="50" />
+    <Property Name="SecCoAddPfImagePath" Type="nvarchar" MaxLength="50" />
+    <Property Name="SecCoDVImagePath" Type="nvarchar" MaxLength="50" />
+    <Property Name="SecCoVoterCardImagePath" Type="nvarchar" MaxLength="50" />
+    <Property Name="SecCoPassportImagePath" Type="nvarchar" MaxLength="50" />
+    <Property Name="SecCoRationCardImagePath" Type="nvarchar" MaxLength="50" />
+    <Property Name="SecCoPANImagePath" Type="nvarchar" MaxLength="50" />
+    <Property Name="IsEdit" Type="bit" />
+    <Property Name="PinCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="ExecutiveName" Type="nvarchar" MaxLength="50" />
+    <Property Name="CoPinCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="SecCoPinCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="TransferAmount" Type="decimal" Precision="17" Scale="2" />
+    <Property Name="TransferDate" Type="datetime" />
+    <Property Name="Distt" Type="nvarchar" MaxLength="50" />
+    <Property Name="LegalOptionDate" Type="varchar" MaxLength="20" />
+    <Property Name="panallowstatus" Type="int" />
+    <Property Name="affidavit" Type="varchar" MaxLength="200" />
+    <Property Name="SaleStatus" Type="bit" />
+    <Property Name="CrDate" Type="datetime" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Error">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ErrorDate" Type="datetime" />
+    <Property Name="IpAddress" Type="nvarchar" MaxLength="40" />
+    <Property Name="UserAgent" Type="nvarchar(max)" />
+    <Property Name="Exception" Type="nvarchar(max)" />
+    <Property Name="Message" Type="nvarchar(max)" />
+    <Property Name="Everything" Type="nvarchar(max)" />
+    <Property Name="HttpReferer" Type="nvarchar" MaxLength="500" />
+    <Property Name="PathAndQuery" Type="nvarchar" MaxLength="500" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="ChangedBy" Type="int" />
+    <Property Name="ChangedOn" Type="datetime" Nullable="false" />
+    <Property Name="FullURL" Type="nvarchar" MaxLength="500" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+    <Property Name="ErrorID" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="EventMaster">
+    <Key>
+      <PropertyRef Name="EventID" />
+    </Key>
+    <Property Name="EventID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EventName" Type="nvarchar" MaxLength="500" />
+    <Property Name="EventDesc" Type="nvarchar" MaxLength="500" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="RecordStatus" Type="int" />
+    <Property Name="EventType" Type="int" />
+  </EntityType>
+  <EntityType Name="Flat">
+    <Key>
+      <PropertyRef Name="FlatID" />
+    </Key>
+    <Property Name="FlatID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FloorID" Type="int" Nullable="false" />
+    <Property Name="FlatType" Type="nvarchar" MaxLength="50" />
+    <Property Name="FlatName" Type="nvarchar" MaxLength="50" />
+    <Property Name="FlatNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="FlatSize" Type="numeric" Precision="18" Scale="2" />
+    <Property Name="FlatSizeUnit" Type="nvarchar" MaxLength="50" />
+    <Property Name="SalePrice" Type="money" />
+    <Property Name="BadRooms" Type="int" />
+    <Property Name="IsFurnished" Type="bit" />
+    <Property Name="LivingRoom" Type="bit" />
+    <Property Name="ServantRoom" Type="bit" />
+    <Property Name="Kitchen" Type="bit" />
+    <Property Name="Balconies" Type="bit" />
+    <Property Name="BathRooms" Type="bit" />
+    <Property Name="PoojaRoom" Type="bit" />
+    <Property Name="StudyRoom" Type="bit" />
+    <Property Name="AC" Type="bit" />
+    <Property Name="Intercom" Type="bit" />
+    <Property Name="Cupboards" Type="bit" />
+    <Property Name="WashingArea" Type="bit" />
+    <Property Name="PowerBackup" Type="bit" />
+    <Property Name="GASLine" Type="bit" />
+    <Property Name="HomeAutomation" Type="bit" />
+    <Property Name="CrDate" Type="datetime" />
+    <Property Name="CrBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="FlatOrder" Type="int" />
+    <Property Name="Status" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="FlatCharge">
+    <Key>
+      <PropertyRef Name="FlatChargeID" />
+    </Key>
+    <Property Name="FlatChargeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FlatID" Type="int" />
+    <Property Name="AdditionalChargeID" Type="int" />
+    <Property Name="CrDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="FlatInstallmentDetail">
+    <Key>
+      <PropertyRef Name="InstallmentID" />
+    </Key>
+    <Property Name="InstallmentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SaleID" Type="int" />
+    <Property Name="FlatID" Type="int" />
+    <Property Name="PlanInstallmentID" Type="int" />
+    <Property Name="BSPAmount" Type="money" />
+    <Property Name="TotalAmount" Type="decimal" Precision="17" Scale="2" />
+    <Property Name="TotalAmtInWords" Type="nvarchar" MaxLength="500" />
+    <Property Name="RecordStatus" Type="int" />
+    <Property Name="InstallmentOrder" Type="int" />
+    <Property Name="Activity" Type="nvarchar" MaxLength="10" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="ModifyDate" Type="datetime" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+    <Property Name="DueDate" Type="datetime" />
+    <Property Name="BSPPer" Type="decimal" Precision="17" Scale="2" />
+    <Property Name="PLCPer" Type="decimal" Precision="17" Scale="2" />
+    <Property Name="AdditionalPer" Type="decimal" Precision="17" Scale="2" />
+    <Property Name="OptionalPer" Type="decimal" Precision="17" Scale="2" />
+    <Property Name="InstallmentServiceTaxID" Type="int" />
+  </EntityType>
+  <EntityType Name="FlatOCharge">
+    <Key>
+      <PropertyRef Name="FlatOChargeID" />
+    </Key>
+    <Property Name="FlatOChargeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FlatID" Type="int" />
+    <Property Name="AddOnChargeID" Type="int" />
+    <Property Name="CrDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="FlatPLC">
+    <Key>
+      <PropertyRef Name="FlatPLCID" />
+    </Key>
+    <Property Name="FlatPLCID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FlatID" Type="int" Nullable="false" />
+    <Property Name="PLCID" Type="int" Nullable="false" />
+    <Property Name="CrDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="FlatType">
+    <Key>
+      <PropertyRef Name="FlatTypeID" />
+    </Key>
+    <Property Name="FlatTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FType" Type="nvarchar" MaxLength="50" />
+    <Property Name="FullName" Type="nvarchar" MaxLength="100" />
+    <Property Name="Size" Type="numeric" Precision="18" Scale="2" />
+    <Property Name="IsFurnished" Type="bit" />
+    <Property Name="CrDate" Type="datetime" />
+    <Property Name="CrBy" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="FlatTypeSize">
+    <Key>
+      <PropertyRef Name="FlatTypeSizeID" />
+    </Key>
+    <Property Name="FlatTypeSizeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FlatTypeID" Type="int" />
+    <Property Name="Size" Type="decimal" Precision="19" Scale="2" />
+    <Property Name="Unit" Type="nvarchar" MaxLength="50" />
+    <Property Name="CrDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Floor">
+    <Key>
+      <PropertyRef Name="FloorID" />
+    </Key>
+    <Property Name="FloorID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TowerID" Type="int" />
+    <Property Name="FloorNo" Type="int" />
+    <Property Name="FloorName" Type="nvarchar" MaxLength="50" />
+    <Property Name="CrDate" Type="datetime" />
+    <Property Name="CrBy" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="LatePayment">
+    <Key>
+      <PropertyRef Name="LatePaymentID" />
+    </Key>
+    <Property Name="LatePaymentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SaleID" Type="int" />
+    <Property Name="TransactionID" Type="int" />
+    <Property Name="InstallmentNo" Type="nvarchar" MaxLength="200" />
+    <Property Name="CrDate" Type="datetime" />
+    <Property Name="InterestAmount" Type="money" />
+    <Property Name="ReceiveAmount" Type="money" />
+    <Property Name="DueDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="ModuleList">
+    <Key>
+      <PropertyRef Name="ModuleListID" />
+    </Key>
+    <Property Name="ModuleListID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" />
+    <Property Name="PageName" Type="nvarchar" MaxLength="100" />
+    <Property Name="Status" Type="bit" Nullable="false" />
+    <Property Name="CrDate" Type="datetime" />
+    <Property Name="Controller" Type="nvarchar" MaxLength="100" />
+    <Property Name="ActionName" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Payment">
+    <Key>
+      <PropertyRef Name="PaymentID" />
+    </Key>
+    <Property Name="TransactionID" Type="bigint" />
+    <Property Name="InstallmentNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="PaymentNo" Type="varchar" MaxLength="50" />
+    <Property Name="SaleID" Type="int" />
+    <Property Name="PaymentDate" Type="datetime" />
+    <Property Name="DueAmount" Type="decimal" Precision="17" Scale="2" />
+    <Property Name="ServiceTaxAmount" Type="decimal" Precision="17" Scale="2" />
+    <Property Name="InterestAmount" Type="decimal" Precision="17" Scale="2" />
+    <Property Name="TotalAmount" Type="decimal" Precision="17" Scale="2" />
+    <Property Name="Amount" Type="decimal" Precision="17" Scale="2" />
+    <Property Name="PaymentMode" Type="nvarchar" MaxLength="10" />
+    <Property Name="ChequeNo" Type="varchar" MaxLength="50" />
+    <Property Name="BankName" Type="varchar" MaxLength="50" />
+    <Property Name="ChequeDate" Type="datetime" />
+    <Property Name="PaymentStatus" Type="nvarchar" MaxLength="10" />
+    <Property Name="CustomerName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Remarks" Type="nvarchar" MaxLength="150" />
+    <Property Name="BankCharges" Type="decimal" Precision="17" Scale="2" />
+    <Property Name="BankClearanceDate" Type="datetime" />
+    <Property Name="RecordStatus" Type="int" />
+    <Property Name="BankBranch" Type="nvarchar" MaxLength="50" />
+    <Property Name="AmtRcvdinWords" Type="nvarchar" MaxLength="250" />
+    <Property Name="IsReceipt" Type="bit" />
+    <Property Name="UserID" Type="int" />
+    <Property Name="Activity" Type="nvarchar" MaxLength="10" />
+    <Property Name="ModifyDate" Type="datetime" />
+    <Property Name="FlatName" Type="nvarchar" MaxLength="50" />
+    <Property Name="TransferDate" Type="datetime" />
+    <Property Name="isrefund" Type="varchar" MaxLength="10" />
+    <Property Name="CrDate" Type="datetime" />
+    <Property Name="PaymentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ModifyBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="RefundRemark" Type="nvarchar" MaxLength="300" />
+    <Property Name="ClearanceCharge" Type="money" Nullable="false" />
+    <Property Name="IsBounce" Type="bit" Nullable="false" />
+    <Property Name="CustomerID" Type="int" />
+  </EntityType>
+  <EntityType Name="PaymentCancel">
+    <Key>
+      <PropertyRef Name="PaymentCancelID" />
+    </Key>
+    <Property Name="PaymentCancelID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TransactionID" Type="bigint" />
+    <Property Name="SaleID" Type="int" />
+    <Property Name="Amount" Type="money" />
+    <Property Name="CancelDate" Type="datetime" />
+    <Property Name="UnCancelDate" Type="datetime" />
+    <Property Name="Remarks" Type="nvarchar" MaxLength="450" />
+    <Property Name="UnCancelRemark" Type="nvarchar" MaxLength="450" />
+    <Property Name="CancelBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="UnCancelBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="Status" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="PaymentMaster">
+    <Key>
+      <PropertyRef Name="PaymentMasterID" />
+    </Key>
+    <Property Name="PaymentMasterID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="200" />
+    <Property Name="SerialNo" Type="int" />
+    <Property Name="CrDate" Type="datetime" />
+    <Property Name="PriTag" Type="nvarchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="PaymentOther">
+    <Key>
+      <PropertyRef Name="PaymentOtherID" />
+    </Key>
+    <Property Name="PaymentOtherID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TransactionID" Type="bigint" />
+    <Property Name="PaymentNo" Type="varchar" MaxLength="50" />
+    <Property Name="SaleID" Type="int" />
+    <Property Name="PaymentDate" Type="datetime" />
+    <Property Name="Amount" Type="decimal" Precision="17" Scale="2" />
+    <Property Name="PaymentMode" Type="nvarchar" MaxLength="10" />
+    <Property Name="ChequeNo" Type="varchar" MaxLength="50" />
+    <Property Name="BankName" Type="varchar" MaxLength="50" />
+    <Property Name="ChequeDate" Type="datetime" />
+    <Property Name="PaymentStatus" Type="nvarchar" MaxLength="10" />
+    <Property Name="CustomerName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Remarks" Type="nvarchar" MaxLength="150" />
+    <Property Name="BankCharges" Type="decimal" Precision="17" Scale="2" />
+    <Property Name="BankClearanceDate" Type="datetime" />
+    <Property Name="RecordStatus" Type="int" />
+    <Property Name="BankBranch" Type="nvarchar" MaxLength="50" />
+    <Property Name="AmtRcvdinWords" Type="nvarchar" MaxLength="250" />
+    <Property Name="IsReceipt" Type="bit" />
+    <Property Name="Activity" Type="nvarchar" MaxLength="10" />
+    <Property Name="ModifyDate" Type="datetime" />
+    <Property Name="FlatName" Type="nvarchar" MaxLength="50" />
+    <Property Name="TransferDate" Type="datetime" />
+    <Property Name="isrefund" Type="varchar" MaxLength="10" />
+    <Property Name="CrDate" Type="datetime" />
+    <Property Name="ModifyBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="RefundRemark" Type="nvarchar" MaxLength="300" />
+    <Property Name="ClearanceCharge" Type="money" Nullable="false" />
+    <Property Name="IsBounce" Type="bit" Nullable="false" />
+    <Property Name="CustomerID" Type="int" />
+    <Property Name="PaymentFor" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="PaymentOtherCancel">
+    <Key>
+      <PropertyRef Name="PaymentOtherCancelID" />
+    </Key>
+    <Property Name="PaymentOtherCancelID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TransactionID" Type="bigint" />
+    <Property Name="SaleID" Type="int" />
+    <Property Name="Amount" Type="money" />
+    <Property Name="CancelDate" Type="datetime" />
+    <Property Name="UnCancelDate" Type="datetime" />
+    <Property Name="Remarks" Type="nvarchar" MaxLength="450" />
+    <Property Name="UnCancelRemark" Type="nvarchar" MaxLength="450" />
+    <Property Name="CancelBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="UnCancelBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="Status" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="PaymentRecord">
+    <Key>
+      <PropertyRef Name="PaymentRecordID" />
+    </Key>
+    <Property Name="PaymentRecordID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TransactionID" Type="int" />
+    <Property Name="SaleID" Type="int" Nullable="false" />
+    <Property Name="Amount" Type="money" />
+    <Property Name="PayDate" Type="datetime" />
+    <Property Name="Action" Type="nvarchar" MaxLength="50" />
+    <Property Name="PayType" Type="nvarchar" MaxLength="50" />
+    <Property Name="BalanceAmount" Type="money" />
+  </EntityType>
+  <EntityType Name="PaymentRefund">
+    <Key>
+      <PropertyRef Name="RefundID" />
+    </Key>
+    <Property Name="RefundID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SaleID" Type="int" />
+    <Property Name="TotalAmount" Type="decimal" Precision="17" Scale="2" />
+    <Property Name="PaidAmount" Type="decimal" Precision="17" Scale="2" />
+    <Property Name="RefundAmount" Type="decimal" Precision="17" Scale="2" />
+    <Property Name="ChequeNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="ChequeDate" Type="datetime" />
+    <Property Name="BankName" Type="nvarchar" MaxLength="50" />
+    <Property Name="RefundDate" Type="datetime" />
+    <Property Name="IsPan" Type="bit" />
+    <Property Name="IsPhoto" Type="bit" />
+    <Property Name="IsAddressPf" Type="bit" />
+    <Property Name="IsRationCard" Type="bit" />
+    <Property Name="IsDrivingLicence" Type="bit" />
+    <Property Name="IsPassport" Type="bit" />
+    <Property Name="IsVoterCard" Type="bit" />
+    <Property Name="RecordStatus" Type="int" />
+    <Property Name="Remarks" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="PayServiceTax">
+    <Key>
+      <PropertyRef Name="PayServiceTaxID" />
+    </Key>
+    <Property Name="PayServiceTaxID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SaleID" Type="int" />
+    <Property Name="PayDate" Type="datetime" />
+    <Property Name="Amount" Type="decimal" Precision="17" Scale="2" />
+    <Property Name="RecordStatus" Type="int" />
+    <Property Name="PaymentNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="AmtRcvdinWords" Type="nvarchar" MaxLength="250" />
+    <Property Name="PaymentMode" Type="int" />
+    <Property Name="ChequeNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="ChequeDate" Type="datetime" />
+    <Property Name="BankCharges" Type="decimal" Precision="17" Scale="2" />
+    <Property Name="BankClearanceDate" Type="datetime" />
+    <Property Name="BankName" Type="nvarchar" MaxLength="50" />
+    <Property Name="BankBranch" Type="nvarchar" MaxLength="50" />
+    <Property Name="PaymentStatus" Type="int" />
+    <Property Name="UserID" Type="int" />
+    <Property Name="Activity" Type="nvarchar" MaxLength="10" />
+    <Property Name="Remarks" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'remshh_com_remsdb.dbo.PayTransferFee' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="PayTransferFee">
+    <Key>
+      <PropertyRef Name="PayTransferID" />
+    </Key>
+    <Property Name="PayTransferID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SaleID" Type="int" />
+    <Property Name="FlatID" Type="int" />
+    <Property Name="PayDate" Type="datetime" />
+    <Property Name="Amount" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="RecordStatus" Type="int" />
+    <Property Name="PaymentNo" Type="nvarchar" MaxLength="20" />
+    <Property Name="AmtRcvdinWords" Type="nvarchar" MaxLength="250" />
+    <Property Name="PaymentMode" Type="int" />
+    <Property Name="ChequeNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="ChequeDate" Type="datetime" />
+    <Property Name="BankCharges" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="BankClearanceDate" Type="datetime" />
+    <Property Name="BankName" Type="nvarchar" MaxLength="50" />
+    <Property Name="BankBranch" Type="nvarchar" MaxLength="50" />
+    <Property Name="PaymentStatus" Type="int" />
+    <Property Name="UserID" Type="int" />
+    <Property Name="Activity" Type="nvarchar" MaxLength="50" />
+    <Property Name="Remarks" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="Plan">
+    <Key>
+      <PropertyRef Name="PlanID" />
+    </Key>
+    <Property Name="PlanID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PlanName" Type="nvarchar" MaxLength="256" />
+    <Property Name="CrDate" Type="datetime" />
+    <Property Name="Status" Type="bit" />
+  </EntityType>
+  <EntityType Name="PlanInstallment">
+    <Key>
+      <PropertyRef Name="PlanInstallmentID" />
+    </Key>
+    <Property Name="PlanInstallmentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PlanID" Type="int" />
+    <Property Name="Installment" Type="nvarchar" MaxLength="256" />
+    <Property Name="InstallmentNo" Type="int" />
+    <Property Name="Amount" Type="money" />
+    <Property Name="CrDate" Type="datetime" />
+    <Property Name="CrBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="IntervalDays" Type="int" />
+  </EntityType>
+  <EntityType Name="PlanTypeMaster">
+    <Key>
+      <PropertyRef Name="PlanTypeMasterID" />
+    </Key>
+    <Property Name="PlanTypeMasterID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FlatTypeSizeID" Type="int" />
+    <Property Name="PlanID" Type="int" />
+    <Property Name="PlanName" Type="nvarchar" MaxLength="500" />
+    <Property Name="AmountSqFt" Type="money" />
+    <Property Name="CrDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="PLC">
+    <Key>
+      <PropertyRef Name="PLCID" />
+    </Key>
+    <Property Name="PLCID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PLCName" Type="nvarchar" MaxLength="50" />
+    <Property Name="AmountSqFt" Type="money" />
+    <Property Name="FloorNo" Type="int" />
+    <Property Name="TaxPer" Type="decimal" Precision="17" Scale="2" />
+    <Property Name="Mandatory" Type="bit" />
+  </EntityType>
+  <EntityType Name="Project">
+    <Key>
+      <PropertyRef Name="ProjectID" />
+    </Key>
+    <Property Name="ProjectID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CrDate" Type="datetime" />
+    <Property Name="CrBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="PName" Type="nvarchar" MaxLength="50" />
+    <Property Name="CompanyName" Type="nvarchar" MaxLength="256" />
+    <Property Name="Location" Type="nvarchar" MaxLength="256" />
+    <Property Name="Address" Type="nvarchar" MaxLength="256" />
+    <Property Name="ReceiptPrefix" Type="nvarchar" MaxLength="50" />
+    <Property Name="RecordStatus" Type="int" />
+    <Property Name="OfficeAddress" Type="nvarchar" MaxLength="256" />
+    <Property Name="District" Type="nvarchar" MaxLength="50" />
+    <Property Name="Village" Type="nvarchar" MaxLength="50" />
+    <Property Name="Tehsil" Type="nvarchar" MaxLength="50" />
+    <Property Name="Jurisdiction" Type="nvarchar" MaxLength="50" />
+    <Property Name="PossessionDate" Type="datetime" />
+    <Property Name="ReceiptNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="AuthoritySign" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="ProjectType">
+    <Key>
+      <PropertyRef Name="ProjectTypeID" />
+    </Key>
+    <Property Name="ProjectTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProjectID" Type="int" />
+    <Property Name="CrDate" Type="datetime" />
+    <Property Name="CrBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="TypeName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="PropertyRemark">
+    <Key>
+      <PropertyRef Name="Rid" />
+    </Key>
+    <Property Name="Rid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SaleID" Type="int" />
+    <Property Name="Remark" Type="varchar" MaxLength="500" />
+    <Property Name="RemakDate" Type="datetime" />
+    <Property Name="status" Type="int" />
+    <Property Name="ProprtyName" Type="varchar" MaxLength="500" />
+    <Property Name="createdate" Type="datetime" />
+    <Property Name="FollowupAmount" Type="money" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="PropertyTransfer">
+    <Key>
+      <PropertyRef Name="PropertyTransferID" />
+    </Key>
+    <Property Name="PropertyTransferID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SaleID" Type="int" />
+    <Property Name="OldCustomerID" Type="int" />
+    <Property Name="NewCustomerID" Type="int" />
+    <Property Name="TransferDate" Type="datetime" />
+    <Property Name="TransferAmount" Type="money" />
+    <Property Name="OldPlanType" Type="nvarchar" MaxLength="200" />
+    <Property Name="NewPlanType" Type="nvarchar" MaxLength="200" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="RefundProperty">
+    <Key>
+      <PropertyRef Name="RefundPropertyID" />
+    </Key>
+    <Property Name="RefundPropertyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SaleID" Type="int" Nullable="false" />
+    <Property Name="RefundDate" Type="datetime" Nullable="false" />
+    <Property Name="RefundAmount" Type="money" Nullable="false" />
+    <Property Name="PaymentMode" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ChequeNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="ChequeDate" Type="datetime" />
+    <Property Name="BankName" Type="nvarchar" MaxLength="50" />
+    <Property Name="BranchName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Remarks" Type="nvarchar" MaxLength="500" />
+    <Property Name="FlatName" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="ReminderLetter">
+    <Key>
+      <PropertyRef Name="ReminderLetterID" />
+    </Key>
+    <Property Name="ReminderLetterID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LetterType" Type="varchar" MaxLength="200" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="SaleID" Type="int" />
+    <Property Name="duedate" Type="datetime" />
+    <Property Name="DueAmount" Type="money" />
+  </EntityType>
+  <EntityType Name="RoleAccess">
+    <Key>
+      <PropertyRef Name="RoleAccessID" />
+    </Key>
+    <Property Name="RoleAccessID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ModuleListID" Type="nvarchar" MaxLength="100" />
+    <Property Name="RoleName" Type="nvarchar" MaxLength="100" />
+    <Property Name="IsRead" Type="bit" Nullable="false" />
+    <Property Name="AssignDate" Type="datetime" />
+    <Property Name="AssignUser" Type="nvarchar" MaxLength="100" />
+    <Property Name="ActionName" Type="nvarchar" MaxLength="100" />
+    <Property Name="ControllerName" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="SaleFlat">
+    <Key>
+      <PropertyRef Name="SaleID" />
+    </Key>
+    <Property Name="SaleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FlatID" Type="int" />
+    <Property Name="Aggrement" Type="varchar" MaxLength="256" />
+    <Property Name="SaleDate" Type="datetime" />
+    <Property Name="TotalAmount" Type="decimal" Precision="17" Scale="2" />
+    <Property Name="TotalAmtInWords" Type="nvarchar" MaxLength="500" />
+    <Property Name="Status" Type="nvarchar" MaxLength="50" />
+    <Property Name="Remarks" Type="nvarchar" MaxLength="500" />
+    <Property Name="ProjectID" Type="int" />
+    <Property Name="DemandStatus" Type="int" />
+  </EntityType>
+  <EntityType Name="ServiceTax">
+    <Key>
+      <PropertyRef Name="ServiceTaxID" />
+    </Key>
+    <Property Name="ServiceTaxID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ServiceTaxName" Type="nvarchar" MaxLength="50" />
+    <Property Name="ServiceTaxPer" Type="decimal" Precision="17" Scale="2" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="ModifyDate" Type="datetime" />
+    <Property Name="EndDate" Type="datetime" />
+    <Property Name="Status" Type="bit" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="TaxMaster">
+    <Key>
+      <PropertyRef Name="TaxMasterID" />
+    </Key>
+    <Property Name="TaxMasterID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TaxName" Type="nvarchar" MaxLength="50" />
+    <Property Name="TaxTag" Type="nvarchar" MaxLength="50" />
+    <Property Name="Tax" Type="float" />
+    <Property Name="ApplyTill" Type="datetime" />
+    <Property Name="CrDate" Type="datetime" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Tower">
+    <Key>
+      <PropertyRef Name="TowerID" />
+    </Key>
+    <Property Name="TowerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProjectID" Type="int" />
+    <Property Name="ProjectTypeID" Type="int" />
+    <Property Name="TowerName" Type="nvarchar" MaxLength="256" />
+    <Property Name="TowerNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="Block" Type="nvarchar" MaxLength="50" />
+    <Property Name="Security" Type="bit" />
+    <Property Name="PlayArea" Type="bit" />
+    <Property Name="PowerBackup" Type="bit" />
+    <Property Name="SwimmingPool" Type="bit" />
+    <Property Name="Gym" Type="bit" />
+    <Property Name="Garden" Type="bit" />
+    <Property Name="Library" Type="bit" />
+    <Property Name="CommunityHall" Type="bit" />
+    <Property Name="ClubHourse" Type="bit" />
+    <Property Name="JoggingTrack" Type="bit" />
+    <Property Name="Lift" Type="bit" />
+    <Property Name="Internet" Type="bit" />
+    <Property Name="InternalRoad" Type="bit" />
+    <Property Name="CrDate" Type="datetime" />
+    <Property Name="CrBy" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="UploadAgreement">
+    <Key>
+      <PropertyRef Name="UploadAgreementID" />
+    </Key>
+    <Property Name="UploadAgreementID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SaleID" Type="int" />
+    <Property Name="FilePath" Type="nvarchar" MaxLength="50" />
+    <Property Name="Createdate" Type="datetime" />
+    <Property Name="ModifyDate" Type="nvarchar" MaxLength="50" />
+    <Property Name="IsActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="UserAccess">
+    <Key>
+      <PropertyRef Name="UserAccessID" />
+    </Key>
+    <Property Name="UserAccessID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ModuleListID" Type="nvarchar" MaxLength="100" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="100" />
+    <Property Name="IsRead" Type="bit" Nullable="false" />
+    <Property Name="IsWrite" Type="bit" Nullable="false" />
+    <Property Name="AssignDate" Type="datetime" />
+    <Property Name="AssignUser" Type="nvarchar" MaxLength="100" />
+    <Property Name="ActionName" Type="nvarchar" MaxLength="100" />
+    <Property Name="ControllerName" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="UserProperty">
+    <Key>
+      <PropertyRef Name="UserPropertyID" />
+    </Key>
+    <Property Name="UserPropertyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProjectID" Type="int" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="100" />
+    <Property Name="AssignDate" Type="datetime" />
+    <Property Name="AssignUser" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <Association Name="FK_Customer_SaleFlat">
+    <End Role="SaleFlat" Type="Self.SaleFlat" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SaleFlat">
+        <PropertyRef Name="SaleID" />
+      </Principal>
+      <Dependent Role="Customer">
+        <PropertyRef Name="SaleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Flat_Floor">
+    <End Role="Floor" Type="Self.Floor" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Flat" Type="Self.Flat" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Floor">
+        <PropertyRef Name="FloorID" />
+      </Principal>
+      <Dependent Role="Flat">
+        <PropertyRef Name="FloorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FlatCharge_AdditionalCharge">
+    <End Role="AdditionalCharge" Type="Self.AdditionalCharge" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="FlatCharge" Type="Self.FlatCharge" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AdditionalCharge">
+        <PropertyRef Name="AdditionalChargeID" />
+      </Principal>
+      <Dependent Role="FlatCharge">
+        <PropertyRef Name="AdditionalChargeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FlatCharge_Flat">
+    <End Role="Flat" Type="Self.Flat" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="FlatCharge" Type="Self.FlatCharge" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Flat">
+        <PropertyRef Name="FlatID" />
+      </Principal>
+      <Dependent Role="FlatCharge">
+        <PropertyRef Name="FlatID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FlatInstallmentDetail_Flat">
+    <End Role="Flat" Type="Self.Flat" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="FlatInstallmentDetail" Type="Self.FlatInstallmentDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Flat">
+        <PropertyRef Name="FlatID" />
+      </Principal>
+      <Dependent Role="FlatInstallmentDetail">
+        <PropertyRef Name="FlatID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FlatInstallmentDetail_PlanInstallment">
+    <End Role="PlanInstallment" Type="Self.PlanInstallment" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="FlatInstallmentDetail" Type="Self.FlatInstallmentDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PlanInstallment">
+        <PropertyRef Name="PlanInstallmentID" />
+      </Principal>
+      <Dependent Role="FlatInstallmentDetail">
+        <PropertyRef Name="PlanInstallmentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FlatOCharge_AddOnCharge">
+    <End Role="AddOnCharge" Type="Self.AddOnCharge" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="FlatOCharge" Type="Self.FlatOCharge" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AddOnCharge">
+        <PropertyRef Name="AddOnChargeID" />
+      </Principal>
+      <Dependent Role="FlatOCharge">
+        <PropertyRef Name="AddOnChargeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FlatOCharge_Flat">
+    <End Role="Flat" Type="Self.Flat" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="FlatOCharge" Type="Self.FlatOCharge" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Flat">
+        <PropertyRef Name="FlatID" />
+      </Principal>
+      <Dependent Role="FlatOCharge">
+        <PropertyRef Name="FlatID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FlatPLC_Flat">
+    <End Role="Flat" Type="Self.Flat" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="FlatPLC" Type="Self.FlatPLC" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Flat">
+        <PropertyRef Name="FlatID" />
+      </Principal>
+      <Dependent Role="FlatPLC">
+        <PropertyRef Name="FlatID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FlatPLC_PLC">
+    <End Role="PLC" Type="Self.PLC" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="FlatPLC" Type="Self.FlatPLC" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PLC">
+        <PropertyRef Name="PLCID" />
+      </Principal>
+      <Dependent Role="FlatPLC">
+        <PropertyRef Name="PLCID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FlatTypeSize_FlatType">
+    <End Role="FlatType" Type="Self.FlatType" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="FlatTypeSize" Type="Self.FlatTypeSize" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FlatType">
+        <PropertyRef Name="FlatTypeID" />
+      </Principal>
+      <Dependent Role="FlatTypeSize">
+        <PropertyRef Name="FlatTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Floor_Tower">
+    <End Role="Tower" Type="Self.Tower" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Floor" Type="Self.Floor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tower">
+        <PropertyRef Name="TowerID" />
+      </Principal>
+      <Dependent Role="Floor">
+        <PropertyRef Name="TowerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LatePayment_SaleFlat">
+    <End Role="SaleFlat" Type="Self.SaleFlat" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="LatePayment" Type="Self.LatePayment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SaleFlat">
+        <PropertyRef Name="SaleID" />
+      </Principal>
+      <Dependent Role="LatePayment">
+        <PropertyRef Name="SaleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Payment_SaleFlat">
+    <End Role="SaleFlat" Type="Self.SaleFlat" Multiplicity="0..1" />
+    <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SaleFlat">
+        <PropertyRef Name="SaleID" />
+      </Principal>
+      <Dependent Role="Payment">
+        <PropertyRef Name="SaleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PaymentCancel_SaleFlat">
+    <End Role="SaleFlat" Type="Self.SaleFlat" Multiplicity="0..1" />
+    <End Role="PaymentCancel" Type="Self.PaymentCancel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SaleFlat">
+        <PropertyRef Name="SaleID" />
+      </Principal>
+      <Dependent Role="PaymentCancel">
+        <PropertyRef Name="SaleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PaymentOther_SaleFlat">
+    <End Role="SaleFlat" Type="Self.SaleFlat" Multiplicity="0..1" />
+    <End Role="PaymentOther" Type="Self.PaymentOther" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SaleFlat">
+        <PropertyRef Name="SaleID" />
+      </Principal>
+      <Dependent Role="PaymentOther">
+        <PropertyRef Name="SaleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PaymentOtherCancel_SaleFlat">
+    <End Role="SaleFlat" Type="Self.SaleFlat" Multiplicity="0..1" />
+    <End Role="PaymentOtherCancel" Type="Self.PaymentOtherCancel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SaleFlat">
+        <PropertyRef Name="SaleID" />
+      </Principal>
+      <Dependent Role="PaymentOtherCancel">
+        <PropertyRef Name="SaleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PaymentRecord_SaleFlat">
+    <End Role="SaleFlat" Type="Self.SaleFlat" Multiplicity="1" />
+    <End Role="PaymentRecord" Type="Self.PaymentRecord" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SaleFlat">
+        <PropertyRef Name="SaleID" />
+      </Principal>
+      <Dependent Role="PaymentRecord">
+        <PropertyRef Name="SaleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PaymentRefund_SaleFlat">
+    <End Role="SaleFlat" Type="Self.SaleFlat" Multiplicity="0..1" />
+    <End Role="PaymentRefund" Type="Self.PaymentRefund" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SaleFlat">
+        <PropertyRef Name="SaleID" />
+      </Principal>
+      <Dependent Role="PaymentRefund">
+        <PropertyRef Name="SaleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PayServiceTax_SaleFlat">
+    <End Role="SaleFlat" Type="Self.SaleFlat" Multiplicity="0..1" />
+    <End Role="PayServiceTax" Type="Self.PayServiceTax" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SaleFlat">
+        <PropertyRef Name="SaleID" />
+      </Principal>
+      <Dependent Role="PayServiceTax">
+        <PropertyRef Name="SaleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PlanInstallment_Plan">
+    <End Role="Plan" Type="Self.Plan" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="PlanInstallment" Type="Self.PlanInstallment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Plan">
+        <PropertyRef Name="PlanID" />
+      </Principal>
+      <Dependent Role="PlanInstallment">
+        <PropertyRef Name="PlanID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PlanTypeMaster_FlatTypeSize">
+    <End Role="FlatTypeSize" Type="Self.FlatTypeSize" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="PlanTypeMaster" Type="Self.PlanTypeMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FlatTypeSize">
+        <PropertyRef Name="FlatTypeSizeID" />
+      </Principal>
+      <Dependent Role="PlanTypeMaster">
+        <PropertyRef Name="FlatTypeSizeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PlanTypeMaster_Plan">
+    <End Role="Plan" Type="Self.Plan" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="PlanTypeMaster" Type="Self.PlanTypeMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Plan">
+        <PropertyRef Name="PlanID" />
+      </Principal>
+      <Dependent Role="PlanTypeMaster">
+        <PropertyRef Name="PlanID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProjectType_Project">
+    <End Role="Project" Type="Self.Project" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ProjectType" Type="Self.ProjectType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="ProjectID" />
+      </Principal>
+      <Dependent Role="ProjectType">
+        <PropertyRef Name="ProjectID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PropertyRemark_SaleFlat">
+    <End Role="SaleFlat" Type="Self.SaleFlat" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="PropertyRemark" Type="Self.PropertyRemark" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SaleFlat">
+        <PropertyRef Name="SaleID" />
+      </Principal>
+      <Dependent Role="PropertyRemark">
+        <PropertyRef Name="SaleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PropertyTransfer_SaleFlat">
+    <End Role="SaleFlat" Type="Self.SaleFlat" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="PropertyTransfer" Type="Self.PropertyTransfer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SaleFlat">
+        <PropertyRef Name="SaleID" />
+      </Principal>
+      <Dependent Role="PropertyTransfer">
+        <PropertyRef Name="SaleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RefundProperty_SaleFlat">
+    <End Role="SaleFlat" Type="Self.SaleFlat" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="RefundProperty" Type="Self.RefundProperty" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SaleFlat">
+        <PropertyRef Name="SaleID" />
+      </Principal>
+      <Dependent Role="RefundProperty">
+        <PropertyRef Name="SaleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReminderLetter_SaleFlat">
+    <End Role="SaleFlat" Type="Self.SaleFlat" Multiplicity="0..1" />
+    <End Role="ReminderLetter" Type="Self.ReminderLetter" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SaleFlat">
+        <PropertyRef Name="SaleID" />
+      </Principal>
+      <Dependent Role="ReminderLetter">
+        <PropertyRef Name="SaleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SaleFlat_Flat">
+    <End Role="Flat" Type="Self.Flat" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="SaleFlat" Type="Self.SaleFlat" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Flat">
+        <PropertyRef Name="FlatID" />
+      </Principal>
+      <Dependent Role="SaleFlat">
+        <PropertyRef Name="FlatID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tower_Project">
+    <End Role="Project" Type="Self.Project" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Tower" Type="Self.Tower" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="ProjectID" />
+      </Principal>
+      <Dependent Role="Tower">
+        <PropertyRef Name="ProjectID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UploadAgreement_SaleFlat">
+    <End Role="SaleFlat" Type="Self.SaleFlat" Multiplicity="0..1" />
+    <End Role="UploadAgreement" Type="Self.UploadAgreement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SaleFlat">
+        <PropertyRef Name="SaleID" />
+      </Principal>
+      <Dependent Role="UploadAgreement">
+        <PropertyRef Name="SaleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserProperty_UserProperty">
+    <End Role="Project" Type="Self.Project" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="UserProperty" Type="Self.UserProperty" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="ProjectID" />
+      </Principal>
+      <Dependent Role="UserProperty">
+        <PropertyRef Name="ProjectID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="GenerateAssuredReturn_Installment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SaleID" Type="int" Mode="In" />
+    <Parameter Name="Amount" Type="money" Mode="In" />
+    <Parameter Name="Interest" Type="money" Mode="In" />
+    <Parameter Name="StartDate" Type="datetime" Mode="In" />
+    <Parameter Name="PDate" Type="datetime" Mode="In" />
+    <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+    <Parameter Name="TDSLimit" Type="money" Mode="In" />
+    <Parameter Name="TDSPer" Type="money" Mode="In" />
+  </Function>
+  <Function Name="Get_Payment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TransactionID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GetLatePaymentInterest" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="decimal">
+    <Parameter Name="SaleID" Type="int" Mode="In" />
+    <Parameter Name="RecAmount" Type="money" Mode="In" />
+    <Parameter Name="InstallmentNo" Type="nvarchar" Mode="In" />
+    <Parameter Name="PaymentDate" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="Insert_Payment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="InstallmentNo" Type="nvarchar" Mode="In" />
+    <Parameter Name="SaleID" Type="int" Mode="In" />
+    <Parameter Name="PaymentDate" Type="datetime" Mode="In" />
+    <Parameter Name="DueDate" Type="datetime" Mode="In" />
+    <Parameter Name="DueAmount" Type="decimal" Mode="In" />
+    <Parameter Name="InterestAmount" Type="decimal" Mode="In" />
+    <Parameter Name="TotalAmount" Type="decimal" Mode="In" />
+    <Parameter Name="Amount" Type="decimal" Mode="In" />
+    <Parameter Name="PaymentMode" Type="nvarchar" Mode="In" />
+    <Parameter Name="ChequeNo" Type="varchar" Mode="In" />
+    <Parameter Name="ChequeDate" Type="datetime" Mode="In" />
+    <Parameter Name="BankName" Type="varchar" Mode="In" />
+    <Parameter Name="PaymentStatus" Type="nvarchar" Mode="In" />
+    <Parameter Name="CustomerName" Type="nvarchar" Mode="In" />
+    <Parameter Name="Remarks" Type="nvarchar" Mode="In" />
+    <Parameter Name="BankBranch" Type="nvarchar" Mode="In" />
+    <Parameter Name="AmtRcvdinwords" Type="nvarchar" Mode="In" />
+    <Parameter Name="PaymentNo" Type="nvarchar" Mode="In" />
+    <Parameter Name="IsReceipt" Type="bit" Mode="In" />
+    <Parameter Name="UserID" Type="int" Mode="In" />
+    <Parameter Name="Activity" Type="nvarchar" Mode="In" />
+    <Parameter Name="FlatName" Type="nvarchar" Mode="In" />
+    <Parameter Name="TransactionID" Type="int" Mode="In" />
+    <Parameter Name="CustomerID" Type="int" Mode="In" />
+    <Parameter Name="Interest" Type="bit" Mode="In" />
+    <Parameter Name="CreatedBy" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="Insert_PaymentAssuredReturn" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SaleID" Type="int" Mode="In" />
+    <Parameter Name="PaymentDate" Type="datetime" Mode="In" />
+    <Parameter Name="Amount" Type="decimal" Mode="In" />
+    <Parameter Name="PaymentMode" Type="nvarchar" Mode="In" />
+    <Parameter Name="ChequeNo" Type="varchar" Mode="In" />
+    <Parameter Name="ChequeDate" Type="datetime" Mode="In" />
+    <Parameter Name="BankName" Type="varchar" Mode="In" />
+    <Parameter Name="PaymentStatus" Type="nvarchar" Mode="In" />
+    <Parameter Name="CustomerName" Type="nvarchar" Mode="In" />
+    <Parameter Name="Remarks" Type="nvarchar" Mode="In" />
+    <Parameter Name="BankBranch" Type="nvarchar" Mode="In" />
+    <Parameter Name="AmtRcvdinwords" Type="nvarchar" Mode="In" />
+    <Parameter Name="PaymentNo" Type="nvarchar" Mode="In" />
+    <Parameter Name="IsReceipt" Type="bit" Mode="In" />
+    <Parameter Name="FlatName" Type="nvarchar" Mode="In" />
+    <Parameter Name="TransactionID" Type="int" Mode="In" />
+    <Parameter Name="CustomerID" Type="int" Mode="In" />
+    <Parameter Name="CreatedBy" Type="nvarchar" Mode="In" />
+    <Parameter Name="AssuredReturnID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Insert_PaymentOther" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SaleID" Type="int" Mode="In" />
+    <Parameter Name="InstallmentNo" Type="nvarchar" Mode="In" />
+    <Parameter Name="PaymentDate" Type="datetime" Mode="In" />
+    <Parameter Name="Amount" Type="decimal" Mode="In" />
+    <Parameter Name="PaymentMode" Type="nvarchar" Mode="In" />
+    <Parameter Name="ChequeNo" Type="varchar" Mode="In" />
+    <Parameter Name="ChequeDate" Type="datetime" Mode="In" />
+    <Parameter Name="BankName" Type="varchar" Mode="In" />
+    <Parameter Name="PaymentStatus" Type="nvarchar" Mode="In" />
+    <Parameter Name="CustomerName" Type="nvarchar" Mode="In" />
+    <Parameter Name="Remarks" Type="nvarchar" Mode="In" />
+    <Parameter Name="BankBranch" Type="nvarchar" Mode="In" />
+    <Parameter Name="AmtRcvdinwords" Type="nvarchar" Mode="In" />
+    <Parameter Name="PaymentNo" Type="nvarchar" Mode="In" />
+    <Parameter Name="IsReceipt" Type="bit" Mode="In" />
+    <Parameter Name="Activity" Type="nvarchar" Mode="In" />
+    <Parameter Name="FlatName" Type="nvarchar" Mode="In" />
+    <Parameter Name="TransactionID" Type="int" Mode="In" />
+    <Parameter Name="CustomerID" Type="int" Mode="In" />
+    <Parameter Name="CreatedBy" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="Rem_GetFlatPlanCharge" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="FlatId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_Customer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CustomerID" Type="int" Mode="In" />
+    <Parameter Name="AppTitle" Type="varchar" Mode="In" />
+    <Parameter Name="FName" Type="varchar" Mode="In" />
+    <Parameter Name="MName" Type="varchar" Mode="In" />
+    <Parameter Name="LName" Type="varchar" Mode="In" />
+    <Parameter Name="Title" Type="nvarchar" Mode="In" />
+    <Parameter Name="PName" Type="nvarchar" Mode="In" />
+    <Parameter Name="Address1" Type="varchar" Mode="In" />
+    <Parameter Name="Address2" Type="varchar" Mode="In" />
+    <Parameter Name="City" Type="varchar" Mode="In" />
+    <Parameter Name="State" Type="varchar" Mode="In" />
+    <Parameter Name="Country" Type="varchar" Mode="In" />
+    <Parameter Name="PAN" Type="varchar" Mode="In" />
+    <Parameter Name="MobileNo" Type="varchar" Mode="In" />
+    <Parameter Name="DateOfBirth" Type="datetime" Mode="In" />
+    <Parameter Name="CoAppTitle" Type="nvarchar" Mode="In" />
+    <Parameter Name="CoFName" Type="varchar" Mode="In" />
+    <Parameter Name="CoMName" Type="varchar" Mode="In" />
+    <Parameter Name="CoLName" Type="varchar" Mode="In" />
+    <Parameter Name="CoAddress1" Type="varchar" Mode="In" />
+    <Parameter Name="CoAddress2" Type="varchar" Mode="In" />
+    <Parameter Name="CoCity" Type="varchar" Mode="In" />
+    <Parameter Name="CoState" Type="varchar" Mode="In" />
+    <Parameter Name="CoCountry" Type="varchar" Mode="In" />
+    <Parameter Name="CoPAN" Type="varchar" Mode="In" />
+    <Parameter Name="CoMobileNo" Type="varchar" Mode="In" />
+    <Parameter Name="AlternateMobile" Type="varchar" Mode="In" />
+    <Parameter Name="LandLine" Type="varchar" Mode="In" />
+    <Parameter Name="EmailID" Type="varchar" Mode="In" />
+    <Parameter Name="AlternateEmail" Type="varchar" Mode="In" />
+    <Parameter Name="LoanAmount" Type="decimal" Mode="In" />
+    <Parameter Name="LienField" Type="varchar" Mode="In" />
+    <Parameter Name="BankID" Type="int" Mode="In" />
+    <Parameter Name="BankBranch" Type="varchar" Mode="In" />
+    <Parameter Name="SecCoAppTitle" Type="varchar" Mode="In" />
+    <Parameter Name="SecCoFName" Type="varchar" Mode="In" />
+    <Parameter Name="SecCoMName" Type="varchar" Mode="In" />
+    <Parameter Name="SecCoLName" Type="varchar" Mode="In" />
+    <Parameter Name="SecCoAddress1" Type="varchar" Mode="In" />
+    <Parameter Name="SecCoAddress2" Type="varchar" Mode="In" />
+    <Parameter Name="SecCoCity" Type="varchar" Mode="In" />
+    <Parameter Name="SecCoState" Type="varchar" Mode="In" />
+    <Parameter Name="SecCoCountry" Type="varchar" Mode="In" />
+    <Parameter Name="SecCoMobileNo" Type="varchar" Mode="In" />
+    <Parameter Name="SecCoPAN" Type="varchar" Mode="In" />
+    <Parameter Name="CoTitle" Type="varchar" Mode="In" />
+    <Parameter Name="CoPName" Type="varchar" Mode="In" />
+    <Parameter Name="SecCoTitle" Type="varchar" Mode="In" />
+    <Parameter Name="SecCoPName" Type="varchar" Mode="In" />
+    <Parameter Name="Remarks" Type="varchar" Mode="In" />
+    <Parameter Name="CoDOB" Type="datetime" Mode="In" />
+    <Parameter Name="SecCoDOB" Type="datetime" Mode="In" />
+    <Parameter Name="PinCode" Type="varchar" Mode="In" />
+    <Parameter Name="ExecutiveName" Type="varchar" Mode="In" />
+    <Parameter Name="CoPinCode" Type="varchar" Mode="In" />
+    <Parameter Name="SecCoPinCode" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="spGetProjectByFlatid" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="flatid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spPlanSummary" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="FlatSize" Type="decimal" Mode="In" />
+  </Function>
+  <Function Name="Update_Clearance" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TransactionID" Type="nvarchar" Mode="In" />
+    <Parameter Name="ChargeAmount" Type="nvarchar" Mode="In" />
+    <Parameter Name="Remarks" Type="nvarchar" Mode="In" />
+    <Parameter Name="ModifyBy" Type="nvarchar" Mode="In" />
+    <Parameter Name="IsBounce" Type="nvarchar" Mode="In" />
+    <Parameter Name="ClearanceDate" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="Update_Payment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SaleID" Type="int" Mode="In" />
+    <Parameter Name="TransactionID" Type="int" Mode="In" />
+    <Parameter Name="PaymentDate" Type="datetime" Mode="In" />
+    <Parameter Name="Amount" Type="decimal" Mode="In" />
+    <Parameter Name="PaymentMode" Type="nvarchar" Mode="In" />
+    <Parameter Name="ChequeNo" Type="varchar" Mode="In" />
+    <Parameter Name="ChequeDate" Type="datetime" Mode="In" />
+    <Parameter Name="BankName" Type="varchar" Mode="In" />
+    <Parameter Name="PaymentStatus" Type="nvarchar" Mode="In" />
+    <Parameter Name="Remarks" Type="nvarchar" Mode="In" />
+    <Parameter Name="BankBranch" Type="nvarchar" Mode="In" />
+    <Parameter Name="AmtRcvdinwords" Type="nvarchar" Mode="In" />
+    <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+    <Parameter Name="Activity" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="Update_TransferProperty" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CustomerID" Type="int" Mode="In" />
+    <Parameter Name="FName" Type="nvarchar" Mode="In" />
+    <Parameter Name="MName" Type="nvarchar" Mode="In" />
+    <Parameter Name="LName" Type="nvarchar" Mode="In" />
+    <Parameter Name="SaleID" Type="int" Mode="In" />
+    <Parameter Name="TransferAmount" Type="nvarchar" Mode="In" />
+    <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+    <Parameter Name="TransferDate" Type="datetime" Mode="In" />
+  </Function>
+  <EntityContainer Name="REMSDBModelStoreContainer">
+    <EntitySet Name="AdditionalCharge" EntityType="Self.AdditionalCharge" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AddOnCharge" EntityType="Self.AddOnCharge" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Agreement" EntityType="Self.Agreement" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AssuredReturn" EntityType="Self.AssuredReturn" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AssuredReturnPayment" EntityType="Self.AssuredReturnPayment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BankMaster" EntityType="Self.BankMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BrokerMaster" EntityType="Self.BrokerMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BrokerPayment" EntityType="Self.BrokerPayment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BrokerToProperty" EntityType="Self.BrokerToProperty" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CityMaster" EntityType="Self.CityMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Error" EntityType="Self.Error" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EventMaster" EntityType="Self.EventMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Flat" EntityType="Self.Flat" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FlatCharge" EntityType="Self.FlatCharge" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FlatInstallmentDetail" EntityType="Self.FlatInstallmentDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FlatOCharge" EntityType="Self.FlatOCharge" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FlatPLC" EntityType="Self.FlatPLC" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FlatType" EntityType="Self.FlatType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FlatTypeSize" EntityType="Self.FlatTypeSize" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Floor" EntityType="Self.Floor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LatePayment" EntityType="Self.LatePayment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ModuleList" EntityType="Self.ModuleList" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Payment" EntityType="Self.Payment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PaymentCancel" EntityType="Self.PaymentCancel" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PaymentMaster" EntityType="Self.PaymentMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PaymentOther" EntityType="Self.PaymentOther" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PaymentOtherCancel" EntityType="Self.PaymentOtherCancel" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PaymentRecord" EntityType="Self.PaymentRecord" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PaymentRefund" EntityType="Self.PaymentRefund" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PayServiceTax" EntityType="Self.PayServiceTax" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Plan" EntityType="Self.Plan" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PlanInstallment" EntityType="Self.PlanInstallment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PlanTypeMaster" EntityType="Self.PlanTypeMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PLC" EntityType="Self.PLC" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Project" EntityType="Self.Project" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProjectType" EntityType="Self.ProjectType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PropertyRemark" EntityType="Self.PropertyRemark" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PropertyTransfer" EntityType="Self.PropertyTransfer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RefundProperty" EntityType="Self.RefundProperty" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ReminderLetter" EntityType="Self.ReminderLetter" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RoleAccess" EntityType="Self.RoleAccess" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SaleFlat" EntityType="Self.SaleFlat" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ServiceTax" EntityType="Self.ServiceTax" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TaxMaster" EntityType="Self.TaxMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tower" EntityType="Self.Tower" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UploadAgreement" EntityType="Self.UploadAgreement" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserAccess" EntityType="Self.UserAccess" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserProperty" EntityType="Self.UserProperty" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PayTransferFee" EntityType="Self.PayTransferFee" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [PayTransferFee].[PayTransferID] AS [PayTransferID], 
+    [PayTransferFee].[SaleID] AS [SaleID], 
+    [PayTransferFee].[FlatID] AS [FlatID], 
+    [PayTransferFee].[PayDate] AS [PayDate], 
+    [PayTransferFee].[Amount] AS [Amount], 
+    [PayTransferFee].[RecordStatus] AS [RecordStatus], 
+    [PayTransferFee].[PaymentNo] AS [PaymentNo], 
+    [PayTransferFee].[AmtRcvdinWords] AS [AmtRcvdinWords], 
+    [PayTransferFee].[PaymentMode] AS [PaymentMode], 
+    [PayTransferFee].[ChequeNo] AS [ChequeNo], 
+    [PayTransferFee].[ChequeDate] AS [ChequeDate], 
+    [PayTransferFee].[BankCharges] AS [BankCharges], 
+    [PayTransferFee].[BankClearanceDate] AS [BankClearanceDate], 
+    [PayTransferFee].[BankName] AS [BankName], 
+    [PayTransferFee].[BankBranch] AS [BankBranch], 
+    [PayTransferFee].[PaymentStatus] AS [PaymentStatus], 
+    [PayTransferFee].[UserID] AS [UserID], 
+    [PayTransferFee].[Activity] AS [Activity], 
+    [PayTransferFee].[Remarks] AS [Remarks]
+    FROM [dbo].[PayTransferFee] AS [PayTransferFee]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_Customer_SaleFlat" Association="Self.FK_Customer_SaleFlat">
+      <End Role="SaleFlat" EntitySet="SaleFlat" />
+      <End Role="Customer" EntitySet="Customer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Flat_Floor" Association="Self.FK_Flat_Floor">
+      <End Role="Floor" EntitySet="Floor" />
+      <End Role="Flat" EntitySet="Flat" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FlatCharge_AdditionalCharge" Association="Self.FK_FlatCharge_AdditionalCharge">
+      <End Role="AdditionalCharge" EntitySet="AdditionalCharge" />
+      <End Role="FlatCharge" EntitySet="FlatCharge" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FlatCharge_Flat" Association="Self.FK_FlatCharge_Flat">
+      <End Role="Flat" EntitySet="Flat" />
+      <End Role="FlatCharge" EntitySet="FlatCharge" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FlatInstallmentDetail_Flat" Association="Self.FK_FlatInstallmentDetail_Flat">
+      <End Role="Flat" EntitySet="Flat" />
+      <End Role="FlatInstallmentDetail" EntitySet="FlatInstallmentDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FlatInstallmentDetail_PlanInstallment" Association="Self.FK_FlatInstallmentDetail_PlanInstallment">
+      <End Role="PlanInstallment" EntitySet="PlanInstallment" />
+      <End Role="FlatInstallmentDetail" EntitySet="FlatInstallmentDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FlatOCharge_AddOnCharge" Association="Self.FK_FlatOCharge_AddOnCharge">
+      <End Role="AddOnCharge" EntitySet="AddOnCharge" />
+      <End Role="FlatOCharge" EntitySet="FlatOCharge" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FlatOCharge_Flat" Association="Self.FK_FlatOCharge_Flat">
+      <End Role="Flat" EntitySet="Flat" />
+      <End Role="FlatOCharge" EntitySet="FlatOCharge" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FlatPLC_Flat" Association="Self.FK_FlatPLC_Flat">
+      <End Role="Flat" EntitySet="Flat" />
+      <End Role="FlatPLC" EntitySet="FlatPLC" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FlatPLC_PLC" Association="Self.FK_FlatPLC_PLC">
+      <End Role="PLC" EntitySet="PLC" />
+      <End Role="FlatPLC" EntitySet="FlatPLC" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FlatTypeSize_FlatType" Association="Self.FK_FlatTypeSize_FlatType">
+      <End Role="FlatType" EntitySet="FlatType" />
+      <End Role="FlatTypeSize" EntitySet="FlatTypeSize" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Floor_Tower" Association="Self.FK_Floor_Tower">
+      <End Role="Tower" EntitySet="Tower" />
+      <End Role="Floor" EntitySet="Floor" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LatePayment_SaleFlat" Association="Self.FK_LatePayment_SaleFlat">
+      <End Role="SaleFlat" EntitySet="SaleFlat" />
+      <End Role="LatePayment" EntitySet="LatePayment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Payment_SaleFlat" Association="Self.FK_Payment_SaleFlat">
+      <End Role="SaleFlat" EntitySet="SaleFlat" />
+      <End Role="Payment" EntitySet="Payment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PaymentCancel_SaleFlat" Association="Self.FK_PaymentCancel_SaleFlat">
+      <End Role="SaleFlat" EntitySet="SaleFlat" />
+      <End Role="PaymentCancel" EntitySet="PaymentCancel" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PaymentOther_SaleFlat" Association="Self.FK_PaymentOther_SaleFlat">
+      <End Role="SaleFlat" EntitySet="SaleFlat" />
+      <End Role="PaymentOther" EntitySet="PaymentOther" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PaymentOtherCancel_SaleFlat" Association="Self.FK_PaymentOtherCancel_SaleFlat">
+      <End Role="SaleFlat" EntitySet="SaleFlat" />
+      <End Role="PaymentOtherCancel" EntitySet="PaymentOtherCancel" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PaymentRecord_SaleFlat" Association="Self.FK_PaymentRecord_SaleFlat">
+      <End Role="SaleFlat" EntitySet="SaleFlat" />
+      <End Role="PaymentRecord" EntitySet="PaymentRecord" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PaymentRefund_SaleFlat" Association="Self.FK_PaymentRefund_SaleFlat">
+      <End Role="SaleFlat" EntitySet="SaleFlat" />
+      <End Role="PaymentRefund" EntitySet="PaymentRefund" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PayServiceTax_SaleFlat" Association="Self.FK_PayServiceTax_SaleFlat">
+      <End Role="SaleFlat" EntitySet="SaleFlat" />
+      <End Role="PayServiceTax" EntitySet="PayServiceTax" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PlanInstallment_Plan" Association="Self.FK_PlanInstallment_Plan">
+      <End Role="Plan" EntitySet="Plan" />
+      <End Role="PlanInstallment" EntitySet="PlanInstallment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PlanTypeMaster_FlatTypeSize" Association="Self.FK_PlanTypeMaster_FlatTypeSize">
+      <End Role="FlatTypeSize" EntitySet="FlatTypeSize" />
+      <End Role="PlanTypeMaster" EntitySet="PlanTypeMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PlanTypeMaster_Plan" Association="Self.FK_PlanTypeMaster_Plan">
+      <End Role="Plan" EntitySet="Plan" />
+      <End Role="PlanTypeMaster" EntitySet="PlanTypeMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProjectType_Project" Association="Self.FK_ProjectType_Project">
+      <End Role="Project" EntitySet="Project" />
+      <End Role="ProjectType" EntitySet="ProjectType" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PropertyRemark_SaleFlat" Association="Self.FK_PropertyRemark_SaleFlat">
+      <End Role="SaleFlat" EntitySet="SaleFlat" />
+      <End Role="PropertyRemark" EntitySet="PropertyRemark" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PropertyTransfer_SaleFlat" Association="Self.FK_PropertyTransfer_SaleFlat">
+      <End Role="SaleFlat" EntitySet="SaleFlat" />
+      <End Role="PropertyTransfer" EntitySet="PropertyTransfer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RefundProperty_SaleFlat" Association="Self.FK_RefundProperty_SaleFlat">
+      <End Role="SaleFlat" EntitySet="SaleFlat" />
+      <End Role="RefundProperty" EntitySet="RefundProperty" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReminderLetter_SaleFlat" Association="Self.FK_ReminderLetter_SaleFlat">
+      <End Role="SaleFlat" EntitySet="SaleFlat" />
+      <End Role="ReminderLetter" EntitySet="ReminderLetter" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SaleFlat_Flat" Association="Self.FK_SaleFlat_Flat">
+      <End Role="Flat" EntitySet="Flat" />
+      <End Role="SaleFlat" EntitySet="SaleFlat" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tower_Project" Association="Self.FK_Tower_Project">
+      <End Role="Project" EntitySet="Project" />
+      <End Role="Tower" EntitySet="Tower" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UploadAgreement_SaleFlat" Association="Self.FK_UploadAgreement_SaleFlat">
+      <End Role="SaleFlat" EntitySet="SaleFlat" />
+      <End Role="UploadAgreement" EntitySet="UploadAgreement" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserProperty_UserProperty" Association="Self.FK_UserProperty_UserProperty">
+      <End Role="Project" EntitySet="Project" />
+      <End Role="UserProperty" EntitySet="UserProperty" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

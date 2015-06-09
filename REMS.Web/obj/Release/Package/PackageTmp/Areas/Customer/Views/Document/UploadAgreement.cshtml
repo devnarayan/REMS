@@ -1,0 +1,319 @@
+﻿
+@{
+    ViewBag.Title = "UploadAgreement";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div ng-app="fileUpload" role="main">
+    <!-- RIBBON -->
+    <div id="ribbon">
+        <span class="ribbon-button-alignment">
+        </span>
+        <!-- breadcrumb -->
+        <ol class="breadcrumb">
+            <li>Customer</li>
+            <li>Property</li>
+            <li>Agreement</li>
+        </ol>
+        <!-- end breadcrumb -->
+    </div>
+    <!-- END RIBBON -->
+    <!-- MAIN CONTENT -->
+    <div id="content" ng-controller="MyCtrl">
+        <div class="row">
+            <div class="col-xs-12 col-sm-7 col-md-7 col-lg-8">
+                <h1 class="page-title txt-color-blueDark"><i class="fa fa-folder-open fa-fw "></i>Property  Agreement</h1>
+            </div>
+            <div class="col-xs-12 col-sm-5 col-md-5 col-lg-8">
+            </div>
+        </div>
+        <!-- widget grid -->
+        <section id="widget-grid" class="" data-ng-init="UplaodInint()">
+            <input type="hidden" id="hidFlatID" name="hidFlatID" />
+            <!-- row -->
+            <div class="row">
+                <!-- NEW WIDGET START -->
+                <article class="col-sm-12 col-md-12">
+                    <!-- Widget ID (each widget will need unique ID)-->
+                    <div class="jarviswidget" id="wid-id-2" data-widget-editbutton="false" data-widget-deletebutton="false">
+                        <header>
+                            <h2>Property Agreement Wizard </h2>
+                        </header>
+                        <!-- widget div-->
+                        <div>
+                            <!-- widget content -->
+                            <div id="dvSearch">
+                                <div class="widget-body fuelux">
+                                    <div class="form-horizontal" id="fuelux-wizard">
+                                        <!-- step1 -->
+                                        <div id="bootstrap-wizard-1" class="col-sm-12 top_padding">
+                                            <div class="jarviswidget" data-widget-editbutton="false" data-widget-custombutton="false">
+                                                <header>
+                                                    <span class="widget-icon"><i class="fa fa-building"></i></span>
+                                                    <h2>Search Property</h2>
+                                                </header>
+                                                <!-- end widget edit box -->
+                                                <!-- widget content -->
+                                                <div class="widget-body">
+                                                    <div class="row">
+                                                        @*<div class="col-md-2"></div>*@
+                                                        <div class="col-md-4">
+                                                            <b>Search By Property:</b><br />
+                                                            <select name="TowerID" class="form-control" data-ng-change="TowerChange()" data-ng-model="Flat.TowerID" id="TowerID" required>
+                                                                <option data-ng-repeat="pro in TowerList" value="{{ pro.TowerID }}">{{pro.TowerName }}</option>
+                                                            </select>
+                                                            @*<select name="PropertyID" class="form-control" id="PropertyID">
+                                                                <option data-ng-repeat="pro in Properties" value="{{ pro.PropertyID }}">{{ pro.PropertyName }}</option>
+                                                            </select>*@
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <b>Property Name</b><br />
+                                                           
+                                                                <select name="FlatID" class="form-control" data-ng-model="Flat.FlatID" id="FlatID" required>
+                                                                    <option data-ng-repeat="fl in FlatList" value="{{ fl.FlatID }}">{{ fl.FlatNo }}</option>
+                                                                </select>
+                                                            
+                                                            @*<input type="text" name="propertyname" id="propertyname" class="form-control" />*@
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <br />
+                                                            <input type="submit" value="Search" data-ng-click="SearchPropertyForGenAgreement()" class="btn btn-primary" id="Srch1" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="dvStep">
+                                <div class="widget-body fuelux">
+                                    <div class="form-horizontal" id="fuelux-wizard">
+                                        <!-- step1 -->
+                                        <div id="bootstrap-wizard-1" class="col-sm-12 top_padding">
+                                            <div class="jarviswidget" data-widget-editbutton="false" data-widget-custombutton="false">
+                                                <header>
+                                                    <span class="widget-icon"><i class="fa fa-edit"></i></span>
+                                                    <h2>Flat Detail </h2>
+                                                </header>
+                                                <!-- widget div-->
+                                                <div>
+                                                    <!-- end widget edit box -->
+                                                    <!-- widget content -->
+                                                    <div class="widget-body">
+                                                        <div class="row">
+                                                            <div class="col col-sm-12">
+                                                                <p class="text-danger text-center">{{Error}}</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-6 smart-form">
+                                                                <div id="comment-form" class="smart-form">
+                                                                    <fieldset>
+                                                                        <div class="row">
+                                                                            <h2>Customer and Agreement</h2>
+                                                                            <div class="col-md-offset-1 col-md-3">
+                                                                                Customer Name
+                                                                            </div>
+                                                                            <div class="col-md-7">
+                                                                                {{Sale.Sale[0].CustomerName}}
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-md-offset-1 col-md-3">
+                                                                                Plan Name
+                                                                            </div>
+                                                                            <div class="col-md-7">
+                                                                                {{Pro.PlanName}}
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-md-offset-1 col-md-3">Sale Price:</div>
+                                                                            <div class="col-md-7">{{Sale.Sale[0].SaleRate}}</div>
+                                                                        </div>
+                                                                        <div id="dvAgreement">
+                                                                            <div class="row">
+                                                                                <div class="col-md-offset-1 col-md-3">Agreement Type:</div>
+                                                                                <div class="col-md-7">{{Agreement.AgreementAmount}}</div>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class="col-md-offset-1 col-md-3">Agreement Date:</div>
+                                                                                <div class="col-md-7">{{Agreement.CrDateSt}}</div>
+                                                                            </div>
+
+                                                                            <div class="row">
+                                                                                <div class="col-md-offset-1 col-md-3">Agreement Link :</div>
+                                                                                <div class="col-md-7">
+                                                                                    <a href="../../../{{Agreement.HTMLURL}}" target="_blank" class="text-info"><i class="fa fa-html5"></i> Download HTML Agreement</a><br />
+                                                                                    <a href="../../../{{Agreement.DocURL}}" target="_blank" class="text-info"><i class="fa fa-file-word-o"></i> Download Doc Agreement</a>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class="col-md-offset-1 col-md-3">Upload Date:</div>
+                                                                                <div class="col-md-7">{{Agreement.UploadDateSt}}</div>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class="col-md-offset-1 col-md-3">Upload Doc:</div>
+                                                                                <div class="col-md-7"><a href="../../../{{Agreement.UploadURL}}" target="_blank" class="text-info"><i class="fa fa-file-word-o"></i> Download Uploaded Agreement</a></div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div id="dvUpload">
+                                                                            <div class="row">
+                                                                                <section class="col col-sm-12">
+                                                                                    <form name="myForm">
+                                                                                        <fieldset>
+                                                                                            <legend>Upload Agreement</legend>
+                                                                                            <div class="row">
+                                                                                                <div class="col-sm-12 col">
+                                                                                                    <label class="label"> Choose File:</label>
+                                                                                                </div>
+                                                                                                <div class="col-sm-12 col">
+                                                                                                    <label class="input">
+                                                                                                        <input class="form-control" type="file" ng-file-select ng-model="picFile" id="file" name="file" accept=".doc"
+                                                                                                               ng-file-change="generateThumb(picFile[0], $files)" required>
+                                                                                                        <i ng-show="myForm.file.$error.required">*required</i>
+                                                                                                    </label>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="row">
+                                                                                                <div class="col-sm-12 col">
+                                                                                                    <label class="label">Date</label>
+                                                                                                </div>
+                                                                                                <section class="col col-sm-12">
+                                                                                                    <label class="input">
+                                                                                                        <input type="text" id="AgDate" data-ng-model="AgDate" class="datecal" required="required">
+                                                                                                    </label>
+                                                                                                </section>
+                                                                                            </div>
+                                                                                            <div class="row">
+                                                                                                <div class="col-sm-12 col">
+                                                                                                    <label class="input">
+                                                                                                        <a href="#" class="btn btn-success btn-lg " id="btnUPload" title="Upload Agreement" ng-click="uploadPic(picFile)"><i class=" fa  fa-upload"></i>     Upload Agreement</a><br /><br />
+                                                                                                    </label>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <img ng-show="picFile[0].dataUrl != null" ng-src="{{picFile[0].dataUrl}}" class="thumb">
+                                                                                            <span class="progress" ng-show="picFile[0].progress >= 0">
+                                                                                                <div style="width:{{picFile[0].progress}}%" ng-bind="picFile[0].progress + '%'"></div>
+                                                                                            </span>
+                                                                                            <span ng-show="picFile[0].result">Upload Successful</span>
+                                                                                        </fieldset>
+                                                                                        <br />
+                                                                                    </form>
+                                                                                </section>
+                                                                            </div>
+
+                                                                        </div>
+                                                                    </fieldset>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-6">
+                                                                <div id="comment-form" class="smart-form">
+                                                                    <fieldset>
+                                                                        <div class="row">
+                                                                            <section class="col col-sm-12">
+                                                                                <label class="label"><h2>Property Info</h2></label>
+                                                                                <label class="lable">
+                                                                                    <input type="hidden" data-ng-model="newCust.SaleID" id="SaleId" name="SaleId" value="@ViewBag.ID" />
+                                                                                    {{Pro.PropertyName}}<br />
+                                                                                    {{Pro.PropertyType}} {{Pro.PropertySize}}<br />
+                                                                                </label>
+                                                                                <label class="label"><b>Property Name</b> {{Pro.FlatName}}</label>
+                                                                            </section>
+                                                                            <section class="col col-sm-12">
+                                                                                <input type="radio" name="rbtntype" id="rbtntypeemail" value="Send Email" checked /> Send Email &nbsp;&nbsp;&nbsp;&nbsp;
+                                                                                <input type="radio" name="rbtntype" id="rbtntypedownload" value="Download" /> Download<br />
+                                                                                <input type="email" name="Email" id="Email" class="form-control" />
+                                                                            </section>
+                                                                            <section class="col col-sm-12">
+                                                                                <div class="row">
+                                                                                    <div class="col-md-6">
+                                                                                        <a href="#" class="btn btn-primary  btn-lg" title="Get Agreement" data-ng-click="DownloadAgreement()"><i class="fa fa-download"></i> Get Agreement</a><br />
+                                                                                    </div>
+                                                                                </div><br />
+                                                                                <div class="row">
+                                                                                    <div class="col-md-6">
+                                                                                        <a href="#" class="btn btn-success  btn-lg" title="Get Welcome Letter" data-ng-click="DownloadWelcome()"><i class="fa fa-download"></i> Welcome Letter</a><br />
+                                                                                    </div>
+                                                                                    <div class="col-md-6">
+                                                                                        <a href="#" class="btn btn-info  btn-lg" title="Get Allotment Letter" data-ng-click="DownloadAllotment()"><i class="fa fa-download"></i> Allotment Letter</a><br />
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="row">
+                                                                                    <br />
+                                                                                    <div class="col-md-6">
+                                                                                    </div>
+                                                                                    <div class="col-md-6">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </section>
+                                                                        </div>
+                                                                    </fieldset>
+                                                                    <div class="message">
+                                                                        <i class="fa fa-check fa-lg"></i>
+                                                                        <p>
+                                                                            Your comment was successfully added!
+                                                                        </p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- end widget content -->
+                                                </div>
+                                                <!-- end widget div -->
+                                            </div>
+                                        </div>
+                                        <!-- step1 -->
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end widget content -->
+                        </div>
+                        <!-- end widget div -->
+                    </div>
+                    <!-- end widget -->
+                </article>
+                <!-- WIDGET END -->
+            </div>
+            <!-- end row -->
+        </section>
+        <!-- end widget grid -->
+    </div>
+    <!-- END MAIN CONTENT -->
+</div>
+
+<script type="text/javascript">
+    FileAPI = {
+        debug: true,
+        //forceLoad: true, html5: false //to debug flash in HTML5 browsers
+        //wrapInsideDiv: true, //experimental for fixing css issues
+        //only one of jsPath or jsUrl.
+        //jsPath: '/js/FileAPI.min.js/folder/',
+        //jsUrl: 'yourcdn.com/js/FileAPI.min.js',
+
+        //only one of staticPath or flashUrl.
+        //staticPath: '/flash/FileAPI.flash.swf/folder/'
+        //flashUrl: 'yourcdn.com/js/FileAPI.flash.swf'
+    };
+</script>
+<script type="text/javascript">
+    // load angularjs specific version
+    var angularVersion = window.location.hash.substring(1);
+    if (angularVersion.indexOf('/') == 0) angularVersion = angularVersion.substring(1);
+    document.write('<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/' +
+			(angularVersion || '1.2.20') + '/angular.js"><\/script>');
+</script>
+<script src="~/js/angular-file-upload-shim.js"></script>
+<script src="~/js/angular-file-upload.js"></script>
+<script src="~/js/upload.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $(".datecal").datepicker({
+            changeMonth: true,
+            changeYear: true,
+            yearRange: '1970:2099',
+            dateFormat: 'dd/mm/yy'
+        });
+    });
+</script>

@@ -1,0 +1,200 @@
+﻿
+@{
+    ViewBag.Title = "PaymentCancel";
+     Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*<script src="~/Scripts/angular.js"></script>
+<script src="~/Scripts/ngController/ManagePayjs.js"></script>
+<link href="~/Content/css/jquery-ui-1.8.19.custom.css" rel="stylesheet" />*@
+
+<div  data-ng-app="ManageApp" role="main">
+
+    <!-- RIBBON -->
+    <!-- END RIBBON -->
+    <!-- MAIN CONTENT -->
+    <div id="content" data-ng-controller="ManageController">
+        <div class="row">
+            <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+                <h1 class="page-title txt-color-blueDark"><i class="fa fa-pencil-square-o fa-fw "></i>Admin > Cancel Payment</h1>
+            </div>
+        </div>
+        <!-- widget grid -->
+        <section id="widget-grid" class="">
+            <!-- row -->
+            <div class="row">
+                <!-- NEW WIDGET START -->
+                <article class="col-sm-12 col-md-12">
+                    <!-- Widget ID (each widget will need unique ID)-->
+                    <div class="jarviswidget" id="wid-id-2" data-widget-editbutton="false" data-widget-deletebutton="false">
+                        <header>
+                            <h2>Payment Cancel Wizard </h2>
+                        </header>
+                        <!-- widget div-->
+                        <!-- widget edit box -->
+                        <div class="jarviswidget-editbox">
+                            <!-- This area used as dropdown edit box -->
+                        </div>
+                        <!-- end widget edit box -->
+                        <!-- widget content -->
+                        <div class="widget-body fuelux">
+                            <div class="step-content">
+                                <div class="form-horizontal" id="fuelux-wizard">
+                                    <div class="step-pane active" id="step1">
+                                        <!-- step1 -->
+                                        <div id="bootstrap-wizard-1" class="col-sm-12 top_padding">
+                                            <div class="tab-content">
+                                                <!-- tab -->
+                                                <div class="tab-pane active" id="tab1">
+                                                    <!-- 1 -->
+
+                                                    <div class="jarviswidget" data-widget-editbutton="false" data-widget-custombutton="false">
+                                                        <header>
+                                                            <span class="widget-icon"><i class="fa fa-edit"></i></span>
+                                                            <h2>@ViewBag.Status</h2>
+                                                        </header>
+                                                        <!-- widget div-->
+                                                        <div>
+                                                            <!-- widget edit box -->
+                                                            <div class="jarviswidget-editbox">
+                                                                <!-- This area used as dropdown edit box -->
+                                                            </div>
+                                                            <!-- end widget edit box -->
+                                                            <!-- widget content -->
+                                                            <div class="widget-body no-padding">
+
+                                                                <div class="row">
+                                                                    <div class="col-sm-12 smart-form">
+                                                                        <div id="comment-form" class="smart-form">
+                                                                            <fieldset>
+                                                                                <div class="row">
+                                                                                    <div class="col-md-12 text-center">
+                                                                                        {{status}}
+                                                                                    </div>
+                                                                                </div>
+                                                                                <input type="hidden" value="@ViewBag.TransactionID" id="TransactionID" data-ng-model="Pay.TransactionID" name="TransactionID" />
+                                                                                <div class="row">
+                                                                                    <div class="col-md-6">
+                                                                                        <div class="row">
+                                                                                            <div class="col-md-1"></div>
+                                                                                            <section class="col col-sm-8">
+                                                                                                <label class="label">Date</label>
+                                                                                                <label class="input">
+                                                                                                    <input type="text" class="datecal" id="CancelDate" data-ng-model="Pay.CancelDate" name="CancelDate" required>
+                                                                                                </label>
+                                                                                            </section>
+                                                                                        </div>
+                                                                                        <div class="row">
+                                                                                            <div class="col-md-1"></div>
+                                                                                            <section class="col col-sm-8">
+                                                                                                <label class="label">Remark</label>
+                                                                                                <label class="input">
+                                                                                                    <textarea rows="4" cols="45" data-ng-model="Pay.Remarks" id="Remarks" name="Remarks" class="form-control"></textarea>
+                                                                                                </label>
+                                                                                            </section>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-md-6">
+                                                                                        <div class="row">
+                                                                                            <div class="col-md-4">Payment Status:</div>
+                                                                                            <div class="col-md-7">@Model.Status </div>
+                                                                                            <input type="hidden" id="PayStatus" data-ng-model="Pay.Status" name="PayStatus" value="@Model.Status" />
+                                                                                        </div>
+                                                                                        <div class="row">
+                                                                                            <div class="col-md-4">Amount:</div>
+                                                                                            <div class="col-md-7">@Model.Amount </div>
+                                                                                        </div>
+                                                                                        <div class="row">
+                                                                                            <div class="col-md-4">Receipt No:</div>
+                                                                                            <div class="col-md-7">@ViewBag.ReceiptNo </div>
+                                                                                        </div>
+                                                                                        <div class="row">
+                                                                                            <div class="col-md-4">Cancel Date:</div>
+                                                                                            <div class="col-md-7">@Model.CancelDate </div>
+                                                                                        </div>
+                                                                                        <div class="row">
+                                                                                            <div class="col-md-4">Cancel Remarks:</div>
+                                                                                            <div class="col-md-7">@Model.Remarks </div>
+                                                                                        </div>
+                                                                                        <div class="row">
+                                                                                            <div class="col-md-4">Cancel By:</div>
+                                                                                            <div class="col-md-7">@Model.CancelBy </div>
+                                                                                        </div>
+                                                                                        <div class="row">
+                                                                                            <div class="col-md-4">Undo Cancel Date:</div>
+                                                                                            <div class="col-md-7">@Model.UnCancelDate</div>
+                                                                                        </div>
+                                                                                        <div class="row">
+                                                                                            <div class="col-md-4">Undo Cancel Remarks:</div>
+                                                                                            <div class="col-md-7">@Model.UnCancelRemark </div>
+                                                                                        </div>
+                                                                                        <div class="row">
+                                                                                            <div class="col-md-4">Cancel Undo By:</div>
+                                                                                            <div class="col-md-7">@Model.UnCancelBy </div>
+                                                                                        </div>
+                                                                                        <div class="row">
+                                                                                            <div class="col-md-12"><hr /></div>
+                                                                                        </div>
+                                                                                        <div class="row">
+                                                                                            <div class="col-md-4">Customer Name:</div>
+                                                                                            <div class="col-md-7">@Model.CustomerName </div>
+                                                                                        </div>
+                                                                                        <div class="row">
+                                                                                            <div class="col-md-4">Property Name:</div>
+                                                                                            <div class="col-md-7">@Model.FlatName </div>
+                                                                                        </div>
+
+                                                                                    </div>
+                                                                                </div>
+                                                                            </fieldset>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-actions">
+                                                                <div class="row">
+                                                                    <div class="col-md-12">
+                                                                        <button class="btn btn-primary pull-left" data-ng-click="CancelPayment()" type="submit">
+                                                                            <i class="fa fa-save"></i>
+                                                                            Save
+                                                                        </button>
+                                                                        <button class="btn btn-default pull-left btn_marg" type="submit">Cancel</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <!-- end widget content -->
+
+                                                        </div>
+                                                        <!-- end widget div -->
+                                                    </div>
+                                                </div>
+
+                                                <!-- tab -->
+                                            </div>
+                                        </div>
+                                        <!-- step1 -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </div>
+</div>
+@section pagespecific { 
+<script src="~/AgController/ManagePayJs.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $(".datecal").datepicker({
+            changeMonth: true,
+            changeYear: true,
+            yearRange: '1970:2090'
+        });
+    });
+</script>
+}
+@*<script src="~/Content/js/jquery-1.7.2.min.js"></script>
+<script src="~/Content/js/jquery-ui-1.8.19.custom.min.js"></script>*@
+

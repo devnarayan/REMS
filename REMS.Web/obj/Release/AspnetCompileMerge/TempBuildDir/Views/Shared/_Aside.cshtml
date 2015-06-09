@@ -1,0 +1,213 @@
+﻿    <!-- Left panel : Navigation area -->
+<!-- Note: This width of the aside area can be adjusted through LESS variables -->
+<aside id="left-panel">
+
+    <!-- User info -->
+    @{ Html.RenderPartial("_CurrentUser"); }
+    <!-- end user info -->
+    <!-- NAVIGATION : This navigation is also responsive
+
+    To make this navigation dynamic please make sure to link the node
+    (the reference to the nav > ul) after page load. Or the navigation
+    will not initialize.
+    -->
+    <nav>
+        <!-- NOTE: Notice the gaps after each icon usage <i></i>..
+        Please note that these links work a bit different than
+        traditional href="" links. See documentation for details.
+        -->
+
+        <ul>
+            <li class="@Html.RouteIf("index","home","", "active")">
+                <a href="@Url.Action("index", "home", new { area = "" })" title="Dashboard"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Dashboard</span></a>
+            </li>
+            <li class="@Html.RouteIf("AssignPageToRole", "Security", "Admin", "active")">
+                <a href="#"><i class="fa fa-lg fa-fw fa-key"></i> <span class="menu-item-parent"> Authorization</span></a>
+                <ul>
+                    @*<li class="@Html.RouteIf("flot", "Security", "Auth", "active")">
+                        <a href="@Url.Action("flot", "Security", new { area = "" })">Flot Charts</a>
+                    </li>*@
+                    <li class="@Html.RouteIf("AssignPageToRole", "Security", "Admin", "active")"><a href="@Url.Action("AssignPageToRole", "Security", new { area = "Admin" })">Assign Role Access</a></li>
+                    <li class="@Html.RouteIf("AddNewUser", "Security", "Admin", "active")"><a href="@Url.Action("AddNewUser", "Security", new { area = "Admin" })">Add New User</a></li>
+                    <li class="@Html.RouteIf("AssingRoles", "Security", "Admin", "active")"><a href="@Url.Action("AssingRoles", "Security", new { area = "Admin" })">User Access Right</a></li>
+                    <li class="@Html.RouteIf("EditUserRole", "Security", "Admin", "active")"><a href="@Url.Action("EditUserRole", "Security", new { area = "Admin" })">Edit User Role</a></li>
+                    <li class="@Html.RouteIf("EditUserProperty", "Security", "Admin", "active")"><a href="@Url.Action("EditUserProperty", "Security", new { area = "Admin" })">Edit User Property</a></li>
+                    <li class="@Html.RouteIf("ViewUsers", "Security", "Admin", "active")"><a href="@Url.Action("ViewUsers", "Security", new { area = "Admin" })">View User</a></li>
+                </ul>
+            </li>
+            <li class="@Html.RouteIf("AddPlan", "PlanCtrl", "Master", "active")">
+                <a href="#"><i class="fa fa-lg fa-fw fa-bar-chart-o"></i> <span class="menu-item-parent">Master</span></a>
+                <ul>
+                    <li class="@Html.RouteIf("AddPlan", "PlanCtrl", "Master", "active")">
+                        <a href="@Url.Action("AddPlan", "PlanCtrl", new { area = "Master" })"> <span class="menu-item-parent">Plan Name</span></a>
+                    </li>
+                    <li class="@Html.RouteIf("PlanTypeSalePrice", "PlanCtrl", "Master", "active")">
+                        <a href="@Url.Action("PlanTypeSalePrice", "PlanCtrl", new { area = "Master" })"> <span class="menu-item-parent">Plan Sale Price</span></a>
+                    </li>
+                    <li class="@Html.RouteIf("Index", "InstallmentPlan", "Master", "active")">
+                        <a href="@Url.Action("Index", "InstallmentPlan", new { area = "Master" })"> <span class="menu-item-parent">Plan Installment</span></a>
+                    </li>
+                    <li class="@Html.RouteIf("AddCharges", "AChargesCtrl", "Master", "active")">
+                        <a href="@Url.Action("AddCharges", "AChargesCtrl", new { area = "Master" })"> <span class="menu-item-parent">Additional Charges</span></a>
+                    </li>
+                    <li class="@Html.RouteIf("Index", "AOCharge", "Master", "active")">
+                        <a href="@Url.Action("Index", "AOCharge", new { area = "Master" })"> <span class="menu-item-parent">AddOn Charges</span></a>
+                    </li>
+                    <li class="@Html.RouteIf("AddPLC", "PLC", "Master", "active")">
+                        <a href="@Url.Action("AddPLC", "PLC", new { area = "Master" })"> <span class="menu-item-parent">Add PLC</span></a>
+                    </li>
+                    <li class="@Html.RouteIf("Index", "Flat", "Master", "active")">
+                        <a href="@Url.Action("Index", "Flat", new { area = "Master" })"> <span class="menu-item-parent">Manage Flat Type</span></a>
+                    </li>
+                    <li class="@Html.RouteIf("FlatSize", "Flat", "Master", "active")">
+                        <a href="@Url.Action("FlatSize", "Flat", new { area = "Master" })"> <span class="menu-item-parent">Flat Type Size</span></a>
+                    </li>
+                </ul>
+            </li>
+            <li class="@Html.RouteIf("Index", "CreateProperty", "Admin", "active")">
+                <a href="#"><i class="fa fa-lg fa-fw fa-user-md"></i> <span class="menu-item-parent">Admin</span></a>
+                <ul>
+                    <li class="@Html.RouteIf("Index", "PropertyProject","Admin", "active")">
+                        <a href="#"> Property Projects</a>
+                        <ul>
+                            <li class="@Html.RouteIf("Index", "PropertyProject", "Admin", "active")">
+                                <a href="@Url.Action("Index", "PropertyProject", new { area = "Admin" })"><i class="fa fa-plane"></i> View Projects</a>
+                            </li>
+                            <li class="@Html.RouteIf("AddProject", "PropertyProject", "Admin", "active")">
+                                <a href="@Url.Action("AddProject", "PropertyProject", new { area = "Admin" })"><i class="glyphicon glyphicon-plane"></i> Add Project</a>
+                            </li>
+                            <li class="@Html.RouteIf("AddPropertyType", "PropertyProject", "Admin", "active")">
+                                <a href="@Url.Action("AddPropertyType", "PropertyProject", new { area = "Admin" })"><i class="fa fa-flag"></i> Add Property Type</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="@Html.RouteIf("Index", "CreateProperty", "Admin","active")">
+                        <a href="@Url.Action("Index", "CreateProperty", new { area = "Admin" })"> <span class="menu-item-parent">View Property</span></a>
+                    </li>
+                    <li class="@Html.RouteIf("AddTower", "CreateProperty", "Admin", "active")">
+                        <a href="@Url.Action("AddTower", "CreateProperty", new { area = "Admin" })"> <span class="menu-item-parent">Add Tower</span></a>
+                    </li>
+                    <li class="@Html.RouteIf("AddFloor", "CreateProperty", "Admin", "active")">
+                        <a href="@Url.Action("AddFloor", "CreateProperty", new { area = "Admin" })"> <span class="menu-item-parent">Add Floor</span></a>
+                    </li>
+                    <li class="@Html.RouteIf("AddFlat", "CreateProperty", "Admin", "active")">
+                        <a href="@Url.Action("AddFlat", "CreateProperty", new { area = "Admin" })"> <span class="menu-item-parent">Generate Tower</span></a>
+                    </li>
+                    <li class="@Html.RouteIf("EditFlat", "CreateProperty", "Admin", "active")">
+                        <a href="@Url.Action("EditFlat", "CreateProperty", new { area = "Admin", id=0 })"> <span class="menu-item-parent">Edit Flat</span></a>
+                    </li>
+                    <li class="@Html.RouteIf("UpdateFlaType", "CreateProperty", "Admin", "active")">
+                        <a href="@Url.Action("UpdateFlaType", "CreateProperty", new { area = "Admin" })"> <span class="menu-item-parent">Update Flat Type</span></a>
+                    </li>
+                </ul>
+            </li>
+            <li class="@Html.RouteIf("NewSale", "Property", "Sale", "active")">
+                <a href="#"><i class="fa fa-lg fa-fw fa-bar-chart-o"></i> <span class="menu-item-parent"> Sales</span></a>
+                <ul>
+                    <li class="@Html.RouteIf("NewSale", "Property", "Sale", "active")">
+                        <a href="@Url.Action("NewSale", "Property", new { area = "Sale", Id = 0 })">New Sale/Booking</a>
+                    </li>
+                    <li class="@Html.RouteIf("Booking", "Book", "Sale", "active")"><a href="@Url.Action("Booking", "Book", new { area = "Sale" })">View Booking</a></li>
+                    @*<li class="@Html.RouteIf("flot", "Security", "Auth", "active")"><a href="#">Book to Sale Property</a></li>*@
+                    <li class="@Html.RouteIf("Search", "Property", "Sale", "active")"><a href="@Url.Action("Search", "Property", new { area = "Sale" })">View Property/Summary</a></li>
+                    <li class="@Html.RouteIf("flot", "Security", "Auth", "active")"><a href="@Url.Action("TransferProperty", "Transfer", new { area = "Customer", Id = 0 })">Transfer Property</a> </li>
+                    <li class="@Html.RouteIf("flot", "Security", "Auth", "active")"><a href="@Url.Action("RefundProperty", "Transfer", new { area = "Customer", Id = 0 })">Refund Property</a> </li>
+                </ul>
+            </li>
+            <li class="@Html.RouteIf("Index", "Payment", "Sale", "active")">
+                <a href="#"><i class="fa fa-lg fa-fw fa-rupee"></i> <span class="menu-item-parent"> Payments (Installment)</span></a>
+                <ul>
+                    <li class="@Html.RouteIf("Index", "Payment", "Sale", "active")"><a href="@Url.Action("Index", "Payment", new { area = "Sale" })">Submit Payment</a></li>
+                    <li class="@Html.RouteIf("Search", "Payment", "Sale", "active")"><a href="@Url.Action("Search", "Payment", new { area = "Sale" })">Search Payment</a></li>
+                    <li class="@Html.RouteIf("Search", "Payment", "Sale", "active")"><a href="@Url.Action("Search", "Payment", new { area = "Sale" })">Payments Clearance</a></li>
+                    <li class="@Html.RouteIf("Search", "Payment", "Sale", "active")"><a href="@Url.Action("Search", "Payment", new { area = "Sale" })">View/Edit Payments</a></li>
+                    <li class="@Html.RouteIf("BackupReceipt", "Manage", "Sale", "active")"><a href="@Url.Action("BackupReceipt", "Manage", new { area = "Sale" })">Backup Receipt</a></li>
+                    <li class="@Html.RouteIf("CancelPayments", "Manage", "Sale", "active")"><a href="@Url.Action("CancelPayments", "Manage", new { area = "Sale" })">Search Canceled Payments</a></li>
+                </ul>
+            </li>
+            <li class="@Html.RouteIf("Index", "Security", "", "active")">
+                <a href="#"><i class="fa fa-lg fa-fw fa-rupee"></i> <span class="menu-item-parent"> Payments (Others)</span></a>
+                <ul>
+                    <li class="@Html.RouteIf("flot", "Security", "Auth", "active")"><a href="@Url.Action("OtherPayments", "Payment", new { area = "Sale" })">Submit Other Payments</a></li>
+                    <li class="@Html.RouteIf("flot", "Security", "Auth", "active")"><a href="@Url.Action("Index", "OtherPayment", new { area = "Sale" })">Manage Payments</a></li>
+                    <li class="@Html.RouteIf("flot", "Security", "Auth", "active")"><a href="@Url.Action("BackupReceipt", "OtherPayment", new { area = "Sale" })">Backup Receipt</a></li>
+                    <li class="@Html.RouteIf("flot", "Security", "Auth", "active")"><a href="@Url.Action("ViewCancelPayments", "OtherPayment", new { area = "Sale" })">Search Canceled Payments</a> </li>
+                </ul>
+            </li>
+            <li class="@Html.RouteIf("Index", "Security", "", "active")">
+                <a href="#"><i class="fa fa-lg fa-fw fa-backward"></i> <span class="menu-item-parent"> Assured Return</span></a>
+                <ul>
+                    <li class="@Html.RouteIf("flot", "Security", "Auth", "active")"><a href="@Url.Action("GenerateAssuredInstallment", "AssuredReturn", new { area = "Customer" })">Genereate Installment</a> </li>
+                    <li class="@Html.RouteIf("flot", "Security", "Auth", "active")"><a href="@Url.Action("Index", "AssuredReturn", new { area = "Customer" })">Clear Assured Return</a> </li>
+                    <li class="@Html.RouteIf("flot", "Security", "Auth", "active")"><a href="@Url.Action("Index", "AssuredReturn", new { area = "Customer" })">View Assured Return</a> </li>
+                </ul>
+            </li>
+            <li class="@Html.RouteIf("Index", "Security", "", "active")">
+                <a href="#"><i class="fa fa-lg fa-fw fa-user-md"></i> <span class="menu-item-parent"> Broker</span></a>
+                <ul>
+                    <li class="@Html.RouteIf("flot", "Security", "Auth", "active")"><a href="/Customer/Broker/AddNewBroker" title="Add New Broker" class=""><i class="fa fa-plus"></i>Add New Broker</a></li>
+                    <li class="@Html.RouteIf("flot", "Security", "Auth", "active")"><a href="/Customer/Broker/Index" title="Edit  Broker Profile" class=""><i class="fa fa-edit"></i>Edit  Broker Profile</a></li>
+                    <li class="@Html.RouteIf("flot", "Security", "Auth", "active")"><a href="/Customer/Broker/Index" title="View Broker Profile" class=""><i class="fa fa-user"></i>View  Broker Profile</a></li>
+                    <li class="@Html.RouteIf("flot", "Security", "Auth", "active")"><a href="/Customer/Broker/AttachBroker/0" title="Attach Broker" class=""><i class="fa fa-building-o"></i>Add  To Property</a></li>
+                    <li class="@Html.RouteIf("flot", "Security", "Auth", "active")"><a href="/Customer/Broker/PayBroker/0" title="Pay to Broker" class=""><i class="fa fa-rupee"></i>Pay  Commission</a></li>
+                    <li class="@Html.RouteIf("flot", "Security", "Auth", "active")"><a href="/Customer/Broker/ApprovePayment/0" title="Approve Propery" class=""><i class="fa fa-angle-right"></i>Approve Propery</a></li>
+                    <li class="@Html.RouteIf("flot", "Security", "Auth", "active")"><a href="/Customer/Broker/Index/0" title="View Payments" class=""><i class="fa fa-rupee"></i>View  Payments</a></li>
+                    <li class="@Html.RouteIf("flot", "Security", "Auth", "active")"><a href="/Customer/Broker/PaymentLadger/0" title="Broker Payment Ladger" class=""><i class="fa fa-list"></i>Payment Ladger</a></li>
+                </ul>
+            </li>
+            <li class="@Html.RouteIf("Index", "Security", "", "active")">
+                <a href="#"><i class="fa fa-lg fa-fw fa-align-left"></i> <span class="menu-item-parent"> Follow up</span></a>
+                <ul>
+                    <li class="@Html.RouteIf("AddRemark", "Remark", "Customer", "active")"><a href="/Customer/Remark/AddRemark/0" title="Add Property Follow" class=""><i class="fa fa-plus"></i>Add Property Follow</a></li>
+                    <li class="@Html.RouteIf("PropertyRemark", "Remark", "Customer", "active")"><a href="/Customer/Remark/PropertyRemark/0" title="View  Property Follow" class=""><i class="fa fa-edit"></i>View Property Follow</a></li>
+                </ul>
+            </li>
+            <li class="@Html.RouteIf("Index", "Security", "", "active")">
+                <a href="#"><i class="fa fa-lg fa-fw fa-file"></i> <span class="menu-item-parent"> Demand Letter</span></a>
+                <ul>
+                    <li class="@Html.RouteIf("flot", "Security", "Auth", "active")"><a href="@Url.Action("DemandLetter", "Report", new { area = "BI" })" ti title="Demand Letter">Create Demand Letter</a></li>
+                    <li class="@Html.RouteIf("flot", "Security", "Auth", "active")"><a href="@Url.Action("DemandLetterView", "Report", new { area = "BI" })" ti title="Demand Letter View">Demand Letter View</a></li>
+                </ul>
+            </li>
+            <li class="@Html.RouteIf("Index", "Security", "", "active")">
+                <a href="#"><i class="fa fa-lg fa-fw fa-bar-chart"></i> <span class="menu-item-parent"> Reports</span></a>
+                <ul>
+                    <li class="@Html.RouteIf("flot", "Security", "Auth", "active")"><a href="@Url.Action("RefundProperty", "Report", new { area = "BI" })" title="Property Refund Report">Property Refund</a></li>
+                    <li class="@Html.RouteIf("flot", "Security", "Auth", "active")"><a href="@Url.Action("TransferProperty", "Report", new { area = "BI" })" title="Property Transfer Report">Property Transfer</a></li>
+                    <li class="@Html.RouteIf("flot", "Security", "Auth", "active")"><a href="@Url.Action("MonthlySale", "Report", new { area = "BI" })" title="Monthly Sale Report">Monthly Sale Report</a></li>
+                    <li class="@Html.RouteIf("flot", "Security", "Auth", "active")"><a href="@Url.Action("PendingInstallment", "Report", new { area = "BI" })" title="Pending Payment Report">Pending Installment</a></li>
+                    <li class="@Html.RouteIf("flot", "Security", "Auth", "active")"><a href="@Url.Action("InstallmentPayment", "Report", new { area = "BI" })" title="Installment Payment Report">Payment (Installment)</a></li>
+                    <li class="@Html.RouteIf("flot", "Security", "Auth", "active")"><a href="@Url.Action("CancelCheque", "Report", new { area = "BI" })" title="Cancel Cheque Report">Cheque Cancel (Installment)</a></li>
+                    <li class="@Html.RouteIf("flot", "Security", "Auth", "active")"><a href="@Url.Action("ChequeClearance", "Report", new { area = "BI" })" title="Cheque Clearance Report">Cheque Clearance (Installment)</a></li>
+                    <li class="@Html.RouteIf("flot", "Security", "Auth", "active")"><a href="@Url.Action("BackupReceipt", "Manage", new { area = "Sale" })" title="Installment Backup Receipt">Backup Receipt(Installment)</a></li>
+                    @*Other Payment*@
+                    <li class="@Html.RouteIf("flot", "Security", "Auth", "active")"><a href="@Url.Action("OtherPayment", "Report", new { area = "BI" })" title="Installment Payment Report">Payment (Other)</a></li>
+                    <li class="@Html.RouteIf("flot", "Security", "Auth", "active")"><a href="@Url.Action("CancelChequeOther", "Report", new { area = "BI" })" title="Cancel Cheque Report">Cheque Cancel (Other)</a></li>
+                    <li class="@Html.RouteIf("flot", "Security", "Auth", "active")"><a href="@Url.Action("ChequeClearanceOther", "Report", new { area = "BI" })" title="Cancel Cheque Report">Cheque Clearance (Other)</a></li>
+                    <li class="@Html.RouteIf("flot", "Security", "Auth", "active")"><a href="@Url.Action("BackupReceipt", "OtherPayment", new { area = "Sale" })">Backup Receipt(Other)</a></li>
+                    @*// Broker*@
+                    <li class="@Html.RouteIf("flot", "Security", "Auth", "active")"><a href="@Url.Action("BrokerList", "Report", new { area = "BI" })" title="BrokerList">Broker List</a></li>
+                    <li class="@Html.RouteIf("flot", "Security", "Auth", "active")"><a href="@Url.Action("BrokerCommission", "Report", new { area = "BI" })" title="Broker Commission Report">Broker Commission</a></li>
+                    <li class="@Html.RouteIf("flot", "Security", "Auth", "active")"><a href="@Url.Action("BrokerFlatApprove", "Report", new { area = "BI" })" title="Broker Property Approve">Broker Payments</a></li>
+                    <li class="@Html.RouteIf("flot", "Security", "Auth", "active")"><a href="@Url.Action("AssuredReturn", "Report", new { area = "BI" })" title="Assured Return Report">Assured Return</a></li>
+                    <li class="@Html.RouteIf("flot", "Security", "Auth", "active")"><a href="@Url.Action("PropertyRemark", "Remark", new { area = "Customer", Id = 0 })" title="Property FollowUp Report">Property  FollowUp</a></li>
+
+                    <li class="@Html.RouteIf("flot", "Security", "Auth", "active")"><a href="@Url.Action("DemandLetter", "Report", new { area = "BI" })" ti title="Demand Letter">Demand Letter</a></li>
+                    <li class="@Html.RouteIf("flot", "Security", "Auth", "active")"><a href="@Url.Action("DemandLetterView", "Report", new { area = "BI" })" ti title="Demand Letter View">Demand Letter View</a></li>
+                </ul>
+            </li>
+            <li class="@Html.RouteIf("Index", "Security", "", "active")">
+                <a href="#"><i class="fa fa-lg fa-fw fa-folder"></i> <span class="menu-item-parent"> Customer Documents</span></a>
+                <ul>
+                    <li class="@Html.RouteIf("flot", "Security", "Auth", "active")"><a href="@Url.Action("GenerateAgreementAction", "Document", new { area = "Customer", Id = 0 })">Generate Agreement</a> </li>
+                    <li class="@Html.RouteIf("flot", "Security", "Auth", "active")"><a href="@Url.Action("UploadAgreement", "Document", new { area = "Customer", Id = 0 })">Upload Agreement</a> </li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    <span class="minifyme" data-action="minifyMenu">
+        <i class="fa fa-arrow-circle-left hit"></i>
+    </span>
+
+</aside>
+<!-- END NAVIGATION -->

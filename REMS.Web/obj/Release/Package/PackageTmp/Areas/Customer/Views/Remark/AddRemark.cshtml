@@ -1,0 +1,256 @@
+﻿@{
+    ViewBag.Title = "AddRemark";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div data-ng-app="BIApp" role="main">
+
+    <!-- RIBBON -->
+    <div id="ribbon">
+
+        <span class="ribbon-button-alignment"></span>
+
+        <!-- breadcrumb -->
+        <ol class="breadcrumb">
+            <li>Home</li>
+        </ol>
+        <!-- end breadcrumb -->
+        <!-- You can also add more buttons to the
+                ribbon for further usability
+
+                Example below:
+
+                <span class="ribbon-button-alignment pull-right">
+                <span id="search" class="btn btn-ribbon hidden-xs" data-title="search"><i class="fa-grid"></i> Change Grid</span>
+                <span id="add" class="btn btn-ribbon hidden-xs" data-title="add"><i class="fa-plus"></i> Add</span>
+                <span id="search" class="btn btn-ribbon" data-title="search"><i class="fa-search"></i> <span class="hidden-mobile">Search</span></span>
+                </span> -->
+
+    </div>
+    <!-- END RIBBON -->
+    <!-- MAIN CONTENT -->
+    <div id="content" data-ng-controller="ReportController">
+        <div class="row">
+            <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+                <h1 class="page-title txt-color-blueDark"><i class="fa fa-pencil-square-o fa-fw "></i>Add Property Follow</h1>
+            </div>
+            <div class="col-xs-12 col-sm-5 col-md-5 col-lg-8">
+            </div>
+        </div>
+        <!-- widget grid -->
+        <section id="widget-grid" class="">
+            <!-- row -->
+            <div class="row">
+                <!-- NEW WIDGET START -->
+                <article class="col-sm-12 col-md-12">
+                    <!-- Widget ID (each widget will need unique ID)-->
+                    <div class="jarviswidget" id="wid-id-2" data-widget-editbutton="false" data-widget-deletebutton="false">
+                        <header>
+                            <h2>Add Property Follow </h2>
+                        </header>
+                        <!-- widget div-->
+                        <!-- widget edit box -->
+                        <div class="jarviswidget-editbox">
+                            <!-- This area used as dropdown edit box -->
+                        </div>
+                        <!-- end widget edit box -->
+                        <!-- widget content -->
+                        <div class="widget-body fuelux" data-ng-init="AddNewRemarkInit()">
+                            <input type="hidden" id="hidFlatID" name="hidFlatID" value="@ViewBag.ID" />
+                            <div class="step-content">
+                                <div class="form-horizontal" id="fuelux-wizard">
+                                    <div class="step-pane active" id="step1">
+                                        <!-- step1 -->
+                                        <div id="bootstrap-wizard-1" class="col-sm-12 top_padding">
+                                            <div class="tab-content">
+                                                <!-- tab -->
+                                                <div class="tab-pane active" id="tab1">
+                                                    <!-- 1 -->
+                                                    <div class="jarviswidget" data-widget-editbutton="false" data-widget-custombutton="false">
+                                                        <header>
+                                                            <span class="widget-icon"><i class="fa fa-user"></i></span>
+                                                            <h2>Add New Property Follow</h2>
+                                                        </header>
+                                                        <!-- widget div-->
+                                                        <div>
+                                                            <!-- widget edit box -->
+                                                            <div class="jarviswidget-editbox">
+                                                                <!-- This area used as dropdown edit box -->
+                                                            </div>
+                                                            <!-- end widget edit box -->
+                                                            <!-- widget content -->
+                                                            <div class="widget-body no-padding">
+
+                                                                <div class="row">
+                                                                    <div class="col-sm-12 smart-form">
+                                                                        <div id="comment-form" class="smart-form">
+                                                                            <fieldset>
+                                                                                <div class="row">
+                                                                                    <div class="col-md-12 text-center">
+                                                                                        {{status}}
+                                                                                    </div>
+                                                                                    <input type="hidden" id="hidSaleID" name="hidSaleID" value="@ViewBag.SaleID" />
+                                                                                </div>
+                                                                                <div class="row" id="dvSale">
+                                                                                    <section class="col col-sm-4">
+                                                                                        <label class="label">Property</label>
+                                                                                        <select name="TowerID" class="form-control" data-ng-change="TowerChange()" data-ng-model="Flat.TowerID" id="TowerID" required>
+                                                                                            <option data-ng-repeat="pro in TowerList" value="{{ pro.TowerID }}">{{pro.TowerName }}</option>
+                                                                                        </select>
+                                                                                        @*<label class="select">
+                                                                                                <select name="PropertyID" data-ng-change="PropertyName()" data-ng-model="newCust.PropertyID" id="PropertyID" class="form-control">
+
+                                                                                                    <option data-ng-repeat="pro in Properties" value="{{ pro.PropertyID }}">{{ pro.PropertyName }}</option>
+                                                                                                </select>
+                                                                                            </label>*@
+                                                                                    </section>
+                                                                                    <section class="col col-sm-4" style="margin-top: 5px;">
+                                                                                        <div class="col-md-4">Property Name</div>
+                                                                                        <select name="FlatID" class="form-control" data-ng-model="Flat.FlatID" id="FlatID" required>
+                                                                                            <option data-ng-repeat="fl in FlatList" value="{{ fl.FlatID }}">{{ fl.FlatNo }}</option>
+                                                                                        </select>
+                                                                                        <input type="hidden" id="flantname" name="flantname" />
+                                                                                        @*<label class="input">
+                                                                                                <input type="text" name="ProprtyName" id="ProprtyName" />
+                                                                                            </label>*@
+                                                                                    </section>
+                                                                                    <section class="col col-sm-0">
+                                                                                        <div class="col-md-4">&nbsp;</div>
+                                                                                        <div class="col-md-4">
+                                                                                            <br />
+                                                                                            <input type="submit" value="Search" data-ng-click="SearchFlat()" class="btn btn-primary" style="width:82px;height:36px" />
+                                                                                        </div>
+                                                                                    </section>
+                                                                                </div>
+
+                                                                                <div class="row">
+                                                                                    <section class="col col-sm-5">
+                                                                                        <label class="label">Property Follow</label>
+                                                                                        <label class="input">
+                                                                                            @*<textarea type="text" name="Remark" rows="4" cols="55" id="Remark"></textarea>*@
+                                                                                            <input type="text" name="Remark" rows="4" cols="50" id="Remark" />
+                                                                                        </label>
+                                                                                    </section>
+                                                                                    <section class="col col-sm-4">
+                                                                                        <label class="label">Due Amount</label>
+                                                                                        <label class="input">
+                                                                                            <input type="text" name="DueAmt" id="DueAmt" value="{{TotalDueAmount}}" class="form-control" />
+                                                                                        </label>
+                                                                                    </section>
+                                                                                </div>
+
+                                                                                <div class="row">
+                                                                                    <section class="col col-sm-5">
+                                                                                        <label class="label">Followup Date/Due Date</label>
+                                                                                        <label class="input">
+                                                                                            <input type="text" name="datefrom" value="@DateTime.Now.ToString("dd/MM/yyyy")" id="datefrom" class="datecal form-control" />
+                                                                                        </label>
+                                                                                    </section>
+                                                                                    <section class="col col-sm-4">
+
+                                                                                        <div>
+                                                                                            <div class="row">
+                                                                                                <div class="col-md-12">
+                                                                                                    <button class="btn btn-primary pull-left disabled" data-ng-click="SavePropertyRemak()" name="btnsave" id="btnsave" type="submit" style="margin-top: 25px; width: 73px; height: 33px;">
+                                                                                                        <i class="fa fa-save "></i>&nbsp;
+                                                                                                        Save
+                                                                                                    </button>
+                                                                                                    <button class="btn btn-default pull-left btn_marg" type="submit" style="margin-top: 25px; width: 73px; height: 33px; margin-left: 14px;">Cancel</button>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+
+
+
+
+                                                                                    </section>
+
+                                                                                </div>
+
+                                                                                <div class="row">
+                                                                                    <div class="col-md-12">
+                                                                                        <div class="table-responsive" id="rptTableContent">
+                                                                                            <table class="table table-bordered table-striped particular_tbl">
+                                                                                                <thead>
+                                                                                                    <tr>
+                                                                                                        <th data-ng-click="reverse=!reverse;orderSearchList('RemarkDateSt', reverse)" class="pointer">Follow Date <i class="fa fa-sort-down"></i> </th>
+                                                                                                        <th data-ng-click="reverse=!reverse;orderSearchList('FlatName', reverse)" class="pointer">Property Name <i class="fa fa-sort-down"></i> </th>
+                                                                                                        <th data-ng-click="reverse=!reverse;orderSearchList('FollowupAmount', reverse)" class="pointer">Due Amount <i class="fa fa-sort-down"></i> </th>
+                                                                                                        <th><b>FollowUp</b></th>
+                                                                                                        <th data-ng-click="reverse=!reverse;orderSearchList('CreatedBy', reverse)" class="pointer"> UserName <i class="fa fa-sort-down"></i> </th>
+                                                                                                        <th>Action</th>
+                                                                                                    </tr>
+                                                                                                </thead>
+                                                                                                <tbody>
+                                                                                                    <tr data-ng-repeat="sr in SearchList">
+                                                                                                        <td>{{sr.RemarkDateSt}}</td>
+                                                                                                        <td>{{sr.FlatName}}</td>
+                                                                                                        <td>{{sr.FollowupAmount}}</td>
+                                                                                                        <td>{{sr.Remark}}</td>
+                                                                                                        <td>{{sr.CreatedBy}}</td>
+                                                                                                        <td>
+                                                                                                            <a name="rptExport" id="rptExport" data-ng-click="DeleteRemarks(sr.Rid)" class="btn btn-danger" value="Delete"><i class="fa fa-remove"></i>&nbsp;&nbsp;Delete</a>
+                                                                                                        </td>
+                                                                                                    </tr>
+                                                                                                </tbody>
+                                                                                            </table>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </fieldset>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <!-- end widget content -->
+
+                                                        </div>
+                                                        <!-- end widget div -->
+
+                                                    </div>
+
+                                                </div>
+
+                                                <!-- tab -->
+
+                                            </div>
+                                        </div>
+                                        <!-- step1 -->
+
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </article>
+            </div>
+        </section>
+        <div class="modal fade" id="myDelModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">Are you sure delete followup Remarks.</h4>
+                    </div>
+                    <div class="modal-body">
+                        <input type="hidden" id="hidRID" name="hidRID" />
+                        <p class="text-danger" id="ErrorMessage">Delete followup remarks</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" data-ng-click="ConfirmDeleteRemark()" value="Delete" class="btn btn-warning"><i class="fa fa-remove"></i> Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section pagespecific {
+
+    <script src="~/AgController/Remark.js"></script>
+}
+
