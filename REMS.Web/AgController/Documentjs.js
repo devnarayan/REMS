@@ -221,7 +221,6 @@ myApp.controller('DocumentController', function ($scope, $http) {
         var vl = true;
         var message = "";
         if ($("#Email").val() == "") {
-
             vl = false;
             message += "Insert Email Address. <br/>";
         }
