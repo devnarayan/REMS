@@ -3,6 +3,14 @@
     Layout = "~/Views/Shared/_MainTemplate.cshtml";
 }
 
+@section topright{
+<div class="row">
+    <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+        <h1 class="page-title txt-color-blueDark"><i class="fa fa-pencil-square-o fa-fw "></i>Home </h1>
+    </div>
+
+</div>
+}
 <script src="~/Scripts/angular.js"></script>
 <script src="~/Scripts/ngController/ManagePayjs.js"></script>
 <div id="main" data-ng-app="PaymentApp" role="main">
@@ -20,12 +28,7 @@
     <!-- MAIN CONTENT -->
     <div id="content" data-ng-controller="PaymentController">
 
-        <div class="row">
-            <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
-                <h1 class="page-title txt-color-blueDark"><i class="fa fa-pencil-square-o fa-fw "></i>Home </h1>
-            </div>
-
-        </div>
+       
 
         <!-- widget grid -->
         <section id="widget-grid" class="">

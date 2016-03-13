@@ -13,7 +13,7 @@ namespace REMS.Data.Access.Master
     {
         int AddPlanInstallment(PlanInstallmentModel model);
         int EditPlanInstallment(PlanInstallmentModel model);
-        int DeletePlanInstallment(PlanInstallment model);
+        int DeletePlanInstallment(int model);
         PlanInstallmentModel GetPlanInstallmentByID(int PlanInstallmentID);
         List<PlanInstallmentModel> GetPlanInstallmentByPlanID(int planID);
         List<PlanInstallmentModel> GetPlanInstallmentList();
@@ -61,14 +61,14 @@ namespace REMS.Data.Access.Master
                 }
             }
         }
-        public int DeletePlanInstallment(PlanInstallment model)
+        public int DeletePlanInstallment(int model)
         {
             using (REMSDBEntities context = new REMSDBEntities())
             {
                 try
                 {
-                    context.PlanInstallments.Add(model);
-                    context.Entry(model).State = EntityState.Deleted;
+                    var mdl = context.PlanInstallments.Where(pl => pl.PlanInstallmentID == model).FirstOrDefault();
+                    context.Entry(mdl).State = EntityState.Deleted;
                     int i = context.SaveChanges();
                     return i;
                 }

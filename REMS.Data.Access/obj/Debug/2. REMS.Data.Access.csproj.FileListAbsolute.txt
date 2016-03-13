@@ -134,3 +134,22 @@ E:\Project Data\REMS\1.Source Code\REMS_New\REMS.Data.Access\bin\Debug\EntityFra
 E:\Project Data\REMS\1.Source Code\REMS_New\REMS.Data.Access\obj\Debug\2. REMS.Data.Access.csprojResolveAssemblyReference.cache
 E:\Project Data\REMS\1.Source Code\REMS_New\REMS.Data.Access\obj\Debug\REMS.Data.Access.dll
 E:\Project Data\REMS\1.Source Code\REMS_New\REMS.Data.Access\obj\Debug\REMS.Data.Access.pdb
+E:\ComaxCosulting\1. SourceCode\REMSGit\REMS.Data.Access\bin\Debug\AutoMapper.Net4.dll
+E:\ComaxCosulting\1. SourceCode\REMSGit\REMS.Data.Access\bin\Debug\REMS.Data.Access.dll.config
+E:\ComaxCosulting\1. SourceCode\REMSGit\REMS.Data.Access\bin\Debug\REMS.Data.Access.dll
+E:\ComaxCosulting\1. SourceCode\REMSGit\REMS.Data.Access\bin\Debug\REMS.Data.Access.pdb
+E:\ComaxCosulting\1. SourceCode\REMSGit\REMS.Data.Access\bin\Debug\AutoMapper.dll
+E:\ComaxCosulting\1. SourceCode\REMSGit\REMS.Data.Access\bin\Debug\EntityFramework.dll
+E:\ComaxCosulting\1. SourceCode\REMSGit\REMS.Data.Access\bin\Debug\EntityFramework.SqlServer.dll
+E:\ComaxCosulting\1. SourceCode\REMSGit\REMS.Data.Access\bin\Debug\log4net.dll
+E:\ComaxCosulting\1. SourceCode\REMSGit\REMS.Data.Access\bin\Debug\REMS.Data.dll
+E:\ComaxCosulting\1. SourceCode\REMSGit\REMS.Data.Access\bin\Debug\REMS.Data.pdb
+E:\ComaxCosulting\1. SourceCode\REMSGit\REMS.Data.Access\bin\Debug\AutoMapper.pdb
+E:\ComaxCosulting\1. SourceCode\REMSGit\REMS.Data.Access\bin\Debug\AutoMapper.xml
+E:\ComaxCosulting\1. SourceCode\REMSGit\REMS.Data.Access\bin\Debug\AutoMapper.Net4.pdb
+E:\ComaxCosulting\1. SourceCode\REMSGit\REMS.Data.Access\bin\Debug\EntityFramework.xml
+E:\ComaxCosulting\1. SourceCode\REMSGit\REMS.Data.Access\bin\Debug\EntityFramework.SqlServer.xml
+E:\ComaxCosulting\1. SourceCode\REMSGit\REMS.Data.Access\bin\Debug\log4net.xml
+E:\ComaxCosulting\1. SourceCode\REMSGit\REMS.Data.Access\obj\Debug\2. REMS.Data.Access.csprojResolveAssemblyReference.cache
+E:\ComaxCosulting\1. SourceCode\REMSGit\REMS.Data.Access\obj\Debug\REMS.Data.Access.dll
+E:\ComaxCosulting\1. SourceCode\REMSGit\REMS.Data.Access\obj\Debug\REMS.Data.Access.pdb

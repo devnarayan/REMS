@@ -3,9 +3,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
-<div id="content" data-ng-app="SaleApp" data-ng-controller="PropertyController">
-
+@section topright{
     <div class="row">
         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
             <h1 class="page-title txt-color-blueDark">
@@ -22,6 +20,11 @@
             <!-- Button trigger modal -->
         </div>
     </div>
+
+}
+<div id="content" data-ng-app="SaleApp" data-ng-controller="PropertyController">
+
+
     <div id="MessageArea" class="alert alert-block alert-{{MessageClass}}" style="display:none;">
         <a class="close" data-dismiss="alert" href="#">×</a>
         <h4 class="alert-heading"><i class="fa fa-check-square-o"></i><b id="MessageTitle"></b> {{MessageTitle}}</h4>
@@ -54,7 +57,7 @@
                                             <div class="col-md-4">
                                                 <b>Property:</b><br />
                                                 <select name="TowerID" class="form-control" data-ng-change="TowerChange()" data-ng-model="Flat.TowerID" id="searchby" required>
-                                                    <option data-ng-repeat="pro in TowerList" value="{{ pro.TowerID }}">{{pro.TowerName }}</option>                                                   
+                                                    <option data-ng-repeat="pro in TowerList" value="{{ pro.TowerID }}">{{pro.TowerName }}</option>
                                                 </select>
                                             </div>
                                             <div class="col-md-4" id="searchflatname">
@@ -148,7 +151,7 @@
                                             <div class="col col-6">
                                                 Size:
                                             </div>
-                                            <div class="col col-6" id="FlatSize">{{FlatDetails.FlatSize}}</div>
+                                            <div class="col col-6" id="FlatSize">{{FlatDetails.FlatSize}} {{FlatDetails.FlatSizeUnit}}</div>
                                         </div>
                                         <div class="divider"><hr /></div>
                                         <div class="row">
@@ -165,6 +168,14 @@
                                             </div>
                                             <div class="col col-6">
                                                 <b id="InstallmentTotal">{{InstallmentTotal}}</b>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col col-6">
+                                                Sale Status:
+                                            </div>
+                                            <div class="col col-6">
+                                                <b id="SaleStatus">{{SaleStatus}}</b>
                                             </div>
                                         </div>
                                     </div>
@@ -388,8 +399,9 @@
                                                 <thead>
                                                     <tr>
                                                         <th data-class="expand"><i class=" text-muted hidden-md hidden-sm hidden-xs"></i> PLC</th>
-                                                        <th data-class="expand"><i class="fa fa-fw fa-rupee text-muted hidden-md hidden-sm hidden-xs"></i> Amount/sq.ft.</th>
-                                                        <th data-class="expand"><i class="fa fa-fw fa-rupee text-muted hidden-md hidden-sm hidden-xs"></i> Total Amount</th>
+                                                        <th data-class="expand"><i class="fa fa-fw fa-rupee text-muted hidden-md hidden-sm hidden-xs"></i> Amt./sq.ft.</th>
+                                                        <th data-class="expand"><i class="fa fa-fw fa-rupee text-muted hidden-md hidden-sm hidden-xs"></i> T. Amount</th>
+                                                        <th>Action</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -397,10 +409,14 @@
                                                         <td>{{fl.PLCName}}</td>
                                                         <td>{{fl.AmountSqFt}}</td>
                                                         <td>{{fl.TotalAmount}}</td>
+                                                        <td>
+                                                            <i data-toggle="modal" href="#myModalEdit" data-ng-click="DirectEditPLC(fl.FlatPLCID)" class="fa fa-edit"></i>
+                                                            <i data-toggle="modal" href="#myModalDelete" data-ng-click="DirectDeletePLC(fl.FlatPLCID)" class="fa fa-trash-o"></i>
+                                                        </td>
                                                     </tr>
                                                 </tbody>
                                                 <tfoot>
-                                                    <tr><td><b>Total</b></td><td><b>{{TotalPLCAmount}}</b></td><td><b id="GTotalPLCAmount">{{GTotalPLCAmount}}</b></td></tr>
+                                                    <tr><td><b>Total</b></td><td><b>{{TotalPLCAmount}}</b></td><td><b id="GTotalPLCAmount">{{GTotalPLCAmount}}</b></td><td></td></tr>
                                                 </tfoot>
                                             </table>
                                         </section>
@@ -455,7 +471,8 @@
                                                         <th data-class="expand"><i class=" text-muted hidden-md hidden-sm hidden-xs"></i> Charge Name</th>
                                                         <th data-class="expand"><i class="fa fa-fw fa-rupee text-muted hidden-md hidden-sm hidden-xs"></i> Amount</th>
                                                         <th data-class="expand"><i class="fa fa-fw fa-rupee text-muted hidden-md hidden-sm hidden-xs"></i> Charge Type</th>
-                                                        <th data-class="expand"><i class="fa fa-fw fa-rupee text-muted hidden-md hidden-sm hidden-xs"></i> Total Amount</th>
+                                                        <th data-class="expand"><i class="fa fa-fw fa-rupee text-muted hidden-md hidden-sm hidden-xs"></i> T. Amount</th>
+                                                        <th>Action</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -464,10 +481,14 @@
                                                         <td>{{fl.Amount}}</td>
                                                         <td>{{fl.ChargeType}}</td>
                                                         <td>{{fl.TotalAmount}}</td>
+                                                        <td>
+                                                            <i data-toggle="modal" href="#myModalEdit" data-ng-click="DirectEditFlatCharge(fl.FlatChargeID)" class="fa fa-edit"></i>
+                                                            <i data-toggle="modal" href="#myModalDelete" data-ng-click="DirectDeleteFlatCharge(fl.FlatChargeID)" class="fa fa-trash-o"></i>
+                                                        </td>
                                                     </tr>
                                                 </tbody>
                                                 <tfoot>
-                                                    <tr><td><b>Total</b></td><td><b>{{TotalChargeAmount}}</b></td><td></td><td><b>{{GTotalChargeAmount}}</b></td></tr>
+                                                    <tr><td><b>Total</b></td><td><b>{{TotalChargeAmount}}</b></td><td></td><td><b>{{GTotalChargeAmount}}</b></td><td></td></tr>
                                                 </tfoot>
                                             </table>
                                         </section>
@@ -521,7 +542,8 @@
                                                         <th data-class="expand"><i class=" text-muted hidden-md hidden-sm hidden-xs"></i> Charge Name</th>
                                                         <th data-class="expand"><i class="fa fa-fw fa-rupee text-muted hidden-md hidden-sm hidden-xs"></i> Amount</th>
                                                         <th data-class="expand"><i class="fa fa-fw fa-rupee text-muted hidden-md hidden-sm hidden-xs"></i> Charge Type</th>
-                                                        <th data-class="expand"><i class="fa fa-fw fa-rupee text-muted hidden-md hidden-sm hidden-xs"></i> Total Amount</th>
+                                                        <th data-class="expand"><i class="fa fa-fw fa-rupee text-muted hidden-md hidden-sm hidden-xs"></i> T. Amount</th>
+                                                        <th>Action</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -530,6 +552,10 @@
                                                         <td>{{fl.Amount}}</td>
                                                         <td>{{fl.ChargeType}}</td>
                                                         <td>{{fl.TotalAmount}}</td>
+                                                        <td>
+                                                            <i data-toggle="modal" href="#myModalEdit" data-ng-click="DirectEditFlatOCharge(fl.FlatOChargeID)" class="fa fa-edit"></i>
+                                                            <i data-toggle="modal" href="#myModalDelete" data-ng-click="DirectDeleteFlatOCharge(fl.FlatOChargeID)" class="fa fa-trash-o"></i>
+                                                        </td>
                                                     </tr>
                                                 </tbody>
                                                 <tfoot>
@@ -580,6 +606,80 @@
                         </fieldset>
                         <footer>
                             <button type="submit" data-ng-click="SaveSale()" class="btn btn-primary">
+                                Submit
+                            </button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">
+                                Cancel
+                            </button>
+                        </footer>
+                    </form>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
+    <div class="modal fade" id="myModalEdit" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title">
+                        <img src="/content/img/logo.png" width="150" alt="SmartAdmin">
+                    </h4>
+                </div>
+                <div class="modal-body no-padding">
+                    <form id="checkout-form1" class="smart-form" novalidate="novalidate">
+                        <fieldset>
+                            <section>
+                                <div class="row">
+                                    <div class="col col-4">New {{EditType}} Amount: </div>
+                                    <div class="col col-8">
+                                        <input type="text" id="txtNewEditAmount" name="txtNewEditAmount" class="form-control" />
+                                    </div>
+                                </div>
+                            </section>
+                        </fieldset>
+                        <footer>
+                            <button type="submit" data-ng-click="SaveNewEditAmount()" class="btn btn-primary">
+                                Submit
+                            </button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">
+                                Cancel
+                            </button>
+                        </footer>
+                    </form>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
+    <div class="modal fade" id="myModalDelete" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title">
+                        <img src="/content/img/logo.png" width="150" alt="SmartAdmin">
+                    </h4>
+                </div>
+                <div class="modal-body no-padding">
+                    <form id="login-form" class="smart-form">
+                        <fieldset>
+                            <section>
+                                <div class="row">
+                                    <div class="col col-2"></div>
+                                    <div class="col col-10">
+                                        <label class="label-danger">
+                                           Are You Confirm Delete {{EditType}}?
+                                        </label>
+                                    </div>
+                                </div>
+                            </section>
+                        </fieldset>
+                        <footer>
+                            <button type="submit" data-ng-click="DeleteFlatAmountSave()" class="btn btn-primary">
                                 Submit
                             </button>
                             <button type="button" class="btn btn-default" data-dismiss="modal">

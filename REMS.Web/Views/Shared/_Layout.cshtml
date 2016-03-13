@@ -38,6 +38,7 @@
 </head>
 <body class="@ViewBag.PageClass @Settings.CurrentTheme">
     @{ Html.RenderPartial("_Header", RenderSection("topright", false)); }
+
     @{ Html.RenderPartialIf("_Aside", Request.IsAuthenticated); }
     <div id="main" role="main">
         @{ Html.RenderPartialIf("_Ribbon", Request.IsAuthenticated); }
@@ -53,7 +54,7 @@
                         <h4 class="modal-title" id="myModalLabel">Please provide following information.</h4>
                     </div>
                     <div class="modal-body">
-                        <p class="text-danger" id="ErrorMessage"></p>
+                        <b class="text-danger" id="ErrorMessage"></b>
                     </div>
                 </div>
             </div>

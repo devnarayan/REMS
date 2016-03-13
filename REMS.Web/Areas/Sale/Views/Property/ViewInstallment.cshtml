@@ -1,0 +1,200 @@
+﻿
+@{
+    ViewBag.Title = "ViewInstallment";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section topright{
+<div class="row">
+    <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+        <h1 class="page-title txt-color-blueDark">
+            <!-- PAGE HEADER -->
+            <i class="fa-fw fa fa-flag"></i>
+            View Installments
+            <span>
+                >
+                View
+            </span>
+        </h1>
+    </div>
+    <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+        <!-- Button trigger modal -->
+    </div>
+</div>
+}
+<div id="content" data-ng-app="SaleApp" data-ng-controller="PropertyController">
+   
+    <div id="MessageArea" class="alert alert-block alert-{{MessageClass}}" style="display:none;">
+        <a class="close" data-dismiss="alert" href="#">×</a>
+        <h4 class="alert-heading"><i class="fa fa-check-square-o"></i> {{MessageTitle}}</h4>
+        <p>
+            {{Message}}
+        </p>
+    </div>
+
+    <!-- widget grid -->
+    <section id="widget-grid" class="" data-ng-init="ViewInstallmentInit()">
+        <!-- row -->
+        <input type="hidden" id="hidFlatID" name="hidFlatID" value="@ViewBag.ID" />
+        <div class="row">
+            <!-- NEW WIDGET START -->
+            <article class="col-sm-12 col-md-12">
+
+                <!-- Widget ID (each widget will need unique ID)-->
+                <div class="jarviswidget" id="wid-id-2" data-widget-editbutton="false" data-widget-deletebutton="false">
+
+                    <header>
+                        <h2>Search Wizard </h2>
+                    </header>
+
+                    <!-- widget div-->
+                    <div>
+
+                        <!-- widget edit box -->
+                        <div class="jarviswidget-editbox">
+                            <!-- This area used as dropdown edit box -->
+
+                        </div>
+                        <!-- end widget edit box -->
+                        <!-- widget content -->
+                        <div class="widget-body fuelux">
+                            <div class="step-content">
+                                <div class="form-horizontal" id="fuelux-wizard">
+                                    <fieldset>
+                                        <div class="row">
+                                            <div class="col-md-1 col-md-offset-1">Tower</div>
+                                            <div class="col-md-2">
+                                                <label class="select">
+                                                    <select name="TowerID" class="form-control" data-ng-change="TowerChange()" data-ng-model="Flat.TowerID" id="TowerID" required>
+                                                        <option data-ng-repeat="pro in TowerList" value="{{ pro.TowerID }}">{{pro.TowerName }}</option>
+                                                    </select>
+                                                </label>
+                                            </div>
+                                            <div class="col-md-2">Flat Name</div>
+                                            <div class="col-md-3">
+                                                <label class="select">
+                                                    <select name="FlatID" class="form-control" data-ng-model="Flat.FlatID" id="FlatID" required>
+                                                        <option data-ng-repeat="fl in FlatList" value="{{ fl.FlatID }}">{{ fl.FlatNo }}</option>
+                                                    </select>
+                                                </label>
+                                            </div>
+                                            <div class="col-md-1">
+                                                <a class="btn btn-primary" data-ng-click="SearchFlatClick()">
+                                                    <i class="fa fa-search"></i> Search
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+
+                                    <div class="step-pane active" id="step3">
+                                        <div class="jarviswidget wdgt_marg" data-widget-editbutton="false" data-widget-custombutton="false">
+
+                                            <div class="jarviswidget" data-widget-editbutton="false" data-widget-custombutton="false">
+                                                <header>
+                                                    <span class="widget-icon"><i class="fa fa-edit"></i></span>
+                                                    <h2>Installments Detail</h2>
+                                                </header>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="table-responsive">
+                                                            <table class="table table-bordered table-striped particular_tbl">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th class="pointer">SN</th>
+                                                                        <th class="pointer">Version</th>
+                                                                        <th class="pointer">Action</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr data-ng-repeat="ins in InstallmentVersion">
+                                                                        <td>{{ $index+1}}</td>
+                                                                        <td>{{ins}}</td>
+                                                                        <td><a class="btn btn-sm btn-primary" data-ng-click="ViewInstallmentClick(ins)">View</a> </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="table-responsive">
+                                                            <table class="table table-bordered table-striped particular_tbl">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th data-ng-click="reverse=!reverse;orderInstall1('InstallmentOrder', reverse)" class="pointer">Installment<i class="fa fa-sort-down"></i></th>
+                                                                        <th data-ng-click="reverse=!reverse;orderInstall1('Installment', reverse)" class="pointer">Event<i class="fa fa-sort-down"></i></th>
+                                                                         <th>BSP Amount</th>
+                                                                        <th>PLC Amount</th>
+                                                                        <th>Additional Amt</th>
+                                                                        <th>Optional Amt</th>
+                                                                         <th data-ng-click="reverse=!reverse;orderInstall1('TotalAmount', reverse)" class="pointer">Amount<i class="fa fa-sort-down"></i></th>
+                                                                        <th data-ng-click="reverse=!reverse;orderInstall1('DueDateSt', reverse)" class="pointer">Due Date<i class="fa fa-sort-down"></i></th>
+                                                                   <th>Created Date</th>
+                                                                     </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr data-ng-repeat="ins in FlatInstallmentList">
+                                                                        <td>{{ ins.InstallmentOrder}}</td>
+                                                                        <td>{{ins.Installment}}</td>
+                                                                        <td>{{ins.BSPPer}}%-{{ins.BSPAmount}}</td>
+                                                                        <td>{{ins.PLCPer}}%-{{ins.PLCAmount}}</td>
+                                                                        <td>{{ins.AdditionalPer}}%-{{ins.AdditionalCAmount}}</td>
+                                                                        <td>{{ins.OptionalPer}}%-{{ins.OptionalCAmount}}</td>
+                                                                        <td>{{ ins.TotalAmount}}</td>
+                                                                        <td>{{ ins.DueDateSt}}</td>
+                                                                        <td>{{ins.CreateDate}}</td>
+                                                                    </tr>
+                                                                    <tr><td style="display:none"></td><td><b>Total</b></td><td><b>{{TotalInstallmnetDueAmount }}</b></td><td></td></tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- widget div-->
+                                                <!-- end widget div -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end widget content -->
+                    </div>
+                    <!-- end widget div -->
+                </div>
+                <!-- end widget -->
+
+            </article>
+            <!-- WIDGET END -->
+
+        </div>
+
+        <!-- end row -->
+
+    </section>
+    <!-- end widget grid -->
+
+</div>
+<!-- END MAIN CONTENT -->
+@section pagespecific {
+   <script src="~/AgController/SalePropertyJs.js"></script>
+    <script type="text/javascript">
+    $(function () {
+        $(".datecal").datepicker({
+            changeMonth: true,
+            changeYear: true,
+            yearRange: '1914:2099',
+            dateFormat: 'dd/mm/yy'
+        });
+
+    });
+    $(document).ready(function () {
+        $('#loading').hide();
+        $('#btnSubmitPayment').click(function () {
+            // $('#btnSubmitPayment').hide();
+            // $('#loading').show();
+        })
+    });
+    </script>
+}

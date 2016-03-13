@@ -28,8 +28,9 @@ namespace REMS.Data
             this.PropertyRemarks = new HashSet<PropertyRemark>();
             this.PropertyTransfers = new HashSet<PropertyTransfer>();
             this.RefundProperties = new HashSet<RefundProperty>();
-            this.ReminderLetters = new HashSet<ReminderLetter>();
             this.UploadAgreements = new HashSet<UploadAgreement>();
+            this.PaymentDiscounts = new HashSet<PaymentDiscount>();
+            this.ReminderLetters = new HashSet<ReminderLetter>();
         }
     
         public int SaleID { get; set; }
@@ -42,6 +43,11 @@ namespace REMS.Data
         public string Remarks { get; set; }
         public Nullable<int> ProjectID { get; set; }
         public Nullable<int> DemandStatus { get; set; }
+        public Nullable<System.DateTime> CreatedDate { get; set; }
+        public Nullable<System.DateTime> UpdateDate { get; set; }
+        public string UpdateBy { get; set; }
+        public string CreatedBy { get; set; }
+        public string PlanName { get; set; }
     
         public virtual ICollection<Customer> Customers { get; set; }
         public virtual Flat Flat { get; set; }
@@ -56,7 +62,8 @@ namespace REMS.Data
         public virtual ICollection<PropertyRemark> PropertyRemarks { get; set; }
         public virtual ICollection<PropertyTransfer> PropertyTransfers { get; set; }
         public virtual ICollection<RefundProperty> RefundProperties { get; set; }
-        public virtual ICollection<ReminderLetter> ReminderLetters { get; set; }
         public virtual ICollection<UploadAgreement> UploadAgreements { get; set; }
+        public virtual ICollection<PaymentDiscount> PaymentDiscounts { get; set; }
+        public virtual ICollection<ReminderLetter> ReminderLetters { get; set; }
     }
 }

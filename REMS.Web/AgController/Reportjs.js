@@ -587,6 +587,7 @@ myApp.controller('ReportController', function ($scope, $http, $filter) {
             url: '/BI/Report/ExportReport',
             data: { ReportContent: $scope.ReportContent }
         }).success(function (data) {
+            alert(data);
             $('#loading').hide();
             window.open(data, "_blank");
 
@@ -843,31 +844,31 @@ myApp.controller('ReportController', function ($scope, $http, $filter) {
     }
 
 
-    $scope.DemandLetterPrintPrintAction = function () {
-        var id = $("#hidID").val();
-        alert(id);
-        $('#loading').show();
-        $http({
-            method: 'Get',
-            url: '/BI/Report/DemandLettertPrintReport',
-            params: { transactionid: id }
-        }).success(function (data, status, headers, config) {
-            $scope.PrintReceiptList = data;
-            $http({
-                method: 'Get',
-                url: '/BI/Report/DemandLettertPrintReport',
-                params: { transids: id },
-            }).success(function (data) {
-                $scope.Amount = "";
-                $('#loading').hide();
-                window.print();
-            })
+    //$scope.DemandLetterPrintPrintAction = function () {
+    //    var id = $("#hidID").val();
+    //    $('#loading').show();
+    //    $http({
+    //        method: 'Get',
+    //        url: '/BI/Report/DemandLettertPrintReport',
+    //        params: { transactionid: id }
+    //    }).success(function (data, status, headers, config) {
+    //        $scope.PrintReceiptList = data;
+           
+    //        $http({
+    //            method: 'Get',
+    //            url: '/BI/Report/DemandLettertPrintReport',
+    //            params: { transids: id },
+    //        }).success(function (data) {
+    //            $scope.Amount = "";
+    //            $('#loading').hide();
+    //            window.print();
+    //        })
 
-        }).then(function () {
-            //Print Page
+    //    }).then(function () {
+    //        //Print Page
 
-        });
-    }
+    //    });
+    //}
 
 
 
@@ -876,12 +877,9 @@ myApp.controller('ReportController', function ($scope, $http, $filter) {
         $('#loading').show();
         $http({
             method: 'Get',
-
             url: '/BI/Report/DemandLettertPrintReport2',
             params: { transids: id },
-
         }).success(function (data) {
-
             $http({
                 method: 'Get',
                 url: '/BI/Report/DemandLettertPrintReport2',
@@ -890,10 +888,8 @@ myApp.controller('ReportController', function ($scope, $http, $filter) {
                 $scope.PrintReceiptList = data;
                 $http({
                     method: 'Get',
-
                     url: '/BI/Report/DemandLettertPrintReport3',
                     params: { transids: id },
-
                 }).success(function (data) {
                     $scope.Amount = "";
                     $('#loading').hide();
@@ -935,26 +931,11 @@ myApp.controller('ReportController', function ($scope, $http, $filter) {
                     $('#loading').hide();
                     window.print();
                 })
-
-
-
-
-
-
-
-
-
-
             })
         }).then(function () {
             //Print Page
-
         });
     }
-
-
-
-
 
     $scope.ViewSearchDemandLetter = function () {
         $('#loading').show();

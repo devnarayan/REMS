@@ -9,17 +9,14 @@
     <meta name="viewport" content="width=device-width" />
     <title>Demand Letter 3</title>
 
-    <script src="~/Scripts/moment.min.js"></script>
-    <script src="~/Scripts/moment-with-locales.min.js"></script>
+    <link href="~/Content/css/your_style.css" rel="stylesheet" />
     <script src="~/Scripts/angular.js"></script>
-    <link rel="stylesheet" type="text/css" media="screen" href="~/Content/css/style.css">
-    <script src="~/Scripts/ngController/Reportjs.js"></script>
-    @* <script src="~/Scripts/ngController/ManagePayjs.js"></script>*@
+    <script src="~/AgController/Reportjs.js"></script>
 </head>
 <body data-ng-app="BIApp" lang="EN-US">
     <div id="ReceiptPritable" data-ng-controller="ReportController">
         <div id="loading">
-            <img id="loading-image" src="~/images/loading.gif" alt="Loading..." />
+            <img id="loading-image" src="~/Content/img/loading2.gif" alt="Loading..." />
         </div>
         <div data-ng-init="DemandLettertPrintReport3()">
             <input type="hidden" id="hidID" name="hidID" value="@ViewBag.ID" />

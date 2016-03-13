@@ -13,7 +13,7 @@ namespace REMS.Data.Access.Master
     {
         int AddAddOnCharge(AddOnCharge model);
         int EditAddOnCharge(AddOnCharge model);
-        int DeleteAddOnCharge(AddOnCharge model);
+        int DeleteAddOnCharge(int model);
         AddOnchargeModel GetAddOnChargeByID(int AddOnChargeID);
         List<AddOnchargeModel> GetAddOnChargeList();
         List<AddOnchargeModel> GetMandatoryAddOnChargeList();
@@ -57,14 +57,14 @@ namespace REMS.Data.Access.Master
                 }
             }
         }
-        public int DeleteAddOnCharge(AddOnCharge model)
+        public int DeleteAddOnCharge(int model)
         {
             using (REMSDBEntities context = new REMSDBEntities())
             {
                 try
                 {
-                    context.AddOnCharges.Add(model);
-                    context.Entry(model).State = EntityState.Deleted;
+                    var mdl = context.AddOnCharges.Where(ft => ft.AddOnChargeID == model).FirstOrDefault();
+                    context.Entry(mdl).State = EntityState.Deleted;
                     int i = context.SaveChanges();
                     return i;
                 }

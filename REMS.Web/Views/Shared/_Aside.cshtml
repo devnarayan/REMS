@@ -62,6 +62,9 @@
                     <li class="@Html.RouteIf("FlatSize", "Flat", "Master", "active")">
                         <a href="@Url.Action("FlatSize", "Flat", new { area = "Master" })"> <span class="menu-item-parent">Flat Type Size</span></a>
                     </li>
+                    <li class="@Html.RouteIf("ManageServiceTax", "PLC", "Master", "active")">
+                        <a href="@Url.Action("ManageServiceTax", "PLC", new { area = "Master" })"> <span class="menu-item-parent">Service Tax</span></a>
+                    </li>
                 </ul>
             </li>
             <li class="@Html.RouteIf("Index", "CreateProperty", "Admin", "active")">
@@ -107,9 +110,13 @@
                     <li class="@Html.RouteIf("NewSale", "Property", "Sale", "active")">
                         <a href="@Url.Action("NewSale", "Property", new { area = "Sale", Id = 0 })">New Sale/Booking</a>
                     </li>
+                    <li class="@Html.RouteIf("ViewInstallment", "Property", "Sale", "active")">
+                        <a href="@Url.Action("ViewInstallment", "Property", new { area = "Sale", Id = 0 })">View Installments</a>
+                    </li>
                     <li class="@Html.RouteIf("Booking", "Book", "Sale", "active")"><a href="@Url.Action("Booking", "Book", new { area = "Sale" })">View Booking</a></li>
                     @*<li class="@Html.RouteIf("flot", "Security", "Auth", "active")"><a href="#">Book to Sale Property</a></li>*@
                     <li class="@Html.RouteIf("Search", "Property", "Sale", "active")"><a href="@Url.Action("Search", "Property", new { area = "Sale" })">View Property/Summary</a></li>
+                    <li class="@Html.RouteIf("TransferCustomer", "Transfer", "Customer", "active")"><a href="@Url.Action("TransferCustomer", "Transfer", new { area = "Customer", Id = 0 })">Transfer Customer</a> </li>
                     <li class="@Html.RouteIf("TransferProperty", "Transfer", "Customer", "active")"><a href="@Url.Action("TransferProperty", "Transfer", new { area = "Customer", Id = 0 })">Transfer Property</a> </li>
                     <li class="@Html.RouteIf("RefundProperty", "Transfer", "Customer", "Active")"><a href="@Url.Action("RefundProperty", "Transfer", new { area = "Customer", Id = 0 })">Refund Property</a> </li>
                 </ul>
@@ -132,6 +139,14 @@
                     <li class="@Html.RouteIf("Index", "OtherPayment", "Sale", "active")"><a href="@Url.Action("Index", "OtherPayment", new { area = "Sale" })">Manage Payments</a></li>
                     <li class="@Html.RouteIf("BackupReceipt", "OtherPayment", "Sale", "active")"><a href="@Url.Action("BackupReceipt", "OtherPayment", new { area = "Sale" })">Backup Receipt</a></li>
                     <li class="@Html.RouteIf("ViewCancelPayments", "OtherPayment", "Sale", "active")"><a href="@Url.Action("ViewCancelPayments", "OtherPayment", new { area = "Sale" })">Search Canceled Payments</a> </li>
+                </ul>
+            </li>
+            <li class="@Html.RouteIf("Index", "PaymentDiscount", "Sale", "active")">
+                <a href="#"><i class="fa fa-lg fa-fw fa-rupee"></i> <span class="menu-item-parent"> Payments (Discount)</span></a>
+                <ul>
+                    <li class="@Html.RouteIf("Index", "PaymentDiscount", "Sale", "active")"><a href="@Url.Action("Index", "PaymentDiscount", new { area = "Sale",id=0 })">Approve Payment Discount</a></li>
+                    <li class="@Html.RouteIf("AddDiscount", "PaymentDiscount", "Sale", "active")"><a href="@Url.Action("AddDiscount", "PaymentDiscount", new { area = "Sale", id=0 })">Submit Discount Request</a></li>
+                    <li class="@Html.RouteIf("History", "PaymentDiscount", "Sale", "active")"><a href="@Url.Action("History", "PaymentDiscount", new { area = "Sale" })">Discount History</a></li>
                 </ul>
             </li>
             <li class="@Html.RouteIf("GenerateAssuredInstallment", "AssuredReturn", "Customer", "active")">
@@ -162,11 +177,11 @@
                     <li class="@Html.RouteIf("PropertyRemark", "Remark", "Customer", "active")"><a href="/Customer/Remark/PropertyRemark/0" title="View  Property Follow" class=""><i class="fa fa-edit"></i>View Property Follow</a></li>
                 </ul>
             </li>
-            <li class="@Html.RouteIf("Index", "Security", "", "active")">
+            <li class="@Html.RouteIf("CreateLetter", "DemandLetter", "BI", "active")">
                 <a href="#"><i class="fa fa-lg fa-fw fa-file"></i> <span class="menu-item-parent"> Demand Letter</span></a>
                 <ul>
-                    <li class="@Html.RouteIf("flot", "Security", "Auth", "active")"><a href="@Url.Action("DemandLetter", "Report", new { area = "BI" })" ti title="Demand Letter">Create Demand Letter</a></li>
-                    <li class="@Html.RouteIf("flot", "Security", "Auth", "active")"><a href="@Url.Action("DemandLetterView", "Report", new { area = "BI" })" ti title="Demand Letter View">Demand Letter View</a></li>
+                    <li class="@Html.RouteIf("CreateLetter", "DemandLetter", "BI", "active")"><a href="@Url.Action("CreateLetter", "DemandLetter", new { area = "BI" })" ti title="Demand Letter">Create Demand Letter</a></li>
+                    <li class="@Html.RouteIf("Index", "DemandLetter", "BI", "active")"><a href="@Url.Action("Index", "DemandLetter", new { area = "BI" })" ti title="Demand Letter View">Demand Letter View</a></li>
                 </ul>
             </li>
             <li class="@Html.RouteIf("Index", "Security", "", "active")">

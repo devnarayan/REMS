@@ -67,3 +67,13 @@ E:\Project Data\REMS\1.Source Code\REMS_New\REMS.Data\bin\Debug\EntityFramework.
 E:\Project Data\REMS\1.Source Code\REMS_New\REMS.Data\obj\Debug\REMS.Data.dll
 E:\Project Data\REMS\1.Source Code\REMS_New\REMS.Data\obj\Debug\REMS.Data.pdb
 E:\Project Data\REMS\1.Source Code\REMS_New\REMS.Data\obj\Debug\3. REMS.Data.csprojResolveAssemblyReference.cache
+E:\ComaxCosulting\1. SourceCode\REMSGit\REMS.Data\bin\Debug\REMS.Data.dll.config
+E:\ComaxCosulting\1. SourceCode\REMSGit\REMS.Data\bin\Debug\REMS.Data.dll
+E:\ComaxCosulting\1. SourceCode\REMSGit\REMS.Data\bin\Debug\REMS.Data.pdb
+E:\ComaxCosulting\1. SourceCode\REMSGit\REMS.Data\bin\Debug\EntityFramework.dll
+E:\ComaxCosulting\1. SourceCode\REMSGit\REMS.Data\bin\Debug\EntityFramework.SqlServer.dll
+E:\ComaxCosulting\1. SourceCode\REMSGit\REMS.Data\bin\Debug\EntityFramework.xml
+E:\ComaxCosulting\1. SourceCode\REMSGit\REMS.Data\bin\Debug\EntityFramework.SqlServer.xml
+E:\ComaxCosulting\1. SourceCode\REMSGit\REMS.Data\obj\Debug\REMS.Data.dll
+E:\ComaxCosulting\1. SourceCode\REMSGit\REMS.Data\obj\Debug\REMS.Data.pdb
+E:\ComaxCosulting\1. SourceCode\REMSGit\REMS.Data\obj\Debug\3. REMS.Data.csprojResolveAssemblyReference.cache

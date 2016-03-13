@@ -587,6 +587,7 @@ myApp.controller('ReportController', function ($scope, $http, $filter) {
             url: '/BI/Report/ExportReport',
             data: { ReportContent: $scope.ReportContent }
         }).success(function (data) {
+            alert(data);
             $('#loading').hide();
             window.open(data, "_blank");
 
@@ -690,26 +691,10 @@ myApp.controller('ReportController', function ($scope, $http, $filter) {
         $('#loading').show();
         //var propertyName = $("#PropertyTypeID :selected").text()
         // $("#hidFlatID").val($scope.Flat.FlatID);
-        var propertyid = $("#TowerID :selected").val()
-        alert(propertyid)
         //var propertyid = $("#hidFlatID").val();
         var search = $("#searchby").val();
         var searchtext = $("#searchtext").val();
-        //if (search == "PropertyName") {
-        //    if (searchtext.trim() == "") {
-        //        alert("Enter Propery Name ");
-        //        $('#loading').hide();
-        //        return;
-        //    }
-        //}
-
-        //var propertyid = $("#PropertyID").val();
-
-        //if (propertyid == "? undefined:undefined ?") {
-        //    alert("Select Property");
-        //    $('#loading').hide();
-        //    return;
-        //}
+       
         var saleid = "";
         //var propertySubTypeID = $("#PropertyTypeID").val();
         //var proSize = $("#PropertySizeID").val();
@@ -720,7 +705,7 @@ myApp.controller('ReportController', function ($scope, $http, $filter) {
             method: 'Get',
             contentType: "application/json; charset=utf-8",
             url: '/BI/Report/SearchDemandLetter',
-            params: { search: search, propertyid: propertyid, datefrom: datefrom },
+            params: { search: search, propertyid:$scope.Flat.FlatID, datefrom: datefrom },
             dataType: "json"
         }).success(function (data) {
             $scope.SearchList = data;
@@ -859,31 +844,31 @@ myApp.controller('ReportController', function ($scope, $http, $filter) {
     }
 
 
-    $scope.DemandLetterPrintPrintAction = function () {
-        var id = $("#hidID").val();
-        alert(id);
-        $('#loading').show();
-        $http({
-            method: 'Get',
-            url: '/BI/Report/DemandLettertPrintReport',
-            params: { transactionid: id }
-        }).success(function (data, status, headers, config) {
-            $scope.PrintReceiptList = data;
-            $http({
-                method: 'Get',
-                url: '/BI/Report/DemandLettertPrintReport',
-                params: { transids: id },
-            }).success(function (data) {
-                $scope.Amount = "";
-                $('#loading').hide();
-                window.print();
-            })
+    //$scope.DemandLetterPrintPrintAction = function () {
+    //    var id = $("#hidID").val();
+    //    $('#loading').show();
+    //    $http({
+    //        method: 'Get',
+    //        url: '/BI/Report/DemandLettertPrintReport',
+    //        params: { transactionid: id }
+    //    }).success(function (data, status, headers, config) {
+    //        $scope.PrintReceiptList = data;
+           
+    //        $http({
+    //            method: 'Get',
+    //            url: '/BI/Report/DemandLettertPrintReport',
+    //            params: { transids: id },
+    //        }).success(function (data) {
+    //            $scope.Amount = "";
+    //            $('#loading').hide();
+    //            window.print();
+    //        })
 
-        }).then(function () {
-            //Print Page
+    //    }).then(function () {
+    //        //Print Page
 
-        });
-    }
+    //    });
+    //}
 
 
 
@@ -892,12 +877,9 @@ myApp.controller('ReportController', function ($scope, $http, $filter) {
         $('#loading').show();
         $http({
             method: 'Get',
-
             url: '/BI/Report/DemandLettertPrintReport2',
             params: { transids: id },
-
         }).success(function (data) {
-
             $http({
                 method: 'Get',
                 url: '/BI/Report/DemandLettertPrintReport2',
@@ -906,10 +888,8 @@ myApp.controller('ReportController', function ($scope, $http, $filter) {
                 $scope.PrintReceiptList = data;
                 $http({
                     method: 'Get',
-
                     url: '/BI/Report/DemandLettertPrintReport3',
                     params: { transids: id },
-
                 }).success(function (data) {
                     $scope.Amount = "";
                     $('#loading').hide();
@@ -951,26 +931,11 @@ myApp.controller('ReportController', function ($scope, $http, $filter) {
                     $('#loading').hide();
                     window.print();
                 })
-
-
-
-
-
-
-
-
-
-
             })
         }).then(function () {
             //Print Page
-
         });
     }
-
-
-
-
 
     $scope.ViewSearchDemandLetter = function () {
         $('#loading').show();
@@ -1003,7 +968,7 @@ myApp.controller('ReportController', function ($scope, $http, $filter) {
             method: 'Get',
             contentType: "application/json; charset=utf-8",
             url: '/BI/Report/ViewSearchDemandLetter',
-            params: { search: search, propertyid: propertyid, datefrom: datefrom },
+            params: { search: search, propertyid: $scope.Flat.FlatID, datefrom: datefrom },
             dataType: "json"
         }).success(function (data) {
             $scope.SearchList = data;

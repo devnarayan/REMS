@@ -2,19 +2,21 @@
     ViewBag.Title = "AddCharges";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+@section topright{
+<h1 class="page-title txt-color-blueDark">
+    <!-- PAGE HEADER --><i class="fa-fw fa fa-home"></i> Tower View <span>
+        >
+        Flats
+    </span>
+</h1>
+}
 <!-- MAIN CONTENT -->
 <div id="content" data-ng-app="PropertyApp" data-ng-controller="PropertyController">
     <!-- row -->
     <div class="row" data-ng-init="AddFlatInit()">
         <!-- col -->
         <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
-            <h1 class="page-title txt-color-blueDark">
-                <!-- PAGE HEADER --><i class="fa-fw fa fa-home"></i> Tower View <span>
-                    >
-                    Flats
-                </span>
-            </h1>
+           
         </div>
         <!-- end col -->
         <!-- right side of the page with the sparkline graphs -->

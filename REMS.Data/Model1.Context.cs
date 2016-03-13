@@ -29,17 +29,7 @@ namespace REMS.Data
     
         public virtual DbSet<AdditionalCharge> AdditionalCharges { get; set; }
         public virtual DbSet<AddOnCharge> AddOnCharges { get; set; }
-        public virtual DbSet<Agreement> Agreements { get; set; }
-        public virtual DbSet<AssuredReturn> AssuredReturns { get; set; }
-        public virtual DbSet<AssuredReturnPayment> AssuredReturnPayments { get; set; }
-        public virtual DbSet<BankMaster> BankMasters { get; set; }
-        public virtual DbSet<BrokerMaster> BrokerMasters { get; set; }
-        public virtual DbSet<BrokerPayment> BrokerPayments { get; set; }
-        public virtual DbSet<BrokerToProperty> BrokerToProperties { get; set; }
-        public virtual DbSet<CityMaster> CityMasters { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
-        public virtual DbSet<Error> Errors { get; set; }
-        public virtual DbSet<EventMaster> EventMasters { get; set; }
         public virtual DbSet<Flat> Flats { get; set; }
         public virtual DbSet<FlatCharge> FlatCharges { get; set; }
         public virtual DbSet<FlatInstallmentDetail> FlatInstallmentDetails { get; set; }
@@ -49,7 +39,6 @@ namespace REMS.Data
         public virtual DbSet<FlatTypeSize> FlatTypeSizes { get; set; }
         public virtual DbSet<Floor> Floors { get; set; }
         public virtual DbSet<LatePayment> LatePayments { get; set; }
-        public virtual DbSet<ModuleList> ModuleLists { get; set; }
         public virtual DbSet<Payment> Payments { get; set; }
         public virtual DbSet<PaymentCancel> PaymentCancels { get; set; }
         public virtual DbSet<PaymentOther> PaymentOthers { get; set; }
@@ -66,18 +55,32 @@ namespace REMS.Data
         public virtual DbSet<PropertyRemark> PropertyRemarks { get; set; }
         public virtual DbSet<PropertyTransfer> PropertyTransfers { get; set; }
         public virtual DbSet<RefundProperty> RefundProperties { get; set; }
-        public virtual DbSet<ReminderLetter> ReminderLetters { get; set; }
-        public virtual DbSet<RoleAccess> RoleAccesses { get; set; }
-        public virtual DbSet<ServiceTax> ServiceTaxes { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
-        public virtual DbSet<TaxMaster> TaxMasters { get; set; }
         public virtual DbSet<Tower> Towers { get; set; }
         public virtual DbSet<UploadAgreement> UploadAgreements { get; set; }
-        public virtual DbSet<UserAccess> UserAccesses { get; set; }
         public virtual DbSet<UserProperty> UserProperties { get; set; }
-        public virtual DbSet<PayTransferFee> PayTransferFees { get; set; }
-        public virtual DbSet<PaymentMaster> PaymentMasters { get; set; }
         public virtual DbSet<SaleFlat> SaleFlats { get; set; }
+        public virtual DbSet<PaymentDiscount> PaymentDiscounts { get; set; }
+        public virtual DbSet<PaymentDiscountApproval> PaymentDiscountApprovals { get; set; }
+        public virtual DbSet<ActivityLog> ActivityLogs { get; set; }
+        public virtual DbSet<Agreement> Agreements { get; set; }
+        public virtual DbSet<AssuredReturn> AssuredReturns { get; set; }
+        public virtual DbSet<AssuredReturnPayment> AssuredReturnPayments { get; set; }
+        public virtual DbSet<BankMaster> BankMasters { get; set; }
+        public virtual DbSet<BrokerMaster> BrokerMasters { get; set; }
+        public virtual DbSet<BrokerPayment> BrokerPayments { get; set; }
+        public virtual DbSet<BrokerToProperty> BrokerToProperties { get; set; }
+        public virtual DbSet<CityMaster> CityMasters { get; set; }
+        public virtual DbSet<Error> Errors { get; set; }
+        public virtual DbSet<EventMaster> EventMasters { get; set; }
+        public virtual DbSet<ModuleList> ModuleLists { get; set; }
+        public virtual DbSet<PaymentClearance> PaymentClearances { get; set; }
+        public virtual DbSet<PaymentMaster> PaymentMasters { get; set; }
+        public virtual DbSet<RoleAccess> RoleAccesses { get; set; }
+        public virtual DbSet<ServiceTax> ServiceTaxes { get; set; }
+        public virtual DbSet<TaxMaster> TaxMasters { get; set; }
+        public virtual DbSet<UserAccess> UserAccesses { get; set; }
+        public virtual DbSet<PayTransferFee> PayTransferFees { get; set; }
+        public virtual DbSet<ReminderLetter> ReminderLetters { get; set; }
     
         public virtual int GenerateAssuredReturn_Installment(Nullable<int> saleID, Nullable<decimal> amount, Nullable<decimal> interest, Nullable<System.DateTime> startDate, Nullable<System.DateTime> pDate, string userName, Nullable<decimal> tDSLimit, Nullable<decimal> tDSPer)
         {
@@ -125,7 +128,7 @@ namespace REMS.Data
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Get_Payment_Result>("Get_Payment", transactionIDParameter);
         }
     
-        public virtual int Insert_Payment(string installmentNo, Nullable<int> saleID, Nullable<System.DateTime> paymentDate, Nullable<System.DateTime> dueDate, Nullable<decimal> dueAmount, Nullable<decimal> interestAmount, Nullable<decimal> totalAmount, Nullable<decimal> amount, string paymentMode, string chequeNo, Nullable<System.DateTime> chequeDate, string bankName, string paymentStatus, string customerName, string remarks, string bankBranch, string amtRcvdinwords, string paymentNo, Nullable<bool> isReceipt, Nullable<int> userID, string activity, string flatName, Nullable<int> transactionID, Nullable<int> customerID, Nullable<bool> interest, string createdBy)
+        public virtual int Insert_Payment(string installmentNo, Nullable<int> saleID, Nullable<System.DateTime> paymentDate, Nullable<System.DateTime> dueDate, Nullable<decimal> dueAmount, Nullable<decimal> interestAmount, Nullable<decimal> totalAmount, Nullable<decimal> amount, string paymentMode, string chequeNo, Nullable<System.DateTime> chequeDate, string bankName, string paymentStatus, string customerName, string remarks, string bankBranch, string amtRcvdinwords, string paymentNo, Nullable<bool> isReceipt, Nullable<int> userID, string activity, string flatName, Nullable<int> transactionID, Nullable<int> customerID, Nullable<bool> interest, string createdBy, string paymentType)
         {
             var installmentNoParameter = installmentNo != null ?
                 new ObjectParameter("InstallmentNo", installmentNo) :
@@ -231,7 +234,11 @@ namespace REMS.Data
                 new ObjectParameter("CreatedBy", createdBy) :
                 new ObjectParameter("CreatedBy", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Insert_Payment", installmentNoParameter, saleIDParameter, paymentDateParameter, dueDateParameter, dueAmountParameter, interestAmountParameter, totalAmountParameter, amountParameter, paymentModeParameter, chequeNoParameter, chequeDateParameter, bankNameParameter, paymentStatusParameter, customerNameParameter, remarksParameter, bankBranchParameter, amtRcvdinwordsParameter, paymentNoParameter, isReceiptParameter, userIDParameter, activityParameter, flatNameParameter, transactionIDParameter, customerIDParameter, interestParameter, createdByParameter);
+            var paymentTypeParameter = paymentType != null ?
+                new ObjectParameter("PaymentType", paymentType) :
+                new ObjectParameter("PaymentType", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Insert_Payment", installmentNoParameter, saleIDParameter, paymentDateParameter, dueDateParameter, dueAmountParameter, interestAmountParameter, totalAmountParameter, amountParameter, paymentModeParameter, chequeNoParameter, chequeDateParameter, bankNameParameter, paymentStatusParameter, customerNameParameter, remarksParameter, bankBranchParameter, amtRcvdinwordsParameter, paymentNoParameter, isReceiptParameter, userIDParameter, activityParameter, flatNameParameter, transactionIDParameter, customerIDParameter, interestParameter, createdByParameter, paymentTypeParameter);
         }
     
         public virtual int Insert_PaymentAssuredReturn(Nullable<int> saleID, Nullable<System.DateTime> paymentDate, Nullable<decimal> amount, string paymentMode, string chequeNo, Nullable<System.DateTime> chequeDate, string bankName, string paymentStatus, string customerName, string remarks, string bankBranch, string amtRcvdinwords, string paymentNo, Nullable<bool> isReceipt, string flatName, Nullable<int> transactionID, Nullable<int> customerID, string createdBy, Nullable<int> assuredReturnID)

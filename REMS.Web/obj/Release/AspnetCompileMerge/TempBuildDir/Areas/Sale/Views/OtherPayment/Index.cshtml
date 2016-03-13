@@ -3,16 +3,19 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@section topright{
+<div class="row">
+    <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+        <h1 class="page-title txt-color-blueDark"><i class="fa fa-pencil-square-o fa-fw "></i>Search Other Payments </h1>
+    </div>
+</div>
+}
 
 <div data-ng-app="OPaymentApp" role="main">
     
     <!-- MAIN CONTENT -->
     <div id="content" data-ng-controller="OtherPaymentController">
-        <div class="row">
-            <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
-                <h1 class="page-title txt-color-blueDark"><i class="fa fa-pencil-square-o fa-fw "></i>Search Other Payments </h1>
-            </div>
-        </div>
+       
         <!-- widget grid -->
         <section id="widget-grid" class="" data-ng-init="RefundInit()">
             <input type="hidden" id="hidFlatID" name="hidFlatID" value="@ViewBag.ID" />
@@ -29,37 +32,23 @@
                         </header>
                         <div class="row">
                             <div class="col-md-3">
-                                <b>Search By Property:</b><br />
-                                <select name="TowerID" class="form-control" data-ng-change="TowerChange()" data-ng-model="Flat.TowerID" id="PaymentFor" required>
+                                <b>Select Tower:</b><br />
+                                <select name="TowerID" class="form-control" data-ng-change="TowerChange()" data-ng-model="FlatSearch.TowerID" id="TowerID" required>
                                     <option data-ng-repeat="pro in TowerList" value="{{ pro.TowerID }}">{{pro.TowerName }}</option>
-                                    <option value="All">All</option>
-                                    <option value="Service Tax">Service Tax</option>
-                                    <option value="Late Payment Charges">Late Payment Charges</option>
-                                    <option value="Transfer Fee">Transfer Fee</option>
-                                    <option value="Misc Amount">Misc Amount</option>
-                                    <option value="Clearance Charges">Clearance Charges</option>
                                 </select>
-                                @*<select name="newCust.PropertyID" class="form-control" data-ng-change="PropertyName()" data-ng-model="newCust.PropertyID" id="PropertyID">
-                                    <option data-ng-repeat="pro in Properties" value="{{ pro.PropertyID }}">{{ pro.PropertyName }}</option>
-                                </select>*@
                             </div>
                             <div class="col-md-3" id="divSearchDDL">
-                                <b>Search By Property:</b><br />
-                                <select name="FlatID" class="form-control" data-ng-model="Flat.FlatID" id="FlatID" required>
+                                <b>Select Flat:</b><br />
+                                <select name="FlatID" class="form-control" data-ng-model="FlatSearch.FlatID" id="FlatID" required>
                                     <option data-ng-repeat="fl in FlatList" value="{{ fl.FlatID }}">{{ fl.FlatNo }}</option>
                                 </select>
-                                @*<select name="newCust.PaymentFor" class="form-control" data-ng-model="newCust.PaymentFor" id="PaymentFor">
-                                    <option value="All">All</option>
-                                    <option value="Service Tax">Service Tax</option>
-                                    <option value="Late Payment Charges">Late Payment Charges</option>
-                                    <option value="Transfer Fee">Transfer Fee</option>
-                                    <option value="Misc Amount">Misc Amount</option>
-                                    <option value="Clearance Charges">Clearance Charges</option>
-                                </select>*@
                             </div>
-                            <div class="col-md-3 hidden" id="divSearchTxt">
-                                <b>Property Amount:</b><br />
-                                <input type="text" id="searchtext" name="searchtext" class="form-control" />
+                            <div class="col-md-3">
+                                <b>Select Payment Type:</b><br />
+                                <select id="PaymentFor" data-ng-model="PaymentFor" class="form-control">
+                                    <option value="All">All</option>
+                                    <option data-ng-repeat="pay in PaymentMaster" value="{{pay.PaymentMasterID}}">{{pay.Name}}</option>
+                                </select>
                             </div>
                             <div class="col-md-1">
                                 <br />
@@ -103,9 +92,9 @@
                                                                         <div class="dropdown">
                                                                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">Manage Payment</a>
                                                                             <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                                                                                <li> <a target="_blank" href="/Sale/Payment/Clearance/{{sr.TransactionID}}" title="Payment Clearance" class=""><i class="fa fa-adjust"></i> Clearance</a></li>
+                                                                                @*<li> <a target="_blank" href="/Sale/Payment/Clearance/{{sr.TransactionID}}" title="Payment Clearance" class=""><i class="fa fa-adjust"></i> Clearance</a></li>
                                                                                 <li><a target="_blank" href="/Sale/Payment/Details/{{sr.TransactionID}}" title="View Payment Details" class=""><i class="fa fa-eye"></i> View Payment Details</a></li>
-                                                                                <li><a target="_blank" href="/Sale/Payment/Details/{{sr.TransactionID}}" title="Edit Payment Details" class=""><i class="fa fa-edit"></i> Edit Payment Details</a></li>
+                                                                                <li><a target="_blank" href="/Sale/Payment/Details/{{sr.TransactionID}}" title="Edit Payment Details" class=""><i class="fa fa-edit"></i> Edit Payment Details</a></li>*@
                                                                                 <li class="divider"></li>
                                                                                 @*<li><a target="_blank" href="/OtherPayment/ViewCancelPayments/" title="View Canceled Payment" class=""><i class="fa fa-list"></i> View Canceled Payments</a></li>*@
                                                                                 @*<li><a target="_blank" href="/Manage/PaymentCancel/{{sr.TransactionID}}" title="Cancel Payment" class=""><i class="fa fa-reply"></i> Cancel Payment</a></li>

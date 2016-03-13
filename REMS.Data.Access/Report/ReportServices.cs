@@ -3,6 +3,7 @@ using REMS.Data.DataModel;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,9 +14,9 @@ namespace REMS.Data.Access.Report
     {
         List<FlatSaleModel> RefundProperty();
         IQueryable<Payment> ChequeClearance();
-       // List<RefundPropertyModel> RefundPropertySearch(string propertyName, string search, string propertyid, string propertySubTypeID, string proSize, string datefrom, string dateto, string searchtext);
+        // List<RefundPropertyModel> RefundPropertySearch(string propertyName, string search, string propertyid, string propertySubTypeID, string proSize, string datefrom, string dateto, string searchtext);
         List<RefundPropertyModel> RefundPropertySearchByCheque(string search, string FlatId, string datefrom, string dateto, string searchtext);
-        List<TransferPropertyModel> TransferPropertySearch(string search,string FlatId, string datefrom, string dateto, string searchtext);
+        List<TransferPropertyModel> TransferPropertySearch(string search, string FlatId, string datefrom, string dateto, string searchtext);
         List<FlatSaleModel> SearchPendingInstallment(string search, string propertyid, string datefrom, string dateto, string searchtext);
         List<FlatSaleModel> SearchDemandLetter(string search, string propertyid, string datefrom);
         string GanrateDimandLetterDimand(string search, string propertyid, string datefrom, string saleid);
@@ -63,7 +64,7 @@ namespace REMS.Data.Access.Report
             try
             {
                 REMSDBEntities context = new REMSDBEntities();
-                var md = (from sale in context.RefundProperties where sale.SaleID==SaleID select new { sale = sale });
+                var md = (from sale in context.RefundProperties where sale.SaleID == SaleID select new { sale = sale });
                 foreach (var v in md)
                 {
                     string rdate = "", cdate = "";
@@ -110,120 +111,120 @@ namespace REMS.Data.Access.Report
                 //int psize = Convert.ToInt32(proSize);
                 //if (propertyid == "0")
                 //{
-                    if (search == "All")
+                if (search == "All")
+                {
+                    var md = (from sale in context.RefundProperties where sale.RefundDate >= datef && sale.RefundDate <= datet select new { sale = sale });
+                    foreach (var v in md)
                     {
-                        var md = (from sale in context.RefundProperties where sale.RefundDate >= datef && sale.RefundDate <= datet select new { sale = sale });
-                        foreach (var v in md)
-                        {
-                            string rdate = "", cdate = "";
-                            if (v.sale.RefundDate != null)
-                                rdate = Convert.ToDateTime(v.sale.RefundDate).ToString("dd/MM/yyyy");
-                            if (v.sale.ChequeDate != null)
-                                cdate = Convert.ToDateTime(v.sale.ChequeDate).ToString("dd/MM/yyyy");
-                            model.Add(new RefundPropertyModel { RefundPropertyID = v.sale.RefundPropertyID, SaleID = v.sale.SaleID, FlatName = v.sale.FlatName, RefundDateSt = rdate, RefundAmount = v.sale.RefundAmount, PaymentMode = v.sale.PaymentMode, ChequeDateSt = cdate, BankName = v.sale.BankName, BranchName = v.sale.BranchName, Remarks = v.sale.Remarks, ChequeNo = v.sale.ChequeNo });
-                        }
+                        string rdate = "", cdate = "";
+                        if (v.sale.RefundDate != null)
+                            rdate = Convert.ToDateTime(v.sale.RefundDate).ToString("dd/MM/yyyy");
+                        if (v.sale.ChequeDate != null)
+                            cdate = Convert.ToDateTime(v.sale.ChequeDate).ToString("dd/MM/yyyy");
+                        model.Add(new RefundPropertyModel { RefundPropertyID = v.sale.RefundPropertyID, SaleID = v.sale.SaleID, FlatName = v.sale.FlatName, RefundDateSt = rdate, RefundAmount = v.sale.RefundAmount, PaymentMode = v.sale.PaymentMode, ChequeDateSt = cdate, BankName = v.sale.BankName, BranchName = v.sale.BranchName, Remarks = v.sale.Remarks, ChequeNo = v.sale.ChequeNo });
+                    }
 
-                        return model;
+                    return model;
 
-                    }
-                    else if (search == "FlatName")
+                }
+                else if (search == "FlatName")
+                {
+                    var md = (from sale in context.RefundProperties where sale.FlatName.Contains(searchtext) select new { sale = sale });
+                    foreach (var v in md)
                     {
-                        var md = (from sale in context.RefundProperties where sale.FlatName.Contains(searchtext) select new { sale = sale });
-                        foreach (var v in md)
-                        {
-                            string rdate = "", cdate = "";
-                            if (v.sale.RefundDate != null)
-                                rdate = Convert.ToDateTime(v.sale.RefundDate).ToString("dd/MM/yyyy");
-                            if (v.sale.ChequeDate != null)
-                                cdate = Convert.ToDateTime(v.sale.ChequeDate).ToString("dd/MM/yyyy");
-                            model.Add(new RefundPropertyModel { RefundPropertyID = v.sale.RefundPropertyID, SaleID = v.sale.SaleID, FlatName = v.sale.FlatName, RefundDateSt = rdate, RefundAmount = v.sale.RefundAmount, PaymentMode = v.sale.PaymentMode, ChequeDateSt = cdate, BankName = v.sale.BankName, BranchName = v.sale.BranchName, Remarks = v.sale.Remarks, ChequeNo = v.sale.ChequeNo });
-                        }
-                        return model;
+                        string rdate = "", cdate = "";
+                        if (v.sale.RefundDate != null)
+                            rdate = Convert.ToDateTime(v.sale.RefundDate).ToString("dd/MM/yyyy");
+                        if (v.sale.ChequeDate != null)
+                            cdate = Convert.ToDateTime(v.sale.ChequeDate).ToString("dd/MM/yyyy");
+                        model.Add(new RefundPropertyModel { RefundPropertyID = v.sale.RefundPropertyID, SaleID = v.sale.SaleID, FlatName = v.sale.FlatName, RefundDateSt = rdate, RefundAmount = v.sale.RefundAmount, PaymentMode = v.sale.PaymentMode, ChequeDateSt = cdate, BankName = v.sale.BankName, BranchName = v.sale.BranchName, Remarks = v.sale.Remarks, ChequeNo = v.sale.ChequeNo });
                     }
-                    else if (search == "RefundDate")
+                    return model;
+                }
+                else if (search == "RefundDate")
+                {
+                    DateTime dtFrom = Convert.ToDateTime(datefrom);
+                    DateTime dtTo = Convert.ToDateTime(dateto);
+                    var md = (from sale in context.RefundProperties where sale.RefundDate >= dtFrom && sale.RefundDate <= dtTo select new { sale = sale });
+                    foreach (var v in md)
                     {
-                        DateTime dtFrom = Convert.ToDateTime(datefrom);
-                        DateTime dtTo = Convert.ToDateTime(dateto);
-                        var md = (from sale in context.RefundProperties where sale.RefundDate >= dtFrom && sale.RefundDate <= dtTo select new { sale = sale });
-                        foreach (var v in md)
-                        {
-                            string rdate = "", cdate = "";
-                            if (v.sale.RefundDate != null)
-                                rdate = Convert.ToDateTime(v.sale.RefundDate).ToString("dd/MM/yyyy");
-                            if (v.sale.ChequeDate != null)
-                                cdate = Convert.ToDateTime(v.sale.ChequeDate).ToString("dd/MM/yyyy");
-                            model.Add(new RefundPropertyModel { RefundPropertyID = v.sale.RefundPropertyID, SaleID = v.sale.SaleID, FlatName = v.sale.FlatName, RefundDateSt = rdate, RefundAmount = v.sale.RefundAmount, PaymentMode = v.sale.PaymentMode, ChequeDateSt = cdate, BankName = v.sale.BankName, BranchName = v.sale.BranchName, Remarks = v.sale.Remarks, ChequeNo = v.sale.ChequeNo });
-                        }
-                        return model;
+                        string rdate = "", cdate = "";
+                        if (v.sale.RefundDate != null)
+                            rdate = Convert.ToDateTime(v.sale.RefundDate).ToString("dd/MM/yyyy");
+                        if (v.sale.ChequeDate != null)
+                            cdate = Convert.ToDateTime(v.sale.ChequeDate).ToString("dd/MM/yyyy");
+                        model.Add(new RefundPropertyModel { RefundPropertyID = v.sale.RefundPropertyID, SaleID = v.sale.SaleID, FlatName = v.sale.FlatName, RefundDateSt = rdate, RefundAmount = v.sale.RefundAmount, PaymentMode = v.sale.PaymentMode, ChequeDateSt = cdate, BankName = v.sale.BankName, BranchName = v.sale.BranchName, Remarks = v.sale.Remarks, ChequeNo = v.sale.ChequeNo });
                     }
-                    else if (search == "SaleDate")
+                    return model;
+                }
+                else if (search == "SaleDate")
+                {
+                    DateTime dtFrom = Convert.ToDateTime(datefrom);
+                    DateTime dtTo = Convert.ToDateTime(dateto);
+                    var md = (from sale in context.RefundProperties join f in context.SaleFlats on sale.SaleID equals f.SaleID where f.SaleDate >= dtFrom && f.SaleDate <= dtTo select new { sale = sale });
+                    foreach (var v in md)
                     {
-                        DateTime dtFrom = Convert.ToDateTime(datefrom);
-                        DateTime dtTo = Convert.ToDateTime(dateto);
-                        var md = (from sale in context.RefundProperties join f in context.SaleFlats on sale.SaleID equals f.SaleID where f.SaleDate >= dtFrom && f.SaleDate <= dtTo select new { sale = sale });
-                        foreach (var v in md)
-                        {
-                            string rdate = "", cdate = "";
-                            if (v.sale.RefundDate != null)
-                                rdate = Convert.ToDateTime(v.sale.RefundDate).ToString("dd/MM/yyyy");
-                            if (v.sale.ChequeDate != null)
-                                cdate = Convert.ToDateTime(v.sale.ChequeDate).ToString("dd/MM/yyyy");
-                            model.Add(new RefundPropertyModel { RefundPropertyID = v.sale.RefundPropertyID, SaleID = v.sale.SaleID, FlatName = v.sale.FlatName, RefundDateSt = rdate, RefundAmount = v.sale.RefundAmount, PaymentMode = v.sale.PaymentMode, ChequeDateSt = cdate, BankName = v.sale.BankName, BranchName = v.sale.BranchName, Remarks = v.sale.Remarks, ChequeNo = v.sale.ChequeNo });
-                        }
-                        return model;
+                        string rdate = "", cdate = "";
+                        if (v.sale.RefundDate != null)
+                            rdate = Convert.ToDateTime(v.sale.RefundDate).ToString("dd/MM/yyyy");
+                        if (v.sale.ChequeDate != null)
+                            cdate = Convert.ToDateTime(v.sale.ChequeDate).ToString("dd/MM/yyyy");
+                        model.Add(new RefundPropertyModel { RefundPropertyID = v.sale.RefundPropertyID, SaleID = v.sale.SaleID, FlatName = v.sale.FlatName, RefundDateSt = rdate, RefundAmount = v.sale.RefundAmount, PaymentMode = v.sale.PaymentMode, ChequeDateSt = cdate, BankName = v.sale.BankName, BranchName = v.sale.BranchName, Remarks = v.sale.Remarks, ChequeNo = v.sale.ChequeNo });
                     }
-                    else if (search == "This Month")
+                    return model;
+                }
+                else if (search == "This Month")
+                {
+                    DateTime dtFrom = DateTime.Now.AddMonths(-1);
+                    DateTime dtTo = DateTime.Now;
+                    var md = (from sale in context.RefundProperties where sale.RefundDate >= dtFrom && sale.RefundDate <= dtTo select new { sale = sale });
+                    foreach (var v in md)
                     {
-                        DateTime dtFrom = DateTime.Now.AddMonths(-1);
-                        DateTime dtTo = DateTime.Now;
-                        var md = (from sale in context.RefundProperties where sale.RefundDate >= dtFrom && sale.RefundDate <= dtTo select new { sale = sale });
-                        foreach (var v in md)
-                        {
-                            string rdate = "", cdate = "";
-                            if (v.sale.RefundDate != null)
-                                rdate = Convert.ToDateTime(v.sale.RefundDate).ToString("dd/MM/yyyy");
-                            if (v.sale.ChequeDate != null)
-                                cdate = Convert.ToDateTime(v.sale.ChequeDate).ToString("dd/MM/yyyy");
-                            model.Add(new RefundPropertyModel { RefundPropertyID = v.sale.RefundPropertyID, SaleID = v.sale.SaleID, FlatName = v.sale.FlatName, RefundDateSt = rdate, RefundAmount = v.sale.RefundAmount, PaymentMode = v.sale.PaymentMode, ChequeDateSt = cdate, BankName = v.sale.BankName, BranchName = v.sale.BranchName, Remarks = v.sale.Remarks, ChequeNo = v.sale.ChequeNo });
-                        }
-                        return model;
+                        string rdate = "", cdate = "";
+                        if (v.sale.RefundDate != null)
+                            rdate = Convert.ToDateTime(v.sale.RefundDate).ToString("dd/MM/yyyy");
+                        if (v.sale.ChequeDate != null)
+                            cdate = Convert.ToDateTime(v.sale.ChequeDate).ToString("dd/MM/yyyy");
+                        model.Add(new RefundPropertyModel { RefundPropertyID = v.sale.RefundPropertyID, SaleID = v.sale.SaleID, FlatName = v.sale.FlatName, RefundDateSt = rdate, RefundAmount = v.sale.RefundAmount, PaymentMode = v.sale.PaymentMode, ChequeDateSt = cdate, BankName = v.sale.BankName, BranchName = v.sale.BranchName, Remarks = v.sale.Remarks, ChequeNo = v.sale.ChequeNo });
                     }
-                    else if (search == "Last 7 Days")
-                    {
+                    return model;
+                }
+                else if (search == "Last 7 Days")
+                {
 
-                        DateTime dtFrom = DateTime.Now.AddDays(-7);
-                        DateTime dtTo = DateTime.Now;
-                        var md = (from sale in context.RefundProperties where sale.RefundDate >= dtFrom && sale.RefundDate <= dtTo select new { sale = sale });
-                        foreach (var v in md)
-                        {
-                            string rdate = "", cdate = "";
-                            if (v.sale.RefundDate != null)
-                                rdate = Convert.ToDateTime(v.sale.RefundDate).ToString("dd/MM/yyyy");
-                            if (v.sale.ChequeDate != null)
-                                cdate = Convert.ToDateTime(v.sale.ChequeDate).ToString("dd/MM/yyyy");
-                            model.Add(new RefundPropertyModel { RefundPropertyID = v.sale.RefundPropertyID, SaleID = v.sale.SaleID, FlatName = v.sale.FlatName, RefundDateSt = rdate, RefundAmount = v.sale.RefundAmount, PaymentMode = v.sale.PaymentMode, ChequeDateSt = cdate, BankName = v.sale.BankName, BranchName = v.sale.BranchName, Remarks = v.sale.Remarks, ChequeNo = v.sale.ChequeNo });
-                        }
-                        return model;
-                    }
-                    else
+                    DateTime dtFrom = DateTime.Now.AddDays(-7);
+                    DateTime dtTo = DateTime.Now;
+                    var md = (from sale in context.RefundProperties where sale.RefundDate >= dtFrom && sale.RefundDate <= dtTo select new { sale = sale });
+                    foreach (var v in md)
                     {
-                        int FId = Convert.ToInt32(FlatId);
-                        int sid = (from s in context.SaleFlats join f in context.Flats on s.FlatID equals f.FlatID where f.FlatID == FId select s.SaleID).FirstOrDefault();
-                        var md = (from sale in context.RefundProperties where sale.SaleID == sid select new { sale = sale });
-                        foreach (var v in md)
-                        {
-                            string rdate = "", cdate = "";
-                            if (v.sale.RefundDate != null)
-                                rdate = Convert.ToDateTime(v.sale.RefundDate).ToString("dd/MM/yyyy");
-                            if (v.sale.ChequeDate != null)
-                                cdate = Convert.ToDateTime(v.sale.ChequeDate).ToString("dd/MM/yyyy");
-                            model.Add(new RefundPropertyModel { RefundPropertyID = v.sale.RefundPropertyID, SaleID = v.sale.SaleID, FlatName = v.sale.FlatName, RefundDateSt = rdate, RefundAmount = v.sale.RefundAmount, PaymentMode = v.sale.PaymentMode, ChequeDateSt = cdate, BankName = v.sale.BankName, BranchName = v.sale.BranchName, Remarks = v.sale.Remarks, ChequeNo = v.sale.ChequeNo });
-                        }
-
-                        return model;
+                        string rdate = "", cdate = "";
+                        if (v.sale.RefundDate != null)
+                            rdate = Convert.ToDateTime(v.sale.RefundDate).ToString("dd/MM/yyyy");
+                        if (v.sale.ChequeDate != null)
+                            cdate = Convert.ToDateTime(v.sale.ChequeDate).ToString("dd/MM/yyyy");
+                        model.Add(new RefundPropertyModel { RefundPropertyID = v.sale.RefundPropertyID, SaleID = v.sale.SaleID, FlatName = v.sale.FlatName, RefundDateSt = rdate, RefundAmount = v.sale.RefundAmount, PaymentMode = v.sale.PaymentMode, ChequeDateSt = cdate, BankName = v.sale.BankName, BranchName = v.sale.BranchName, Remarks = v.sale.Remarks, ChequeNo = v.sale.ChequeNo });
                     }
-               // }
-               // else
+                    return model;
+                }
+                else
+                {
+                    int FId = Convert.ToInt32(FlatId);
+                    int sid = (from s in context.SaleFlats join f in context.Flats on s.FlatID equals f.FlatID where f.FlatID == FId select s.SaleID).FirstOrDefault();
+                    var md = (from sale in context.RefundProperties where sale.SaleID == sid select new { sale = sale });
+                    foreach (var v in md)
+                    {
+                        string rdate = "", cdate = "";
+                        if (v.sale.RefundDate != null)
+                            rdate = Convert.ToDateTime(v.sale.RefundDate).ToString("dd/MM/yyyy");
+                        if (v.sale.ChequeDate != null)
+                            cdate = Convert.ToDateTime(v.sale.ChequeDate).ToString("dd/MM/yyyy");
+                        model.Add(new RefundPropertyModel { RefundPropertyID = v.sale.RefundPropertyID, SaleID = v.sale.SaleID, FlatName = v.sale.FlatName, RefundDateSt = rdate, RefundAmount = v.sale.RefundAmount, PaymentMode = v.sale.PaymentMode, ChequeDateSt = cdate, BankName = v.sale.BankName, BranchName = v.sale.BranchName, Remarks = v.sale.Remarks, ChequeNo = v.sale.ChequeNo });
+                    }
+
+                    return model;
+                }
+                // }
+                // else
                 //{
                 //    if (search == "All")
                 //    {
@@ -450,7 +451,7 @@ namespace REMS.Data.Access.Report
             }
             return model;
         }
-        public List<TransferPropertyModel> TransferPropertySearch(string search,string FlatId,string datefrom, string dateto, string searchtext)
+        public List<TransferPropertyModel> TransferPropertySearch(string search, string FlatId, string datefrom, string dateto, string searchtext)
         {
             REMSDBEntities context = new REMSDBEntities();
             List<TransferPropertyModel> model = new List<TransferPropertyModel>();
@@ -479,185 +480,185 @@ namespace REMS.Data.Access.Report
                 //int psize = Convert.ToInt32(proSize);
                 //if (propertyid == "0") // All Properties
                 //{
-                    if (search == "All")
+                if (search == "All")
+                {
+                    var md = (from sale in context.PropertyTransfers
+                              join f in context.SaleFlats on sale.SaleID equals f.SaleID
+                              join ft in context.Flats on f.FlatID equals ft.FlatID
+                              join fr in context.Floors on ft.FloorID equals fr.FloorID
+                              join tw in context.Towers on fr.TowerID equals tw.TowerID
+                              where sale.TransferDate >= datef && sale.TransferDate <= datet
+                              select new { sale = sale, SaleDate = f.SaleDate, PropertyID = tw.ProjectID, FlatID = f.FlatID });
+                    foreach (var v in md)
                     {
-                        var md = (from sale in context.PropertyTransfers
-                                  join f in context.SaleFlats on sale.SaleID equals f.SaleID
-                                  join ft in context.Flats on f.FlatID equals ft.FlatID
-                                  join fr in context.Floors on ft.FloorID equals fr.FloorID
-                                  join tw in context.Towers on fr.TowerID equals tw.TowerID
-                                  where sale.TransferDate >= datef && sale.TransferDate <= datet
-                                  select new { sale = sale, SaleDate = f.SaleDate, PropertyID = tw.ProjectID, FlatID = f.FlatID });
-                        foreach (var v in md)
-                        {
-                            var ncust = context.Customers.Where(cust => cust.CustomerID == v.sale.NewCustomerID).FirstOrDefault();
-                            var ocudt = context.Customers.Where(cust => cust.CustomerID == v.sale.OldCustomerID).FirstOrDefault();
-                            var flatname = context.Flats.Where(cust => cust.FlatID == v.FlatID).FirstOrDefault().FlatName;
-                            string rdate = "", cdate = "";
-                            if (v.sale.TransferDate != null)
-                                rdate = Convert.ToDateTime(v.sale.TransferDate).ToString("dd/MM/yyyy");
-                            if (v.SaleDate != null)
-                                cdate = Convert.ToDateTime(v.SaleDate).ToString("dd/MM/yyyy");
-                            model.Add(new TransferPropertyModel { PropertyName = flatname, SaleDateSt = cdate, PropertyTransferID = v.sale.PropertyTransferID, SaleID = v.sale.SaleID, OldCustomerID = v.sale.OldCustomerID, NewCustomerID = v.sale.NewCustomerID, TransferDate = v.sale.TransferDate, TransferDateSt = rdate, NewPlanType = v.sale.NewPlanType, OldPlanType = v.sale.OldPlanType, TransferAmount = v.sale.TransferAmount, CustomerFrom = ocudt.AppTitle + " " + ocudt.FName + " " + ocudt.MName + " " + ocudt.LName, CustomerTo = ncust.AppTitle + " " + ncust.FName + " " + ncust.MName + " " + ncust.LName });
-                        }
+                        var ncust = context.Customers.Where(cust => cust.CustomerID == v.sale.NewCustomerID).FirstOrDefault();
+                        var ocudt = context.Customers.Where(cust => cust.CustomerID == v.sale.OldCustomerID).FirstOrDefault();
+                        var flatname = context.Flats.Where(cust => cust.FlatID == v.FlatID).FirstOrDefault().FlatName;
+                        string rdate = "", cdate = "";
+                        if (v.sale.TransferDate != null)
+                            rdate = Convert.ToDateTime(v.sale.TransferDate).ToString("dd/MM/yyyy");
+                        if (v.SaleDate != null)
+                            cdate = Convert.ToDateTime(v.SaleDate).ToString("dd/MM/yyyy");
+                        model.Add(new TransferPropertyModel { PropertyName = flatname, SaleDateSt = cdate, PropertyTransferID = v.sale.PropertyTransferID, SaleID = v.sale.SaleID, OldCustomerID = v.sale.OldCustomerID, NewCustomerID = v.sale.NewCustomerID, TransferDate = v.sale.TransferDate, TransferDateSt = rdate, NewPlanType = v.sale.NewPlanType, OldPlanType = v.sale.OldPlanType, TransferAmount = v.sale.TransferAmount, CustomerFrom = ocudt.AppTitle + " " + ocudt.FName + " " + ocudt.MName + " " + ocudt.LName, CustomerTo = ncust.AppTitle + " " + ncust.FName + " " + ncust.MName + " " + ncust.LName });
+                    }
 
-                        return model;
-                        // By default showing last one month sales in all properties
-                    }
-                    else if (search == "FlatName")
+                    return model;
+                    // By default showing last one month sales in all properties
+                }
+                else if (search == "FlatName")
+                {
+                    var md = (from sale in context.PropertyTransfers
+                              join f in context.SaleFlats on sale.SaleID equals f.SaleID
+                              join ft in context.Flats on f.FlatID equals ft.FlatID
+                              join fr in context.Floors on ft.FloorID equals fr.FloorID
+                              join tw in context.Towers on fr.TowerID equals tw.TowerID
+                              where ft.FlatName.Contains(searchtext)
+                              select new { sale = sale, SaleDate = f.SaleDate, PropertyID = tw.ProjectID, FlatID = f.FlatID });
+                    foreach (var v in md)
                     {
-                        var md = (from sale in context.PropertyTransfers
-                                  join f in context.SaleFlats on sale.SaleID equals f.SaleID
-                                  join ft in context.Flats on f.FlatID equals ft.FlatID
-                                  join fr in context.Floors on ft.FloorID equals fr.FloorID
-                                  join tw in context.Towers on fr.TowerID equals tw.TowerID
-                                  where ft.FlatName.Contains(searchtext)
-                                  select new { sale = sale, SaleDate = f.SaleDate, PropertyID = tw.ProjectID, FlatID = f.FlatID });
-                        foreach (var v in md)
-                        {
-                            var ncust = context.Customers.Where(cust => cust.CustomerID == v.sale.NewCustomerID).FirstOrDefault();
-                            var ocudt = context.Customers.Where(cust => cust.CustomerID == v.sale.OldCustomerID).FirstOrDefault();
-                            var flatname = context.Flats.Where(cust => cust.FlatID == v.FlatID).FirstOrDefault().FlatName;
-                            string rdate = "", cdate = "";
-                            if (v.sale.TransferDate != null)
-                                rdate = Convert.ToDateTime(v.sale.TransferDate).ToString("dd/MM/yyyy");
-                            if (v.SaleDate != null)
-                                cdate = Convert.ToDateTime(v.SaleDate).ToString("dd/MM/yyyy");
-                            model.Add(new TransferPropertyModel { PropertyName = flatname, SaleDateSt = cdate, PropertyTransferID = v.sale.PropertyTransferID, SaleID = v.sale.SaleID, OldCustomerID = v.sale.OldCustomerID, NewCustomerID = v.sale.NewCustomerID, TransferDate = v.sale.TransferDate, TransferDateSt = rdate, NewPlanType = v.sale.NewPlanType, OldPlanType = v.sale.OldPlanType, TransferAmount = v.sale.TransferAmount, CustomerFrom = ocudt.AppTitle + " " + ocudt.FName + " " + ocudt.MName + " " + ocudt.LName, CustomerTo = ncust.AppTitle + " " + ncust.FName + " " + ncust.MName + " " + ncust.LName });
-                        }
+                        var ncust = context.Customers.Where(cust => cust.CustomerID == v.sale.NewCustomerID).FirstOrDefault();
+                        var ocudt = context.Customers.Where(cust => cust.CustomerID == v.sale.OldCustomerID).FirstOrDefault();
+                        var flatname = context.Flats.Where(cust => cust.FlatID == v.FlatID).FirstOrDefault().FlatName;
+                        string rdate = "", cdate = "";
+                        if (v.sale.TransferDate != null)
+                            rdate = Convert.ToDateTime(v.sale.TransferDate).ToString("dd/MM/yyyy");
+                        if (v.SaleDate != null)
+                            cdate = Convert.ToDateTime(v.SaleDate).ToString("dd/MM/yyyy");
+                        model.Add(new TransferPropertyModel { PropertyName = flatname, SaleDateSt = cdate, PropertyTransferID = v.sale.PropertyTransferID, SaleID = v.sale.SaleID, OldCustomerID = v.sale.OldCustomerID, NewCustomerID = v.sale.NewCustomerID, TransferDate = v.sale.TransferDate, TransferDateSt = rdate, NewPlanType = v.sale.NewPlanType, OldPlanType = v.sale.OldPlanType, TransferAmount = v.sale.TransferAmount, CustomerFrom = ocudt.AppTitle + " " + ocudt.FName + " " + ocudt.MName + " " + ocudt.LName, CustomerTo = ncust.AppTitle + " " + ncust.FName + " " + ncust.MName + " " + ncust.LName });
+                    }
 
-                        return model;
-                    }
-                    else if (search == "TransferDate")
-                    {
+                    return model;
+                }
+                else if (search == "TransferDate")
+                {
 
-                        DateTime dtFrom = Convert.ToDateTime(datefrom);
-                        DateTime dtTo = Convert.ToDateTime(dateto);
-                        var md = (from sale in context.PropertyTransfers
-                                  join f in context.SaleFlats on sale.SaleID equals f.SaleID
-                                  join ft in context.Flats on f.FlatID equals ft.FlatID
-                                  join fr in context.Floors on ft.FloorID equals fr.FloorID
-                                  join tw in context.Towers on fr.TowerID equals tw.TowerID
-                                  where sale.TransferDate >= dtFrom && sale.TransferDate <= dtTo
-                                  select new { sale = sale, SaleDate = f.SaleDate, PropertyID = tw.ProjectID, FlatID = f.FlatID });
-                        foreach (var v in md)
-                        {
-                            var ncust = context.Customers.Where(cust => cust.CustomerID == v.sale.NewCustomerID).FirstOrDefault();
-                            var ocudt = context.Customers.Where(cust => cust.CustomerID == v.sale.OldCustomerID).FirstOrDefault();
-                            var flatname = context.Flats.Where(cust => cust.FlatID == v.FlatID).FirstOrDefault().FlatName;
-                            string rdate = "", cdate = "";
-                            if (v.sale.TransferDate != null)
-                                rdate = Convert.ToDateTime(v.sale.TransferDate).ToString("dd/MM/yyyy");
-                            if (v.SaleDate != null)
-                                cdate = Convert.ToDateTime(v.SaleDate).ToString("dd/MM/yyyy");
-                            model.Add(new TransferPropertyModel { PropertyName = flatname, SaleDateSt = cdate, PropertyTransferID = v.sale.PropertyTransferID, SaleID = v.sale.SaleID, OldCustomerID = v.sale.OldCustomerID, NewCustomerID = v.sale.NewCustomerID, TransferDate = v.sale.TransferDate, TransferDateSt = rdate, NewPlanType = v.sale.NewPlanType, OldPlanType = v.sale.OldPlanType, TransferAmount = v.sale.TransferAmount, CustomerFrom = ocudt.AppTitle + " " + ocudt.FName + " " + ocudt.MName + " " + ocudt.LName, CustomerTo = ncust.AppTitle + " " + ncust.FName + " " + ncust.MName + " " + ncust.LName });
-                        }
-                        return model;
-                    }
-                    else if (search == "SaleDate")
+                    DateTime dtFrom = Convert.ToDateTime(datefrom);
+                    DateTime dtTo = Convert.ToDateTime(dateto);
+                    var md = (from sale in context.PropertyTransfers
+                              join f in context.SaleFlats on sale.SaleID equals f.SaleID
+                              join ft in context.Flats on f.FlatID equals ft.FlatID
+                              join fr in context.Floors on ft.FloorID equals fr.FloorID
+                              join tw in context.Towers on fr.TowerID equals tw.TowerID
+                              where sale.TransferDate >= dtFrom && sale.TransferDate <= dtTo
+                              select new { sale = sale, SaleDate = f.SaleDate, PropertyID = tw.ProjectID, FlatID = f.FlatID });
+                    foreach (var v in md)
                     {
-                        DateTime dtFrom = Convert.ToDateTime(datefrom);
-                        DateTime dtTo = Convert.ToDateTime(dateto);
-                        var md = (from sale in context.PropertyTransfers
-                                  join f in context.SaleFlats on sale.SaleID
-                                      equals f.SaleID
-                                  join ft in context.Flats on f.FlatID equals ft.FlatID
-                                  join fr in context.Floors on ft.FloorID equals fr.FloorID
-                                  join tw in context.Towers on fr.TowerID equals tw.TowerID
-                                  where f.SaleDate >= dtFrom && f.SaleDate <= dtTo
-                                  select new { sale = sale, SaleDate = f.SaleDate, PropertyID = tw.ProjectID, FlatID = f.FlatID });
-                        foreach (var v in md)
-                        {
-                            var ncust = context.Customers.Where(cust => cust.CustomerID == v.sale.NewCustomerID).FirstOrDefault();
-                            var ocudt = context.Customers.Where(cust => cust.CustomerID == v.sale.OldCustomerID).FirstOrDefault();
-                            var flatname = context.Flats.Where(cust => cust.FlatID == v.FlatID).FirstOrDefault().FlatName;
-                            string rdate = "", cdate = "";
-                            if (v.sale.TransferDate != null)
-                                rdate = Convert.ToDateTime(v.sale.TransferDate).ToString("dd/MM/yyyy");
-                            if (v.SaleDate != null)
-                                cdate = Convert.ToDateTime(v.SaleDate).ToString("dd/MM/yyyy");
-                            model.Add(new TransferPropertyModel { PropertyName = flatname, SaleDateSt = cdate, PropertyTransferID = v.sale.PropertyTransferID, SaleID = v.sale.SaleID, OldCustomerID = v.sale.OldCustomerID, NewCustomerID = v.sale.NewCustomerID, TransferDate = v.sale.TransferDate, TransferDateSt = rdate, NewPlanType = v.sale.NewPlanType, OldPlanType = v.sale.OldPlanType, TransferAmount = v.sale.TransferAmount, CustomerFrom = ocudt.AppTitle + " " + ocudt.FName + " " + ocudt.MName + " " + ocudt.LName, CustomerTo = ncust.AppTitle + " " + ncust.FName + " " + ncust.MName + " " + ncust.LName });
-                        }
-                        return model;
+                        var ncust = context.Customers.Where(cust => cust.CustomerID == v.sale.NewCustomerID).FirstOrDefault();
+                        var ocudt = context.Customers.Where(cust => cust.CustomerID == v.sale.OldCustomerID).FirstOrDefault();
+                        var flatname = context.Flats.Where(cust => cust.FlatID == v.FlatID).FirstOrDefault().FlatName;
+                        string rdate = "", cdate = "";
+                        if (v.sale.TransferDate != null)
+                            rdate = Convert.ToDateTime(v.sale.TransferDate).ToString("dd/MM/yyyy");
+                        if (v.SaleDate != null)
+                            cdate = Convert.ToDateTime(v.SaleDate).ToString("dd/MM/yyyy");
+                        model.Add(new TransferPropertyModel { PropertyName = flatname, SaleDateSt = cdate, PropertyTransferID = v.sale.PropertyTransferID, SaleID = v.sale.SaleID, OldCustomerID = v.sale.OldCustomerID, NewCustomerID = v.sale.NewCustomerID, TransferDate = v.sale.TransferDate, TransferDateSt = rdate, NewPlanType = v.sale.NewPlanType, OldPlanType = v.sale.OldPlanType, TransferAmount = v.sale.TransferAmount, CustomerFrom = ocudt.AppTitle + " " + ocudt.FName + " " + ocudt.MName + " " + ocudt.LName, CustomerTo = ncust.AppTitle + " " + ncust.FName + " " + ncust.MName + " " + ncust.LName });
                     }
-                    else if (search == "This Month")
+                    return model;
+                }
+                else if (search == "SaleDate")
+                {
+                    DateTime dtFrom = Convert.ToDateTime(datefrom);
+                    DateTime dtTo = Convert.ToDateTime(dateto);
+                    var md = (from sale in context.PropertyTransfers
+                              join f in context.SaleFlats on sale.SaleID
+                                  equals f.SaleID
+                              join ft in context.Flats on f.FlatID equals ft.FlatID
+                              join fr in context.Floors on ft.FloorID equals fr.FloorID
+                              join tw in context.Towers on fr.TowerID equals tw.TowerID
+                              where f.SaleDate >= dtFrom && f.SaleDate <= dtTo
+                              select new { sale = sale, SaleDate = f.SaleDate, PropertyID = tw.ProjectID, FlatID = f.FlatID });
+                    foreach (var v in md)
                     {
-                        DateTime dtFrom = DateTime.Now.AddMonths(-1);
-                        DateTime dtTo = DateTime.Now;
-                        var md = (from sale in context.PropertyTransfers
-                                  join f in context.SaleFlats on sale.SaleID equals f.SaleID
-                                  join ft in context.Flats on f.FlatID equals ft.FlatID
-                                  join fr in context.Floors on ft.FloorID equals fr.FloorID
-                                  join tw in context.Towers on fr.TowerID equals tw.TowerID
-                                  where sale.TransferDate >= dtFrom && sale.TransferDate <= dtTo
-                                  select new { sale = sale, SaleDate = f.SaleDate, PropertyID = tw.ProjectID, FlatID = f.FlatID });
-                        foreach (var v in md)
-                        {
-                            var ncust = context.Customers.Where(cust => cust.CustomerID == v.sale.NewCustomerID).FirstOrDefault();
-                            var ocudt = context.Customers.Where(cust => cust.CustomerID == v.sale.OldCustomerID).FirstOrDefault();
-                            var flatname = context.Flats.Where(cust => cust.FlatID == v.FlatID).FirstOrDefault().FlatName;
-                            string rdate = "", cdate = "";
-                            if (v.sale.TransferDate != null)
-                                rdate = Convert.ToDateTime(v.sale.TransferDate).ToString("dd/MM/yyyy");
-                            if (v.SaleDate != null)
-                                cdate = Convert.ToDateTime(v.SaleDate).ToString("dd/MM/yyyy");
-                            model.Add(new TransferPropertyModel { PropertyName = flatname, SaleDateSt = cdate, PropertyTransferID = v.sale.PropertyTransferID, SaleID = v.sale.SaleID, OldCustomerID = v.sale.OldCustomerID, NewCustomerID = v.sale.NewCustomerID, TransferDate = v.sale.TransferDate, TransferDateSt = rdate, NewPlanType = v.sale.NewPlanType, OldPlanType = v.sale.OldPlanType, TransferAmount = v.sale.TransferAmount, CustomerFrom = ocudt.AppTitle + " " + ocudt.FName + " " + ocudt.MName + " " + ocudt.LName, CustomerTo = ncust.AppTitle + " " + ncust.FName + " " + ncust.MName + " " + ncust.LName });
-                        }
-                        return model;
+                        var ncust = context.Customers.Where(cust => cust.CustomerID == v.sale.NewCustomerID).FirstOrDefault();
+                        var ocudt = context.Customers.Where(cust => cust.CustomerID == v.sale.OldCustomerID).FirstOrDefault();
+                        var flatname = context.Flats.Where(cust => cust.FlatID == v.FlatID).FirstOrDefault().FlatName;
+                        string rdate = "", cdate = "";
+                        if (v.sale.TransferDate != null)
+                            rdate = Convert.ToDateTime(v.sale.TransferDate).ToString("dd/MM/yyyy");
+                        if (v.SaleDate != null)
+                            cdate = Convert.ToDateTime(v.SaleDate).ToString("dd/MM/yyyy");
+                        model.Add(new TransferPropertyModel { PropertyName = flatname, SaleDateSt = cdate, PropertyTransferID = v.sale.PropertyTransferID, SaleID = v.sale.SaleID, OldCustomerID = v.sale.OldCustomerID, NewCustomerID = v.sale.NewCustomerID, TransferDate = v.sale.TransferDate, TransferDateSt = rdate, NewPlanType = v.sale.NewPlanType, OldPlanType = v.sale.OldPlanType, TransferAmount = v.sale.TransferAmount, CustomerFrom = ocudt.AppTitle + " " + ocudt.FName + " " + ocudt.MName + " " + ocudt.LName, CustomerTo = ncust.AppTitle + " " + ncust.FName + " " + ncust.MName + " " + ncust.LName });
                     }
-                    else if (search == "Last 7 Days")
+                    return model;
+                }
+                else if (search == "This Month")
+                {
+                    DateTime dtFrom = DateTime.Now.AddMonths(-1);
+                    DateTime dtTo = DateTime.Now;
+                    var md = (from sale in context.PropertyTransfers
+                              join f in context.SaleFlats on sale.SaleID equals f.SaleID
+                              join ft in context.Flats on f.FlatID equals ft.FlatID
+                              join fr in context.Floors on ft.FloorID equals fr.FloorID
+                              join tw in context.Towers on fr.TowerID equals tw.TowerID
+                              where sale.TransferDate >= dtFrom && sale.TransferDate <= dtTo
+                              select new { sale = sale, SaleDate = f.SaleDate, PropertyID = tw.ProjectID, FlatID = f.FlatID });
+                    foreach (var v in md)
                     {
-                        DateTime dtFrom = DateTime.Now.AddDays(-7);
-                        DateTime dtTo = DateTime.Now;
-                        var md = (from sale in context.PropertyTransfers
-                                  join f in context.SaleFlats on sale.SaleID equals f.SaleID
-                                  join ft in context.Flats on f.FlatID equals ft.FlatID
-                                  join fr in context.Floors on ft.FloorID equals fr.FloorID
-                                  join tw in context.Towers on fr.TowerID equals tw.TowerID
-                                  where sale.TransferDate >= dtFrom && sale.TransferDate <= dtTo
-                                  select new { sale = sale, SaleDate = f.SaleDate, PropertyID = tw.ProjectID, FlatID = f.FlatID });
-                        foreach (var v in md)
-                        {
-                            var ncust = context.Customers.Where(cust => cust.CustomerID == v.sale.NewCustomerID).FirstOrDefault();
-                            var ocudt = context.Customers.Where(cust => cust.CustomerID == v.sale.OldCustomerID).FirstOrDefault();
-                            var flatname = context.Flats.Where(cust => cust.FlatID == v.FlatID).FirstOrDefault().FlatName;
-                            string rdate = "", cdate = "";
-                            if (v.sale.TransferDate != null)
-                                rdate = Convert.ToDateTime(v.sale.TransferDate).ToString("dd/MM/yyyy");
-                            if (v.SaleDate != null)
-                                cdate = Convert.ToDateTime(v.SaleDate).ToString("dd/MM/yyyy");
-                            model.Add(new TransferPropertyModel { PropertyName = flatname, SaleDateSt = cdate, PropertyTransferID = v.sale.PropertyTransferID, SaleID = v.sale.SaleID, OldCustomerID = v.sale.OldCustomerID, NewCustomerID = v.sale.NewCustomerID, TransferDate = v.sale.TransferDate, TransferDateSt = rdate, NewPlanType = v.sale.NewPlanType, OldPlanType = v.sale.OldPlanType, TransferAmount = v.sale.TransferAmount, CustomerFrom = ocudt.AppTitle + " " + ocudt.FName + " " + ocudt.MName + " " + ocudt.LName, CustomerTo = ncust.AppTitle + " " + ncust.FName + " " + ncust.MName + " " + ncust.LName });
-                        }
-                        return model;
+                        var ncust = context.Customers.Where(cust => cust.CustomerID == v.sale.NewCustomerID).FirstOrDefault();
+                        var ocudt = context.Customers.Where(cust => cust.CustomerID == v.sale.OldCustomerID).FirstOrDefault();
+                        var flatname = context.Flats.Where(cust => cust.FlatID == v.FlatID).FirstOrDefault().FlatName;
+                        string rdate = "", cdate = "";
+                        if (v.sale.TransferDate != null)
+                            rdate = Convert.ToDateTime(v.sale.TransferDate).ToString("dd/MM/yyyy");
+                        if (v.SaleDate != null)
+                            cdate = Convert.ToDateTime(v.SaleDate).ToString("dd/MM/yyyy");
+                        model.Add(new TransferPropertyModel { PropertyName = flatname, SaleDateSt = cdate, PropertyTransferID = v.sale.PropertyTransferID, SaleID = v.sale.SaleID, OldCustomerID = v.sale.OldCustomerID, NewCustomerID = v.sale.NewCustomerID, TransferDate = v.sale.TransferDate, TransferDateSt = rdate, NewPlanType = v.sale.NewPlanType, OldPlanType = v.sale.OldPlanType, TransferAmount = v.sale.TransferAmount, CustomerFrom = ocudt.AppTitle + " " + ocudt.FName + " " + ocudt.MName + " " + ocudt.LName, CustomerTo = ncust.AppTitle + " " + ncust.FName + " " + ncust.MName + " " + ncust.LName });
                     }
-                    else
+                    return model;
+                }
+                else if (search == "Last 7 Days")
+                {
+                    DateTime dtFrom = DateTime.Now.AddDays(-7);
+                    DateTime dtTo = DateTime.Now;
+                    var md = (from sale in context.PropertyTransfers
+                              join f in context.SaleFlats on sale.SaleID equals f.SaleID
+                              join ft in context.Flats on f.FlatID equals ft.FlatID
+                              join fr in context.Floors on ft.FloorID equals fr.FloorID
+                              join tw in context.Towers on fr.TowerID equals tw.TowerID
+                              where sale.TransferDate >= dtFrom && sale.TransferDate <= dtTo
+                              select new { sale = sale, SaleDate = f.SaleDate, PropertyID = tw.ProjectID, FlatID = f.FlatID });
+                    foreach (var v in md)
                     {
-                        int proid = Convert.ToInt32(FlatId);
-                          int sid = (from s in context.SaleFlats join f in context.Flats on s.FlatID equals f.FlatID where f.FlatID == proid select s.SaleID).FirstOrDefault();
-                        var md = (from sale in context.PropertyTransfers
-                                  join f in context.SaleFlats on sale.SaleID equals f.SaleID
-                                  join ft in context.Flats on f.FlatID equals ft.FlatID
-                                  join fr in context.Floors on ft.FloorID equals fr.FloorID
-                                  join tw in context.Towers on fr.TowerID equals tw.TowerID
-                                  where sale.SaleID == sid
-                                  select new { sale = sale, SaleDate = f.SaleDate, PropertyID = tw.ProjectID, FlatID = f.FlatID });
-                        foreach (var v in md)
-                        {
-                            var ncust = context.Customers.Where(cust => cust.CustomerID == v.sale.NewCustomerID).FirstOrDefault();
-                            var ocudt = context.Customers.Where(cust => cust.CustomerID == v.sale.OldCustomerID).FirstOrDefault();
-                            var flatname = context.Flats.Where(cust => cust.FlatID == v.FlatID).FirstOrDefault().FlatName;
-                            string rdate = "", cdate = "";
-                            if (v.sale.TransferDate != null)
-                                rdate = Convert.ToDateTime(v.sale.TransferDate).ToString("dd/MM/yyyy");
-                            if (v.SaleDate != null)
-                                cdate = Convert.ToDateTime(v.SaleDate).ToString("dd/MM/yyyy");
-                            model.Add(new TransferPropertyModel { PropertyName = flatname, SaleDateSt = cdate, PropertyTransferID = v.sale.PropertyTransferID, SaleID = v.sale.SaleID, OldCustomerID = v.sale.OldCustomerID, NewCustomerID = v.sale.NewCustomerID, TransferDate = v.sale.TransferDate, TransferDateSt = rdate, NewPlanType = v.sale.NewPlanType, OldPlanType = v.sale.OldPlanType, TransferAmount = v.sale.TransferAmount, CustomerFrom = ocudt.AppTitle + " " + ocudt.FName + " " + ocudt.MName + " " + ocudt.LName, CustomerTo = ncust.AppTitle + " " + ncust.FName + " " + ncust.MName + " " + ncust.LName });
-                        }
+                        var ncust = context.Customers.Where(cust => cust.CustomerID == v.sale.NewCustomerID).FirstOrDefault();
+                        var ocudt = context.Customers.Where(cust => cust.CustomerID == v.sale.OldCustomerID).FirstOrDefault();
+                        var flatname = context.Flats.Where(cust => cust.FlatID == v.FlatID).FirstOrDefault().FlatName;
+                        string rdate = "", cdate = "";
+                        if (v.sale.TransferDate != null)
+                            rdate = Convert.ToDateTime(v.sale.TransferDate).ToString("dd/MM/yyyy");
+                        if (v.SaleDate != null)
+                            cdate = Convert.ToDateTime(v.SaleDate).ToString("dd/MM/yyyy");
+                        model.Add(new TransferPropertyModel { PropertyName = flatname, SaleDateSt = cdate, PropertyTransferID = v.sale.PropertyTransferID, SaleID = v.sale.SaleID, OldCustomerID = v.sale.OldCustomerID, NewCustomerID = v.sale.NewCustomerID, TransferDate = v.sale.TransferDate, TransferDateSt = rdate, NewPlanType = v.sale.NewPlanType, OldPlanType = v.sale.OldPlanType, TransferAmount = v.sale.TransferAmount, CustomerFrom = ocudt.AppTitle + " " + ocudt.FName + " " + ocudt.MName + " " + ocudt.LName, CustomerTo = ncust.AppTitle + " " + ncust.FName + " " + ncust.MName + " " + ncust.LName });
+                    }
+                    return model;
+                }
+                else
+                {
+                    int proid = Convert.ToInt32(FlatId);
+                    int sid = (from s in context.SaleFlats join f in context.Flats on s.FlatID equals f.FlatID where f.FlatID == proid select s.SaleID).FirstOrDefault();
+                    var md = (from sale in context.PropertyTransfers
+                              join f in context.SaleFlats on sale.SaleID equals f.SaleID
+                              join ft in context.Flats on f.FlatID equals ft.FlatID
+                              join fr in context.Floors on ft.FloorID equals fr.FloorID
+                              join tw in context.Towers on fr.TowerID equals tw.TowerID
+                              where sale.SaleID == sid
+                              select new { sale = sale, SaleDate = f.SaleDate, PropertyID = tw.ProjectID, FlatID = f.FlatID });
+                    foreach (var v in md)
+                    {
+                        var ncust = context.Customers.Where(cust => cust.CustomerID == v.sale.NewCustomerID).FirstOrDefault();
+                        var ocudt = context.Customers.Where(cust => cust.CustomerID == v.sale.OldCustomerID).FirstOrDefault();
+                        var flatname = context.Flats.Where(cust => cust.FlatID == v.FlatID).FirstOrDefault().FlatName;
+                        string rdate = "", cdate = "";
+                        if (v.sale.TransferDate != null)
+                            rdate = Convert.ToDateTime(v.sale.TransferDate).ToString("dd/MM/yyyy");
+                        if (v.SaleDate != null)
+                            cdate = Convert.ToDateTime(v.SaleDate).ToString("dd/MM/yyyy");
+                        model.Add(new TransferPropertyModel { PropertyName = flatname, SaleDateSt = cdate, PropertyTransferID = v.sale.PropertyTransferID, SaleID = v.sale.SaleID, OldCustomerID = v.sale.OldCustomerID, NewCustomerID = v.sale.NewCustomerID, TransferDate = v.sale.TransferDate, TransferDateSt = rdate, NewPlanType = v.sale.NewPlanType, OldPlanType = v.sale.OldPlanType, TransferAmount = v.sale.TransferAmount, CustomerFrom = ocudt.AppTitle + " " + ocudt.FName + " " + ocudt.MName + " " + ocudt.LName, CustomerTo = ncust.AppTitle + " " + ncust.FName + " " + ncust.MName + " " + ncust.LName });
+                    }
 
-                        return model;
+                    return model;
 
-                    }
-               // }
+                }
+                // }
                 //else // Search by Property id
                 //{
                 //    if (search == "All")
@@ -847,7 +848,7 @@ namespace REMS.Data.Access.Report
                                join c in context.Customers on sale.SaleID equals c.SaleID
                                join fr in context.Floors on f.FloorID equals fr.FloorID
                                join tw in context.Towers on fr.TowerID equals tw.TowerID
-                               where f.FlatName.Contains(searchtext) 
+                               where f.FlatName.Contains(searchtext)
                                select new { saleID = sale.SaleID, Cust = c, FlatName = f.FlatName, MobileNo = c.MobileNo, sale = sale, tw = tw });
                     foreach (var v in md1)
                     {
@@ -888,7 +889,7 @@ namespace REMS.Data.Access.Report
                                        join c in context.Customers on sale.SaleID equals c.SaleID
                                        join fr in context.Floors on f.FloorID equals fr.FloorID
                                        join tw in context.Towers on fr.TowerID equals tw.TowerID
-                                       where sale.FlatID == saleid 
+                                       where sale.FlatID == saleid
                                        select new { saleID = sale.SaleID, Cust = c, FlatName = f.FlatName, MobileNo = c.MobileNo, sale = sale, tw = tw });
                             foreach (var v in md1)
                             {
@@ -909,8 +910,8 @@ namespace REMS.Data.Access.Report
                     }
                     else
                     {
-                         int proid = Convert.ToInt32(FlatId);
-                          int sid = (from s in context.SaleFlats join f in context.Flats on s.FlatID equals f.FlatID where f.FlatID == proid select s.SaleID).FirstOrDefault();
+                        int proid = Convert.ToInt32(FlatId);
+                        int sid = (from s in context.SaleFlats join f in context.Flats on s.FlatID equals f.FlatID where f.FlatID == proid select s.SaleID).FirstOrDefault();
                         var md1 = (from sale in context.SaleFlats
                                    join f in context.Flats on sale.FlatID equals f.FlatID
                                    join c in context.Customers on sale.SaleID equals c.SaleID
@@ -985,11 +986,11 @@ namespace REMS.Data.Access.Report
                 }
                 // DataFunctions DF = new DataFunctions();
                 // DataTable ds = DF.GetDataTable("select I.SaleID, sum(I.TotalAmount) as TotalAmount from FlatInstallmentDetail as I inner join tblsSaleFlat on I.saleid=tblsSaleFlat.SaleID  where I.Duedate<='" + datef + "' and tblsSaleFlat.DemandStatus='" + DemandLetterid + "' group by I.saleid");
-               // int FId = Convert.ToInt32(propertyid);
-               // int sid = (from s in context.SaleFlats join f in context.Flats on s.FlatID equals f.FlatID where f.FlatID == FId select s.SaleID).FirstOrDefault();
+                // int FId = Convert.ToInt32(propertyid);
+                // int sid = (from s in context.SaleFlats join f in context.Flats on s.FlatID equals f.FlatID where f.FlatID == FId select s.SaleID).FirstOrDefault();
                 var q = from ft in context.FlatInstallmentDetails
                         join st in context.SaleFlats on ft.FlatID equals st.FlatID
-                        where ft.DueDate <= datef && st.DemandStatus == DemandLetterid 
+                        where ft.DueDate <= datef && st.DemandStatus == DemandLetterid
                         select new { st = st, ft = ft };
                 foreach (var m in q)
                 {
@@ -1060,7 +1061,7 @@ namespace REMS.Data.Access.Report
                         int SaleID = Convert.ToInt32(AllSaleID[K]);
 
                         int sid = (from s in context.SaleFlats join f in context.Flats on s.FlatID equals f.FlatID where s.SaleID == SaleID select f.FlatID).FirstOrDefault();
-                       // var Flatid = context.SaleFlats.Where(s => s.SaleID == SaleID select s.SaleID).FirstOrDefault();
+                        // var Flatid = context.SaleFlats.Where(s => s.SaleID == SaleID select s.SaleID).FirstOrDefault();
                         // DataFunctions DF = new DataFunctions();
                         //  DataTable ds = DF.GetDataTable("select SaleID, sum(TotalAmount) as TotalAmount from tblSInstallmentDetail where Duedate<='" + datef + "' and  saleid='" + SaleID + "' group by saleid");
                         var q = context.FlatInstallmentDetails.Where(p => p.DueDate <= datef && p.FlatID == sid);
@@ -1112,7 +1113,6 @@ namespace REMS.Data.Access.Report
             try
             {
                 REMSDBEntities context = new REMSDBEntities();
-                string duedate = "";
                 string[] saleids = transactionid.Split(',');
                 foreach (string saleid in saleids)
                 {
@@ -1120,26 +1120,26 @@ namespace REMS.Data.Access.Report
                     {
                         int sid = Convert.ToInt32(saleid);
                         var md1 = (from sale in context.SaleFlats
-                                   join f in context.Flats on sale.FlatID equals f.FlatID
-                                   join c in context.Customers on sale.SaleID equals c.SaleID
                                    join d in context.ReminderLetters on sale.SaleID equals d.SaleID
+                                   join c in context.Customers on d.CustomerID equals c.CustomerID
+                                   join f in context.Flats on d.FlatID equals f.FlatID
                                    join fr in context.Floors on f.FloorID equals fr.FloorID
                                    join tw in context.Towers on fr.TowerID equals tw.TowerID
                                    join p in context.Projects on tw.ProjectID equals p.ProjectID
-                                   where d.SaleID == sid
-                                   select new { saleID = sale.SaleID, FlatName = f.FlatName, CustomrName = c.AppTitle + " " + c.FName + " " + c.MName + " " + c.LName, MobileNo = c.MobileNo, DueDate = d.duedate, LetterDate = d.CreateDate, DueAmount = d.DueAmount, ProjectName = p.PName, CompanyName = p.CompanyName, PropertyAddress = p.Address });
+                                   where d.ReminderLetterID == sid
+                                   select new { Letter = d, saleID = sale.SaleID, FlatName = f.FlatNo, CustomrName = c.AppTitle + " " + c.FName + " " + c.MName + " " + c.LName, MobileNo = c.MobileNo, DueDate = d.duedate, LetterDate = d.CreateDate, DueAmount = d.DueAmount, ProjectName = p.PName, CompanyName = p.CompanyName, PropertyAddress = p.Address, Address1 = c.Address1, Address2 = c.Address2, City = c.City, State = c.State, Country = c.Country, Proj = p, TowerNo = tw.TowerNo });
                         foreach (var v in md1)
                         {
-                            string duedt = "", Ldate1 = "", LDate2 = "", LDate3 = "";
-                            if (v.DueDate != null)
-                                duedt = v.DueDate.Value.ToString("dd/MM/yyyy");
-                            if (v.LetterDate != null)
-                                Ldate1 = v.LetterDate.Value.ToString("dd/MM/yyyy");
-                            model.Add(new ReminderLetterModel { SaleID = v.saleID, CompanyName = v.CompanyName, CustomerName = v.CustomrName, InterestRate = "18", LetterDateSt = Ldate1, LetterType = "DemandLetter1", ProjectName = v.ProjectName, PropertyAddress = v.PropertyAddress, FlatName = v.FlatName, DueDateST = duedt, DueAmount = v.DueAmount });
+                            string crdate = "", ddate = "";
+
+                            if (v.Letter.CreateDate != null)
+                                crdate = v.Letter.CreateDate.Value.ToString("dd/MM/yyyy");
+                            if (v.Letter.duedate != null)
+                                ddate = v.Letter.duedate.Value.ToString("dd/MM/yyyy");
+                            model.Add(new ReminderLetterModel { ID = v.Letter.ReminderLetterID, CreateDate = v.Letter.CreateDate, LetterDateSt = crdate, SaleID = v.Letter.SaleID, DueDate = v.Letter.duedate, DueDateST = ddate, DueAmount = v.Letter.DueAmount, CustomerName = v.CustomrName, Address1 = v.Address1, Address2 = v.Address2, City = v.City, State = v.State, Country = v.Country, TowerNo = v.TowerNo, FlatNo = v.FlatName, ProjectName = v.Proj.PName, PropertyLocation = v.Proj.Location, PropertyAddress = v.Proj.Address, InterestRate = "0", CompanyName = v.Proj.CompanyName, CompanyAddress = v.Proj.OfficeAddress, ContactNo = v.Proj.Contact, AuthEmail = v.Proj.AuthEmail, AuthorityPerson = v.Proj.AuthoritySign, BSPPending = (v.Letter.BSPTotal - v.Letter.BSPPaid).Value.ToString("C",CultureInfo.CreateSpecificCulture("hi-IN")), PLCPending = (v.Letter.PLCTotal - v.Letter.PLCPaid).Value.ToString("C", CultureInfo.CreateSpecificCulture("hi-IN")), STaxPending = (v.Letter.STaxTotal - v.Letter.STaxPaid).Value.ToString("C", CultureInfo.CreateSpecificCulture("hi-IN")), OtherPending = (v.Letter.ACTotal + v.Letter.AOCTotal + v.Letter.LateTotal + v.Letter.TransferTotal + v.Letter.ClearanceTotal - v.Letter.ACPaid - v.Letter.AOCPaid - v.Letter.LatePaid - v.Letter.TransferPaid - v.Letter.ClearancePaid).Value.ToString("C", CultureInfo.CreateSpecificCulture("hi-IN")), DueAmountSt = v.Letter.DueAmount.Value.ToString("C", CultureInfo.CreateSpecificCulture("hi-IN")) });
                         }
                     }
                 }
-
             }
             catch (Exception ex)
             {
@@ -1268,7 +1268,7 @@ namespace REMS.Data.Access.Report
                         join rl in context.ReminderLetters on st.SaleID equals rl.SaleID
                         where rl.LetterType == search && rl.CreateDate <= datef
                         select new { st = st, ft = ft, rl = rl, cr = cr };
-               
+
                 foreach (var v in q)
                 {
                     model.Add(new FlatDemandLetter { ID = v.rl.ReminderLetterID, SaleID = v.st.SaleID, DueAmount = decimal.Parse(v.rl.DueAmount.ToString()), FlatName = v.ft.FlatName, FName = v.cr.FName, MobileNo = v.cr.MobileNo, SaleRate = v.st.TotalAmount });

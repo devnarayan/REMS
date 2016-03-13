@@ -100,3 +100,22 @@ E:\ComaxCosulting\1. SourceCode\REMS_New\REMS.Data.Access\bin\Release\EntityFram
 E:\ComaxCosulting\1. SourceCode\REMS_New\REMS.Data.Access\obj\Release\2. REMS.Data.Access.csprojResolveAssemblyReference.cache
 E:\ComaxCosulting\1. SourceCode\REMS_New\REMS.Data.Access\obj\Release\REMS.Data.Access.dll
 E:\ComaxCosulting\1. SourceCode\REMS_New\REMS.Data.Access\obj\Release\REMS.Data.Access.pdb
+E:\ComaxCosulting\1. SourceCode\REMSGit\REMS.Data.Access\bin\Release\AutoMapper.Net4.dll
+E:\ComaxCosulting\1. SourceCode\REMSGit\REMS.Data.Access\bin\Release\REMS.Data.Access.dll.config
+E:\ComaxCosulting\1. SourceCode\REMSGit\REMS.Data.Access\bin\Release\REMS.Data.Access.dll
+E:\ComaxCosulting\1. SourceCode\REMSGit\REMS.Data.Access\bin\Release\REMS.Data.Access.pdb
+E:\ComaxCosulting\1. SourceCode\REMSGit\REMS.Data.Access\bin\Release\AutoMapper.dll
+E:\ComaxCosulting\1. SourceCode\REMSGit\REMS.Data.Access\bin\Release\EntityFramework.dll
+E:\ComaxCosulting\1. SourceCode\REMSGit\REMS.Data.Access\bin\Release\EntityFramework.SqlServer.dll
+E:\ComaxCosulting\1. SourceCode\REMSGit\REMS.Data.Access\bin\Release\log4net.dll
+E:\ComaxCosulting\1. SourceCode\REMSGit\REMS.Data.Access\bin\Release\REMS.Data.dll
+E:\ComaxCosulting\1. SourceCode\REMSGit\REMS.Data.Access\bin\Release\REMS.Data.pdb
+E:\ComaxCosulting\1. SourceCode\REMSGit\REMS.Data.Access\bin\Release\AutoMapper.pdb
+E:\ComaxCosulting\1. SourceCode\REMSGit\REMS.Data.Access\bin\Release\AutoMapper.xml
+E:\ComaxCosulting\1. SourceCode\REMSGit\REMS.Data.Access\bin\Release\AutoMapper.Net4.pdb
+E:\ComaxCosulting\1. SourceCode\REMSGit\REMS.Data.Access\bin\Release\EntityFramework.xml
+E:\ComaxCosulting\1. SourceCode\REMSGit\REMS.Data.Access\bin\Release\EntityFramework.SqlServer.xml
+E:\ComaxCosulting\1. SourceCode\REMSGit\REMS.Data.Access\bin\Release\log4net.xml
+E:\ComaxCosulting\1. SourceCode\REMSGit\REMS.Data.Access\obj\Release\2. REMS.Data.Access.csprojResolveAssemblyReference.cache
+E:\ComaxCosulting\1. SourceCode\REMSGit\REMS.Data.Access\obj\Release\REMS.Data.Access.dll
+E:\ComaxCosulting\1. SourceCode\REMSGit\REMS.Data.Access\obj\Release\REMS.Data.Access.pdb

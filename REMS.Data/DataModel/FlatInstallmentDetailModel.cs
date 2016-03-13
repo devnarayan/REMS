@@ -32,5 +32,6 @@ namespace REMS.Data.DataModel
         public Nullable<int> InstallmentServiceTaxID { get; set; }
         public string Installment { get; set; }
         public string DueDateSt { get; set; }
+        public Nullable<int> InsVersion { get; set; }
     }
 }

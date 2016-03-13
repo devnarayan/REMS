@@ -1,4 +1,5 @@
-﻿using System;
+﻿using REMS.Data.DataModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,7 @@ namespace REMS.Data.Access.Auth
     public interface IAuthorizeService
     {
         bool IsUserAuthorize(string username, string action, string controller, string area);
+        List<UserModel> AuthUserList();
     }
    public  class AuthorizeService
     {
@@ -28,5 +30,15 @@ namespace REMS.Data.Access.Auth
                 return false;
             else return true;
        }
+        public List<UserModel> AuthUserList()
+        {
+            var model = dbContext.UserProperties.Where(md => md.IsAuthority == true).ToList();
+            List<UserModel> uml = new List<UserModel>();
+            foreach (var md in model)
+            {
+                uml.Add(new UserModel { UserName = md.UserName, Property = md.ProjectID.ToString() });
+            }
+            return uml;
+        }
     }
 }

@@ -201,6 +201,8 @@ myApp.controller('BrokerController', function ($scope, $http, $filter) {
     }
 
     $scope.PayBrokerInit = function () {
+        $http.get('/Sale/Payment/GetBank/').success(function (response) { $scope.Banks = response; });
+
         $("#btnAdd").show();
         $("#btnEdit").hide();
         if ($("#hidBrokerID").val() == "0") {
@@ -417,13 +419,12 @@ myApp.controller('BrokerController', function ($scope, $http, $filter) {
         $('#loading').show();
         $http({
             method: 'Get',
-            url: '/Admin/CreateProperty/GetFlatByTowerID',
+            url: '/Admin/CreateProperty/GetReservedFlatListByTowerID',
             params: { towerid: $scope.Flat.TowerID }
         }).success(function (data) {
             $scope.FlatList = data;
             $('#loading').hide();
-
-        })
+        });
     }
     $scope.PayBrokerToProperty = function (bid, saleid, flatid, TotalAmount, brokerid) { // BrokerToPropertyID
         $scope.SaleID = saleid;
@@ -509,13 +510,12 @@ myApp.controller('BrokerController', function ($scope, $http, $filter) {
     }
 
 
-    $scope.UpdateStatus = function (status, saleid) {
-        $scope.SaleID = saleid;
+    $scope.UpdateStatus = function (status, id) {
         $('#loading').show();
         $http({
             method: 'Get',
-            url: '/Customer/Broker/UpdatePropertyStatus',
-            params: { saleid: saleid, status: status }
+            url: '/Customer/Broker/UpdatePropertyStatusByID',
+            params: { id: id, status: status }
         }).success(function (data, status, headers, config) {
             alert("Status Update SucessFully");
             $('#loading').hide();
@@ -525,6 +525,17 @@ myApp.controller('BrokerController', function ($scope, $http, $filter) {
 
     }
 
+    $scope.FlatChange = function () {
+        $("#loading").show();
+        $http({
+            method: 'Get',
+            url: '/Customer/Broker/GetBrokerByFlatID',
+            params: { flatid: $scope.Flat.FlatID }
+        }).success(function (data) {
+            $scope.SaleBrokerList = data;
+            $('#loading').hide();
+        })
+    }
 
     $scope.AddBrokerToProperty = function () {
         var vli = ValidateAttachBroker();
@@ -537,13 +548,13 @@ myApp.controller('BrokerController', function ($scope, $http, $filter) {
             $http({
                 method: 'Post',
                 url: '/Customer/Broker/AttachBrokerToProperty',
-                data: { brokerid: $("#BrokerName").find(":selected").val(), amount: $("#Amount").val(), date: $("#BDate").val(), remarks: $("#Remarks").val(), FlatID: $scope.Sale.Sale[0].FlatID, SaleID: $scope.SaleID }
+                data: { brokerid: $("#BrokerName").find(":selected").val(), amount: $("#Amount").val(), date: $("#BDate").val(), remarks: $("#Remarks").val(), FlatID: $scope.Flat.FlatID, SaleID: 0 }
             }).success(function (data) {
                 if (data == '"Yes"') {
                     $http({
                         method: 'Get',
-                        url: '/Customer/Broker/GetBrokerBySaleID',
-                        params: { saleid: $scope.SaleID }
+                        url: '/Customer/Broker/GetBrokerByFlatID',
+                        params: { flatid: $scope.Flat.FlatID }
                     }).success(function (data) {
                         $scope.SaleBrokerList = data;
                         $('#loading').hide();
@@ -584,8 +595,8 @@ myApp.controller('BrokerController', function ($scope, $http, $filter) {
             if (data == '"Yes"') {
                 $http({
                     method: 'Get',
-                    url: '/Customer/Broker/GetBrokerBySaleID',
-                    params: { saleid: $scope.SaleID }
+                    url: '/Customer/Broker/GetBrokerByFlatID',
+                    params: { flatid: $scope.Flat.FlatID }
                 }).success(function (data) {
                     $scope.SaleBrokerList = data;
                     $('#loading').hide();
@@ -608,13 +619,13 @@ myApp.controller('BrokerController', function ($scope, $http, $filter) {
             $http({
                 method: 'Post',
                 url: '/Customer/Broker/AttachBrokerToPropertyUpdate',
-                data: { brokerToPropertyID: $("#hidBroerToPropertyID").val(), brokerid: $("#BrokerName").find(":selected").val(), amount: $("#Amount").val(), date: $("#BDate").val(), remarks: $("#Remarks").val(), PropertyID: $scope.Sale.Sale[0].PropertyID, FlatID: $scope.Sale.Sale[0].FlatID, SaleID: $scope.SaleID }
+                data: { brokerToPropertyID: $("#hidBroerToPropertyID").val(), brokerid: $("#BrokerName").find(":selected").val(), amount: $("#Amount").val(), date: $("#BDate").val(), remarks: $("#Remarks").val(), PropertyID: 0, FlatID: $scope.Flat.FlatID, SaleID: 0}
             }).success(function (data) {
                 if (data == '"Yes"') {
                     $http({
                         method: 'Get',
-                        url: '/Customer/Broker/GetBrokerBySaleID',
-                        params: { saleid: $scope.SaleID }
+                        url: '/Customer/Broker/GetBrokerByFlatID',
+                        params: { flatid: $scope.Flat.FlatID }
                     }).success(function (data) {
                         $scope.SaleBrokerList = data;
                         $('#loading').hide();
@@ -804,7 +815,7 @@ myApp.controller('BrokerController', function ($scope, $http, $filter) {
             message += "Insert Date .<br/>";
         }
 
-        if ($("#Remarks").val() == "") {
+        if ($("#Remarks").text() == "") {
             vl = false;
             message += "Insert Remarks for broker.<br/>";
         }

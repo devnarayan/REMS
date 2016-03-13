@@ -2,25 +2,28 @@
     ViewBag.Title = "Search";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div data-ng-app="BIApp" role="main">
-     <!-- MAIN CONTENT -->
-    <div id="content" data-ng-controller="ReportController">
-        <div class="row">
-            <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-                <h1 class="page-title txt-color-blueDark">
-                    <!-- PAGE HEADER -->
-                    <i class="fa-fw fa fa-building-o"></i>
-                    Report
-                    <span>
-                        >
-                        Cancel other cheque
-                    </span>
-                </h1>
-            </div>
-            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-                <!-- Button trigger modal -->
-            </div>
+@section topright{
+    <div class="row">
+        <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+            <h1 class="page-title txt-color-blueDark">
+                <!-- PAGE HEADER -->
+                <i class="fa-fw fa fa-building-o"></i>
+                Report
+                <span>
+                    >
+                    Cancel other cheque
+                </span>
+            </h1>
         </div>
+        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+            <!-- Button trigger modal -->
+        </div>
+    </div>
+}
+<div data-ng-app="BIApp" role="main">
+    <!-- MAIN CONTENT -->
+    <div id="content" data-ng-controller="ReportController">
+
         <div class="row">
             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
                 <h1 class="page-title txt-color-blueDark"><i class="fa fa-pencil-square-o fa-fw "></i>Cancled Payment(Other) </h1>
@@ -67,7 +70,7 @@
                                                         <b>Property:</b><br />
                                                         <select name="TowerID" class="form-control" data-ng-change="TowerChange()" data-ng-model="Flat.TowerID" id="searchby" required>
                                                             <option data-ng-repeat="pro in TowerList" value="{{ pro.TowerID }}">{{pro.TowerName }}</option>
-                                                            <option value="All" selected="selected">All</option>                                                            
+                                                            <option value="All" selected="selected">All</option>
                                                             <option value="FlatName">Property Name</option>
                                                             <option value="Customer Name">Customer Name</option>
                                                             <option value="CancelDate">Cancel Date</option>
@@ -76,9 +79,9 @@
                                                             <option value="Last 7 Days">Last 7 Days</option>
                                                         </select>
                                                         @*<select name="PropertyID" data-ng-change="PropertyName()" data-ng-model="newCust.PropertyID" id="PropertyID" class="form-control">
-                                                        <option value="All" selected="selected">All</option>
-                                                        <option data-ng-repeat="pro in Properties" value="{{ pro.PropertyID }}">{{ pro.PropertyName }}</option>
-                                                    </select>*@
+                                                                <option value="All" selected="selected">All</option>
+                                                                <option data-ng-repeat="pro in Properties" value="{{ pro.PropertyID }}">{{ pro.PropertyName }}</option>
+                                                            </select>*@
                                                     </div>
                                                     <div class="col-md-4" id="searchflatname">
                                                         <b>Search By:</b><br />
@@ -86,16 +89,16 @@
                                                             <option data-ng-repeat="fl in FlatList" value="{{ fl.FlatID }}">{{ fl.FlatNo }}</option>
                                                         </select>
                                                         @*<input type="hidden" id="protypename" name="protypename">
-                                                    <select id="searchby" name="searchby" class="form-control">
-                                                        <option value="All" selected="selected">All</option>
-                                                        <option value="SubType">Property SubType</option>
-                                                        <option value="FlatName">Property Name</option>
-                                                        <option value="Customer Name">Customer Name</option>
-                                                        <option value="CancelDate">Cancel Date</option>
-                                                        <option value="PaymentDate">Payment Date</option>
-                                                        <option value="This Month">This Month</option>
-                                                        <option value="Last 7 Days">Last 7 Days</option>
-                                                    </select>*@
+                                                            <select id="searchby" name="searchby" class="form-control">
+                                                                <option value="All" selected="selected">All</option>
+                                                                <option value="SubType">Property SubType</option>
+                                                                <option value="FlatName">Property Name</option>
+                                                                <option value="Customer Name">Customer Name</option>
+                                                                <option value="CancelDate">Cancel Date</option>
+                                                                <option value="PaymentDate">Payment Date</option>
+                                                                <option value="This Month">This Month</option>
+                                                                <option value="Last 7 Days">Last 7 Days</option>
+                                                            </select>*@
                                                     </div>
                                                     <div class="col-md-4">
                                                         <br />
@@ -122,21 +125,21 @@
                                                     </div>
                                                 </div>
                                                 @*<div class="row" id="subtypediv">
-                                                    <div class="col-md-4">
-                                                        <b>Property Type:</b><br />
-                                                        <select name="PropertyTypeID" data-ng-change="PropertyType()" data-ng-model="newCust.PropertyTypeID" id="PropertyTypeID" class="form-control">
-                                                            <option value="All" selected="selected">All</option>
-                                                            <option data-ng-repeat="pro in PropertyTypes" value="{{ pro.PropertyID }}">{{ pro.PropertyName }}</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <b>Property Size:</b><br />
-                                                        <select name="PropertySizeID" class="form-control" data-ng-model="newCust.PropertySizeID" id="PropertySizeID">
-                                                            <option value="All" selected="selected">All</option>
-                                                            <option data-ng-repeat="pro in PropertySizes.PSizes" value="{{ pro.PropertySizeID }}">{{ pro.Size }}</option>
-                                                        </select>
-                                                    </div>
-                                                </div>*@
+                                                        <div class="col-md-4">
+                                                            <b>Property Type:</b><br />
+                                                            <select name="PropertyTypeID" data-ng-change="PropertyType()" data-ng-model="newCust.PropertyTypeID" id="PropertyTypeID" class="form-control">
+                                                                <option value="All" selected="selected">All</option>
+                                                                <option data-ng-repeat="pro in PropertyTypes" value="{{ pro.PropertyID }}">{{ pro.PropertyName }}</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <b>Property Size:</b><br />
+                                                            <select name="PropertySizeID" class="form-control" data-ng-model="newCust.PropertySizeID" id="PropertySizeID">
+                                                                <option value="All" selected="selected">All</option>
+                                                                <option data-ng-repeat="pro in PropertySizes.PSizes" value="{{ pro.PropertySizeID }}">{{ pro.Size }}</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>*@
                                                 <input type="hidden" name="hidsortby" id="hidsortby" />
                                                 <br />
                                                 <div class="row">
@@ -190,36 +193,106 @@
         <!-- END MAIN CONTENT -->
 
     </div>
-    </div>
-    @section pagespecific {
-        <script src="~/AgController/Reportjs.js"></script>
-        <script type="text/javascript">
+</div>
+@section pagespecific {
+    <script src="~/AgController/Reportjs.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#datediv").hide();
+            $("#alldiv").hide();
+            $("#searchflatname").hide();
+            $scope.Flat.FlatID = 0;
 
-            // DO NOT REMOVE : GLOBAL FUNCTIONS!
-
-        </script>
-<script>
-    $(document).ready(function () {
-        $("#datediv").hide();
-        $("#alldiv").hide();
-        $("#searchflatname").hide();
-        $scope.Flat.FlatID = 0;
-
-        if (localStorage.getItem("searchby") != null) {
-            $("#searchby").val(localStorage.getItem("searchby"));
-            $("#sortby").val(localStorage.getItem("sortby"));
-            $("#datefrom").val(localStorage.getItem("datefrom"));
-            $("#dateto").val(localStorage.getItem("dateto"));
-            $("#searchtext").val(localStorage.getItem("stext"));
+            if (localStorage.getItem("searchby") != null) {
+                $("#searchby").val(localStorage.getItem("searchby"));
+                $("#sortby").val(localStorage.getItem("sortby"));
+                $("#datefrom").val(localStorage.getItem("datefrom"));
+                $("#dateto").val(localStorage.getItem("dateto"));
+                $("#searchtext").val(localStorage.getItem("stext"));
 
 
+                var v = $("#sortby").val();
+                var vv = $("#searchby").val();
+                var df = $("#datefrom").val();
+                var dt = $("#dateto").val();
+                var stext = $("#searchtext").val();
+                if (vv.toString() == "All" || vv.toString() == "This Month" || vv.toString() == "Last 7 Days") {
+                    $("#alldiv").hide();
+                    $("#datediv").hide(); $("#searchflatname").hide();
+                }
+                else {
+                    if (vv.toString() == "CancelDate" || vv.toString() == "PaymentDate") {
+                        $("#datediv").show();
+                        $("#alldiv").hide(); $("#subtypediv").hide(); $("#searchflatname").hide();
+                    }
+                    else if (vv.toString() == "FlatName" || vv.toString() == "Customer Name") {
+                        $("#alldiv").show();
+                        $("#datediv").hide();
+                        $("#subtypediv").hide();
+                        $("#searchflatname").hide();
+                    }
+                    else {
+                        $("#alldiv").hide();
+                        $("#datediv").hide();
+                        $("#searchflatname").show();
+                    }
+                }
+            }
+        })
+        $("#sortby").change(function () {
             var v = $("#sortby").val();
             var vv = $("#searchby").val();
             var df = $("#datefrom").val();
             var dt = $("#dateto").val();
             var stext = $("#searchtext").val();
+            localStorage.setItem("searchby", vv);
+            localStorage.setItem("sortby", v);
+            localStorage.setItem("datefrom", df);
+            localStorage.setItem("dateto", dt);
+            localStorage.setItem("stext", stext);
+
+            $("#hidsortby").val(v);
             if (vv.toString() == "All" || vv.toString() == "This Month" || vv.toString() == "Last 7 Days") {
                 $("#alldiv").hide();
+                $("#datediv").hide(); $("#searchflatname").show();
+            }
+            else {
+                if (vv.toString() == "CancelDate" || vv.toString() == "PaymentDate") {
+                    $("#datediv").show();
+                    $("#alldiv").hide(); $("#subtypediv").hide(); $("#searchflatname").show();
+                }
+                else if (vv.toString() == "FlatName" || vv.toString() == "Customer Name") {
+                    $("#subtypediv").show();
+                    $("#alldiv").show();
+                    $("#datediv").hide();
+                    $("#searchflatname").hide();
+                }
+                else {
+                    $("#alldiv").hide();
+                    $("#datediv").hide();
+                    $("#subtypediv").hide();
+                    $("#searchflatname").show();
+                }
+            }
+        })
+
+        $("#searchby").change(function () {
+            var v = $("#sortby").val();
+            var vv = $("#searchby").val();
+            var df = $("#datefrom").val();
+            var dt = $("#dateto").val();
+            var stext = $("#searchtext").val();
+            localStorage.setItem("searchby", vv);
+            localStorage.setItem("sortby", v);
+            localStorage.setItem("datefrom", df);
+            localStorage.setItem("dateto", dt);
+            localStorage.setItem("stext", stext);
+
+            $("#hidsortby").val(v);
+            if (vv.toString() == "All" || vv.toString() == "This Month" || vv.toString() == "Last 7 Days") {
+                $("#alldiv").hide();
+                $("#datefrom").val("");
+                $("#dateto").val("");
                 $("#datediv").hide(); $("#searchflatname").hide();
             }
             else {
@@ -228,270 +301,195 @@
                     $("#alldiv").hide(); $("#subtypediv").hide(); $("#searchflatname").hide();
                 }
                 else if (vv.toString() == "FlatName" || vv.toString() == "Customer Name") {
+
                     $("#alldiv").show();
                     $("#datediv").hide();
-                    $("#subtypediv").hide();
                     $("#searchflatname").hide();
                 }
                 else {
                     $("#alldiv").hide();
                     $("#datediv").hide();
+                    $("#subtypediv").hide();
                     $("#searchflatname").show();
                 }
             }
-        }
-    })
-    $("#sortby").change(function () {
-        var v = $("#sortby").val();
-        var vv = $("#searchby").val();
-        var df = $("#datefrom").val();
-        var dt = $("#dateto").val();
-        var stext = $("#searchtext").val();
-        localStorage.setItem("searchby", vv);
-        localStorage.setItem("sortby", v);
-        localStorage.setItem("datefrom", df);
-        localStorage.setItem("dateto", dt);
-        localStorage.setItem("stext", stext);
-
-        $("#hidsortby").val(v);
-        if (vv.toString() == "All" || vv.toString() == "This Month" || vv.toString() == "Last 7 Days") {
-            $("#alldiv").hide();
-            $("#datediv").hide();$("#searchflatname").show();
-        }
-        else {
-            if (vv.toString() == "CancelDate" || vv.toString() == "PaymentDate") {
-                $("#datediv").show();
-                $("#alldiv").hide(); $("#subtypediv").hide(); $("#searchflatname").show();
-            }
-            else if (vv.toString() == "FlatName" || vv.toString() == "Customer Name") {
-                $("#subtypediv").show();
-                $("#alldiv").show();
-                $("#datediv").hide();
-                $("#searchflatname").hide();
-            }
-            else {
-                $("#alldiv").hide();
-                $("#datediv").hide();
-                $("#subtypediv").hide();
-                $("#searchflatname").show();
-            }
-        }
-    })
-
-    $("#searchby").change(function () {
-        var v = $("#sortby").val();
-        var vv = $("#searchby").val();
-        var df = $("#datefrom").val();
-        var dt = $("#dateto").val();
-        var stext = $("#searchtext").val();
-        localStorage.setItem("searchby", vv);
-        localStorage.setItem("sortby", v);
-        localStorage.setItem("datefrom", df);
-        localStorage.setItem("dateto", dt);
-        localStorage.setItem("stext", stext);
-
-        $("#hidsortby").val(v);
-        if (vv.toString() == "All" || vv.toString() == "This Month" || vv.toString() == "Last 7 Days") {
-            $("#alldiv").hide();
-            $("#datefrom").val("");
-            $("#dateto").val("");
-            $("#datediv").hide();  $("#searchflatname").hide();
-        }
-        else {
-            if (vv.toString() == "CancelDate" || vv.toString() == "PaymentDate") {
-                $("#datediv").show();
-                $("#alldiv").hide(); $("#subtypediv").hide(); $("#searchflatname").hide();
-            }
-            else if (vv.toString() == "FlatName" || vv.toString() == "Customer Name") {
-               
-                $("#alldiv").show();
-                $("#datediv").hide();
-                $("#searchflatname").hide();
-            }
-            else {
-                $("#alldiv").hide();
-                $("#datediv").hide();
-                $("#subtypediv").hide();
-                $("#searchflatname").show();
-            }
-        }
-    })
-    $("#datefrom").blur(function () {
-        var df = $("#datefrom").val();
-        localStorage.setItem("datefrom", df);
-    })
-    $("#dateto").blur(function () {
-        var df = $("#dateto").val();
-        localStorage.setItem("dateto", df);
-    })
-    $("#searchtext").blur(function () {
-        var df = $("#searchtext").val();
-        localStorage.setItem("stext", df);
-    })
-</script>
+        })
+        $("#datefrom").blur(function () {
+            var df = $("#datefrom").val();
+            localStorage.setItem("datefrom", df);
+        })
+        $("#dateto").blur(function () {
+            var df = $("#dateto").val();
+            localStorage.setItem("dateto", df);
+        })
+        $("#searchtext").blur(function () {
+            var df = $("#searchtext").val();
+            localStorage.setItem("stext", df);
+        })
+    </script>
 
 
-        <script type="text/javascript">
+    <script type="text/javascript">
 
-            // DO NOT REMOVE : GLOBAL FUNCTIONS!
+        // DO NOT REMOVE : GLOBAL FUNCTIONS!
 
-            $(document).ready(function () {
+        $(document).ready(function () {
 
-                /* // DOM Position key index //
+            /* // DOM Position key index //
 
-                l - Length changing (dropdown)
-                f - Filtering input (search)
-                t - The Table! (datatable)
-                i - Information (records)
-                p - Pagination (paging)
-                r - pRocessing
-                < and > - div elements
-                <"#id" and > - div with an id
-                <"class" and > - div with a class
-                <"#id.class" and > - div with an id and class
+            l - Length changing (dropdown)
+            f - Filtering input (search)
+            t - The Table! (datatable)
+            i - Information (records)
+            p - Pagination (paging)
+            r - pRocessing
+            < and > - div elements
+            <"#id" and > - div with an id
+            <"class" and > - div with a class
+            <"#id.class" and > - div with an id and class
 
-                Also see: http://legacy.datatables.net/usage/features
-                */
+            Also see: http://legacy.datatables.net/usage/features
+            */
 
-                /* BASIC ;*/
-                var responsiveHelper_dt_basic = undefined;
-                var responsiveHelper_datatable_fixed_column = undefined;
-                var responsiveHelper_datatable_col_reorder = undefined;
-                var responsiveHelper_datatable_tabletools = undefined;
+            /* BASIC ;*/
+            var responsiveHelper_dt_basic = undefined;
+            var responsiveHelper_datatable_fixed_column = undefined;
+            var responsiveHelper_datatable_col_reorder = undefined;
+            var responsiveHelper_datatable_tabletools = undefined;
 
-                var breakpointDefinition = {
-                    tablet: 1024,
-                    phone: 480
-                };
+            var breakpointDefinition = {
+                tablet: 1024,
+                phone: 480
+            };
 
-                $('#dt_basic').dataTable({
-                    "sDom": "<'dt-toolbar'<'col-xs-12 col-sm-6'f><'col-sm-6 col-xs-12 hidden-xs'l>r>" +
+            $('#dt_basic').dataTable({
+                "sDom": "<'dt-toolbar'<'col-xs-12 col-sm-6'f><'col-sm-6 col-xs-12 hidden-xs'l>r>" +
+                    "t" +
+                    "<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-6'p>>",
+                "autoWidth": true,
+                "preDrawCallback": function () {
+                    // Initialize the responsive datatables helper once.
+                    if (!responsiveHelper_dt_basic) {
+                        responsiveHelper_dt_basic = new ResponsiveDatatablesHelper($('#dt_basic'), breakpointDefinition);
+                    }
+                },
+                "rowCallback": function (nRow) {
+                    responsiveHelper_dt_basic.createExpandIcon(nRow);
+                },
+                "drawCallback": function (oSettings) {
+                    responsiveHelper_dt_basic.respond();
+                }
+            });
+
+            /* END BASIC */
+
+            /* COLUMN FILTER  */
+            var otable = $('#datatable_fixed_column').DataTable({
+                //"bFilter": false,
+                //"bInfo": false,
+                //"bLengthChange": false
+                //"bAutoWidth": false,
+                //"bPaginate": false,
+                //"bStateSave": true // saves sort state using localStorage
+                "sDom": "<'dt-toolbar'<'col-xs-12 col-sm-6 hidden-xs'f><'col-sm-6 col-xs-12 hidden-xs'<'toolbar'>>r>" +
                         "t" +
                         "<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-6'p>>",
-                    "autoWidth": true,
-                    "preDrawCallback": function () {
-                        // Initialize the responsive datatables helper once.
-                        if (!responsiveHelper_dt_basic) {
-                            responsiveHelper_dt_basic = new ResponsiveDatatablesHelper($('#dt_basic'), breakpointDefinition);
-                        }
-                    },
-                    "rowCallback": function (nRow) {
-                        responsiveHelper_dt_basic.createExpandIcon(nRow);
-                    },
-                    "drawCallback": function (oSettings) {
-                        responsiveHelper_dt_basic.respond();
+                "autoWidth": true,
+                "preDrawCallback": function () {
+                    // Initialize the responsive datatables helper once.
+                    if (!responsiveHelper_datatable_fixed_column) {
+                        responsiveHelper_datatable_fixed_column = new ResponsiveDatatablesHelper($('#datatable_fixed_column'), breakpointDefinition);
                     }
-                });
+                },
+                "rowCallback": function (nRow) {
+                    responsiveHelper_datatable_fixed_column.createExpandIcon(nRow);
+                },
+                "drawCallback": function (oSettings) {
+                    responsiveHelper_datatable_fixed_column.respond();
+                }
 
-                /* END BASIC */
+            });
 
-                /* COLUMN FILTER  */
-                var otable = $('#datatable_fixed_column').DataTable({
-                    //"bFilter": false,
-                    //"bInfo": false,
-                    //"bLengthChange": false
-                    //"bAutoWidth": false,
-                    //"bPaginate": false,
-                    //"bStateSave": true // saves sort state using localStorage
-                    "sDom": "<'dt-toolbar'<'col-xs-12 col-sm-6 hidden-xs'f><'col-sm-6 col-xs-12 hidden-xs'<'toolbar'>>r>" +
-                            "t" +
-                            "<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-6'p>>",
-                    "autoWidth": true,
-                    "preDrawCallback": function () {
-                        // Initialize the responsive datatables helper once.
-                        if (!responsiveHelper_datatable_fixed_column) {
-                            responsiveHelper_datatable_fixed_column = new ResponsiveDatatablesHelper($('#datatable_fixed_column'), breakpointDefinition);
-                        }
-                    },
-                    "rowCallback": function (nRow) {
-                        responsiveHelper_datatable_fixed_column.createExpandIcon(nRow);
-                    },
-                    "drawCallback": function (oSettings) {
-                        responsiveHelper_datatable_fixed_column.respond();
+            // custom toolbar
+            $("div.toolbar").html('<div class="text-right"><img src="/Content/img/logo.png" alt="SmartAdmin" style="width: 111px; margin-top: 3px; margin-right: 10px;"></div>');
+
+            // Apply the filter
+            $("#datatable_fixed_column thead th input[type=text]").on('keyup change', function () {
+
+                otable
+                    .column($(this).parent().index() + ':visible')
+                    .search(this.value)
+                    .draw();
+
+            });
+            /* END COLUMN FILTER */
+
+            /* COLUMN SHOW - HIDE */
+            $('#datatable_col_reorder').dataTable({
+                "sDom": "<'dt-toolbar'<'col-xs-12 col-sm-6'f><'col-sm-6 col-xs-6 hidden-xs'C>r>" +
+                        "t" +
+                        "<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-sm-6 col-xs-12'p>>",
+                "autoWidth": true,
+                "preDrawCallback": function () {
+                    // Initialize the responsive datatables helper once.
+                    if (!responsiveHelper_datatable_col_reorder) {
+                        responsiveHelper_datatable_col_reorder = new ResponsiveDatatablesHelper($('#datatable_col_reorder'), breakpointDefinition);
                     }
+                },
+                "rowCallback": function (nRow) {
+                    responsiveHelper_datatable_col_reorder.createExpandIcon(nRow);
+                },
+                "drawCallback": function (oSettings) {
+                    responsiveHelper_datatable_col_reorder.respond();
+                }
+            });
 
-                });
+            /* END COLUMN SHOW - HIDE */
 
-                // custom toolbar
-                $("div.toolbar").html('<div class="text-right"><img src="/Content/img/logo.png" alt="SmartAdmin" style="width: 111px; margin-top: 3px; margin-right: 10px;"></div>');
+            /* TABLETOOLS */
+            $('#datatable_tabletools').dataTable({
 
-                // Apply the filter
-                $("#datatable_fixed_column thead th input[type=text]").on('keyup change', function () {
-
-                    otable
-                        .column($(this).parent().index() + ':visible')
-                        .search(this.value)
-                        .draw();
-
-                });
-                /* END COLUMN FILTER */
-
-                /* COLUMN SHOW - HIDE */
-                $('#datatable_col_reorder').dataTable({
-                    "sDom": "<'dt-toolbar'<'col-xs-12 col-sm-6'f><'col-sm-6 col-xs-6 hidden-xs'C>r>" +
-                            "t" +
-                            "<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-sm-6 col-xs-12'p>>",
-                    "autoWidth": true,
-                    "preDrawCallback": function () {
-                        // Initialize the responsive datatables helper once.
-                        if (!responsiveHelper_datatable_col_reorder) {
-                            responsiveHelper_datatable_col_reorder = new ResponsiveDatatablesHelper($('#datatable_col_reorder'), breakpointDefinition);
-                        }
-                    },
-                    "rowCallback": function (nRow) {
-                        responsiveHelper_datatable_col_reorder.createExpandIcon(nRow);
-                    },
-                    "drawCallback": function (oSettings) {
-                        responsiveHelper_datatable_col_reorder.respond();
+                // Tabletools options:
+                //   https://datatables.net/extensions/tabletools/button_options
+                "sDom": "<'dt-toolbar'<'col-xs-12 col-sm-6'f><'col-sm-6 col-xs-6 hidden-xs'T>r>" +
+                        "t" +
+                        "<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-sm-6 col-xs-12'p>>",
+                "oTableTools": {
+                    "aButtons": [
+                    "copy",
+                    "csv",
+                    "xls",
+                       {
+                           "sExtends": "pdf",
+                           "sTitle": "SmartAdmin_PDF",
+                           "sPdfMessage": "SmartAdmin PDF Export",
+                           "sPdfSize": "letter"
+                       },
+                       {
+                           "sExtends": "print",
+                           "sMessage": "Generated by SmartAdmin <i>(press Esc to close)</i>"
+                       }
+                    ],
+                    "sSwfPath": "/Scripts/plugin/datatables/swf/copy_csv_xls_pdf.swf"
+                },
+                "autoWidth": true,
+                "preDrawCallback": function () {
+                    // Initialize the responsive datatables helper once.
+                    if (!responsiveHelper_datatable_tabletools) {
+                        responsiveHelper_datatable_tabletools = new ResponsiveDatatablesHelper($('#datatable_tabletools'), breakpointDefinition);
                     }
-                });
+                },
+                "rowCallback": function (nRow) {
+                    responsiveHelper_datatable_tabletools.createExpandIcon(nRow);
+                },
+                "drawCallback": function (oSettings) {
+                    responsiveHelper_datatable_tabletools.respond();
+                }
+            });
 
-                /* END COLUMN SHOW - HIDE */
+            /* END TABLETOOLS */
 
-                /* TABLETOOLS */
-                $('#datatable_tabletools').dataTable({
+        })
 
-                    // Tabletools options:
-                    //   https://datatables.net/extensions/tabletools/button_options
-                    "sDom": "<'dt-toolbar'<'col-xs-12 col-sm-6'f><'col-sm-6 col-xs-6 hidden-xs'T>r>" +
-                            "t" +
-                            "<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-sm-6 col-xs-12'p>>",
-                    "oTableTools": {
-                        "aButtons": [
-                        "copy",
-                        "csv",
-                        "xls",
-                           {
-                               "sExtends": "pdf",
-                               "sTitle": "SmartAdmin_PDF",
-                               "sPdfMessage": "SmartAdmin PDF Export",
-                               "sPdfSize": "letter"
-                           },
-                           {
-                               "sExtends": "print",
-                               "sMessage": "Generated by SmartAdmin <i>(press Esc to close)</i>"
-                           }
-                        ],
-                        "sSwfPath": "/Scripts/plugin/datatables/swf/copy_csv_xls_pdf.swf"
-                    },
-                    "autoWidth": true,
-                    "preDrawCallback": function () {
-                        // Initialize the responsive datatables helper once.
-                        if (!responsiveHelper_datatable_tabletools) {
-                            responsiveHelper_datatable_tabletools = new ResponsiveDatatablesHelper($('#datatable_tabletools'), breakpointDefinition);
-                        }
-                    },
-                    "rowCallback": function (nRow) {
-                        responsiveHelper_datatable_tabletools.createExpandIcon(nRow);
-                    },
-                    "drawCallback": function (oSettings) {
-                        responsiveHelper_datatable_tabletools.respond();
-                    }
-                });
-
-                /* END TABLETOOLS */
-
-            })
-
-        </script>
-    }
+    </script>
+}

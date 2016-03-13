@@ -2,34 +2,20 @@
     ViewBag.Title = "Search";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+@section topright{
+<div class="row">
+    <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+        <h1 class="page-title txt-color-blueDark"><i class="fa fa-building fa-fw "></i>Add  Broker To Property</h1>
+    </div>
+    <div class="col-xs-12 col-sm-5 col-md-5 col-lg-8">
+    </div>
+</div>
+}
 <div data-ng-app="BrokerApp" role="main">
    
-    <div class="row">
-        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-            <h1 class="page-title txt-color-blueDark">
-                <!-- PAGE HEADER -->
-                <i class="fa-fw fa fa-flag"></i>
-                Customer
-                <span>
-                    >
-                    Attach broker
-                </span>
-            </h1>
-        </div>
-        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-
-        </div>
-    </div>
     <!-- MAIN CONTENT -->
     <div id="content" data-ng-controller="BrokerController">
-        <div class="row">
-            <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
-                <h1 class="page-title txt-color-blueDark"><i class="fa fa-building fa-fw "></i>Add  Broker To Property</h1>
-            </div>
-            <div class="col-xs-12 col-sm-5 col-md-5 col-lg-8">
-            </div>
-        </div>
+       
         <!-- widget grid -->
         <section id="widget-grid" class="" data-ng-init="AttachBrokerInit()">
             <input type="hidden" id="hidFlatID" name="hidFlatID" value="@ViewBag.ID" />
@@ -61,26 +47,21 @@
                                                     <div class="col-md-2"></div>
                                                     <div class="col-md-3">
                                                         <b>Tower Property:</b><br />
-                                                        @*<select name="newCust.PropertyID" class="form-control" data-ng-model="PropertyID" id="PropertyID" required>
-                                                            <option data-ng-repeat="pro in Properties" value="{{ pro.PropertyID }}">{{ pro.PropertyName }}</option>
-                                                        </select>*@
                                                         <select name="TowerID" class="form-control" data-ng-change="TowerChange()" data-ng-model="Flat.TowerID" id="TowerID" required>
                                                             <option data-ng-repeat="pro in TowerList" value="{{ pro.TowerID }}">{{pro.TowerName }}</option>
                                                         </select>
                                                     </div>
                                                     <div class="col-md-3">
                                                         <b>Flat Name</b><br />
-                                                        @*<input type="text" name="propertyname" id="propertyname" class="form-control" />*@
-                                                        @*<label class="select">*@
-                                                            <select name="FlatID" class="form-control" data-ng-model="Flat.FlatID" id="FlatID" required>
+                                                      
+                                                            <select name="FlatID" class="form-control" data-ng-change="FlatChange()" data-ng-model="Flat.FlatID" id="FlatID" required>
                                                                 <option data-ng-repeat="fl in FlatList" value="{{ fl.FlatID }}">{{ fl.FlatNo }}</option>
                                                             </select>
-                                                        @*</label>*@
                                                     </div>
-                                                    <div class="col-md-1">
+                                                    @*<div class="col-md-1">
                                                         <br />
                                                         <input type="submit" value="Search" data-ng-click="SearchPropertyForSaleID()" class="btn btn-primary" id="Srch1" />
-                                                    </div>
+                                                    </div>*@
                                                 </div>
                                             </div>
                                         </div>
@@ -95,7 +76,7 @@
                                         <div class="form-content">
                                             <input type="hidden" id="hidSaleID" name="hidSaleID" value="@ViewBag.ID" />
                                             <input type="hidden" id="hidBroerToPropertyID" name="hidBroerToPropertyID" value="0" />
-                                            <fieldset>
+                                            @*<fieldset>
                                                 <h2>Customer and Property</h2>
 
                                                 <div class="row">
@@ -131,7 +112,10 @@
                                                         <div class="divider"></div>
                                                     </div>
                                                 </div>
+                                                </fieldset>*@
+                                            <fieldset>
                                                 <h2>Add Broker to Property</h2>
+                                                 <p class="text-danger" id="ErrorMessage"></p>
                                                 <div class="row">
                                                     <div class="col-md-2">Broker Name:</div>
                                                     <div class="col-md-5 input">

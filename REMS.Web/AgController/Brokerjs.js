@@ -419,13 +419,12 @@ myApp.controller('BrokerController', function ($scope, $http, $filter) {
         $('#loading').show();
         $http({
             method: 'Get',
-            url: '/Admin/CreateProperty/GetFlatByTowerID',
+            url: '/Admin/CreateProperty/GetReservedFlatListByTowerID',
             params: { towerid: $scope.Flat.TowerID }
         }).success(function (data) {
             $scope.FlatList = data;
             $('#loading').hide();
-
-        })
+        });
     }
     $scope.PayBrokerToProperty = function (bid, saleid, flatid, TotalAmount, brokerid) { // BrokerToPropertyID
         $scope.SaleID = saleid;
@@ -816,7 +815,7 @@ myApp.controller('BrokerController', function ($scope, $http, $filter) {
             message += "Insert Date .<br/>";
         }
 
-        if ($("#Remarks").val() == "") {
+        if ($("#Remarks").text() == "") {
             vl = false;
             message += "Insert Remarks for broker.<br/>";
         }

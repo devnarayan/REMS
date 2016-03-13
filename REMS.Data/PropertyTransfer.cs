@@ -23,6 +23,7 @@ namespace REMS.Data
         public string OldPlanType { get; set; }
         public string NewPlanType { get; set; }
         public string UserName { get; set; }
+        public string TransferType { get; set; }
     
         public virtual SaleFlat SaleFlat { get; set; }
     }

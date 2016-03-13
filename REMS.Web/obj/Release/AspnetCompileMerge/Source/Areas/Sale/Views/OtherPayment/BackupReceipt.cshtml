@@ -3,7 +3,11 @@
     ViewBag.Title = "BackupReceipt";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+@section topright{
+<div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+    <h1 class="page-title txt-color-blueDark"><i class="fa fa-download fa-fw "></i>Backup  Receipt for Other Payment</h1>
+</div>
+}
 <div  data-ng-app="OPaymentApp" role="main">
     <!-- RIBBON -->
    
@@ -12,9 +16,7 @@
     <div id="content" data-ng-controller="OtherPaymentController">
         <div id="content">
             <div class="row">
-                <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
-                    <h1 class="page-title txt-color-blueDark"><i class="fa fa-download fa-fw "></i>Backup  Receipt for Other Payment</h1>
-                </div>
+              
                 <div class="col-xs-12 col-sm-5 col-md-5 col-lg-8">
                     <br />
                     <div class="row">
@@ -62,7 +64,7 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <b>Property:</b><br />
-                                <select name="TowerID" class="form-control" data-ng-change="TowerChange()" data-ng-model="Flat.TowerID" id="searchby" required>
+                                <select name="TowerID" class="form-control" data-ng-change="TowerChange()" data-ng-model="FlatSearch.TowerID" id="searchby" required>
                                     <option data-ng-repeat="pro in TowerList" value="{{ pro.TowerID }}">{{pro.TowerName }}</option>
                                     <option value="All" selected="selected">All</option>
                                     <option value="SubType">Property SubType</option>
@@ -75,19 +77,9 @@
                             </div>
                             <div class="col-md-4" id="searchflatname">
                                 <b>Search By:</b><br />
-                                <select name="FlatID" class="form-control" data-ng-model="Flat.FlatID" id="FlatID" required>
+                                <select name="FlatID" class="form-control" data-ng-model="FlatSearch.FlatID" id="FlatID" required>
                                     <option data-ng-repeat="fl in FlatList" value="{{ fl.FlatID }}">{{ fl.FlatNo }}</option>
                                 </select>
-                                @*<input type="hidden" id="protypename" name="protypename">
-                <select id="searchby" name="searchby" class="form-control">
-                    <option value="All" selected="selected">All</option>
-                    <option value="SubType">Property SubType</option>
-                    <option value="ReceiptNo">ReceiptNo</option>
-                    <option value="FlatName">Property Name</option>
-                    <option value="Customer Name">Customer Name</option>
-                    <option value="PaymentDate">Payment Date</option>
-                    <option value="Last 7 Days">Last 7 Days</option>
-                </select>*@
                             </div>
                             <div class="col-md-4">
                                 <br />
@@ -111,29 +103,6 @@
                                 </div>
                             </div>                           
                       
-                        @*<div class="row">
-                            <div class="col-md-6">
-                                Email ID: <input type="text" name="EmailID" id="EmailID" /> &nbsp;&nbsp;&nbsp;<input type="button" class="btn btn-primary" id="ExportMail" name="ExportMail" data-ng-click="BackupReceiptExportAndMail()" value="Export & Mail" /> &nbsp;&nbsp;
-                                <a href="#" class="btn btn-primary" id="SendMail" name="SendMail" data-ng-click="BackupReceiptSendMail()"><i class="fa fa-mail-forward"></i> Send Mail</a>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <a href="#" class="btn btn-primary" data-ng-click="BackupReceiptPrint()" id="Print" name="Print"><i class="fa fa-print"></i> Print</a>                                      
-                                    </div>
-                                    <div class="col-md-3">
-                                        <a href="#" class="btn btn-primary" id="PrintData" onclick="javascript:printDiv('printablediv')" name="PrintData"><i class="fa fa-print"></i> Print Data</a>
-                                    </div>
-                                    <div class="col-md-3">
-                                        @using (Html.BeginForm("ExportTest", "OtherPayment", new { area = "" }, FormMethod.Post))
-                                        {
-                                            <input type="submit" class="btn btn-primary" value="Export Data" onclick="ExportClick()" />
-                                            <input type="hidden" id="hidtid" name="hidtid" />
-                                        }
-                                    </div>
-                                </div>                              
-                            </div>
-                        </div>*@
                         <input type="hidden" name="hidsortby" id="hidsortby" />
                         <!-- widget div-->
                         <div>
@@ -388,7 +357,7 @@
         $("#datediv").hide();
         $("#alldiv").hide();
         $("#searchflatname").hide();
-        $scope.Flat.FlatID = 0;
+        // $scope.FlatSearch.FlatID = 0;
         if (localStorage.getItem("searchby") != null) {
             $("#searchby").val(localStorage.getItem("searchby"));
             $("#sortby").val(localStorage.getItem("sortby"));

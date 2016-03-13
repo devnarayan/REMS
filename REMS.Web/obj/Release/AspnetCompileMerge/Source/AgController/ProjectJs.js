@@ -55,6 +55,12 @@ myApp.controller('PropertyProjectController', function ($scope, $http, $filter) 
                 PossessionDate: {
                     required: true
                 },
+                Contact:{
+                    required:true
+                },
+                AuthEmail:{
+                    required:true
+                }
             },
 
             // Messages for form validation
@@ -95,6 +101,12 @@ myApp.controller('PropertyProjectController', function ($scope, $http, $filter) 
                 PossessionDate: {
                     required: "Enter Possession Date of property"
                 },
+                Contact:{
+                    required:"Enter Contact No"
+                },
+                AuthEmail:{
+                    required:"Enter Email Id"
+                }
             },
 
             // Ajax form submition

@@ -805,6 +805,7 @@ myApp.controller('PropertyController', function ($scope, $http, $filter) {
             // Do not change code below.
             errorPlacement: function (error, element) {
                 error.insertAfter(element.parent());
+                $("#MessageArea").show();
                 $scope.MessageClass = "danger";
                 $scope.MessageTitle = "Error";
                 $scope.Message = "Flat Record can not updated.";

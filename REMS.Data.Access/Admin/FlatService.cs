@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using REMS.Data.Access.Master;
+using REMS.Data.Access.Sale;
 using REMS.Data.CustomModel;
 using REMS.Data.DataModel;
 using System;
@@ -17,20 +18,24 @@ namespace REMS.Data.Access.Admin
         int AddFlats(int TotalFloor, int FlatOrder, List<int> FlatNo, List<bool> PreIncrement, List<PLCModel> pmodel, string username, int towerID, string FltType, string FltTSize);
         string FlatCreateBody();
         int AddNewFlat(Flat flat);
-        int EditFlat(Flat flat);
+        int EditFlat(Flat flat,string userName);
         int EditFlatStatus(int flatid, string status);
         int DeleteFlat(int flatid);
         FlatModel GetFlatByID(int flatid);
         List<FlatModel> GetFlatsByFloorID(int floorid);
         bool CheckFlatNo(string flatno, int towerID);
-        int UpdateFlatTypeAllTowerPerFloor(UpdateFlatTypeModel model);
-        int UpdateFlatTypePerTowerAllFloor(UpdateFlatTypeModel model);
-        int UpdateFlatTypePerTowerPerFloor(UpdateFlatTypeModel model);
+        int UpdateFlatTypeAllTowerPerFloor(UpdateFlatTypeModel model, string userName);
+        int UpdateFlatTypePerTowerAllFloor(UpdateFlatTypeModel model, string userName);
+        int UpdateFlatTypePerTowerPerFloor(UpdateFlatTypeModel model,string userName);
 
         FlatDetailModel GetFlatDetails(int FlatID);
         List<FlatModel> GetFlatListByTowerID(int towerid);
+        List<FlatModel> GetReservedFlatListByTowerID(int towerid);
+        List<FlatPLCModel> GetFlatPLCList(int flatID);
+        List<FlatOChargeModel> GetFlatOChargeList(int flatid);
+        List<FlatChargeModel> GetFlatChargeList(int flatid);
     }
-    public class FlatService : IFlatService
+    public class FlatService :SaleFlatService, IFlatService
     {
         public int AddFloor(int towerID, int florno, string username)
         {
@@ -206,7 +211,7 @@ namespace REMS.Data.Access.Admin
             }
         }
 
-        public int EditFlat(Flat flat)
+        public int EditFlat(Flat flat,string userName)
         {
             using (REMSDBEntities context = new REMSDBEntities())
             {
@@ -215,6 +220,8 @@ namespace REMS.Data.Access.Admin
                     context.Flats.Add(flat);
                     context.Entry(flat).State = EntityState.Modified;
                     int i = context.SaveChanges();
+                    // Update SaleFlat Status
+                    UpdateFlatSaleStatus(flat.FlatID,userName, "Regenerate");
                     return i;
                 }
                 catch (Exception ex)
@@ -293,8 +300,13 @@ namespace REMS.Data.Access.Admin
         {
             REMSDBEntities context = new REMSDBEntities();
             var model = context.Flats.Where(fl => fl.FlatID == flatid).FirstOrDefault();
+           
             Mapper.CreateMap<Flat, FlatModel>();
             var md = Mapper.Map<Flat, FlatModel>(model);
+            md.FloorName= model.Floor.FloorName;
+            md.ProjectName = model.Floor.Tower.Project.PName;
+            md.CompanyName = model.Floor.Tower.Project.CompanyName;
+            md.ProjectID = model.Floor.Tower.ProjectID;
             return md;
         }
         public List<FlatModel> GetFlatsByFloorID(int floorid)
@@ -310,7 +322,7 @@ namespace REMS.Data.Access.Admin
             return false;
         }
 
-        public int UpdateFlatTypeAllTowerPerFloor(UpdateFlatTypeModel model)
+        public int UpdateFlatTypeAllTowerPerFloor(UpdateFlatTypeModel model,string userName)
         {
             TowerService ts = new TowerService();
             FloorService fs = new FloorService();
@@ -327,12 +339,12 @@ namespace REMS.Data.Access.Admin
                     flat.FlatType = model.FlatType;
                     Mapper.CreateMap<FlatModel, Flat>().ForMember(dest => dest.FlatPLCs, gest => gest.Ignore());
                     var flt = Mapper.Map<FlatModel, Flat>(flat);
-                    EditFlat(flt);
+                    EditFlat(flt,userName);
                 }
             }
             return 1;
         }
-        public int UpdateFlatTypePerTowerAllFloor(UpdateFlatTypeModel model)
+        public int UpdateFlatTypePerTowerAllFloor(UpdateFlatTypeModel model,string userName)
         {
             TowerService ts = new TowerService();
             FloorService fs = new FloorService();
@@ -348,12 +360,12 @@ namespace REMS.Data.Access.Admin
                     flat.FlatType = model.FlatType;
                     Mapper.CreateMap<FlatModel, Flat>().ForMember(dest => dest.FlatPLCs, gest => gest.Ignore());
                     var flt = Mapper.Map<FlatModel, Flat>(flat);
-                    EditFlat(flt);
+                    EditFlat(flt,userName);
                 }
             }
             return 1;
         }
-        public int UpdateFlatTypePerTowerPerFloor(UpdateFlatTypeModel model)
+        public int UpdateFlatTypePerTowerPerFloor(UpdateFlatTypeModel model,string userName)
         {
             var flats = GetFlatsByFloorID(model.FloorID);
             foreach (var flm in flats)
@@ -363,7 +375,7 @@ namespace REMS.Data.Access.Admin
                 flat.FlatType = model.FlatType;
                 Mapper.CreateMap<FlatModel, Flat>().ForMember(dest => dest.FlatPLCs, gest => gest.Ignore());
                 var flt = Mapper.Map<FlatModel, Flat>(flat);
-                EditFlat(flt);
+                EditFlat(flt,userName);
             }
             return 1;
         }
@@ -512,14 +524,33 @@ namespace REMS.Data.Access.Admin
             Mapper.CreateMap<Flat, FlatDetailModel>();
             FlatDetailModel model = new FlatDetailModel();
             model = Mapper.Map<Flat, FlatDetailModel>(flmodel);
+            model.FlatSize = flmodel.FlatSize;
+            model.FlatSizeUnit = flmodel.FlatSizeUnit;
+            model.SalePrice = flmodel.SalePrice;
+            // Floor
             var flor = context.Floors.Where(fl => fl.FloorID == model.FloorID).FirstOrDefault();
             model.FloorName = flor.FloorName;
             model.FloorNo = flor.FloorNo;
+            // Tower
             var twr = context.Towers.Where(tw => tw.TowerID == flor.TowerID).FirstOrDefault();
             model.TowerID = twr.TowerID;
             model.TowerName = twr.TowerName;
             model.TowerNo = twr.TowerNo;
             model.Block = twr.Block;
+            model.ProjectName = twr.Project.PName;
+            model.CompanyName = twr.Project.CompanyName;
+           
+            // Sale Flat
+            var flatSale = context.SaleFlats.Where(fl => fl.FlatID == FlatID).ToList();
+            List<SaleFlatModel> fSaleModel = new List<SaleFlatModel>();
+            foreach (SaleFlat sale in flatSale)
+            {
+                Mapper.CreateMap<SaleFlat, SaleFlatModel>().ForMember(ds => ds.SaleDateSt, sc => sc.MapFrom(ds => ds.SaleDate.Value.ToString("dd/MM/yyyy")));
+                var mdl = Mapper.Map<SaleFlat, SaleFlatModel>(sale);
+                fSaleModel.Add(mdl);
+            }
+            model.SaleFlatModel=fSaleModel;
+            // Flat PLC
             var fmodel = context.FlatPLCs.Where(pl => pl.FlatID == FlatID).ToList();
             List<FlatPLCModel> FlatPLCList = new List<FlatPLCModel>();
             foreach (FlatPLC fp in fmodel)
@@ -532,6 +563,7 @@ namespace REMS.Data.Access.Admin
                 FlatPLCList.Add(fpm);
             }
             model.FlatPLCList = FlatPLCList;
+            // Flat Charge
             var amodel = context.FlatCharges.Where(fc => fc.FlatID == FlatID).ToList();
             List<FlatChargeModel> FlatChargeList = new List<FlatChargeModel>();
             foreach (var ac in amodel)
@@ -555,8 +587,11 @@ namespace REMS.Data.Access.Admin
                 }
                 FlatChargeList.Add(acmodel);
             }
+            // Flat Plan Charge
             model.FlatPlanCharge = context.Rem_GetFlatPlanCharge(FlatID).ToList();
+            // Plan Sumary
             model.ChargeSummaryList = context.spPlanSummary(model.FlatSize);
+            // Flat Other Charge
             var flatOCModel = context.FlatOCharges.Where(p => p.FlatID == FlatID).ToList();
             List<FlatOChargeModel> fomodel = new List<FlatOChargeModel>();
             foreach (var md in flatOCModel)
@@ -596,9 +631,94 @@ namespace REMS.Data.Access.Admin
             var mdl= Mapper.Map<List<Flat>, List<FlatModel>>(model);
             return mdl;
         }
+        public List<FlatModel> GetReservedFlatListByTowerID(int towerid)
+        {
+            REMSDBEntities dbContext = new REMSDBEntities();
+            var model = dbContext.Flats.Where(fl => fl.Floor.TowerID == towerid && fl.Status != "Available").ToList();
+            Mapper.CreateMap<Flat, FlatModel>();
+            var mdl = Mapper.Map<List<Flat>, List<FlatModel>>(model);
+            return mdl;
+        }
 
-        
-       
+        public List<FlatPLCModel> GetFlatPLCList(int flatID)
+        {
+            REMSDBEntities context = new REMSDBEntities();
+            var flmodel = context.Flats.Where(fl => fl.FlatID == flatID).FirstOrDefault();
+
+            var fmodel = context.FlatPLCs.Where(pl => pl.FlatID == flatID).ToList();
+            List<FlatPLCModel> FlatPLCList = new List<FlatPLCModel>();
+            foreach (FlatPLC fp in fmodel)
+            {
+                Mapper.CreateMap<FlatPLC, FlatPLCModel>();
+                var fpm = Mapper.Map<FlatPLC, FlatPLCModel>(fp);
+                fpm.PLCName = fp.PLC.PLCName;
+                fpm.AmountSqFt = fp.PLC.AmountSqFt;
+                fpm.TotalAmount = fp.PLC.AmountSqFt * flmodel.FlatSize;
+                FlatPLCList.Add(fpm);
+            }
+            return FlatPLCList;
+        }
+        public List<FlatOChargeModel> GetFlatOChargeList(int flatid)
+        {
+            REMSDBEntities context = new REMSDBEntities();
+            var flmodel = context.Flats.Where(fl => fl.FlatID == flatid).FirstOrDefault();
+            var flatOCModel = context.FlatOCharges.Where(p => p.FlatID == flatid).ToList();
+            List<FlatOChargeModel> fomodel = new List<FlatOChargeModel>();
+            foreach (var md in flatOCModel)
+            {
+                Mapper.CreateMap<FlatOCharge, FlatOChargeModel>();
+                var mdl = Mapper.Map<FlatOCharge, FlatOChargeModel>(md);
+                mdl.ChargeName = md.AddOnCharge.Name;
+                mdl.ChargeType = md.AddOnCharge.ChargeType;
+                mdl.Amount = md.AddOnCharge.Amount;
+                decimal? tamt = 0;
+                if (md.AddOnCharge.ChargeType == "Free")
+                {
+                    tamt = 0;
+                }
+                else if (md.AddOnCharge.ChargeType == "Sq. Ft.")
+                {
+                    tamt = md.AddOnCharge.Amount * flmodel.FlatSize;
+                }
+                else if (md.AddOnCharge.ChargeType == "One Time")
+                {
+                    tamt = md.AddOnCharge.Amount;
+                }
+                mdl.TotalAmount = tamt;
+                fomodel.Add(mdl);
+            }
+            return fomodel;
+        }
+        public List<FlatChargeModel> GetFlatChargeList(int flatid)
+        {
+            REMSDBEntities context = new REMSDBEntities();
+            // Flat Charge
+            var flmodel = context.Flats.Where(fl => fl.FlatID == flatid).FirstOrDefault();
+
+            var amodel = context.FlatCharges.Where(fc => fc.FlatID == flatid).ToList();
+            List<FlatChargeModel> FlatChargeList = new List<FlatChargeModel>();
+            foreach (var ac in amodel)
+            {
+                Mapper.CreateMap<FlatCharge, FlatChargeModel>();
+                var acmodel = Mapper.Map<FlatCharge, FlatChargeModel>(ac);
+                acmodel.ChargeName = ac.AdditionalCharge.Name;
+                acmodel.Amount = ac.AdditionalCharge.Amount;
+                acmodel.ChargeType = ac.AdditionalCharge.ChargeType;
+                if (acmodel.ChargeType == "Free")
+                {
+                    acmodel.TotalAmount = 0;
+                }
+                else if (acmodel.ChargeType == "Sq. Ft.")
+                {
+                    acmodel.TotalAmount = ac.AdditionalCharge.Amount * flmodel.FlatSize;
+                }
+                else if (acmodel.ChargeType == "One Time")
+                {
+                    acmodel.TotalAmount = ac.AdditionalCharge.Amount;
+                }
+                FlatChargeList.Add(acmodel);
+            }
+            return FlatChargeList;
+        }
     }
-
 }

@@ -5,15 +5,17 @@
 
 
 
-
+@section topright{
+<div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+    <h1 class="page-title txt-color-blueDark"><i class="fa fa-file-o"></i> View Demand Letter </h1>
+</div>
+}
 
 <div data-ng-app="BIApp" role="main">
     <!-- MAIN CONTENT -->
     <div id="content" data-ng-controller="ReportController">
         <div class="row">
-            <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
-                <h1 class="page-title txt-color-blueDark"><i class="fa fa-file-o"></i> View Demand Letter </h1>
-            </div>
+          
             <input type="hidden" value="" id="hdnSaleID" />
             <input type="hidden" value="" id="hdnSarchType" />
 
@@ -65,9 +67,6 @@
                                                         <select name="TowerID" class="form-control" data-ng-change="TowerChange()" data-ng-model="Flat.TowerID" id="Towerid" required>
                                                             <option data-ng-repeat="pro in TowerList" value="{{ pro.ProjectID }}">{{pro.TowerName }}</option>
                                                         </select>
-                                                        @*<select name="PropertyID" data-ng-change="PropertyName()" data-ng-model="newCust.PropertyID" id="PropertyID" class="form-control">
-                                                        <option data-ng-repeat="pro in Properties" value="{{ pro.PropertyID }}">{{ pro.PropertyName }}</option>
-                                                    </select>*@
                                                     </div>
                                                     <div class="col-md-3">
                                                         <b>Search By:</b><br />
@@ -89,7 +88,6 @@
                                                     </div>
                                                 </div>
                                                 <div class="row" id="datediv">
-
                                                     <div class="col-md-4" style="display: none">
                                                         <b>Date To:</b>
                                                         <input type="date" name="dateto" id="dateto" class="form-control" />
@@ -99,7 +97,7 @@
                                                 <br />
                                                 <div class="row">
                                                     <div class="col-md-12">
-                                                        <div class="table-responsive">
+                                                        <div class="table-responsive"  id="rptTableContent">
                                                             <table class="table table-bordered table-striped particular_tbl">
                                                                 <thead>
                                                                     <tr>
@@ -140,7 +138,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-
                                             @*}*@
                                         </div>
                                     </div>

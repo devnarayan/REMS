@@ -2,24 +2,27 @@
     ViewBag.Title = "CalculatePrice";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@section topright{
+<div class="row">
+    <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+        <h1 class="page-title txt-color-blueDark">
+            <!-- PAGE HEADER -->
+            <i class="fa-fw fa fa-flag"></i>
+            Flat Price View
+            <span>
+                >
+                Details
+            </span>
+        </h1>
+    </div>
+    <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+        <!-- Button trigger modal -->
+    </div>
+</div>
+}
 
 <div id="content" data-ng-app="SaleApp" data-ng-controller="PropertyController">
-    <div class="row">
-        <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-            <h1 class="page-title txt-color-blueDark">
-                <!-- PAGE HEADER -->
-                <i class="fa-fw fa fa-flag"></i>
-                Flat Price View
-                <span>
-                    >
-                    Details
-                </span>
-            </h1>
-        </div>
-        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-            <!-- Button trigger modal -->
-        </div>
-    </div>
+   
     <div id="MessageArea" class="alert alert-block alert-{{MessageClass}}" style="display:none;">
         <a class="close" data-dismiss="alert" href="#">×</a>
         <h4 class="alert-heading"><i class="fa fa-check-square-o"></i> {{MessageTitle}}</h4>

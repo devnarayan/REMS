@@ -7,6 +7,7 @@ myApp.controller('TransferPropertyController', function ($scope, $http, $filter)
 
     $scope.TransferProeprtyInit=function()
     {
+        $("#divTrans").hide();
         var flatid = $("#hidFlatID").val();
         if (flatid == "0") {
             $("#Newsaletower").show();
@@ -22,6 +23,16 @@ myApp.controller('TransferPropertyController', function ($scope, $http, $filter)
                 params: { flatid: flatid },
             }).success(function (data) {
                 $scope.FlatDetails = data;
+                if ($scope.FlatDetails.Status == "Available") {
+                    $("#MessageArea").show();
+                    $scope.MessageClass = "danger";
+                    $scope.MessageTitle = "Error";
+                    $scope.Message = "Flat is available to sale, can't transfer";
+                }
+                else {
+                    $("#divTrans").show();
+                    $("#MessageArea").hide();
+                }
                 var totalPLC = 0;
                 var GtotalPLC = 0;
                 for (var i = 0; i < $scope.FlatDetails.FlatPLCList.length; i++) {
@@ -130,7 +141,7 @@ myApp.controller('TransferPropertyController', function ($scope, $http, $filter)
                 $http({
                     method: 'Get',
                     url: '/Sale/Property/GetFlatInstallmentWithCharges',
-                    params: { flatid: flatid, flatsize: $scope.FlatDetails.FlatSize }
+                    params: { flatid: flatid, flatsize: $scope.FlatDetails.FlatSize, version: 0 }
                 }).success(function (data) {
                     $scope.FlatInstallmentList = data;
                     if (data == "") {
@@ -371,7 +382,7 @@ myApp.controller('TransferPropertyController', function ($scope, $http, $filter)
                                             $http({
                                                 method: 'Get',
                                                 url: '/Sale/Property/GetFlatInstallmentWithCharges',
-                                                params: { flatid: flatid, flatsize: $scope.FlatDetails.FlatSize }
+                                                params: { flatid: flatid, flatsize: $scope.FlatDetails.FlatSize, version: 0 }
                                             }).success(function (data) {
                                                 $scope.FlatInstallmentList = data;
                                                 alert(flatid)
@@ -441,7 +452,7 @@ myApp.controller('TransferPropertyController', function ($scope, $http, $filter)
         $http({
             method: 'Get',
             url: '/Sale/Property/GetFlatInstallmentWithCharges',
-            params: { flatid: flatid, flatsize: $scope.FlatDetails.FlatSize }
+            params: { flatid: flatid, flatsize: $scope.FlatDetails.FlatSize, version: 0 }
         }).success(function (data) {
             $scope.FlatInstallmentList = data;
 
@@ -555,28 +566,111 @@ myApp.controller('TransferPropertyController', function ($scope, $http, $filter)
         var flatid = $("#hidFlatID").val();
         var saleid = $("#custId").val();
         var OldCustId = $("#custmerid").val();
+        var apptitle = $("#ddlAppTitle").find(":selected").val();
         var Fname = $("#NewCustFname").val();
         var Mname = $("#NewCustMname").val();
         var Lname = $("#NewCustLname").val();
-        var Amount = $("#GAmount").val();
+        var Amount = $("#txtTAmount").val();
+        var TDate = $("#txtTDate").val();
+        $("#loading").show();
         $http({
             method: 'Post',
             url: '/Sale/Property/SaleFlatTransfer',
-            data: { FName: Fname, MName: Mname, LName: Lname, salecustid: saleid,OldCustId:OldCustId, TransferAmount: Amount }
+            data: {AppTitle:apptitle, FName: Fname, MName: Mname, LName: Lname, salecustid: saleid,OldCustId:OldCustId, TransferAmount: Amount,TDate:TDate }
         }).success(function (data) {
-            //if (data == "Yes") {
+            var ata = data;
+            ata = ata.replace('"','').replace('"','');
+            if (ata == "Yes") {
                 $("#MessageArea").show();
                 $scope.MessageClass = "success";
                 $scope.MessageTitle = "Success";
-                $scope.Message = "Successfully Transfer";
-            //}
-            //else {
-            //    $("#MessageArea").show();
-            //    $scope.MessageClass = "danger";
-            //    $scope.MessageTitle = "Error";
-            //    $scope.Message = "Successfully Not Transfer "+" , Please try again.";
-            //}
+                $scope.Message = "Successfully Transfered";
+            }
+            else {
+                $("#MessageArea").show();
+                $scope.MessageClass = "danger";
+                $scope.MessageTitle = "Error";
+                $scope.Message = "Successfully Not Transfer , Please try again.";
+            }
+            $("#loading").hide();
         })
     }
+
+    $scope.TransferChange = function () {
+       
+        var trans = $("#TransferID").find(":selected").val();
+        if (trans == "Transfer Flat") {
+            $("#divTower").hide();
+            $("#divFlat").show();
+        }
+        else if(trans=="Transfer Tower"){
+            $("#divTower").show();
+            $("#divFlat").show();
+        }
+        else if (trans == "Transfer Project" || trans=="Transfer Company") {
+            $("#divTower").show();
+            $("#divFlat").show();
+        }
+    }
+    $scope.ChangeTower2 = function () {
+
+        $scope.Tower2Name = $("#ddlTower").find(":selected").text();
+        $("#loading").show();
+        $http({
+            method: 'Get',
+            url: '/Admin/CreateProperty/GetFlatByTowerID',
+            params: { towerid: $scope.Trans.TowerID }
+        }).success(function (data) {
+            $scope.FlatList2 = data;
+            $("#loading").hide();
+        })
+    }
+    $scope.ChangeFlat = function () {
+
+        $("#loading").show();
+        $http({
+            method: 'Get',
+            url: '/Admin/CreateProperty/getFlatByID',
+            params: { flatid: $scope.Trans.FlatID }
+        }).success(function (data) {
+            $scope.FlatDetails2 = data;
+            $("#loading").hide();
+            if ($scope.FlatDetails2.Status != "Available") {
+                $("#MessageArea").show();
+                $scope.MessageClass = "danger";
+                $scope.MessageTitle = "Error";
+                $scope.Message = "Flat is not available to sale";
+                $("#btnTransfer").hide();
+            }
+            else {
+                $("#MessageArea").hide();
+                $("#btnTransfer").show();
+            }
+        });
+    }
+
+    
+    $scope.ConfirmedTransferProperty = function () {
+        $("#btnConfirmSave").hide();
+        $("#loading").show();
+        $http({
+            method: 'Post',
+            url: '/Customer/Transfer/TranserPropertySave',
+            data: { curFlatID: $scope.Flat.FlatID, newFlatID: $scope.Trans.FlatID, saleID: $scope.FlatDetails.SaleFlatModel[0].SaleID, transferType: $scope.Flat.TransferID }
+        }).success(function (data) {
+            $("#loading").hide();
+                $("#MessageArea").show();
+                $scope.MessageClass = "success";
+                $scope.MessageTitle = "Success";
+                $scope.Message = "Property Transfered Successfully.";
+        }).error(function (error) {
+            $("#loading").hide();
+            $("#MessageArea").show();
+            $scope.MessageClass = "danger";
+            $scope.MessageTitle = "Error";
+            $scope.Message = "Please try agian, something missing";
+        });
+    }
+
     $("#loading").hide();
 })

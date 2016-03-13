@@ -38,3 +38,17 @@ E:\Project Data\REMS\1.Source Code\REMS_New\REMS.Test\bin\Debug\REMS.Test.pdb
 E:\Project Data\REMS\1.Source Code\REMS_New\REMS.Test\obj\Debug\5. REMS.Test.csprojResolveAssemblyReference.cache
 E:\Project Data\REMS\1.Source Code\REMS_New\REMS.Test\obj\Debug\REMS.Test.dll
 E:\Project Data\REMS\1.Source Code\REMS_New\REMS.Test\obj\Debug\REMS.Test.pdb
+E:\ComaxCosulting\1. SourceCode\REMSGit\REMS.Test\bin\Debug\LoadTest1.loadtest
+E:\ComaxCosulting\1. SourceCode\REMSGit\REMS.Test\bin\Debug\REMS.Test.dll
+E:\ComaxCosulting\1. SourceCode\REMSGit\REMS.Test\bin\Debug\REMS.Test.pdb
+E:\ComaxCosulting\1. SourceCode\REMSGit\REMS.Test\bin\Debug\Microsoft.VisualStudio.QualityTools.LoadTestFramework.dll
+E:\ComaxCosulting\1. SourceCode\REMSGit\REMS.Test\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+E:\ComaxCosulting\1. SourceCode\REMSGit\REMS.Test\bin\Debug\Microsoft.VisualStudio.QualityTools.WebTestFramework.dll
+E:\ComaxCosulting\1. SourceCode\REMSGit\REMS.Test\bin\Debug\Microsoft.VisualStudio.QualityTools.Common.dll
+E:\ComaxCosulting\1. SourceCode\REMSGit\REMS.Test\bin\Debug\Microsoft.VisualStudio.QualityTools.LoadTestFramework.xml
+E:\ComaxCosulting\1. SourceCode\REMSGit\REMS.Test\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.xml
+E:\ComaxCosulting\1. SourceCode\REMSGit\REMS.Test\bin\Debug\Microsoft.VisualStudio.QualityTools.WebTestFramework.xml
+E:\ComaxCosulting\1. SourceCode\REMSGit\REMS.Test\bin\Debug\Microsoft.VisualStudio.QualityTools.Common.xml
+E:\ComaxCosulting\1. SourceCode\REMSGit\REMS.Test\obj\Debug\5. REMS.Test.csprojResolveAssemblyReference.cache
+E:\ComaxCosulting\1. SourceCode\REMSGit\REMS.Test\obj\Debug\REMS.Test.dll
+E:\ComaxCosulting\1. SourceCode\REMSGit\REMS.Test\obj\Debug\REMS.Test.pdb

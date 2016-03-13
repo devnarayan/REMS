@@ -56,14 +56,14 @@ namespace REMS.Data.Access.Master
                 }
             }
         }
-        public int DeleteAdditionalCharge(AdditionalCharge model)
+        public int DeleteAdditionalCharge(int model)
         {
             using (REMSDBEntities context = new REMSDBEntities())
             {
                 try
                 {
-                    context.AdditionalCharges.Add(model);
-                    context.Entry(model).State = EntityState.Deleted;
+                    var mdl = context.AdditionalCharges.Where(ad => ad.AdditionalChargeID == model).FirstOrDefault();
+                    context.Entry(mdl).State = EntityState.Deleted;
                     int i = context.SaveChanges();
                     return i;
                 }

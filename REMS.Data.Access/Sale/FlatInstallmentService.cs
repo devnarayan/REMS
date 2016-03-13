@@ -2,6 +2,7 @@
 using REMS.Data.Access.Admin;
 using REMS.Data.DataModel;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -15,17 +16,20 @@ namespace REMS.Data.Access.Sale
         int AddFlatInstallment(FlatInstallmentDetailModel flatModel);
         int DeleteFlatInstallment(int flatid);
         List<FlatInstallmentDetailModel> GetFlatInstallment(int flatid);
-        List<FlatInstallmentDetailModel> GetFlatInstallmentWithCharges(int flatid, decimal flatsize);
+        List<FlatInstallmentDetailModel> GetFlatInstallmentWithCharges(int flatid, decimal flatsize,int version);
+        List<int?> GetInstallmentVersion(int flatid);
     }
 
-    public class FlatInstallmentService : IFlatInstallmentService
+    public class FlatInstallmentService :BaseActivity, IFlatInstallmentService
     {
         #region Private Fields
         private readonly REMSDBEntities dbContext;
+        private readonly DataFunctions context;
         #endregion
         public FlatInstallmentService()
         {
             dbContext = new REMSDBEntities();
+            context = new DataFunctions();
         }
         public int AddFlatInstallment(FlatInstallmentDetailModel flatModel)
         {
@@ -50,14 +54,17 @@ namespace REMS.Data.Access.Sale
 
         public int DeleteFlatInstallment(int flatid)
         {
-            var model = dbContext.FlatInstallmentDetails.Where(fl => fl.FlatID == flatid).ToList();
-            int i = 0;
-            foreach (var md in model)
-            {
-                dbContext.FlatInstallmentDetails.Add(md);
-                dbContext.Entry(md).State = EntityState.Deleted;
-                i = dbContext.SaveChanges();
-            }
+            Hashtable htable = new Hashtable();
+            htable.Add("FlatID", flatid);
+           int i= context.ExecuteSP("spDeleteInstallment", htable);
+            //var model = dbContext.FlatInstallmentDetails.Where(fl => fl.FlatID == flatid).ToList();
+            //int i = 0;
+            //foreach (var md in model)
+            //{
+            //    dbContext.FlatInstallmentDetails.Add(md);
+            //    dbContext.Entry(md).State = EntityState.Deleted;
+            //    i = dbContext.SaveChanges();
+            //}
             return i;
         }
         public List<FlatInstallmentDetailModel> GetFlatInstallment(int flatid)
@@ -67,9 +74,9 @@ namespace REMS.Data.Access.Sale
             var model = Mapper.Map<List<FlatInstallmentDetail>, List<FlatInstallmentDetailModel>>(mdl);
             return model;
         }
-        public List<FlatInstallmentDetailModel> GetFlatInstallmentWithCharges(int flatid, decimal flatsize)
+        public List<FlatInstallmentDetailModel> GetFlatInstallmentWithCharges(int flatid, decimal flatsize,int version)
         {
-            var mdl = dbContext.FlatInstallmentDetails.Where(fl => fl.FlatID == flatid).ToList();
+            var mdl = dbContext.FlatInstallmentDetails.Where(fl => fl.FlatID == flatid && fl.InsVersion==version).ToList();
             FlatPLCService fps = new FlatPLCService();
             FlatChargeService fcs = new FlatChargeService();
             FlatOChargeService fos = new FlatOChargeService();
@@ -118,5 +125,11 @@ namespace REMS.Data.Access.Sale
             }
             return modl;
         }
+        public List<int?> GetInstallmentVersion(int flatid)
+        {
+           var version= dbContext.FlatInstallmentDetails.Where(fs => fs.FlatID == flatid).Select(fs => fs.InsVersion).Distinct().ToList();
+            return version;
+        }
+       
     }
 }

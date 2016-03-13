@@ -33,6 +33,7 @@ namespace REMS.Data
         public Nullable<decimal> AdditionalPer { get; set; }
         public Nullable<decimal> OptionalPer { get; set; }
         public Nullable<int> InstallmentServiceTaxID { get; set; }
+        public Nullable<int> InsVersion { get; set; }
     
         public virtual Flat Flat { get; set; }
         public virtual PlanInstallment PlanInstallment { get; set; }

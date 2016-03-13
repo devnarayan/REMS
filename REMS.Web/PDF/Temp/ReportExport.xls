@@ -2,98 +2,230 @@
                                                             <table class="table table-bordered table-striped particular_tbl">
                                                                 <thead>
                                                                     <tr>
-                                                                        <th data-ng-click="reverse=!reverse;orderSearchList('TransferDateSt', reverse)" class="pointer">Transfer Date <i class="fa fa-sort-down"></i> </th>
-                                                                        <th data-ng-click="reverse=!reverse;orderSearchList('SaleDateSt', reverse)" class="pointer">Sale Date <i class="fa fa-sort-down"></i> </th>
-                                                                        <th data-ng-click="reverse=!reverse;orderSearchList('TransferAmount', reverse)" class="pointer">Amount <i class="fa fa-sort-down"></i> </th>
-                                                                        <th data-ng-click="reverse=!reverse;orderSearchList('PropertyName', reverse)" class="pointer">PropertyName  <i class="fa fa-sort-down"></i> </th>
-                                                                        <th data-ng-click="reverse=!reverse;orderSearchList('CustomerFrom', reverse)" class="pointer">CustomerFrom  <i class="fa fa-sort-down"></i> </th>
-                                                                        <th data-ng-click="reverse=!reverse;orderSearchList('CustomerTo', reverse)" class="pointer">CustomerTo <i class="fa fa-sort-down"></i> </th>
-                                                                        <th data-ng-click="reverse=!reverse;orderSearchList('NewPlanType', reverse)" class="pointer">PlanType <i class="fa fa-sort-down"></i> </th>
+                                                                        <th><input type="checkbox" name="selectall" id="selectall" onchange="checkall()"> <b>All</b></th>
+                                                                        <th>CustomerName&gt;</th>
+                                                                        <th>FlatNo </th>
+                                                                        <th>Letter Date</th>
+                                                                        <th>Due Date</th>
+                                                                        <th>BSP Total </th>
+                                                                        <th>BSP Paid </th>
+                                                                        <th>PLC Total</th>
+                                                                        <th>PLC Paid</th>
+                                                                        <th>AC Total</th>
+                                                                        <th>AC Paid</th>
+                                                                        <th>AOC Total</th>
+                                                                        <th>AOC Paid</th>
+                                                                        <th>S. Tax Total</th>
+                                                                        <th>S. Tax Paid</th>
+                                                                        <th>Late Total</th>
+                                                                        <th>Late Paid</th>
+                                                                        <th>Transfer Total</th>
+                                                                        <th>Transfer Paid</th>
+                                                                        <th>Clearance Total</th>
+                                                                        <th>Clearance Paid</th>
+                                                                        
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody>
                                                                     <!-- ngRepeat: sr in SearchList --><tr data-ng-repeat="sr in SearchList" class="ng-scope">
-                                                                        <td class="ng-binding">20-05-2015</td>
-                                                                        <td class="ng-binding">20-05-2015</td>
-                                                                        <td class="ng-binding">942840</td>
-                                                                        <td class="ng-binding">130</td>
-                                                                        <td class="ng-binding">Mr. user test mnage lname</td>
-                                                                        <td class="ng-binding"> Mr. New UserName Mname LLname</td>
-                                                                        <td class="ng-binding"> </td>
+                                                                        <td><input type="checkbox" class="selectone" name="selectone" id="12" value="12"></td>
+                                                                        <td class="ng-binding"> test mname lname</td>
+                                                                        <td class="ng-binding">150</td>
+                                                                        <td class="ng-binding">17-10-2015</td>
+                                                                        <td class="ng-binding">17-10-2015</td>
+                                                                        <td class="ng-binding">3</td>
+                                                                        <td class="ng-binding">0</td>
+                                                                        <td class="ng-binding">2</td>
+                                                                        <td class="ng-binding">5</td>
+                                                                        <td class="ng-binding">5</td>
+                                                                        <td class="ng-binding">5</td>
+                                                                        <td class="ng-binding">5</td>
+                                                                        <td class="ng-binding">5</td>
+                                                                        <td class="ng-binding">5</td>
+                                                                        <td class="ng-binding">4</td>
+                                                                        <td class="ng-binding">6</td>
+                                                                        <td class="ng-binding">5</td>
+                                                                        <td class="ng-binding">5</td>
+                                                                        <td class="ng-binding">5</td>
+                                                                        <td class="ng-binding"></td>
+                                                                        <td class="ng-binding"></td>
                                                                     </tr><!-- end ngRepeat: sr in SearchList --><tr data-ng-repeat="sr in SearchList" class="ng-scope">
-                                                                        <td class="ng-binding">20-05-2015</td>
-                                                                        <td class="ng-binding">20-05-2015</td>
-                                                                        <td class="ng-binding">942840</td>
-                                                                        <td class="ng-binding">130</td>
-                                                                        <td class="ng-binding">Mr. user test mnage lname</td>
-                                                                        <td class="ng-binding"> test test2 test3</td>
-                                                                        <td class="ng-binding"> </td>
+                                                                        <td><input type="checkbox" class="selectone" name="selectone" id="12" value="12"></td>
+                                                                        <td class="ng-binding"> test mname lname</td>
+                                                                        <td class="ng-binding">150</td>
+                                                                        <td class="ng-binding">17-10-2015</td>
+                                                                        <td class="ng-binding">17-10-2015</td>
+                                                                        <td class="ng-binding">1031688300</td>
+                                                                        <td class="ng-binding">0</td>
+                                                                        <td class="ng-binding">3100377</td>
+                                                                        <td class="ng-binding">0</td>
+                                                                        <td class="ng-binding">28800</td>
+                                                                        <td class="ng-binding">0</td>
+                                                                        <td class="ng-binding">1511400</td>
+                                                                        <td class="ng-binding">0</td>
+                                                                        <td class="ng-binding">0</td>
+                                                                        <td class="ng-binding">4000</td>
+                                                                        <td class="ng-binding">0</td>
+                                                                        <td class="ng-binding">0</td>
+                                                                        <td class="ng-binding">0</td>
+                                                                        <td class="ng-binding">0</td>
+                                                                        <td class="ng-binding"></td>
+                                                                        <td class="ng-binding"></td>
                                                                     </tr><!-- end ngRepeat: sr in SearchList --><tr data-ng-repeat="sr in SearchList" class="ng-scope">
-                                                                        <td class="ng-binding">22-05-2015</td>
-                                                                        <td class="ng-binding">20-05-2015</td>
-                                                                        <td class="ng-binding">942840</td>
-                                                                        <td class="ng-binding">130</td>
-                                                                        <td class="ng-binding">Mr. user test mnage lname</td>
-                                                                        <td class="ng-binding"> navdeep2  singh</td>
-                                                                        <td class="ng-binding"> </td>
+                                                                        <td><input type="checkbox" class="selectone" name="selectone" id="12" value="12"></td>
+                                                                        <td class="ng-binding"> test mname lname</td>
+                                                                        <td class="ng-binding">150</td>
+                                                                        <td class="ng-binding">17-10-2015</td>
+                                                                        <td class="ng-binding">17-10-2015</td>
+                                                                        <td class="ng-binding">1031688300</td>
+                                                                        <td class="ng-binding">0</td>
+                                                                        <td class="ng-binding">3100377</td>
+                                                                        <td class="ng-binding">0</td>
+                                                                        <td class="ng-binding">28800</td>
+                                                                        <td class="ng-binding">0</td>
+                                                                        <td class="ng-binding">1511400</td>
+                                                                        <td class="ng-binding">0</td>
+                                                                        <td class="ng-binding">0</td>
+                                                                        <td class="ng-binding">4000</td>
+                                                                        <td class="ng-binding">0</td>
+                                                                        <td class="ng-binding">0</td>
+                                                                        <td class="ng-binding">0</td>
+                                                                        <td class="ng-binding">0</td>
+                                                                        <td class="ng-binding"></td>
+                                                                        <td class="ng-binding"></td>
                                                                     </tr><!-- end ngRepeat: sr in SearchList --><tr data-ng-repeat="sr in SearchList" class="ng-scope">
-                                                                        <td class="ng-binding">27-05-2015</td>
-                                                                        <td class="ng-binding">20-05-2015</td>
-                                                                        <td class="ng-binding">3000</td>
-                                                                        <td class="ng-binding">130</td>
-                                                                        <td class="ng-binding"> Mr. New UserName Mname LLname</td>
-                                                                        <td class="ng-binding"> Mr. Dev N Nagar</td>
-                                                                        <td class="ng-binding"> </td>
+                                                                        <td><input type="checkbox" class="selectone" name="selectone" id="13" value="13"></td>
+                                                                        <td class="ng-binding">   </td>
+                                                                        <td class="ng-binding">140</td>
+                                                                        <td class="ng-binding">17-10-2015</td>
+                                                                        <td class="ng-binding">17-10-2015</td>
+                                                                        <td class="ng-binding">1031688300</td>
+                                                                        <td class="ng-binding">0</td>
+                                                                        <td class="ng-binding">352794907</td>
+                                                                        <td class="ng-binding">0</td>
+                                                                        <td class="ng-binding">28800</td>
+                                                                        <td class="ng-binding">0</td>
+                                                                        <td class="ng-binding">191195400</td>
+                                                                        <td class="ng-binding">0</td>
+                                                                        <td class="ng-binding">0</td>
+                                                                        <td class="ng-binding">4000</td>
+                                                                        <td class="ng-binding">0</td>
+                                                                        <td class="ng-binding">0</td>
+                                                                        <td class="ng-binding">0</td>
+                                                                        <td class="ng-binding">0</td>
+                                                                        <td class="ng-binding"></td>
+                                                                        <td class="ng-binding"></td>
                                                                     </tr><!-- end ngRepeat: sr in SearchList --><tr data-ng-repeat="sr in SearchList" class="ng-scope">
-                                                                        <td class="ng-binding">26-05-2015</td>
-                                                                        <td class="ng-binding">20-05-2015</td>
-                                                                        <td class="ng-binding">3200</td>
-                                                                        <td class="ng-binding">130</td>
-                                                                        <td class="ng-binding"> navdeep2  singh</td>
-                                                                        <td class="ng-binding"> Dev Narayan Nagar</td>
-                                                                        <td class="ng-binding"> </td>
+                                                                        <td><input type="checkbox" class="selectone" name="selectone" id="20" value="20"></td>
+                                                                        <td class="ng-binding">   </td>
+                                                                        <td class="ng-binding">122</td>
+                                                                        <td class="ng-binding">17-10-2015</td>
+                                                                        <td class="ng-binding">17-10-2015</td>
+                                                                        <td class="ng-binding">1031688300</td>
+                                                                        <td class="ng-binding">120000</td>
+                                                                        <td class="ng-binding">110446000</td>
+                                                                        <td class="ng-binding">0</td>
+                                                                        <td class="ng-binding">48000</td>
+                                                                        <td class="ng-binding">40000</td>
+                                                                        <td class="ng-binding">0</td>
+                                                                        <td class="ng-binding">0</td>
+                                                                        <td class="ng-binding">11340</td>
+                                                                        <td class="ng-binding">900004000</td>
+                                                                        <td class="ng-binding">0</td>
+                                                                        <td class="ng-binding">100</td>
+                                                                        <td class="ng-binding">0</td>
+                                                                        <td class="ng-binding">2100</td>
+                                                                        <td class="ng-binding"></td>
+                                                                        <td class="ng-binding"></td>
                                                                     </tr><!-- end ngRepeat: sr in SearchList --><tr data-ng-repeat="sr in SearchList" class="ng-scope">
-                                                                        <td class="ng-binding">26-05-2015</td>
-                                                                        <td class="ng-binding">20-05-2015</td>
-                                                                        <td class="ng-binding">400</td>
-                                                                        <td class="ng-binding">130</td>
-                                                                        <td class="ng-binding"> Mr. Dev N Nagar</td>
-                                                                        <td class="ng-binding"> Namrata Dev Nagar</td>
-                                                                        <td class="ng-binding"> </td>
+                                                                        <td><input type="checkbox" class="selectone" name="selectone" id="12" value="12"></td>
+                                                                        <td class="ng-binding"> test mname lname</td>
+                                                                        <td class="ng-binding">150</td>
+                                                                        <td class="ng-binding">17-10-2015</td>
+                                                                        <td class="ng-binding">17-10-2015</td>
+                                                                        <td class="ng-binding">1031688300</td>
+                                                                        <td class="ng-binding">0</td>
+                                                                        <td class="ng-binding">3100377</td>
+                                                                        <td class="ng-binding">0</td>
+                                                                        <td class="ng-binding">28800</td>
+                                                                        <td class="ng-binding">0</td>
+                                                                        <td class="ng-binding">1511400</td>
+                                                                        <td class="ng-binding">0</td>
+                                                                        <td class="ng-binding">0</td>
+                                                                        <td class="ng-binding">4000</td>
+                                                                        <td class="ng-binding">0</td>
+                                                                        <td class="ng-binding">0</td>
+                                                                        <td class="ng-binding">0</td>
+                                                                        <td class="ng-binding">0</td>
+                                                                        <td class="ng-binding"></td>
+                                                                        <td class="ng-binding"></td>
                                                                     </tr><!-- end ngRepeat: sr in SearchList --><tr data-ng-repeat="sr in SearchList" class="ng-scope">
-                                                                        <td class="ng-binding">26-05-2015</td>
-                                                                        <td class="ng-binding">20-05-2015</td>
-                                                                        <td class="ng-binding">39</td>
-                                                                        <td class="ng-binding">130</td>
-                                                                        <td class="ng-binding"> Dev Narayan Nagar</td>
-                                                                        <td class="ng-binding"> dev d dev</td>
-                                                                        <td class="ng-binding"> </td>
+                                                                        <td><input type="checkbox" class="selectone" name="selectone" id="12" value="12"></td>
+                                                                        <td class="ng-binding"> test mname lname</td>
+                                                                        <td class="ng-binding">150</td>
+                                                                        <td class="ng-binding">17-10-2015</td>
+                                                                        <td class="ng-binding">17-10-2015</td>
+                                                                        <td class="ng-binding">1031688300</td>
+                                                                        <td class="ng-binding">0</td>
+                                                                        <td class="ng-binding">3100377</td>
+                                                                        <td class="ng-binding">0</td>
+                                                                        <td class="ng-binding">28800</td>
+                                                                        <td class="ng-binding">0</td>
+                                                                        <td class="ng-binding">1511400</td>
+                                                                        <td class="ng-binding">0</td>
+                                                                        <td class="ng-binding">0</td>
+                                                                        <td class="ng-binding">4000</td>
+                                                                        <td class="ng-binding">0</td>
+                                                                        <td class="ng-binding">0</td>
+                                                                        <td class="ng-binding">0</td>
+                                                                        <td class="ng-binding">0</td>
+                                                                        <td class="ng-binding"></td>
+                                                                        <td class="ng-binding"></td>
                                                                     </tr><!-- end ngRepeat: sr in SearchList --><tr data-ng-repeat="sr in SearchList" class="ng-scope">
-                                                                        <td class="ng-binding">26-05-2015</td>
-                                                                        <td class="ng-binding">20-05-2015</td>
-                                                                        <td class="ng-binding">303</td>
-                                                                        <td class="ng-binding">130</td>
-                                                                        <td class="ng-binding"> Namrata Dev Nagar</td>
-                                                                        <td class="ng-binding"> Dev N NAAR</td>
-                                                                        <td class="ng-binding"> </td>
+                                                                        <td><input type="checkbox" class="selectone" name="selectone" id="12" value="12"></td>
+                                                                        <td class="ng-binding"> test mname lname</td>
+                                                                        <td class="ng-binding">150</td>
+                                                                        <td class="ng-binding">17-10-2015</td>
+                                                                        <td class="ng-binding">17-10-2015</td>
+                                                                        <td class="ng-binding">1031688300</td>
+                                                                        <td class="ng-binding">0</td>
+                                                                        <td class="ng-binding">3100377</td>
+                                                                        <td class="ng-binding">0</td>
+                                                                        <td class="ng-binding">28800</td>
+                                                                        <td class="ng-binding">0</td>
+                                                                        <td class="ng-binding">1511400</td>
+                                                                        <td class="ng-binding">0</td>
+                                                                        <td class="ng-binding">0</td>
+                                                                        <td class="ng-binding">4000</td>
+                                                                        <td class="ng-binding">0</td>
+                                                                        <td class="ng-binding">0</td>
+                                                                        <td class="ng-binding">0</td>
+                                                                        <td class="ng-binding">0</td>
+                                                                        <td class="ng-binding"></td>
+                                                                        <td class="ng-binding"></td>
                                                                     </tr><!-- end ngRepeat: sr in SearchList --><tr data-ng-repeat="sr in SearchList" class="ng-scope">
-                                                                        <td class="ng-binding">26-05-2015</td>
-                                                                        <td class="ng-binding">20-05-2015</td>
-                                                                        <td class="ng-binding">400</td>
-                                                                        <td class="ng-binding">130</td>
-                                                                        <td class="ng-binding"> dev d dev</td>
-                                                                        <td class="ng-binding"> namrata N Dev</td>
-                                                                        <td class="ng-binding"> </td>
-                                                                    </tr><!-- end ngRepeat: sr in SearchList --><tr data-ng-repeat="sr in SearchList" class="ng-scope">
-                                                                        <td class="ng-binding">26-05-2015</td>
-                                                                        <td class="ng-binding">20-05-2015</td>
-                                                                        <td class="ng-binding">343</td>
-                                                                        <td class="ng-binding">130</td>
-                                                                        <td class="ng-binding"> Dev N NAAR</td>
-                                                                        <td class="ng-binding"> dev n nagar</td>
-                                                                        <td class="ng-binding"> </td>
+                                                                        <td><input type="checkbox" class="selectone" name="selectone" id="12" value="12"></td>
+                                                                        <td class="ng-binding"> test mname lname</td>
+                                                                        <td class="ng-binding">150</td>
+                                                                        <td class="ng-binding">17-10-2015</td>
+                                                                        <td class="ng-binding">17-10-2015</td>
+                                                                        <td class="ng-binding">1031688300</td>
+                                                                        <td class="ng-binding">0</td>
+                                                                        <td class="ng-binding">3100377</td>
+                                                                        <td class="ng-binding">0</td>
+                                                                        <td class="ng-binding">28800</td>
+                                                                        <td class="ng-binding">0</td>
+                                                                        <td class="ng-binding">1511400</td>
+                                                                        <td class="ng-binding">0</td>
+                                                                        <td class="ng-binding">0</td>
+                                                                        <td class="ng-binding">4000</td>
+                                                                        <td class="ng-binding">0</td>
+                                                                        <td class="ng-binding">0</td>
+                                                                        <td class="ng-binding">0</td>
+                                                                        <td class="ng-binding">0</td>
+                                                                        <td class="ng-binding"></td>
+                                                                        <td class="ng-binding"></td>
                                                                     </tr><!-- end ngRepeat: sr in SearchList -->
-                                                                    <tr><td><b>Total</b></td><td><b class="ng-binding">2836205</b></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
                                                                 </tbody>
                                                             </table>
                                                         

@@ -2,23 +2,26 @@
     ViewBag.Title = "Search";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div data-ng-app="BrokerApp" role="main">
-    <div class="row">
-        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-            <h1 class="page-title txt-color-blueDark">
-                <!-- PAGE HEADER -->
-                <i class="fa-fw fa fa-flag"></i>
-                Customer
-                <span>
-                    >
-                    Edit broker
-                </span>
-            </h1>
-        </div>
-        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+@section topright{
+<div class="row">
+    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+        <h1 class="page-title txt-color-blueDark">
+            <!-- PAGE HEADER -->
+            <i class="fa-fw fa fa-flag"></i>
+            Customer
+            <span>
+                >
+                Edit broker
+            </span>
+        </h1>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
 
-        </div>
-    </div>    
+    </div>
+</div>  
+}
+<div data-ng-app="BrokerApp" role="main">
+     
     <div id="MessageArea" class="alert alert-block alert-{{MessageClass}}" style="display:none;">
         <a class="close" data-dismiss="alert" href="#">×</a>
         <h4 class="alert-heading"><i class="fa fa-check-square-o"></i> {{MessageTitle}}</h4>

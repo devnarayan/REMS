@@ -17,8 +17,8 @@ app.controller('MyCtrl', [ '$scope', '$http', '$timeout', '$compile', '$upload',
 			window.location.hash.substring(2): window.location.hash.substring(1)) : '1.2.20';
 
 	$scope.Error = "";
-	$http.get('/flat/GetPropertyList/').success(function (response) { $scope.Properties = response; });
-	$http.get('/flat/GetBanks/').success(function (response) { $scope.Banks = response; });
+	//$http.get('/flat/GetPropertyList/').success(function (response) { $scope.Properties = response; });
+	//$http.get('/flat/GetBanks/').success(function (response) { $scope.Banks = response; });
 
 	$scope.UplaodInint = function () {
 	    $('#loading').show();
@@ -90,13 +90,14 @@ app.controller('MyCtrl', [ '$scope', '$http', '$timeout', '$compile', '$upload',
 
 	}
 	$scope.TowerChange = function () {
+	    $("#loading").show();
 	    $http({
 	        method: 'Get',
 	        url: '/Admin/CreateProperty/GetFlatByTowerID',
 	        params: { towerid: $scope.Flat.TowerID }
 	    }).success(function (data) {
 	        $scope.FlatList = data;
-
+	        $("#loading").hide();
 	    })
 	}
 	$scope.SearchPropertyForGenAgreement = function () {

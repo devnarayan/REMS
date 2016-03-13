@@ -2,13 +2,16 @@
     ViewBag.Title = "Search";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@section topright{
+<div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+    <h1 class="page-title txt-color-blueDark"><i class="fa fa-shopping-cart"></i> Property Monthly Sale </h1>
+</div>
+}
 <div data-ng-app="BIApp" role="main">
     <!-- MAIN CONTENT -->
     <div id="content" data-ng-controller="ReportController">
         <div class="row">
-            <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
-                <h1 class="page-title txt-color-blueDark"><i class="fa fa-shopping-cart"></i> Property Monthly Sale </h1>
-            </div>
+           
             <div class="col-xs-12 col-sm-5 col-md-5 col-lg-8">
                 <br />
                 <div class="row">

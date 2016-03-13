@@ -24,7 +24,7 @@ myApp.controller('OtherPaymentController', function ($scope, $http, $filter) {
         $http({
             method: 'Get',
             url: '/Admin/CreateProperty/GetFlatByTowerID',
-            params: { towerid: $scope.Flat.TowerID }
+            params: { towerid: $scope.FlatSearch.TowerID }
         }).success(function (data) {
             $scope.FlatList = data;
             $("#loading").hide();
@@ -33,7 +33,7 @@ myApp.controller('OtherPaymentController', function ($scope, $http, $filter) {
 
     $scope.SearchFlat = function () {
         $('#loading').show();
-        $("#hidFlatID").val($scope.Flat.FlatID);
+        $("#hidFlatID").val($scope.FlatSearch.FlatID);
         var pid = $("#hidFlatID").val();
         if (pid > 0 && pid != null) {
             GetOtherPayment(pid);
@@ -105,7 +105,7 @@ myApp.controller('OtherPaymentController', function ($scope, $http, $filter) {
             }
             $scope.TotalBSPAmount = tinstall;
             $scope.TotalInstallmentAmount = tinstalltotal;
-            $scope.TotalInstallTax = tinstalltotal;
+            $scope.TotalInstallTax = tinstalltax;
 
             var tplc = 0;
             for (var i = 0; i < $scope.FlatPLC.length; i++) {
@@ -179,7 +179,7 @@ myApp.controller('OtherPaymentController', function ($scope, $http, $filter) {
             var OT = 0;
             for (var i = 0; i < $scope.PaymentOther.length; i++) {
                 var list = $scope.PaymentOther;
-                if (list[i].PaymentFor == "Installment Service Tax") {
+                if (list[i].PaymentFor == "BSP Service Tax") {
                     ST += list[i].Amount;
                 }
                 else if (list[i].PaymentFor == "Late Payment Charges") {
@@ -222,35 +222,43 @@ myApp.controller('OtherPaymentController', function ($scope, $http, $filter) {
         var vli = ValidateSubmitPayment();
         if (vli == false) {
             $('#loading').hide();
-            $('#myModal').modal('show');
+            $('#myErrorModal').modal('show');
         }
         else {
-            $('#loading').show();
-            $.ajax({
-                method: 'POST',
-                url: '/Sale/Payment/InsertOtherPayments',
-                data: { InstallmentNo: $("#ddlPayment").find(":selected").text(), Saleid: $("#SaleID").val(), Flatname: $("#FlatName").val(), PaymentMode: $("#PaymentMode").val(), ChequeNo: $("#ChequeNo").val(), ChequeDate: $("#chequeDate").val(), BankName: $("#BankName").find(":selected").text(), BankBranch: $("#BankBranch").val(), Remarks: $("#Remarks").val(), PayDate: $("#paymentDate").val(), Amtrcvdinwrds: $("#PaymentAmountInWords").val(), ReceivedAmount: $("#ReceivedAmount").val(), IsPrint: $("#chkPrint").is(":checked"), IsEmailSent: $("#chkSendEmail").is(":checked"), EmailTo: $("#txtSendEmail").val(), CustomerName: $("#hidCustomerName").val(), CustomerID: $("#hidCustomerID").val() },
-            }).success(function (data) { //Showing success message $scope.status = "The Person Saved Successfully!!!";
-                if (data != "No") {
-                    alert("Payment Details has been saved successfully!");
-                    //OPaymentConfirm();
-                    if ($("#chkPrint").is(":checked") == true)
-                        window.open(data, '_blank');
-                    $scope.GetOtherPayment($("#hidFlatID").val());
-                }
-                else {
-                    alert("Payment Details has been saved successfully !!!");
-                    $scope.Error = 'Unable to save Payment Details: ';
-                }
-                $('#btnSubmitPayment').show();
+            var v2 = ValidateSubmitedAmountPayment();
+            if (v2 == false) {
                 $('#loading').hide();
-                // $scope.Error = 'Payment Details saved successfully.';
-            }).error(function (error) {
-                alert("Payment Details Not Saved !!!");
-                $scope.Error = 'Unable to save Payment Details: ' + error.message;
-                $('#btnSubmitPayment').show();
-                $('#loading').hide();
-            });
+                $('#myErrorModal').modal('show');
+            }
+            else {
+                $('#btnSubmitPayment').hide();
+                $('#loading').show();
+                $.ajax({
+                    method: 'POST',
+                    url: '/Sale/Payment/InsertOtherPayments',
+                    data: { InstallmentNo: $("#ddlPayment").find(":selected").text(), Saleid: $("#SaleID").val(), Flatname: $("#FlatName").val(), PaymentMode: $("#PaymentMode").val(), ChequeNo: $("#ChequeNo").val(), ChequeDate: $("#chequeDate").val(), BankName: $("#BankName").find(":selected").text(), BankBranch: $("#BankBranch").val(), Remarks: $("#Remarks").val(), PayDate: $("#paymentDate").val(), Amtrcvdinwrds: $("#PaymentAmountInWords").val(), ReceivedAmount: $("#ReceivedAmount").val(), IsPrint: $("#chkPrint").is(":checked"), IsEmailSent: $("#chkSendEmail").is(":checked"), EmailTo: $("#txtSendEmail").val(), CustomerName: $("#hidCustomerName").val(), CustomerID: $("#hidCustomerID").val() },
+                }).success(function (data) { //Showing success message $scope.status = "The Person Saved Successfully!!!";
+                    if (data != "No") {
+                        alert("Payment Details has been saved successfully!");
+                        //OPaymentConfirm();
+                        if ($("#chkPrint").is(":checked") == true)
+                            window.open(data, '_blank');
+                        GetOtherPayment($("#hidFlatID").val());
+                    }
+                    else {
+                        alert("Payment Details has been saved successfully !!!");
+                        $scope.Error = 'Unable to save Payment Details: ';
+                    }
+                    $('#btnSubmitPayment').show();
+                    $('#loading').hide();
+                    // $scope.Error = 'Payment Details saved successfully.';
+                }).error(function (error) {
+                    alert("Payment Details Not Saved !!!");
+                    $scope.Error = 'Unable to save Payment Details: ' + error.message;
+                    $('#btnSubmitPayment').show();
+                    $('#loading').hide();
+                });
+            }
         }
         // end save payment.
     }
@@ -284,19 +292,71 @@ myApp.controller('OtherPaymentController', function ($scope, $http, $filter) {
             }
         }
 
-        if ($("#DueAmount").val() == "") {
-            vl = false;
-            message += "Please insert Due Amount.<br/>";
-        }
-        if ($("#TotalAmount").val() == "") {
-            vl = false;
-            message += "Please insert Total Amount. <br/>";
-        }
-        if ($("#PaymentAmountInWords").val() == "") {
+        //if ($("#DueAmount").val() == "") {
+        //    vl = false;
+        //    message += "Please insert Due Amount.<br/>";
+        //}
+        //if ($("#TotalAmount").val() == "") {
+        //    vl = false;
+        //    message += "Please insert Total Amount. <br/>";
+        //}
+        else if ($("#PaymentAmountInWords").val() == "") {
             vl = false;
             message += "Please insert Amount in words.";
         }
+      
 
+        $("#ErrorMessage").html(message);
+        return vl;
+    }
+    function ValidateSubmitedAmountPayment() {
+        $('#loading').hide();
+        var vl = true;
+        var message = "";
+        $scope.PaymentForText=$("#ddlPayment").find(":selected").text();
+        if ($scope.PaymentForText == "BSP Service Tax") {
+            if (($scope.TotalInstallTax - $scope.TotalST) < $("#ReceivedAmount").val()) {
+                 vl = false;
+                 message += "Received amount can't more then payable " + $scope.PaymentForText + " . <br/>";
+            }
+        }
+        else if ($scope.PaymentForText == "Late Payment Charges") {
+            if (($scope.TotalLatePayment -$scope.TotalLP) < $("#ReceivedAmount").val()) {
+                vl = false;
+                message += "Received amount can't more then payable " + $scope.PaymentForText + " . <br/>";
+            }
+        }
+        else if ($scope.PaymentForText == "Transfer Fee") {
+          
+            if (($scope.TotalPropertyTransfer - $scope.TotalTP) < $("#ReceivedAmount").val()) {
+                vl = false;
+                message += "Received amount can't more then payable " + $scope.PaymentForText + " . <br/>";
+            }
+        }
+        else if ($scope.PaymentForText == "Clearance Charges") {
+            if (($scope.TotalPaymentClearance - $scope.TotalCC) < $("#ReceivedAmount").val()) {
+                vl = false;
+                message += "Received amount can't more then payable " + $scope.PaymentForText + " . <br/>";
+            }
+        }
+        else if ($scope.PaymentForText == "PLC Service Tax") {
+            if (($scope.TotalFlatPLC - $scope.TotalPT) < $("#ReceivedAmount").val()) {
+                vl = false;
+                message += "Received amount can't more then payable " + $scope.PaymentForText + " . <br/>";
+            }
+        }
+        else if ($scope.PaymentForText == "Additional Charge Tax") {
+            if (($scope.TotalFlatCharge - $scope.TotalAT) < $("#ReceivedAmount").val()) {
+                vl = false;
+                message += "Received amount can't more then payable " + $scope.PaymentForText + " . <br/>";
+            }
+        }
+        else if ($scope.PaymentForText == "AddOn Charge Tax") {
+            if (($scope.TotalFlatOCharge - $scope.TotalOT) < $("#ReceivedAmount").val()) {
+                vl = false;
+                message += "Received amount can't more then payable " + $scope.PaymentForText + " . <br/>";
+            }
+        }
         $("#ErrorMessage").html(message);
         return vl;
     }

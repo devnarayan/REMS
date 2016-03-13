@@ -3,25 +3,28 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@section topright{
+
+<div class="row">
+    <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+        <h1 class="page-title txt-color-blueDark">
+            <!-- PAGE HEADER -->
+            <i class="fa-fw fa fa-flag"></i>
+            Floor
+            <span>
+                >
+                Manage
+            </span>
+        </h1>
+    </div>
+    <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+        <!-- Button trigger modal -->
+    </div>
+</div>
+}
 <!-- MAIN CONTENT -->
 <div id="content" data-ng-app="PropertyApp" data-ng-controller="PropertyController">
    
-    <div class="row">
-        <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-            <h1 class="page-title txt-color-blueDark">
-                <!-- PAGE HEADER -->
-                <i class="fa-fw fa fa-flag"></i>
-                Floor
-                <span>
-                    >
-                    Manage
-                </span>
-            </h1>
-        </div>
-        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-            <!-- Button trigger modal -->
-        </div>
-    </div>
     <div id="MessageArea" class="alert alert-block alert-{{MessageClass}}" style="display:none;">
         <a class="close" data-dismiss="alert" href="#">×</a>
         <h4 class="alert-heading"><i class="fa fa-check-square-o"></i> {{MessageTitle}}</h4>
@@ -103,7 +106,7 @@
                                     <button type="button" id="btnCancel" data-ng-click="CancelFloorSave()" class="btn btn-default">
                                         Cancel
                                     </button>
-                                    <button type="button" id="btnUpdate" data-ng-click="UpdateFloorSave()" class="btn btn-primary">
+                                    <button type="submit" id="btnUpdate" data-ng-click="UpdateFloorSave()" class="btn btn-primary">
                                         Update
                                     </button>
                                     <button type="submit" data-ng-click="AddFloorSave()" id="btnSave" class="btn btn-primary">

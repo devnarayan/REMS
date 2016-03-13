@@ -11,93 +11,76 @@
     <link href="~/Content/css/your_style.css" rel="stylesheet" />
     <script src="~/Scripts/angular.js"></script>
     <script src="~/AgController/Reportjs.js"></script>
-    @*<script src="~/Scripts/moment.min.js"></script>
-    <script src="~/Scripts/moment-with-locales.min.js"></script>
-    <script src="~/Scripts/angular.js"></script>
-    <link rel="stylesheet" type="text/css" media="screen" href="~/Content/css/style.css">
-    <script src="~/Scripts/ngController/Reportjs.js"></script>*@
-    @* <script src="~/Scripts/ngController/ManagePayjs.js"></script>*@
 </head>
 <body data-ng-app="BIApp" lang="EN-US">
     <div id="ReceiptPritable" data-ng-controller="ReportController">
         <div id="loading">
-            <img id="loading-image" src="~/images/loading.gif" alt="Loading..." />
+            <img id="loading-image" src="~/Content/img/loading2.gif" alt="Loading..." />
         </div>
         <div data-ng-init="DemandLetterPrintPrintAction()">
             <input type="hidden" id="hidID" name="hidID" value="@ViewBag.ID" />
             <div data-ng-repeat="pr in PrintReceiptList">
                 <div>
-                    <b style="font-size: 15px">
-                            <p style="text-align: center">DEMAND LETTER </p>
-                            To,<span style="float: right">Date: {{pr.LetterDateSt}}</span>
-                            <br />
-                            <br />
-                            <br />
-                            {{pr.CustomerName}}
+                    <p style="font-size: 15px; margin-left:50px;">
+                        <span style="float: right">Date: {{pr.LetterDateSt}}</span>
+                        <br />
+                        <b>With Ref. Application No. {{pr.ID}}</b><br />
+                        <b>{{pr.CustomerName}}</b><br />
+                        <b>{{pr.Address1}}</b>
+                        <b>{{pr.Address2}} {{pr.City}} {{pr.State}}</b><br />
+                        <b>{{pr.Country}}</b>
                         <br />
                         <br />
-Dear Sir/Madam,
-                            <br />
-                            <br />
-                            <br />
-
-                           
-                            <p style="margin-left:50px">
-                            Re: Property as Booked by you in the Project Called {{pr.ProjectName}}.
-                                </p>
+                        <b>Sub.</b> Installment Due of unit No <b> T{{pr.TowerNo}}/{{pr.FlatNo}} </b> in <b>{{pr.ProjectName}}</b>
+                        Situated  at <b>{{pr.PropertyAddress}}</b>.
                         <br />
-                            <br />
-                            <br />
-                           
-                            We refer to the allotment letter dated {{pr.LetterDateSt}} whereby you were allotted COMMERCIAL CUM
-OFFICE SPACE NO. {{pr.FlatName}} at {{pr.PropertyAddress}}, the details of which were duly explained to
-you.
                         <br />
-                            <br />
-                            <br />
-                            <br />
-                            The detailed schedule of payment was also duly intimated to you while giving the said
-letter of allotment and you were required to pay the installments of the property
-under the specific payment plan as per the said schedule of payment Amount of Rs. {{pr.DueAmount}}  is due as per our records, it seems that the same has not been paid.
+                        <b>Dear Sir/Madam,</b>
                         <br />
-                            We do hereby request you to kind remit the said amount of RS.{{pr.DueAmount}} on or before
-date {{pr.DueDateST}} lest you shall be liable to pay interest thereof {{pr.InterestRate}} % per annum.
-However, in case you have already made the said payment, you are requested to
-
-provide us with the necessary copies of the same.<br />
-                            <br />
-                            <br />
-                            <br />
-                            Thanking you and assuring you of our cooperation at all times.
-Yours Faithfully,
-                        <br /><br />
-                            For {{pr.CompanyName}}
-                    </b>
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                </div>
-
+                        <br />
+                        <br />
+                        This is with Reference to above-noted unit’s payment schedule where by the installment falls due on {{pr.InstallmentInfo}}.
+                        Installment pending of Rs {{pr.BSPPending}} + {{pr.STaxPending}} (Service Tax) + {{pr.PLCPending}} (PLC Amount) + {{pr.OtherPending}} (Other Pending Amount) <br /><br />
+                        <br /><br /><br />
+                        Total amount is Rs. {{pr.DueAmountSt}}	<br /><br />
+                        Kindly note that delayed payment shall attract further interest.<br /><br />
+                        For any query resolution, we welcome you to contact on this No.{{pr.ContactNo}}. <br /><br />
+                        Assuring you of our best attention always.
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <b>
+                            With Regards-<br />
+                            {{pr.AuthorityPerson}}<br />
+                            Mob- {{pr.ContactNo}} <br />
+                            Email ID- {{pr.AuthEmail}}<br />
+                            {{pr.CompanyName}}<br />
+                            {{pr.CompanyAddress}}<br />
+                            NOTE: Kindly make the payment within 15 days from the date of issue of this letter.
+                        </b>
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                    </div>
             </div>
         </div>
     </div>
     <script src="~/Scripts/jquery-2.1.3.min.js"></script>
-    @*<script src="~/Content/js/jquery-1.7.2.min.js"></script>
-    <script src="~/Content/js/jquery-ui-1.8.19.custom.min.js"></script>
-    <link href="~/Content/css/jquery-ui-1.8.19.custom.css" rel="stylesheet" />*@
 </body>
 </html>

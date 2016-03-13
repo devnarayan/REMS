@@ -36,5 +36,9 @@ namespace REMS.Data
         public string CrBy { get; set; }
         public string Status { get; set; }
         public string[] FlatPLCs { get; set; }
+        public string FloorName { get; set; }
+        public string ProjectName { get; set; }
+        public Nullable<int> ProjectID { get; set; }
+        public string CompanyName { get; set; }
     }
 }

@@ -103,6 +103,7 @@ myApp.controller('AdChargeController', function ($scope, $http, $filter) {
         });
     }
     $scope.EditAdditionalOCharge = function (additionalChargeid) {
+        $scope.additionalChargeid = additionalChargeid;
         $("#loading").show();
         $http({
             method: 'Get',
@@ -123,6 +124,37 @@ myApp.controller('AdChargeController', function ($scope, $http, $filter) {
             $("#loading").hide();
         })
 
+    }
+    $scope.DeleteAdditionalCharge = function () {
+        $("#loading").show();
+        $http({
+            method: 'Get',
+            url: '/Master/AOCharge/DeleteAddOnCharge',
+            params: { additionalChargeid: $scope.additionalChargeid }
+        }).success(function (data) {
+            $("#myModal").modal('hide');
+            $http({
+                method: 'Get',
+                url: '/Master/AOCharge/AddOnChargeList',
+                params: {}
+            }).success(function (data) {
+                $scope.AdditionalChargeList = data;
+            }).error(function (error) {
+                $("#MessageArea").show();
+                $scope.MessageTitle = "Error";
+                $scope.MessageClass = "alert-danger";
+                $scope.Message = "Optional Charge Record can't loaded.";
+            })
+            $("#loading").hide();
+        }).error(function (error) {
+            $("#MessageArea").show();
+            $scope.MessageTitle = "Error";
+            $scope.MessageClass = "alert-danger";
+            $scope.Message = "Optional Charge Record can't loaded.";
+            $("#btnEdit").hide();
+            $("#btnSave").show();
+            $("#loading").hide();
+        })
     }
     $scope.UpdateAdditionalOCharge = function () {
 

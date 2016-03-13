@@ -27,14 +27,22 @@ myApp.controller('SecurityController', function ($scope, $http, $filter) {
                     url: '/Admin/Security/AddUser',
                     data: JSON.stringify($scope.UserModel)
                 }).success(function (data) {
-                    alert(data)
+                    //  alert(data)
+                    $("#MessageArea").show();
+                    $scope.MessageClass = "success";
+                    $scope.MessageTitle = "Success";
+                    $scope.Message = "User Added Successfully ";
                     if (data == "User Added Successfully.") {
                         //  window.open(window.location.href, "_self")
                     }
                     $('#loading').hide();
 
                 }).error(function (ex) {
-                    alert(ex);
+                    //  alert(ex);
+                    $("#MessageArea").show();
+                    $scope.MessageClass = "danger";
+                    $scope.MessageTitle = "Error";
+                    $scope.Message = "Please try again.";
                     $('#loading').hide();
 
                 })
@@ -110,6 +118,8 @@ myApp.controller('SecurityController', function ($scope, $http, $filter) {
     $scope.SaveEditUserProperty = function () {
         var plist = [];
         var llist = [];
+        var IsAuth = [];
+        var NAuth = [];
 
         $('.Prolist').each(function () {
             if ($(this).is(":checked")) {
@@ -119,13 +129,21 @@ myApp.controller('SecurityController', function ($scope, $http, $filter) {
                 llist.push($(this).val());
             }
         });
+        $('.ProAuth').each(function () {
+            if ($(this).is(":checked")) {
+                IsAuth.push($(this).val());
+            }
+            else {
+                NAuth.push($(this).val());
+            }
+        });
         $scope.UserModel.ModuleIDs = plist.toString();
         $('#loading').show();
 
         $http({
             method: 'Post',
             url: '/Admin/Security/SaveUsersPropertyRights',
-            data: { username: $scope.UserModel.UserName, modulelist: $scope.UserModel.ModuleIDs, notinaccess: llist.toString() }
+            data: { username: $scope.UserModel.UserName, modulelist: $scope.UserModel.ModuleIDs, notinaccess: llist.toString(),IsAuth:IsAuth.toString(),NAuth:NAuth.toString() }
         }).success(function (data) {
             alert(data)
             $('#loading').hide();

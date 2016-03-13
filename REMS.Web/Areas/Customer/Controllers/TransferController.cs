@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Globalization;
 using System.Data.Entity;
+using System.Collections;
 
 namespace REMS.Web.Areas.Customer.Controllers
 {
@@ -20,6 +21,11 @@ namespace REMS.Web.Areas.Customer.Controllers
             return View();
         }
 
+        public ActionResult TransferCustomer(int? Id)
+        {
+            ViewBag.FlatID = Id;
+            return View();
+        }
         public ActionResult TransferProperty(int? Id)
         {
             ViewBag.FlatID = Id;
@@ -45,13 +51,13 @@ namespace REMS.Web.Areas.Customer.Controllers
             //var md = Mapper.Map<Flat, FlatModel>(model);
             //return md;
         }
-        public string GetPropertyInfoByFlatID(string fid, string saleid)        
+        public string GetPropertyInfoByFlatID(string fid, string saleid)
         {
             REMSDBEntities context = new REMSDBEntities();
             int id = Convert.ToInt32(fid);
             int selid = Convert.ToInt32(saleid);
             Dictionary<string, string> dic = new Dictionary<string, string>();
-            var fname = context.Flats.Where(f => f.FlatID == id).FirstOrDefault();            
+            var fname = context.Flats.Where(f => f.FlatID == id).FirstOrDefault();
             var fmodel = context.SaleFlats.Where(s => s.FlatID == fname.FlatID).FirstOrDefault();
 
             //int pid = (int)fmodel.PropertyID;
@@ -62,13 +68,13 @@ namespace REMS.Web.Areas.Customer.Controllers
             //string planname = context.PlanTypes.Where(p => p.PlanID == plnid).FirstOrDefault().PlanTypeName;
             dic.Add("SaleID", Convert.ToString(fmodel.SaleID));
             dic.Add("SaleDate", Convert.ToString(fmodel.SaleDate));
-            dic.Add("TotalAmount", Convert.ToString(fmodel.TotalAmount));   
-            dic.Add("FlatNo", fname.FlatNo);          
+            dic.Add("TotalAmount", Convert.ToString(fmodel.TotalAmount));
+            dic.Add("FlatNo", fname.FlatNo);
             dic.Add("FlatType", fname.FlatType);
-            dic.Add("FlatName", fname.FlatName);         
+            dic.Add("FlatName", fname.FlatName);
             dic.Add("FlatSize", Convert.ToString(fname.FlatSize));
-           // string ij = fname.FlatInstallmentDetails.FirstOrDefault().PlanInstallment.Plan.PlanName;//.PlanInstallmentID.Value;
-            dic.Add("FlatSizeUnit",fname.FlatSizeUnit);
+            // string ij = fname.FlatInstallmentDetails.FirstOrDefault().PlanInstallment.Plan.PlanName;//.PlanInstallmentID.Value;
+            dic.Add("FlatSizeUnit", fname.FlatSizeUnit);
             dic.Add("SalePrice", Convert.ToString(fmodel.TotalAmount));
             //string pname = context.tblSProperties.Where(p => p.PID == pid).FirstOrDefault().PName;
             //dic.Add("PropertyName", pname);
@@ -162,6 +168,18 @@ namespace REMS.Web.Areas.Customer.Controllers
             {
                 return Newtonsoft.Json.JsonConvert.SerializeObject(null);
             }
+        }
+        public string TranserPropertySave(int curFlatID, int newFlatID,int saleID,string transferType)
+        {
+            DataFunctions dbContext = new DataFunctions();
+            Hashtable HT = new Hashtable();
+            HT.Add("CurFlatID", curFlatID);
+            HT.Add("NewFlatID", newFlatID);
+            HT.Add("SaleID", saleID);
+            HT.Add("UserName", User.Identity.Name);
+            HT.Add("TransferType", transferType);
+            bool bl = dbContext.ExecuteProcedure("spTransferProperty", HT);
+            return Newtonsoft.Json.JsonConvert.SerializeObject(bl);
         }
     }
 }

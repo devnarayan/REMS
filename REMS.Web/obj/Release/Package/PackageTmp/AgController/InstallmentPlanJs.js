@@ -156,6 +156,44 @@ myApp.controller('InstallmentPlanController', function ($scope, $http, $filter) 
         })
 
     }
+    $scope.CancelPlanInstallment = function () {
+        $("#btnEdit").hide();
+        $("#btnSave").show();
+    }
+    $scope.DeleteInstallment = function (PlanInstallmentID) {
+        $("#loading").show();
+        $http({
+            method: 'Get',
+            url: '/Master/InstallmentPlan/DeletePlanInstallment',
+            params: { planInstallmentid: PlanInstallmentID }
+        }).success(function (data) {
+            $scope.installment = data;
+            $("#btnEdit").show();
+            $("#btnSave").hide();
+            $("#loading").hide();
+            $http({
+                method: 'Get',
+                url: '/Master/InstallmentPlan/GetPlanInstallmentByPlanID',
+                params: { planID: $("#PlanID").find(":selected").val() }
+            }).success(function (data) {
+                $scope.InstallmentPlanList = data;
+            }).error(function (error) {
+                $("#MessageArea").show();
+                $scope.MessageTitle = "Error";
+                $scope.MessageClass = "alert-danger";
+                $scope.Message = "Installment Plan Record can't loaded.";
+            });
+
+        }).error(function (error) {
+            $("#MessageArea").show();
+            $scope.MessageTitle = "Error";
+            $scope.Message = "Plan installment Record can't loaded.";
+            $("#btnEdit").hide();
+            $("#btnSave").show();
+            $("#loading").hide();
+        })
+
+    }
     $scope.UpdatePlanInstallment = function () {
 
         var $checkoutForm = $('#checkout-form').validate({

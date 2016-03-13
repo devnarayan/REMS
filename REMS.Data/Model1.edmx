@@ -4,7 +4,17 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="REMSDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="REMSDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ActivityLog">
+          <Key>
+            <PropertyRef Name="ActivityLogID" />
+          </Key>
+          <Property Name="ActivityLogID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FlatID" Type="int" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="CrDate" Type="datetime" />
+          <Property Name="Message" Type="nvarchar" MaxLength="256" />
+        </EntityType>
         <EntityType Name="AdditionalCharge">
           <Key>
             <PropertyRef Name="AdditionalChargeID" />
@@ -411,6 +421,7 @@
           <Property Name="AdditionalPer" Type="decimal" Precision="17" Scale="2" />
           <Property Name="OptionalPer" Type="decimal" Precision="17" Scale="2" />
           <Property Name="InstallmentServiceTaxID" Type="int" />
+          <Property Name="InsVersion" Type="int" />
         </EntityType>
         <EntityType Name="FlatOCharge">
           <Key>
@@ -529,6 +540,7 @@
           <Property Name="ClearanceCharge" Type="money" Nullable="false" />
           <Property Name="IsBounce" Type="bit" Nullable="false" />
           <Property Name="CustomerID" Type="int" />
+          <Property Name="PaymentType" Type="nvarchar" MaxLength="30" />
         </EntityType>
         <EntityType Name="PaymentCancel">
           <Key>
@@ -545,6 +557,44 @@
           <Property Name="CancelBy" Type="nvarchar" MaxLength="50" />
           <Property Name="UnCancelBy" Type="nvarchar" MaxLength="50" />
           <Property Name="Status" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="PaymentClearance">
+          <Key>
+            <PropertyRef Name="PaymentClearanceID" />
+          </Key>
+          <Property Name="PaymentClearanceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TransactionID" Type="bigint" Nullable="false" />
+          <Property Name="Amount" Type="money" Nullable="false" />
+          <Property Name="CrDate" Type="datetime" />
+          <Property Name="Remarks" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="PaymentDiscount">
+          <Key>
+            <PropertyRef Name="PaymentDiscountID" />
+          </Key>
+          <Property Name="PaymentDiscountID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SaleID" Type="int" Nullable="false" />
+          <Property Name="PaymentType" Type="nvarchar" MaxLength="30" />
+          <Property Name="ReqDate" Type="datetime" />
+          <Property Name="Amount" Type="money" />
+          <Property Name="Remark" Type="nvarchar" MaxLength="500" />
+          <Property Name="IsApproved" Type="bit" />
+          <Property Name="ExpiryDate" Type="datetime" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="30" />
+          <Property Name="UpdatedBy" Type="nvarchar" MaxLength="30" />
+          <Property Name="UpdatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="PaymentDiscountApproval">
+          <Key>
+            <PropertyRef Name="PaymentDiscountApprovalID" />
+          </Key>
+          <Property Name="PaymentDiscountApprovalID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PaymentDiscountID" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="30" />
+          <Property Name="IsApproved" Type="bit" />
+          <Property Name="Days" Type="int" />
+          <Property Name="UpdateDate" Type="datetime" />
+          <Property Name="Remark" Type="nvarchar" MaxLength="256" />
         </EntityType>
         <EntityType Name="PaymentMaster">
           <Key>
@@ -669,7 +719,7 @@
           <Property Name="Remarks" Type="nvarchar" MaxLength="250" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'remshh_com_remsdb.dbo.PayTransferFee' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'REMSDB.dbo.PayTransferFee' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="PayTransferFee">
           <Key>
             <PropertyRef Name="PayTransferID" />
@@ -759,6 +809,8 @@ warning 6002: The table/view 'remshh_com_remsdb.dbo.PayTransferFee' does not hav
           <Property Name="PossessionDate" Type="datetime" />
           <Property Name="ReceiptNo" Type="nvarchar" MaxLength="50" />
           <Property Name="AuthoritySign" Type="nvarchar" MaxLength="100" />
+          <Property Name="Contact" Type="nvarchar" MaxLength="30" />
+          <Property Name="AuthEmail" Type="nvarchar" MaxLength="256" />
         </EntityType>
         <EntityType Name="ProjectType">
           <Key>
@@ -797,6 +849,7 @@ warning 6002: The table/view 'remshh_com_remsdb.dbo.PayTransferFee' does not hav
           <Property Name="OldPlanType" Type="nvarchar" MaxLength="200" />
           <Property Name="NewPlanType" Type="nvarchar" MaxLength="200" />
           <Property Name="UserName" Type="nvarchar" MaxLength="200" />
+          <Property Name="TransferType" Type="nvarchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="RefundProperty">
           <Key>
@@ -824,6 +877,24 @@ warning 6002: The table/view 'remshh_com_remsdb.dbo.PayTransferFee' does not hav
           <Property Name="SaleID" Type="int" />
           <Property Name="duedate" Type="datetime" />
           <Property Name="DueAmount" Type="money" />
+          <Property Name="BSPTotal" Type="money" />
+          <Property Name="BSPPaid" Type="money" />
+          <Property Name="PLCTotal" Type="money" />
+          <Property Name="PLCPaid" Type="money" />
+          <Property Name="ACTotal" Type="money" />
+          <Property Name="ACPaid" Type="money" />
+          <Property Name="AOCTotal" Type="money" />
+          <Property Name="AOCPaid" Type="money" />
+          <Property Name="STaxTotal" Type="money" />
+          <Property Name="STaxPaid" Type="money" />
+          <Property Name="LateTotal" Type="money" />
+          <Property Name="LatePaid" Type="money" />
+          <Property Name="TransferTotal" Type="money" />
+          <Property Name="TransferPaid" Type="money" />
+          <Property Name="ClearanceTotal" Type="money" />
+          <Property Name="ClearancePaid" Type="money" />
+          <Property Name="CustomerID" Type="int" />
+          <Property Name="FlatID" Type="int" />
         </EntityType>
         <EntityType Name="RoleAccess">
           <Key>
@@ -852,6 +923,11 @@ warning 6002: The table/view 'remshh_com_remsdb.dbo.PayTransferFee' does not hav
           <Property Name="Remarks" Type="nvarchar" MaxLength="500" />
           <Property Name="ProjectID" Type="int" />
           <Property Name="DemandStatus" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="UpdateDate" Type="datetime" />
+          <Property Name="UpdateBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="PlanName" Type="nvarchar" MaxLength="256" />
         </EntityType>
         <EntityType Name="ServiceTax">
           <Key>
@@ -864,16 +940,6 @@ warning 6002: The table/view 'remshh_com_remsdb.dbo.PayTransferFee' does not hav
           <Property Name="ModifyDate" Type="datetime" />
           <Property Name="EndDate" Type="datetime" />
           <Property Name="Status" Type="bit" />
-        </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="TaxMaster">
           <Key>
@@ -947,7 +1013,20 @@ warning 6002: The table/view 'remshh_com_remsdb.dbo.PayTransferFee' does not hav
           <Property Name="UserName" Type="nvarchar" MaxLength="100" />
           <Property Name="AssignDate" Type="datetime" />
           <Property Name="AssignUser" Type="nvarchar" MaxLength="100" />
+          <Property Name="IsAuthority" Type="bit" />
         </EntityType>
+        <Association Name="FK_ActivityLog_Flat">
+          <End Role="Flat" Type="Self.Flat" Multiplicity="0..1" />
+          <End Role="ActivityLog" Type="Self.ActivityLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Flat">
+              <PropertyRef Name="FlatID" />
+            </Principal>
+            <Dependent Role="ActivityLog">
+              <PropertyRef Name="FlatID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Customer_SaleFlat">
           <End Role="SaleFlat" Type="Self.SaleFlat" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
@@ -1154,6 +1233,30 @@ warning 6002: The table/view 'remshh_com_remsdb.dbo.PayTransferFee' does not hav
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_PaymentDiscount_SaleFlat">
+          <End Role="SaleFlat" Type="Self.SaleFlat" Multiplicity="1" />
+          <End Role="PaymentDiscount" Type="Self.PaymentDiscount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SaleFlat">
+              <PropertyRef Name="SaleID" />
+            </Principal>
+            <Dependent Role="PaymentDiscount">
+              <PropertyRef Name="SaleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PaymentDiscountApproval_PaymentDiscount">
+          <End Role="PaymentDiscount" Type="Self.PaymentDiscount" Multiplicity="1" />
+          <End Role="PaymentDiscountApproval" Type="Self.PaymentDiscountApproval" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentDiscount">
+              <PropertyRef Name="PaymentDiscountID" />
+            </Principal>
+            <Dependent Role="PaymentDiscountApproval">
+              <PropertyRef Name="PaymentDiscountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_PaymentOther_SaleFlat">
           <End Role="SaleFlat" Type="Self.SaleFlat" Multiplicity="0..1" />
           <End Role="PaymentOther" Type="Self.PaymentOther" Multiplicity="*" />
@@ -1312,6 +1415,30 @@ warning 6002: The table/view 'remshh_com_remsdb.dbo.PayTransferFee' does not hav
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ReminderLetter_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="ReminderLetter" Type="Self.ReminderLetter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="ReminderLetter">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReminderLetter_Flat">
+          <End Role="Flat" Type="Self.Flat" Multiplicity="0..1" />
+          <End Role="ReminderLetter" Type="Self.ReminderLetter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Flat">
+              <PropertyRef Name="FlatID" />
+            </Principal>
+            <Dependent Role="ReminderLetter">
+              <PropertyRef Name="FlatID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ReminderLetter_SaleFlat">
           <End Role="SaleFlat" Type="Self.SaleFlat" Multiplicity="0..1" />
           <End Role="ReminderLetter" Type="Self.ReminderLetter" Multiplicity="*" />
@@ -1424,6 +1551,7 @@ warning 6002: The table/view 'remshh_com_remsdb.dbo.PayTransferFee' does not hav
           <Parameter Name="CustomerID" Type="int" Mode="In" />
           <Parameter Name="Interest" Type="bit" Mode="In" />
           <Parameter Name="CreatedBy" Type="nvarchar" Mode="In" />
+          <Parameter Name="PaymentType" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="Insert_PaymentAssuredReturn" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="SaleID" Type="int" Mode="In" />
@@ -1445,28 +1573,6 @@ warning 6002: The table/view 'remshh_com_remsdb.dbo.PayTransferFee' does not hav
           <Parameter Name="CustomerID" Type="int" Mode="In" />
           <Parameter Name="CreatedBy" Type="nvarchar" Mode="In" />
           <Parameter Name="AssuredReturnID" Type="int" Mode="In" />
-        </Function>
-        <Function Name="Insert_PaymentOther" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="SaleID" Type="int" Mode="In" />
-          <Parameter Name="InstallmentNo" Type="nvarchar" Mode="In" />
-          <Parameter Name="PaymentDate" Type="datetime" Mode="In" />
-          <Parameter Name="Amount" Type="decimal" Mode="In" />
-          <Parameter Name="PaymentMode" Type="nvarchar" Mode="In" />
-          <Parameter Name="ChequeNo" Type="varchar" Mode="In" />
-          <Parameter Name="ChequeDate" Type="datetime" Mode="In" />
-          <Parameter Name="BankName" Type="varchar" Mode="In" />
-          <Parameter Name="PaymentStatus" Type="nvarchar" Mode="In" />
-          <Parameter Name="CustomerName" Type="nvarchar" Mode="In" />
-          <Parameter Name="Remarks" Type="nvarchar" Mode="In" />
-          <Parameter Name="BankBranch" Type="nvarchar" Mode="In" />
-          <Parameter Name="AmtRcvdinwords" Type="nvarchar" Mode="In" />
-          <Parameter Name="PaymentNo" Type="nvarchar" Mode="In" />
-          <Parameter Name="IsReceipt" Type="bit" Mode="In" />
-          <Parameter Name="Activity" Type="nvarchar" Mode="In" />
-          <Parameter Name="FlatName" Type="nvarchar" Mode="In" />
-          <Parameter Name="TransactionID" Type="int" Mode="In" />
-          <Parameter Name="CustomerID" Type="int" Mode="In" />
-          <Parameter Name="CreatedBy" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="Rem_GetFlatPlanCharge" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="FlatId" Type="int" Mode="In" />
@@ -1535,41 +1641,8 @@ warning 6002: The table/view 'remshh_com_remsdb.dbo.PayTransferFee' does not hav
         <Function Name="spPlanSummary" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="FlatSize" Type="decimal" Mode="In" />
         </Function>
-        <Function Name="Update_Clearance" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="TransactionID" Type="nvarchar" Mode="In" />
-          <Parameter Name="ChargeAmount" Type="nvarchar" Mode="In" />
-          <Parameter Name="Remarks" Type="nvarchar" Mode="In" />
-          <Parameter Name="ModifyBy" Type="nvarchar" Mode="In" />
-          <Parameter Name="IsBounce" Type="nvarchar" Mode="In" />
-          <Parameter Name="ClearanceDate" Type="datetime" Mode="In" />
-        </Function>
-        <Function Name="Update_Payment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="SaleID" Type="int" Mode="In" />
-          <Parameter Name="TransactionID" Type="int" Mode="In" />
-          <Parameter Name="PaymentDate" Type="datetime" Mode="In" />
-          <Parameter Name="Amount" Type="decimal" Mode="In" />
-          <Parameter Name="PaymentMode" Type="nvarchar" Mode="In" />
-          <Parameter Name="ChequeNo" Type="varchar" Mode="In" />
-          <Parameter Name="ChequeDate" Type="datetime" Mode="In" />
-          <Parameter Name="BankName" Type="varchar" Mode="In" />
-          <Parameter Name="PaymentStatus" Type="nvarchar" Mode="In" />
-          <Parameter Name="Remarks" Type="nvarchar" Mode="In" />
-          <Parameter Name="BankBranch" Type="nvarchar" Mode="In" />
-          <Parameter Name="AmtRcvdinwords" Type="nvarchar" Mode="In" />
-          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
-          <Parameter Name="Activity" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="Update_TransferProperty" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="CustomerID" Type="int" Mode="In" />
-          <Parameter Name="FName" Type="nvarchar" Mode="In" />
-          <Parameter Name="MName" Type="nvarchar" Mode="In" />
-          <Parameter Name="LName" Type="nvarchar" Mode="In" />
-          <Parameter Name="SaleID" Type="int" Mode="In" />
-          <Parameter Name="TransferAmount" Type="nvarchar" Mode="In" />
-          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
-          <Parameter Name="TransferDate" Type="datetime" Mode="In" />
-        </Function>
         <EntityContainer Name="REMSDBModelStoreContainer">
+          <EntitySet Name="ActivityLog" EntityType="Self.ActivityLog" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AdditionalCharge" EntityType="Self.AdditionalCharge" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AddOnCharge" EntityType="Self.AddOnCharge" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Agreement" EntityType="Self.Agreement" Schema="dbo" store:Type="Tables" />
@@ -1595,6 +1668,9 @@ warning 6002: The table/view 'remshh_com_remsdb.dbo.PayTransferFee' does not hav
           <EntitySet Name="ModuleList" EntityType="Self.ModuleList" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Payment" EntityType="Self.Payment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PaymentCancel" EntityType="Self.PaymentCancel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PaymentClearance" EntityType="Self.PaymentClearance" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PaymentDiscount" EntityType="Self.PaymentDiscount" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PaymentDiscountApproval" EntityType="Self.PaymentDiscountApproval" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PaymentMaster" EntityType="Self.PaymentMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PaymentOther" EntityType="Self.PaymentOther" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PaymentOtherCancel" EntityType="Self.PaymentOtherCancel" Schema="dbo" store:Type="Tables" />
@@ -1614,7 +1690,6 @@ warning 6002: The table/view 'remshh_com_remsdb.dbo.PayTransferFee' does not hav
           <EntitySet Name="RoleAccess" EntityType="Self.RoleAccess" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SaleFlat" EntityType="Self.SaleFlat" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ServiceTax" EntityType="Self.ServiceTax" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TaxMaster" EntityType="Self.TaxMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tower" EntityType="Self.Tower" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UploadAgreement" EntityType="Self.UploadAgreement" Schema="dbo" store:Type="Tables" />
@@ -1643,6 +1718,10 @@ warning 6002: The table/view 'remshh_com_remsdb.dbo.PayTransferFee' does not hav
     [PayTransferFee].[Remarks] AS [Remarks]
     FROM [dbo].[PayTransferFee] AS [PayTransferFee]</DefiningQuery>
           </EntitySet>
+          <AssociationSet Name="FK_ActivityLog_Flat" Association="Self.FK_ActivityLog_Flat">
+            <End Role="Flat" EntitySet="Flat" />
+            <End Role="ActivityLog" EntitySet="ActivityLog" />
+          </AssociationSet>
           <AssociationSet Name="FK_Customer_SaleFlat" Association="Self.FK_Customer_SaleFlat">
             <End Role="SaleFlat" EntitySet="SaleFlat" />
             <End Role="Customer" EntitySet="Customer" />
@@ -1703,6 +1782,14 @@ warning 6002: The table/view 'remshh_com_remsdb.dbo.PayTransferFee' does not hav
             <End Role="SaleFlat" EntitySet="SaleFlat" />
             <End Role="PaymentCancel" EntitySet="PaymentCancel" />
           </AssociationSet>
+          <AssociationSet Name="FK_PaymentDiscount_SaleFlat" Association="Self.FK_PaymentDiscount_SaleFlat">
+            <End Role="SaleFlat" EntitySet="SaleFlat" />
+            <End Role="PaymentDiscount" EntitySet="PaymentDiscount" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PaymentDiscountApproval_PaymentDiscount" Association="Self.FK_PaymentDiscountApproval_PaymentDiscount">
+            <End Role="PaymentDiscount" EntitySet="PaymentDiscount" />
+            <End Role="PaymentDiscountApproval" EntitySet="PaymentDiscountApproval" />
+          </AssociationSet>
           <AssociationSet Name="FK_PaymentOther_SaleFlat" Association="Self.FK_PaymentOther_SaleFlat">
             <End Role="SaleFlat" EntitySet="SaleFlat" />
             <End Role="PaymentOther" EntitySet="PaymentOther" />
@@ -1750,6 +1837,14 @@ warning 6002: The table/view 'remshh_com_remsdb.dbo.PayTransferFee' does not hav
           <AssociationSet Name="FK_RefundProperty_SaleFlat" Association="Self.FK_RefundProperty_SaleFlat">
             <End Role="SaleFlat" EntitySet="SaleFlat" />
             <End Role="RefundProperty" EntitySet="RefundProperty" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReminderLetter_Customer" Association="Self.FK_ReminderLetter_Customer">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="ReminderLetter" EntitySet="ReminderLetter" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReminderLetter_Flat" Association="Self.FK_ReminderLetter_Flat">
+            <End Role="Flat" EntitySet="Flat" />
+            <End Role="ReminderLetter" EntitySet="ReminderLetter" />
           </AssociationSet>
           <AssociationSet Name="FK_ReminderLetter_SaleFlat" Association="Self.FK_ReminderLetter_SaleFlat">
             <End Role="SaleFlat" EntitySet="SaleFlat" />
@@ -1805,159 +1900,6 @@ warning 6002: The table/view 'remshh_com_remsdb.dbo.PayTransferFee' does not hav
           <Property Name="TaxPer" Type="Decimal" Precision="17" Scale="2" />
           <Property Name="Mandatory" Type="Boolean" />
           <NavigationProperty Name="FlatOCharges" Relationship="Self.FK_FlatOCharge_AddOnCharge" FromRole="AddOnCharge" ToRole="FlatOCharge" />
-        </EntityType>
-        <EntityType Name="Agreement">
-          <Key>
-            <PropertyRef Name="AgreementID" />
-          </Key>
-          <Property Name="AgreementID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SaleID" Type="Int32" />
-          <Property Name="AgreementAmount" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ModifyBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CrDate" Type="DateTime" Precision="3" />
-          <Property Name="ModifyDate" Type="DateTime" Precision="3" />
-          <Property Name="DocURL" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
-          <Property Name="HTMLURL" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
-          <Property Name="UploadDate" Type="DateTime" Precision="3" />
-          <Property Name="UploadBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="UploadURL" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="AllotmentLetter" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="AllotmentLetterBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="AllotmentLetterDate" Type="DateTime" Precision="3" />
-          <Property Name="WelComeLetter" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="AssuredDocURL" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
-          <Property Name="AssuredHTMLURL" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="AssuredReturn">
-          <Key>
-            <PropertyRef Name="AssuredReturnID" />
-          </Key>
-          <Property Name="AssuredReturnID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SaleID" Type="Int32" />
-          <Property Name="Duration" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Amount" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ModifyBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CrDate" Type="DateTime" Precision="3" />
-          <Property Name="ModifyDate" Type="DateTime" Precision="3" />
-          <Property Name="PropertyID" Type="Int32" />
-          <Property Name="FlatName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="MonthName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ChequeNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ChequeDate" Type="DateTime" Precision="3" />
-          <Property Name="TDS" Type="Decimal" Precision="18" Scale="2" />
-        </EntityType>
-        <EntityType Name="AssuredReturnPayment">
-          <Key>
-            <PropertyRef Name="ARPaymentID" />
-          </Key>
-          <Property Name="ARPaymentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ReceiptNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="SaleID" Type="Int32" />
-          <Property Name="PaymentDate" Type="DateTime" Precision="3" />
-          <Property Name="Amount" Type="Decimal" Precision="17" Scale="2" />
-          <Property Name="PaymentMode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="ChequeNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="BankName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ChequeDate" Type="DateTime" Precision="3" />
-          <Property Name="PaymentStatus" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="CustomerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Remarks" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="BankCharges" Type="Decimal" Precision="17" Scale="2" />
-          <Property Name="BankClearanceDate" Type="DateTime" Precision="3" />
-          <Property Name="BankBranch" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="AmtRcvdinWords" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="IsReceipt" Type="Boolean" />
-          <Property Name="Activity" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="ModifyDate" Type="DateTime" Precision="3" />
-          <Property Name="FlatName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CrDate" Type="DateTime" Precision="3" />
-          <Property Name="ModifyBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="RefundRemark" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
-          <Property Name="ClearanceCharge" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
-          <Property Name="IsBounce" Type="Boolean" Nullable="false" />
-          <Property Name="CustomerID" Type="Int32" />
-          <Property Name="AssuredReturnID" Type="Int32" />
-          <Property Name="TransactionID" Type="Int32" />
-        </EntityType>
-        <EntityType Name="BankMaster">
-          <Key>
-            <PropertyRef Name="BankID" />
-          </Key>
-          <Property Name="BankID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="BankName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="BankBranch" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="BankAddress" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="BrokerMaster">
-          <Key>
-            <PropertyRef Name="BrokerID" />
-          </Key>
-          <Property Name="BrokerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="BrokerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Address1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Address2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="MobileNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="PanNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CreateDate" Type="DateTime" Precision="3" />
-          <Property Name="ModifyDate" Type="DateTime" Precision="3" />
-          <Property Name="RecordStatus" Type="Int32" />
-        </EntityType>
-        <EntityType Name="BrokerPayment">
-          <Key>
-            <PropertyRef Name="BrokerPaymentID" />
-          </Key>
-          <Property Name="BrokerPaymentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FlatID" Type="Int32" />
-          <Property Name="SaleID" Type="Int32" />
-          <Property Name="BrokerID" Type="Int32" />
-          <Property Name="AmountPaid" Type="Decimal" Precision="17" Scale="2" />
-          <Property Name="PaidDate" Type="DateTime" Precision="3" />
-          <Property Name="PID" Type="Int32" />
-          <Property Name="CreateDate" Type="DateTime" Precision="3" />
-          <Property Name="ModifyDate" Type="DateTime" Precision="3" />
-          <Property Name="RecordStatus" Type="Int32" />
-          <Property Name="PaymentMode" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="ChequeNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ChequeDate" Type="DateTime" Precision="3" />
-          <Property Name="BankName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="BankBranch" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Remarks" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="BrokerToProperty">
-          <Key>
-            <PropertyRef Name="BrokerToPropertyID" />
-          </Key>
-          <Property Name="BrokerToPropertyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FlatID" Type="Int32" />
-          <Property Name="SaleID" Type="Int32" />
-          <Property Name="BrokerID" Type="Int32" />
-          <Property Name="BrokerAmount" Type="Decimal" Precision="17" Scale="2" />
-          <Property Name="PID" Type="Int32" />
-          <Property Name="Date" Type="DateTime" Precision="3" />
-          <Property Name="Createdate" Type="DateTime" Precision="3" />
-          <Property Name="ModifyDate" Type="DateTime" Precision="3" />
-          <Property Name="RecordStatus" Type="Int32" />
-          <Property Name="ApproveStatus" Type="Int32" />
-          <Property Name="Remarks" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
-          <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="CityMaster">
-          <Key>
-            <PropertyRef Name="CityID" />
-          </Key>
-          <Property Name="CityID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CityName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="StateName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CityCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="StateCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CrDate" Type="DateTime" Precision="3" />
-          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="AreaID" Type="Int32" />
         </EntityType>
         <EntityType Name="Customer">
           <Key>
@@ -2087,38 +2029,7 @@ warning 6002: The table/view 'remshh_com_remsdb.dbo.PayTransferFee' does not hav
           <Property Name="CrDate" Type="DateTime" Precision="3" />
           <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="SaleFlat" Relationship="REMSDBModel.FK_Customer_SaleFlat" FromRole="Customer" ToRole="SaleFlat" />
-        </EntityType>
-        <EntityType Name="Error">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ErrorDate" Type="DateTime" Precision="3" />
-          <Property Name="IpAddress" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
-          <Property Name="UserAgent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Exception" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Everything" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="HttpReferer" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="PathAndQuery" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="CreatedBy" Type="Int32" />
-          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="ChangedBy" Type="Int32" />
-          <Property Name="ChangedOn" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="FullURL" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ErrorID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="EventMaster">
-          <Key>
-            <PropertyRef Name="EventID" />
-          </Key>
-          <Property Name="EventID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="EventName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="EventDesc" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="CreateDate" Type="DateTime" Precision="3" />
-          <Property Name="RecordStatus" Type="Int32" />
-          <Property Name="EventType" Type="Int32" />
+          <NavigationProperty Name="ReminderLetters" Relationship="REMSDBModel.FK_ReminderLetter_Customer" FromRole="Customer" ToRole="ReminderLetter" />
         </EntityType>
         <EntityType Name="Flat">
           <Key>
@@ -2158,6 +2069,8 @@ warning 6002: The table/view 'remshh_com_remsdb.dbo.PayTransferFee' does not hav
           <NavigationProperty Name="FlatOCharges" Relationship="Self.FK_FlatOCharge_Flat" FromRole="Flat" ToRole="FlatOCharge" />
           <NavigationProperty Name="FlatPLCs" Relationship="Self.FK_FlatPLC_Flat" FromRole="Flat" ToRole="FlatPLC" />
           <NavigationProperty Name="SaleFlats" Relationship="REMSDBModel.FK_SaleFlat_Flat" FromRole="Flat" ToRole="SaleFlat" />
+          <NavigationProperty Name="ActivityLogs" Relationship="REMSDBModel.FK_ActivityLog_Flat" FromRole="Flat" ToRole="ActivityLog" />
+          <NavigationProperty Name="ReminderLetters" Relationship="REMSDBModel.FK_ReminderLetter_Flat" FromRole="Flat" ToRole="ReminderLetter" />
         </EntityType>
         <EntityType Name="FlatCharge">
           <Key>
@@ -2195,6 +2108,7 @@ warning 6002: The table/view 'remshh_com_remsdb.dbo.PayTransferFee' does not hav
           <Property Name="InstallmentServiceTaxID" Type="Int32" />
           <NavigationProperty Name="Flat" Relationship="Self.FK_FlatInstallmentDetail_Flat" FromRole="FlatInstallmentDetail" ToRole="Flat" />
           <NavigationProperty Name="PlanInstallment" Relationship="Self.FK_FlatInstallmentDetail_PlanInstallment" FromRole="FlatInstallmentDetail" ToRole="PlanInstallment" />
+          <Property Name="InsVersion" Type="Int32" />
         </EntityType>
         <EntityType Name="FlatOCharge">
           <Key>
@@ -2270,18 +2184,6 @@ warning 6002: The table/view 'remshh_com_remsdb.dbo.PayTransferFee' does not hav
           <Property Name="DueDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="SaleFlat" Relationship="REMSDBModel.FK_LatePayment_SaleFlat" FromRole="LatePayment" ToRole="SaleFlat" />
         </EntityType>
-        <EntityType Name="ModuleList">
-          <Key>
-            <PropertyRef Name="ModuleListID" />
-          </Key>
-          <Property Name="ModuleListID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="PageName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Status" Type="Boolean" Nullable="false" />
-          <Property Name="CrDate" Type="DateTime" Precision="3" />
-          <Property Name="Controller" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="ActionName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityType Name="Payment">
           <Key>
             <PropertyRef Name="PaymentID" />
@@ -2324,6 +2226,7 @@ warning 6002: The table/view 'remshh_com_remsdb.dbo.PayTransferFee' does not hav
           <Property Name="IsBounce" Type="Boolean" Nullable="false" />
           <Property Name="CustomerID" Type="Int32" />
           <NavigationProperty Name="SaleFlat" Relationship="REMSDBModel.FK_Payment_SaleFlat" FromRole="Payment" ToRole="SaleFlat" />
+          <Property Name="PaymentType" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="PaymentCancel">
           <Key>
@@ -2534,6 +2437,8 @@ warning 6002: The table/view 'remshh_com_remsdb.dbo.PayTransferFee' does not hav
           <NavigationProperty Name="ProjectTypes" Relationship="Self.FK_ProjectType_Project" FromRole="Project" ToRole="ProjectType" />
           <NavigationProperty Name="Towers" Relationship="Self.FK_Tower_Project" FromRole="Project" ToRole="Tower" />
           <NavigationProperty Name="UserProperties" Relationship="Self.FK_UserProperty_UserProperty" FromRole="Project" ToRole="UserProperty" />
+          <Property Name="Contact" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="AuthEmail" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="ProjectType">
           <Key>
@@ -2575,6 +2480,7 @@ warning 6002: The table/view 'remshh_com_remsdb.dbo.PayTransferFee' does not hav
           <Property Name="NewPlanType" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="UserName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="SaleFlat" Relationship="REMSDBModel.FK_PropertyTransfer_SaleFlat" FromRole="PropertyTransfer" ToRole="SaleFlat" />
+          <Property Name="TransferType" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="RefundProperty">
           <Key>
@@ -2592,65 +2498,6 @@ warning 6002: The table/view 'remshh_com_remsdb.dbo.PayTransferFee' does not hav
           <Property Name="Remarks" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="FlatName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="SaleFlat" Relationship="REMSDBModel.FK_RefundProperty_SaleFlat" FromRole="RefundProperty" ToRole="SaleFlat" />
-        </EntityType>
-        <EntityType Name="ReminderLetter">
-          <Key>
-            <PropertyRef Name="ReminderLetterID" />
-          </Key>
-          <Property Name="ReminderLetterID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="LetterType" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="CreateDate" Type="DateTime" Precision="3" />
-          <Property Name="SaleID" Type="Int32" />
-          <Property Name="duedate" Type="DateTime" Precision="3" />
-          <Property Name="DueAmount" Type="Decimal" Precision="19" Scale="4" />
-          <NavigationProperty Name="SaleFlat" Relationship="REMSDBModel.FK_ReminderLetter_SaleFlat" FromRole="ReminderLetter" ToRole="SaleFlat" />
-        </EntityType>
-        <EntityType Name="RoleAccess">
-          <Key>
-            <PropertyRef Name="RoleAccessID" />
-          </Key>
-          <Property Name="RoleAccessID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ModuleListID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="RoleName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="IsRead" Type="Boolean" Nullable="false" />
-          <Property Name="AssignDate" Type="DateTime" Precision="3" />
-          <Property Name="AssignUser" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="ActionName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="ControllerName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="ServiceTax">
-          <Key>
-            <PropertyRef Name="ServiceTaxID" />
-          </Key>
-          <Property Name="ServiceTaxID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ServiceTaxName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ServiceTaxPer" Type="Decimal" Precision="17" Scale="2" />
-          <Property Name="CreateDate" Type="DateTime" Precision="3" />
-          <Property Name="ModifyDate" Type="DateTime" Precision="3" />
-          <Property Name="EndDate" Type="DateTime" Precision="3" />
-          <Property Name="Status" Type="Boolean" />
-        </EntityType>
-        <EntityType Name="sysdiagram">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-        </EntityType>
-        <EntityType Name="TaxMaster">
-          <Key>
-            <PropertyRef Name="TaxMasterID" />
-          </Key>
-          <Property Name="TaxMasterID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TaxName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="TaxTag" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Tax" Type="Double" />
-          <Property Name="ApplyTill" Type="DateTime" Precision="3" />
-          <Property Name="CrDate" Type="DateTime" Precision="3" />
-          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Tower">
           <Key>
@@ -2692,20 +2539,6 @@ warning 6002: The table/view 'remshh_com_remsdb.dbo.PayTransferFee' does not hav
           <Property Name="IsActive" Type="Boolean" />
           <NavigationProperty Name="SaleFlat" Relationship="REMSDBModel.FK_UploadAgreement_SaleFlat" FromRole="UploadAgreement" ToRole="SaleFlat" />
         </EntityType>
-        <EntityType Name="UserAccess">
-          <Key>
-            <PropertyRef Name="UserAccessID" />
-          </Key>
-          <Property Name="UserAccessID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ModuleListID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="IsRead" Type="Boolean" Nullable="false" />
-          <Property Name="IsWrite" Type="Boolean" Nullable="false" />
-          <Property Name="AssignDate" Type="DateTime" Precision="3" />
-          <Property Name="AssignUser" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="ActionName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="ControllerName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityType Name="UserProperty">
           <Key>
             <PropertyRef Name="UserPropertyID" />
@@ -2716,30 +2549,7 @@ warning 6002: The table/view 'remshh_com_remsdb.dbo.PayTransferFee' does not hav
           <Property Name="AssignDate" Type="DateTime" Precision="3" />
           <Property Name="AssignUser" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Project" Relationship="Self.FK_UserProperty_UserProperty" FromRole="UserProperty" ToRole="Project" />
-        </EntityType>
-        <EntityType Name="PayTransferFee">
-          <Key>
-            <PropertyRef Name="PayTransferID" />
-          </Key>
-          <Property Name="PayTransferID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SaleID" Type="Int32" />
-          <Property Name="FlatID" Type="Int32" />
-          <Property Name="PayDate" Type="DateTime" Precision="3" />
-          <Property Name="Amount" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="RecordStatus" Type="Int32" />
-          <Property Name="PaymentNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="AmtRcvdinWords" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="PaymentMode" Type="Int32" />
-          <Property Name="ChequeNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ChequeDate" Type="DateTime" Precision="3" />
-          <Property Name="BankCharges" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="BankClearanceDate" Type="DateTime" Precision="3" />
-          <Property Name="BankName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="BankBranch" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="PaymentStatus" Type="Int32" />
-          <Property Name="UserID" Type="Int32" />
-          <Property Name="Activity" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Remarks" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="IsAuthority" Type="Boolean" />
         </EntityType>
         <Association Name="FK_FlatCharge_AdditionalCharge">
           <End Role="AdditionalCharge" Type="Self.AdditionalCharge" Multiplicity="0..1">
@@ -2982,17 +2792,7 @@ warning 6002: The table/view 'remshh_com_remsdb.dbo.PayTransferFee' does not hav
         <EntityContainer Name="REMSDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="AdditionalCharges" EntityType="Self.AdditionalCharge" />
           <EntitySet Name="AddOnCharges" EntityType="Self.AddOnCharge" />
-          <EntitySet Name="Agreements" EntityType="Self.Agreement" />
-          <EntitySet Name="AssuredReturns" EntityType="Self.AssuredReturn" />
-          <EntitySet Name="AssuredReturnPayments" EntityType="Self.AssuredReturnPayment" />
-          <EntitySet Name="BankMasters" EntityType="Self.BankMaster" />
-          <EntitySet Name="BrokerMasters" EntityType="Self.BrokerMaster" />
-          <EntitySet Name="BrokerPayments" EntityType="Self.BrokerPayment" />
-          <EntitySet Name="BrokerToProperties" EntityType="Self.BrokerToProperty" />
-          <EntitySet Name="CityMasters" EntityType="Self.CityMaster" />
           <EntitySet Name="Customers" EntityType="Self.Customer" />
-          <EntitySet Name="Errors" EntityType="Self.Error" />
-          <EntitySet Name="EventMasters" EntityType="Self.EventMaster" />
           <EntitySet Name="Flats" EntityType="Self.Flat" />
           <EntitySet Name="FlatCharges" EntityType="Self.FlatCharge" />
           <EntitySet Name="FlatInstallmentDetails" EntityType="Self.FlatInstallmentDetail" />
@@ -3002,7 +2802,6 @@ warning 6002: The table/view 'remshh_com_remsdb.dbo.PayTransferFee' does not hav
           <EntitySet Name="FlatTypeSizes" EntityType="Self.FlatTypeSize" />
           <EntitySet Name="Floors" EntityType="Self.Floor" />
           <EntitySet Name="LatePayments" EntityType="Self.LatePayment" />
-          <EntitySet Name="ModuleLists" EntityType="Self.ModuleList" />
           <EntitySet Name="Payments" EntityType="Self.Payment" />
           <EntitySet Name="PaymentCancels" EntityType="Self.PaymentCancel" />
           <EntitySet Name="PaymentOthers" EntityType="Self.PaymentOther" />
@@ -3019,16 +2818,9 @@ warning 6002: The table/view 'remshh_com_remsdb.dbo.PayTransferFee' does not hav
           <EntitySet Name="PropertyRemarks" EntityType="Self.PropertyRemark" />
           <EntitySet Name="PropertyTransfers" EntityType="Self.PropertyTransfer" />
           <EntitySet Name="RefundProperties" EntityType="Self.RefundProperty" />
-          <EntitySet Name="ReminderLetters" EntityType="Self.ReminderLetter" />
-          <EntitySet Name="RoleAccesses" EntityType="Self.RoleAccess" />
-          <EntitySet Name="ServiceTaxes" EntityType="Self.ServiceTax" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
-          <EntitySet Name="TaxMasters" EntityType="Self.TaxMaster" />
           <EntitySet Name="Towers" EntityType="Self.Tower" />
           <EntitySet Name="UploadAgreements" EntityType="Self.UploadAgreement" />
-          <EntitySet Name="UserAccesses" EntityType="Self.UserAccess" />
           <EntitySet Name="UserProperties" EntityType="Self.UserProperty" />
-          <EntitySet Name="PayTransferFees" EntityType="Self.PayTransferFee" />
           <AssociationSet Name="FK_FlatCharge_AdditionalCharge" Association="Self.FK_FlatCharge_AdditionalCharge">
             <End Role="AdditionalCharge" EntitySet="AdditionalCharges" />
             <End Role="FlatCharge" EntitySet="FlatCharges" />
@@ -3137,6 +2929,7 @@ warning 6002: The table/view 'remshh_com_remsdb.dbo.PayTransferFee' does not hav
             <Parameter Name="CustomerID" Mode="In" Type="Int32" />
             <Parameter Name="Interest" Mode="In" Type="Boolean" />
             <Parameter Name="CreatedBy" Mode="In" Type="String" />
+            <Parameter Name="PaymentType" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="Insert_PaymentAssuredReturn">
             <Parameter Name="SaleID" Mode="In" Type="Int32" />
@@ -3226,7 +3019,6 @@ warning 6002: The table/view 'remshh_com_remsdb.dbo.PayTransferFee' does not hav
           <FunctionImport Name="spGetProjectByFlatid1" EntitySet="Projects" ReturnType="Collection(REMSDBModel.Project)">
           <Parameter Name="flatid" Mode="In" Type="Int32" />
           </FunctionImport>
-          <EntitySet Name="PaymentMasters" EntityType="REMSDBModel.PaymentMaster" />
           <FunctionImport Name="Insert_PaymentOther">
             <Parameter Name="SaleID" Mode="In" Type="Int32" />
             <Parameter Name="InstallmentNo" Mode="In" Type="String" />
@@ -3308,10 +3100,6 @@ warning 6002: The table/view 'remshh_com_remsdb.dbo.PayTransferFee' does not hav
             <End Role="SaleFlat" EntitySet="SaleFlats" />
             <End Role="RefundProperty" EntitySet="RefundProperties" />
           </AssociationSet>
-          <AssociationSet Name="FK_ReminderLetter_SaleFlat" Association="REMSDBModel.FK_ReminderLetter_SaleFlat">
-            <End Role="SaleFlat" EntitySet="SaleFlats" />
-            <End Role="ReminderLetter" EntitySet="ReminderLetters" />
-          </AssociationSet>
           <AssociationSet Name="FK_UploadAgreement_SaleFlat" Association="REMSDBModel.FK_UploadAgreement_SaleFlat">
             <End Role="SaleFlat" EntitySet="SaleFlats" />
             <End Role="UploadAgreement" EntitySet="UploadAgreements" />
@@ -3372,6 +3160,52 @@ warning 6002: The table/view 'remshh_com_remsdb.dbo.PayTransferFee' does not hav
             <Parameter Name="CustomerID" Mode="In" Type="Int32" />
             <Parameter Name="CreatedBy" Mode="In" Type="String" />
           </FunctionImport>
+          <EntitySet Name="PaymentDiscounts" EntityType="REMSDBModel.PaymentDiscount" />
+          <EntitySet Name="PaymentDiscountApprovals" EntityType="REMSDBModel.PaymentDiscountApproval" />
+          <AssociationSet Name="FK_PaymentDiscount_SaleFlat" Association="REMSDBModel.FK_PaymentDiscount_SaleFlat">
+            <End Role="SaleFlat" EntitySet="SaleFlats" />
+            <End Role="PaymentDiscount" EntitySet="PaymentDiscounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PaymentDiscountApproval_PaymentDiscount" Association="REMSDBModel.FK_PaymentDiscountApproval_PaymentDiscount">
+            <End Role="PaymentDiscount" EntitySet="PaymentDiscounts" />
+            <End Role="PaymentDiscountApproval" EntitySet="PaymentDiscountApprovals" />
+          </AssociationSet>
+          <EntitySet Name="ActivityLogs" EntityType="REMSDBModel.ActivityLog" />
+          <EntitySet Name="Agreements" EntityType="REMSDBModel.Agreement" />
+          <EntitySet Name="AssuredReturns" EntityType="REMSDBModel.AssuredReturn" />
+          <EntitySet Name="AssuredReturnPayments" EntityType="REMSDBModel.AssuredReturnPayment" />
+          <EntitySet Name="BankMasters" EntityType="REMSDBModel.BankMaster" />
+          <EntitySet Name="BrokerMasters" EntityType="REMSDBModel.BrokerMaster" />
+          <EntitySet Name="BrokerPayments" EntityType="REMSDBModel.BrokerPayment" />
+          <EntitySet Name="BrokerToProperties" EntityType="REMSDBModel.BrokerToProperty" />
+          <EntitySet Name="CityMasters" EntityType="REMSDBModel.CityMaster" />
+          <EntitySet Name="Errors" EntityType="REMSDBModel.Error" />
+          <EntitySet Name="EventMasters" EntityType="REMSDBModel.EventMaster" />
+          <EntitySet Name="ModuleLists" EntityType="REMSDBModel.ModuleList" />
+          <EntitySet Name="PaymentClearances" EntityType="REMSDBModel.PaymentClearance" />
+          <EntitySet Name="PaymentMasters" EntityType="REMSDBModel.PaymentMaster" />
+          <EntitySet Name="RoleAccesses" EntityType="REMSDBModel.RoleAccess" />
+          <EntitySet Name="ServiceTaxes" EntityType="REMSDBModel.ServiceTax" />
+          <EntitySet Name="TaxMasters" EntityType="REMSDBModel.TaxMaster" />
+          <EntitySet Name="UserAccesses" EntityType="REMSDBModel.UserAccess" />
+          <EntitySet Name="PayTransferFees" EntityType="REMSDBModel.PayTransferFee" />
+          <AssociationSet Name="FK_ActivityLog_Flat" Association="REMSDBModel.FK_ActivityLog_Flat">
+            <End Role="Flat" EntitySet="Flats" />
+            <End Role="ActivityLog" EntitySet="ActivityLogs" />
+          </AssociationSet>
+          <EntitySet Name="ReminderLetters" EntityType="REMSDBModel.ReminderLetter" />
+          <AssociationSet Name="FK_ReminderLetter_Customer" Association="REMSDBModel.FK_ReminderLetter_Customer">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="ReminderLetter" EntitySet="ReminderLetters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReminderLetter_Flat" Association="REMSDBModel.FK_ReminderLetter_Flat">
+            <End Role="Flat" EntitySet="Flats" />
+            <End Role="ReminderLetter" EntitySet="ReminderLetters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReminderLetter_SaleFlat" Association="REMSDBModel.FK_ReminderLetter_SaleFlat">
+            <End Role="SaleFlat" EntitySet="SaleFlats" />
+            <End Role="ReminderLetter" EntitySet="ReminderLetters" />
+          </AssociationSet>
         </EntityContainer>
         <ComplexType Name="Get_Payment_Result">
           <Property Type="Int64" Name="TransactionID" Nullable="true" />
@@ -3455,16 +3289,6 @@ warning 6002: The table/view 'remshh_com_remsdb.dbo.PayTransferFee' does not hav
           <Property Type="String" Name="ReceiptNo" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="AuthoritySign" Nullable="true" MaxLength="100" />
         </ComplexType>
-        <EntityType Name="PaymentMaster">
-          <Key>
-            <PropertyRef Name="PaymentMasterID" />
-          </Key>
-          <Property Name="PaymentMasterID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="SerialNo" Type="Int32" />
-          <Property Name="CrDate" Type="DateTime" Precision="3" />
-          <Property Name="PriTag" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-        </EntityType>
         <ComplexType Name="Get_PaymentOther_Result">
           <Property Type="Int32" Name="PaymentOtherID" Nullable="false" />
           <Property Type="Int64" Name="TransactionID" Nullable="true" />
@@ -3551,8 +3375,14 @@ warning 6002: The table/view 'remshh_com_remsdb.dbo.PayTransferFee' does not hav
           <NavigationProperty Name="PropertyRemarks" Relationship="REMSDBModel.FK_PropertyRemark_SaleFlat" FromRole="SaleFlat" ToRole="PropertyRemark" />
           <NavigationProperty Name="PropertyTransfers" Relationship="REMSDBModel.FK_PropertyTransfer_SaleFlat" FromRole="SaleFlat" ToRole="PropertyTransfer" />
           <NavigationProperty Name="RefundProperties" Relationship="REMSDBModel.FK_RefundProperty_SaleFlat" FromRole="SaleFlat" ToRole="RefundProperty" />
-          <NavigationProperty Name="ReminderLetters" Relationship="REMSDBModel.FK_ReminderLetter_SaleFlat" FromRole="SaleFlat" ToRole="ReminderLetter" />
           <NavigationProperty Name="UploadAgreements" Relationship="REMSDBModel.FK_UploadAgreement_SaleFlat" FromRole="SaleFlat" ToRole="UploadAgreement" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PlanName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="PaymentDiscounts" Relationship="REMSDBModel.FK_PaymentDiscount_SaleFlat" FromRole="SaleFlat" ToRole="PaymentDiscount" />
+          <NavigationProperty Name="ReminderLetters" Relationship="REMSDBModel.FK_ReminderLetter_SaleFlat" FromRole="SaleFlat" ToRole="ReminderLetter" />
         </EntityType>
         <Association Name="FK_Customer_SaleFlat">
           <End Type="REMSDBModel.SaleFlat" Role="SaleFlat" Multiplicity="0..1">
@@ -3722,18 +3552,6 @@ warning 6002: The table/view 'remshh_com_remsdb.dbo.PayTransferFee' does not hav
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ReminderLetter_SaleFlat">
-          <End Type="REMSDBModel.SaleFlat" Role="SaleFlat" Multiplicity="0..1" />
-          <End Type="REMSDBModel.ReminderLetter" Role="ReminderLetter" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SaleFlat">
-              <PropertyRef Name="SaleID" />
-            </Principal>
-            <Dependent Role="ReminderLetter">
-              <PropertyRef Name="SaleID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_UploadAgreement_SaleFlat">
           <End Type="REMSDBModel.SaleFlat" Role="SaleFlat" Multiplicity="0..1" />
           <End Type="REMSDBModel.UploadAgreement" Role="UploadAgreement" Multiplicity="*" />
@@ -3742,6 +3560,444 @@ warning 6002: The table/view 'remshh_com_remsdb.dbo.PayTransferFee' does not hav
               <PropertyRef Name="SaleID" />
             </Principal>
             <Dependent Role="UploadAgreement">
+              <PropertyRef Name="SaleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="PaymentDiscount">
+          <Key>
+            <PropertyRef Name="PaymentDiscountID" />
+          </Key>
+          <Property Name="PaymentDiscountID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SaleID" Type="Int32" Nullable="false" />
+          <Property Name="PaymentType" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="ReqDate" Type="DateTime" Precision="3" />
+          <Property Name="Amount" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Remark" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="IsApproved" Type="Boolean" />
+          <Property Name="ExpiryDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="SaleFlat" Relationship="REMSDBModel.FK_PaymentDiscount_SaleFlat" FromRole="PaymentDiscount" ToRole="SaleFlat" />
+          <NavigationProperty Name="PaymentDiscountApprovals" Relationship="REMSDBModel.FK_PaymentDiscountApproval_PaymentDiscount" FromRole="PaymentDiscount" ToRole="PaymentDiscountApproval" />
+        </EntityType>
+        <EntityType Name="PaymentDiscountApproval">
+          <Key>
+            <PropertyRef Name="PaymentDiscountApprovalID" />
+          </Key>
+          <Property Name="PaymentDiscountApprovalID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PaymentDiscountID" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="IsApproved" Type="Boolean" />
+          <Property Name="Days" Type="Int32" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+          <Property Name="Remark" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="PaymentDiscount" Relationship="REMSDBModel.FK_PaymentDiscountApproval_PaymentDiscount" FromRole="PaymentDiscountApproval" ToRole="PaymentDiscount" />
+        </EntityType>
+        <Association Name="FK_PaymentDiscount_SaleFlat">
+          <End Type="REMSDBModel.SaleFlat" Role="SaleFlat" Multiplicity="1" />
+          <End Type="REMSDBModel.PaymentDiscount" Role="PaymentDiscount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SaleFlat">
+              <PropertyRef Name="SaleID" />
+            </Principal>
+            <Dependent Role="PaymentDiscount">
+              <PropertyRef Name="SaleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PaymentDiscountApproval_PaymentDiscount">
+          <End Type="REMSDBModel.PaymentDiscount" Role="PaymentDiscount" Multiplicity="1" />
+          <End Type="REMSDBModel.PaymentDiscountApproval" Role="PaymentDiscountApproval" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentDiscount">
+              <PropertyRef Name="PaymentDiscountID" />
+            </Principal>
+            <Dependent Role="PaymentDiscountApproval">
+              <PropertyRef Name="PaymentDiscountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ActivityLog">
+          <Key>
+            <PropertyRef Name="ActivityLogID" />
+          </Key>
+          <Property Name="ActivityLogID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FlatID" Type="Int32" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CrDate" Type="DateTime" Precision="3" />
+          <Property Name="Message" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Flat" Relationship="REMSDBModel.FK_ActivityLog_Flat" FromRole="ActivityLog" ToRole="Flat" />
+        </EntityType>
+        <EntityType Name="Agreement">
+          <Key>
+            <PropertyRef Name="AgreementID" />
+          </Key>
+          <Property Name="AgreementID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SaleID" Type="Int32" />
+          <Property Name="AgreementAmount" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ModifyBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CrDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifyDate" Type="DateTime" Precision="3" />
+          <Property Name="DocURL" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="HTMLURL" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Name="UploadDate" Type="DateTime" Precision="3" />
+          <Property Name="UploadBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UploadURL" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="AllotmentLetter" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="AllotmentLetterBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="AllotmentLetterDate" Type="DateTime" Precision="3" />
+          <Property Name="WelComeLetter" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="AssuredDocURL" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Name="AssuredHTMLURL" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="AssuredReturn">
+          <Key>
+            <PropertyRef Name="AssuredReturnID" />
+          </Key>
+          <Property Name="AssuredReturnID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SaleID" Type="Int32" />
+          <Property Name="Duration" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Amount" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ModifyBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CrDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifyDate" Type="DateTime" Precision="3" />
+          <Property Name="PropertyID" Type="Int32" />
+          <Property Name="FlatName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MonthName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ChequeNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ChequeDate" Type="DateTime" Precision="3" />
+          <Property Name="TDS" Type="Decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="AssuredReturnPayment">
+          <Key>
+            <PropertyRef Name="ARPaymentID" />
+          </Key>
+          <Property Name="ARPaymentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ReceiptNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SaleID" Type="Int32" />
+          <Property Name="PaymentDate" Type="DateTime" Precision="3" />
+          <Property Name="Amount" Type="Decimal" Precision="17" Scale="2" />
+          <Property Name="PaymentMode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="ChequeNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BankName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ChequeDate" Type="DateTime" Precision="3" />
+          <Property Name="PaymentStatus" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Remarks" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="BankCharges" Type="Decimal" Precision="17" Scale="2" />
+          <Property Name="BankClearanceDate" Type="DateTime" Precision="3" />
+          <Property Name="BankBranch" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AmtRcvdinWords" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="IsReceipt" Type="Boolean" />
+          <Property Name="Activity" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="ModifyDate" Type="DateTime" Precision="3" />
+          <Property Name="FlatName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CrDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifyBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RefundRemark" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="ClearanceCharge" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="IsBounce" Type="Boolean" Nullable="false" />
+          <Property Name="CustomerID" Type="Int32" />
+          <Property Name="AssuredReturnID" Type="Int32" />
+          <Property Name="TransactionID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="BankMaster">
+          <Key>
+            <PropertyRef Name="BankID" />
+          </Key>
+          <Property Name="BankID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BankName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BankBranch" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BankAddress" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="BrokerMaster">
+          <Key>
+            <PropertyRef Name="BrokerID" />
+          </Key>
+          <Property Name="BrokerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BrokerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MobileNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PanNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifyDate" Type="DateTime" Precision="3" />
+          <Property Name="RecordStatus" Type="Int32" />
+        </EntityType>
+        <EntityType Name="BrokerPayment">
+          <Key>
+            <PropertyRef Name="BrokerPaymentID" />
+          </Key>
+          <Property Name="BrokerPaymentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FlatID" Type="Int32" />
+          <Property Name="SaleID" Type="Int32" />
+          <Property Name="BrokerID" Type="Int32" />
+          <Property Name="AmountPaid" Type="Decimal" Precision="17" Scale="2" />
+          <Property Name="PaidDate" Type="DateTime" Precision="3" />
+          <Property Name="PID" Type="Int32" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifyDate" Type="DateTime" Precision="3" />
+          <Property Name="RecordStatus" Type="Int32" />
+          <Property Name="PaymentMode" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ChequeNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ChequeDate" Type="DateTime" Precision="3" />
+          <Property Name="BankName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BankBranch" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Remarks" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="BrokerToProperty">
+          <Key>
+            <PropertyRef Name="BrokerToPropertyID" />
+          </Key>
+          <Property Name="BrokerToPropertyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FlatID" Type="Int32" />
+          <Property Name="SaleID" Type="Int32" />
+          <Property Name="BrokerID" Type="Int32" />
+          <Property Name="BrokerAmount" Type="Decimal" Precision="17" Scale="2" />
+          <Property Name="PID" Type="Int32" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="Createdate" Type="DateTime" Precision="3" />
+          <Property Name="ModifyDate" Type="DateTime" Precision="3" />
+          <Property Name="RecordStatus" Type="Int32" />
+          <Property Name="ApproveStatus" Type="Int32" />
+          <Property Name="Remarks" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CityMaster">
+          <Key>
+            <PropertyRef Name="CityID" />
+          </Key>
+          <Property Name="CityID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CityName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StateName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CityCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StateCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CrDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AreaID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Error">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ErrorDate" Type="DateTime" Precision="3" />
+          <Property Name="IpAddress" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="UserAgent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Exception" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Everything" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="HttpReferer" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="PathAndQuery" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ChangedBy" Type="Int32" />
+          <Property Name="ChangedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FullURL" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ErrorID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="EventMaster">
+          <Key>
+            <PropertyRef Name="EventID" />
+          </Key>
+          <Property Name="EventID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EventName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="EventDesc" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="RecordStatus" Type="Int32" />
+          <Property Name="EventType" Type="Int32" />
+        </EntityType>
+        <EntityType Name="ModuleList">
+          <Key>
+            <PropertyRef Name="ModuleListID" />
+          </Key>
+          <Property Name="ModuleListID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PageName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <Property Name="CrDate" Type="DateTime" Precision="3" />
+          <Property Name="Controller" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ActionName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="PaymentClearance">
+          <Key>
+            <PropertyRef Name="PaymentClearanceID" />
+          </Key>
+          <Property Name="PaymentClearanceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TransactionID" Type="Int64" Nullable="false" />
+          <Property Name="Amount" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="CrDate" Type="DateTime" Precision="3" />
+          <Property Name="Remarks" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="PaymentMaster">
+          <Key>
+            <PropertyRef Name="PaymentMasterID" />
+          </Key>
+          <Property Name="PaymentMasterID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="SerialNo" Type="Int32" />
+          <Property Name="CrDate" Type="DateTime" Precision="3" />
+          <Property Name="PriTag" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="RoleAccess">
+          <Key>
+            <PropertyRef Name="RoleAccessID" />
+          </Key>
+          <Property Name="RoleAccessID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ModuleListID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="RoleName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IsRead" Type="Boolean" Nullable="false" />
+          <Property Name="AssignDate" Type="DateTime" Precision="3" />
+          <Property Name="AssignUser" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ActionName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ControllerName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ServiceTax">
+          <Key>
+            <PropertyRef Name="ServiceTaxID" />
+          </Key>
+          <Property Name="ServiceTaxID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ServiceTaxName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ServiceTaxPer" Type="Decimal" Precision="17" Scale="2" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifyDate" Type="DateTime" Precision="3" />
+          <Property Name="EndDate" Type="DateTime" Precision="3" />
+          <Property Name="Status" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="TaxMaster">
+          <Key>
+            <PropertyRef Name="TaxMasterID" />
+          </Key>
+          <Property Name="TaxMasterID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TaxName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TaxTag" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Tax" Type="Double" />
+          <Property Name="ApplyTill" Type="DateTime" Precision="3" />
+          <Property Name="CrDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="UserAccess">
+          <Key>
+            <PropertyRef Name="UserAccessID" />
+          </Key>
+          <Property Name="UserAccessID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ModuleListID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IsRead" Type="Boolean" Nullable="false" />
+          <Property Name="IsWrite" Type="Boolean" Nullable="false" />
+          <Property Name="AssignDate" Type="DateTime" Precision="3" />
+          <Property Name="AssignUser" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ActionName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ControllerName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="PayTransferFee">
+          <Key>
+            <PropertyRef Name="PayTransferID" />
+          </Key>
+          <Property Name="PayTransferID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SaleID" Type="Int32" />
+          <Property Name="FlatID" Type="Int32" />
+          <Property Name="PayDate" Type="DateTime" Precision="3" />
+          <Property Name="Amount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="RecordStatus" Type="Int32" />
+          <Property Name="PaymentNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="AmtRcvdinWords" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="PaymentMode" Type="Int32" />
+          <Property Name="ChequeNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ChequeDate" Type="DateTime" Precision="3" />
+          <Property Name="BankCharges" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="BankClearanceDate" Type="DateTime" Precision="3" />
+          <Property Name="BankName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BankBranch" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PaymentStatus" Type="Int32" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="Activity" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Remarks" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_ActivityLog_Flat">
+          <End Type="REMSDBModel.Flat" Role="Flat" Multiplicity="0..1" />
+          <End Type="REMSDBModel.ActivityLog" Role="ActivityLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Flat">
+              <PropertyRef Name="FlatID" />
+            </Principal>
+            <Dependent Role="ActivityLog">
+              <PropertyRef Name="FlatID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ReminderLetter">
+          <Key>
+            <PropertyRef Name="ReminderLetterID" />
+          </Key>
+          <Property Name="ReminderLetterID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LetterType" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="SaleID" Type="Int32" />
+          <Property Name="duedate" Type="DateTime" Precision="3" />
+          <Property Name="DueAmount" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="BSPTotal" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="BSPPaid" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="PLCTotal" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="PLCPaid" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="ACTotal" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="ACPaid" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="AOCTotal" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="AOCPaid" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="STaxTotal" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="STaxPaid" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="LateTotal" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="LatePaid" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="TransferTotal" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="TransferPaid" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="ClearanceTotal" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="ClearancePaid" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="CustomerID" Type="Int32" />
+          <Property Name="FlatID" Type="Int32" />
+          <NavigationProperty Name="Customer" Relationship="REMSDBModel.FK_ReminderLetter_Customer" FromRole="ReminderLetter" ToRole="Customer" />
+          <NavigationProperty Name="Flat" Relationship="REMSDBModel.FK_ReminderLetter_Flat" FromRole="ReminderLetter" ToRole="Flat" />
+          <NavigationProperty Name="SaleFlat" Relationship="REMSDBModel.FK_ReminderLetter_SaleFlat" FromRole="ReminderLetter" ToRole="SaleFlat" />
+        </EntityType>
+        <Association Name="FK_ReminderLetter_Customer">
+          <End Type="REMSDBModel.Customer" Role="Customer" Multiplicity="0..1" />
+          <End Type="REMSDBModel.ReminderLetter" Role="ReminderLetter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="ReminderLetter">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReminderLetter_Flat">
+          <End Type="REMSDBModel.Flat" Role="Flat" Multiplicity="0..1" />
+          <End Type="REMSDBModel.ReminderLetter" Role="ReminderLetter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Flat">
+              <PropertyRef Name="FlatID" />
+            </Principal>
+            <Dependent Role="ReminderLetter">
+              <PropertyRef Name="FlatID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReminderLetter_SaleFlat">
+          <End Type="REMSDBModel.SaleFlat" Role="SaleFlat" Multiplicity="0..1" />
+          <End Type="REMSDBModel.ReminderLetter" Role="ReminderLetter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SaleFlat">
+              <PropertyRef Name="SaleID" />
+            </Principal>
+            <Dependent Role="ReminderLetter">
               <PropertyRef Name="SaleID" />
             </Dependent>
           </ReferentialConstraint>
@@ -3779,167 +4035,6 @@ warning 6002: The table/view 'remshh_com_remsdb.dbo.PayTransferFee' does not hav
                 <ScalarProperty Name="CrBy" ColumnName="CrBy" />
                 <ScalarProperty Name="TaxPer" ColumnName="TaxPer" />
                 <ScalarProperty Name="Mandatory" ColumnName="Mandatory" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Agreements">
-            <EntityTypeMapping TypeName="REMSDBModel.Agreement">
-              <MappingFragment StoreEntitySet="Agreement">
-                <ScalarProperty Name="AgreementID" ColumnName="AgreementID" />
-                <ScalarProperty Name="SaleID" ColumnName="SaleID" />
-                <ScalarProperty Name="AgreementAmount" ColumnName="AgreementAmount" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="ModifyBy" ColumnName="ModifyBy" />
-                <ScalarProperty Name="CrDate" ColumnName="CrDate" />
-                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
-                <ScalarProperty Name="DocURL" ColumnName="DocURL" />
-                <ScalarProperty Name="HTMLURL" ColumnName="HTMLURL" />
-                <ScalarProperty Name="UploadDate" ColumnName="UploadDate" />
-                <ScalarProperty Name="UploadBy" ColumnName="UploadBy" />
-                <ScalarProperty Name="UploadURL" ColumnName="UploadURL" />
-                <ScalarProperty Name="AllotmentLetter" ColumnName="AllotmentLetter" />
-                <ScalarProperty Name="AllotmentLetterBy" ColumnName="AllotmentLetterBy" />
-                <ScalarProperty Name="AllotmentLetterDate" ColumnName="AllotmentLetterDate" />
-                <ScalarProperty Name="WelComeLetter" ColumnName="WelComeLetter" />
-                <ScalarProperty Name="AssuredDocURL" ColumnName="AssuredDocURL" />
-                <ScalarProperty Name="AssuredHTMLURL" ColumnName="AssuredHTMLURL" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="AssuredReturns">
-            <EntityTypeMapping TypeName="REMSDBModel.AssuredReturn">
-              <MappingFragment StoreEntitySet="AssuredReturn">
-                <ScalarProperty Name="AssuredReturnID" ColumnName="AssuredReturnID" />
-                <ScalarProperty Name="SaleID" ColumnName="SaleID" />
-                <ScalarProperty Name="Duration" ColumnName="Duration" />
-                <ScalarProperty Name="Amount" ColumnName="Amount" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="ModifyBy" ColumnName="ModifyBy" />
-                <ScalarProperty Name="CrDate" ColumnName="CrDate" />
-                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
-                <ScalarProperty Name="PropertyID" ColumnName="PropertyID" />
-                <ScalarProperty Name="FlatName" ColumnName="FlatName" />
-                <ScalarProperty Name="MonthName" ColumnName="MonthName" />
-                <ScalarProperty Name="ChequeNo" ColumnName="ChequeNo" />
-                <ScalarProperty Name="ChequeDate" ColumnName="ChequeDate" />
-                <ScalarProperty Name="TDS" ColumnName="TDS" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="AssuredReturnPayments">
-            <EntityTypeMapping TypeName="REMSDBModel.AssuredReturnPayment">
-              <MappingFragment StoreEntitySet="AssuredReturnPayment">
-                <ScalarProperty Name="ARPaymentID" ColumnName="ARPaymentID" />
-                <ScalarProperty Name="ReceiptNo" ColumnName="ReceiptNo" />
-                <ScalarProperty Name="SaleID" ColumnName="SaleID" />
-                <ScalarProperty Name="PaymentDate" ColumnName="PaymentDate" />
-                <ScalarProperty Name="Amount" ColumnName="Amount" />
-                <ScalarProperty Name="PaymentMode" ColumnName="PaymentMode" />
-                <ScalarProperty Name="ChequeNo" ColumnName="ChequeNo" />
-                <ScalarProperty Name="BankName" ColumnName="BankName" />
-                <ScalarProperty Name="ChequeDate" ColumnName="ChequeDate" />
-                <ScalarProperty Name="PaymentStatus" ColumnName="PaymentStatus" />
-                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
-                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
-                <ScalarProperty Name="BankCharges" ColumnName="BankCharges" />
-                <ScalarProperty Name="BankClearanceDate" ColumnName="BankClearanceDate" />
-                <ScalarProperty Name="BankBranch" ColumnName="BankBranch" />
-                <ScalarProperty Name="AmtRcvdinWords" ColumnName="AmtRcvdinWords" />
-                <ScalarProperty Name="IsReceipt" ColumnName="IsReceipt" />
-                <ScalarProperty Name="Activity" ColumnName="Activity" />
-                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
-                <ScalarProperty Name="FlatName" ColumnName="FlatName" />
-                <ScalarProperty Name="CrDate" ColumnName="CrDate" />
-                <ScalarProperty Name="ModifyBy" ColumnName="ModifyBy" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="RefundRemark" ColumnName="RefundRemark" />
-                <ScalarProperty Name="ClearanceCharge" ColumnName="ClearanceCharge" />
-                <ScalarProperty Name="IsBounce" ColumnName="IsBounce" />
-                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
-                <ScalarProperty Name="AssuredReturnID" ColumnName="AssuredReturnID" />
-                <ScalarProperty Name="TransactionID" ColumnName="TransactionID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="BankMasters">
-            <EntityTypeMapping TypeName="REMSDBModel.BankMaster">
-              <MappingFragment StoreEntitySet="BankMaster">
-                <ScalarProperty Name="BankID" ColumnName="BankID" />
-                <ScalarProperty Name="BankName" ColumnName="BankName" />
-                <ScalarProperty Name="BankBranch" ColumnName="BankBranch" />
-                <ScalarProperty Name="BankAddress" ColumnName="BankAddress" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="BrokerMasters">
-            <EntityTypeMapping TypeName="REMSDBModel.BrokerMaster">
-              <MappingFragment StoreEntitySet="BrokerMaster">
-                <ScalarProperty Name="BrokerID" ColumnName="BrokerID" />
-                <ScalarProperty Name="BrokerName" ColumnName="BrokerName" />
-                <ScalarProperty Name="Address1" ColumnName="Address1" />
-                <ScalarProperty Name="Address2" ColumnName="Address2" />
-                <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
-                <ScalarProperty Name="PanNo" ColumnName="PanNo" />
-                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
-                <ScalarProperty Name="RecordStatus" ColumnName="RecordStatus" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="BrokerPayments">
-            <EntityTypeMapping TypeName="REMSDBModel.BrokerPayment">
-              <MappingFragment StoreEntitySet="BrokerPayment">
-                <ScalarProperty Name="BrokerPaymentID" ColumnName="BrokerPaymentID" />
-                <ScalarProperty Name="FlatID" ColumnName="FlatID" />
-                <ScalarProperty Name="SaleID" ColumnName="SaleID" />
-                <ScalarProperty Name="BrokerID" ColumnName="BrokerID" />
-                <ScalarProperty Name="AmountPaid" ColumnName="AmountPaid" />
-                <ScalarProperty Name="PaidDate" ColumnName="PaidDate" />
-                <ScalarProperty Name="PID" ColumnName="PID" />
-                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
-                <ScalarProperty Name="RecordStatus" ColumnName="RecordStatus" />
-                <ScalarProperty Name="PaymentMode" ColumnName="PaymentMode" />
-                <ScalarProperty Name="ChequeNo" ColumnName="ChequeNo" />
-                <ScalarProperty Name="ChequeDate" ColumnName="ChequeDate" />
-                <ScalarProperty Name="BankName" ColumnName="BankName" />
-                <ScalarProperty Name="BankBranch" ColumnName="BankBranch" />
-                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="BrokerToProperties">
-            <EntityTypeMapping TypeName="REMSDBModel.BrokerToProperty">
-              <MappingFragment StoreEntitySet="BrokerToProperty">
-                <ScalarProperty Name="BrokerToPropertyID" ColumnName="BrokerToPropertyID" />
-                <ScalarProperty Name="FlatID" ColumnName="FlatID" />
-                <ScalarProperty Name="SaleID" ColumnName="SaleID" />
-                <ScalarProperty Name="BrokerID" ColumnName="BrokerID" />
-                <ScalarProperty Name="BrokerAmount" ColumnName="BrokerAmount" />
-                <ScalarProperty Name="PID" ColumnName="PID" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="Createdate" ColumnName="Createdate" />
-                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
-                <ScalarProperty Name="RecordStatus" ColumnName="RecordStatus" />
-                <ScalarProperty Name="ApproveStatus" ColumnName="ApproveStatus" />
-                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="CityMasters">
-            <EntityTypeMapping TypeName="REMSDBModel.CityMaster">
-              <MappingFragment StoreEntitySet="CityMaster">
-                <ScalarProperty Name="CityID" ColumnName="CityID" />
-                <ScalarProperty Name="CityName" ColumnName="CityName" />
-                <ScalarProperty Name="StateName" ColumnName="StateName" />
-                <ScalarProperty Name="CityCode" ColumnName="CityCode" />
-                <ScalarProperty Name="StateCode" ColumnName="StateCode" />
-                <ScalarProperty Name="CrDate" ColumnName="CrDate" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="AreaID" ColumnName="AreaID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -4072,40 +4167,6 @@ warning 6002: The table/view 'remshh_com_remsdb.dbo.PayTransferFee' does not hav
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Errors">
-            <EntityTypeMapping TypeName="REMSDBModel.Error">
-              <MappingFragment StoreEntitySet="Error">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="ErrorDate" ColumnName="ErrorDate" />
-                <ScalarProperty Name="IpAddress" ColumnName="IpAddress" />
-                <ScalarProperty Name="UserAgent" ColumnName="UserAgent" />
-                <ScalarProperty Name="Exception" ColumnName="Exception" />
-                <ScalarProperty Name="Message" ColumnName="Message" />
-                <ScalarProperty Name="Everything" ColumnName="Everything" />
-                <ScalarProperty Name="HttpReferer" ColumnName="HttpReferer" />
-                <ScalarProperty Name="PathAndQuery" ColumnName="PathAndQuery" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="ChangedBy" ColumnName="ChangedBy" />
-                <ScalarProperty Name="ChangedOn" ColumnName="ChangedOn" />
-                <ScalarProperty Name="FullURL" ColumnName="FullURL" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="ErrorID" ColumnName="ErrorID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="EventMasters">
-            <EntityTypeMapping TypeName="REMSDBModel.EventMaster">
-              <MappingFragment StoreEntitySet="EventMaster">
-                <ScalarProperty Name="EventID" ColumnName="EventID" />
-                <ScalarProperty Name="EventName" ColumnName="EventName" />
-                <ScalarProperty Name="EventDesc" ColumnName="EventDesc" />
-                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-                <ScalarProperty Name="RecordStatus" ColumnName="RecordStatus" />
-                <ScalarProperty Name="EventType" ColumnName="EventType" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Flats">
             <EntityTypeMapping TypeName="REMSDBModel.Flat">
               <MappingFragment StoreEntitySet="Flat">
@@ -4153,6 +4214,7 @@ warning 6002: The table/view 'remshh_com_remsdb.dbo.PayTransferFee' does not hav
           <EntitySetMapping Name="FlatInstallmentDetails">
             <EntityTypeMapping TypeName="REMSDBModel.FlatInstallmentDetail">
               <MappingFragment StoreEntitySet="FlatInstallmentDetail">
+                <ScalarProperty Name="InsVersion" ColumnName="InsVersion" />
                 <ScalarProperty Name="InstallmentID" ColumnName="InstallmentID" />
                 <ScalarProperty Name="SaleID" ColumnName="SaleID" />
                 <ScalarProperty Name="FlatID" ColumnName="FlatID" />
@@ -4245,22 +4307,10 @@ warning 6002: The table/view 'remshh_com_remsdb.dbo.PayTransferFee' does not hav
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ModuleLists">
-            <EntityTypeMapping TypeName="REMSDBModel.ModuleList">
-              <MappingFragment StoreEntitySet="ModuleList">
-                <ScalarProperty Name="ModuleListID" ColumnName="ModuleListID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="PageName" ColumnName="PageName" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="CrDate" ColumnName="CrDate" />
-                <ScalarProperty Name="Controller" ColumnName="Controller" />
-                <ScalarProperty Name="ActionName" ColumnName="ActionName" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Payments">
             <EntityTypeMapping TypeName="REMSDBModel.Payment">
               <MappingFragment StoreEntitySet="Payment">
+                <ScalarProperty Name="PaymentType" ColumnName="PaymentType" />
                 <ScalarProperty Name="TransactionID" ColumnName="TransactionID" />
                 <ScalarProperty Name="InstallmentNo" ColumnName="InstallmentNo" />
                 <ScalarProperty Name="PaymentNo" ColumnName="PaymentNo" />
@@ -4486,6 +4536,8 @@ warning 6002: The table/view 'remshh_com_remsdb.dbo.PayTransferFee' does not hav
           <EntitySetMapping Name="Projects">
             <EntityTypeMapping TypeName="REMSDBModel.Project">
               <MappingFragment StoreEntitySet="Project">
+                <ScalarProperty Name="AuthEmail" ColumnName="AuthEmail" />
+                <ScalarProperty Name="Contact" ColumnName="Contact" />
                 <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
                 <ScalarProperty Name="CrDate" ColumnName="CrDate" />
                 <ScalarProperty Name="CrBy" ColumnName="CrBy" />
@@ -4535,6 +4587,7 @@ warning 6002: The table/view 'remshh_com_remsdb.dbo.PayTransferFee' does not hav
           <EntitySetMapping Name="PropertyTransfers">
             <EntityTypeMapping TypeName="REMSDBModel.PropertyTransfer">
               <MappingFragment StoreEntitySet="PropertyTransfer">
+                <ScalarProperty Name="TransferType" ColumnName="TransferType" />
                 <ScalarProperty Name="PropertyTransferID" ColumnName="PropertyTransferID" />
                 <ScalarProperty Name="SaleID" ColumnName="SaleID" />
                 <ScalarProperty Name="OldCustomerID" ColumnName="OldCustomerID" />
@@ -4561,69 +4614,6 @@ warning 6002: The table/view 'remshh_com_remsdb.dbo.PayTransferFee' does not hav
                 <ScalarProperty Name="BranchName" ColumnName="BranchName" />
                 <ScalarProperty Name="Remarks" ColumnName="Remarks" />
                 <ScalarProperty Name="FlatName" ColumnName="FlatName" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ReminderLetters">
-            <EntityTypeMapping TypeName="REMSDBModel.ReminderLetter">
-              <MappingFragment StoreEntitySet="ReminderLetter">
-                <ScalarProperty Name="ReminderLetterID" ColumnName="ReminderLetterID" />
-                <ScalarProperty Name="LetterType" ColumnName="LetterType" />
-                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-                <ScalarProperty Name="SaleID" ColumnName="SaleID" />
-                <ScalarProperty Name="duedate" ColumnName="duedate" />
-                <ScalarProperty Name="DueAmount" ColumnName="DueAmount" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="RoleAccesses">
-            <EntityTypeMapping TypeName="REMSDBModel.RoleAccess">
-              <MappingFragment StoreEntitySet="RoleAccess">
-                <ScalarProperty Name="RoleAccessID" ColumnName="RoleAccessID" />
-                <ScalarProperty Name="ModuleListID" ColumnName="ModuleListID" />
-                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
-                <ScalarProperty Name="IsRead" ColumnName="IsRead" />
-                <ScalarProperty Name="AssignDate" ColumnName="AssignDate" />
-                <ScalarProperty Name="AssignUser" ColumnName="AssignUser" />
-                <ScalarProperty Name="ActionName" ColumnName="ActionName" />
-                <ScalarProperty Name="ControllerName" ColumnName="ControllerName" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ServiceTaxes">
-            <EntityTypeMapping TypeName="REMSDBModel.ServiceTax">
-              <MappingFragment StoreEntitySet="ServiceTax">
-                <ScalarProperty Name="ServiceTaxID" ColumnName="ServiceTaxID" />
-                <ScalarProperty Name="ServiceTaxName" ColumnName="ServiceTaxName" />
-                <ScalarProperty Name="ServiceTaxPer" ColumnName="ServiceTaxPer" />
-                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
-                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="REMSDBModel.sysdiagram">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TaxMasters">
-            <EntityTypeMapping TypeName="REMSDBModel.TaxMaster">
-              <MappingFragment StoreEntitySet="TaxMaster">
-                <ScalarProperty Name="TaxMasterID" ColumnName="TaxMasterID" />
-                <ScalarProperty Name="TaxName" ColumnName="TaxName" />
-                <ScalarProperty Name="TaxTag" ColumnName="TaxTag" />
-                <ScalarProperty Name="Tax" ColumnName="Tax" />
-                <ScalarProperty Name="ApplyTill" ColumnName="ApplyTill" />
-                <ScalarProperty Name="CrDate" ColumnName="CrDate" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -4666,54 +4656,15 @@ warning 6002: The table/view 'remshh_com_remsdb.dbo.PayTransferFee' does not hav
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="UserAccesses">
-            <EntityTypeMapping TypeName="REMSDBModel.UserAccess">
-              <MappingFragment StoreEntitySet="UserAccess">
-                <ScalarProperty Name="UserAccessID" ColumnName="UserAccessID" />
-                <ScalarProperty Name="ModuleListID" ColumnName="ModuleListID" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="IsRead" ColumnName="IsRead" />
-                <ScalarProperty Name="IsWrite" ColumnName="IsWrite" />
-                <ScalarProperty Name="AssignDate" ColumnName="AssignDate" />
-                <ScalarProperty Name="AssignUser" ColumnName="AssignUser" />
-                <ScalarProperty Name="ActionName" ColumnName="ActionName" />
-                <ScalarProperty Name="ControllerName" ColumnName="ControllerName" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="UserProperties">
             <EntityTypeMapping TypeName="REMSDBModel.UserProperty">
               <MappingFragment StoreEntitySet="UserProperty">
+                <ScalarProperty Name="IsAuthority" ColumnName="IsAuthority" />
                 <ScalarProperty Name="UserPropertyID" ColumnName="UserPropertyID" />
                 <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="AssignDate" ColumnName="AssignDate" />
                 <ScalarProperty Name="AssignUser" ColumnName="AssignUser" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="PayTransferFees">
-            <EntityTypeMapping TypeName="REMSDBModel.PayTransferFee">
-              <MappingFragment StoreEntitySet="PayTransferFee">
-                <ScalarProperty Name="PayTransferID" ColumnName="PayTransferID" />
-                <ScalarProperty Name="SaleID" ColumnName="SaleID" />
-                <ScalarProperty Name="FlatID" ColumnName="FlatID" />
-                <ScalarProperty Name="PayDate" ColumnName="PayDate" />
-                <ScalarProperty Name="Amount" ColumnName="Amount" />
-                <ScalarProperty Name="RecordStatus" ColumnName="RecordStatus" />
-                <ScalarProperty Name="PaymentNo" ColumnName="PaymentNo" />
-                <ScalarProperty Name="AmtRcvdinWords" ColumnName="AmtRcvdinWords" />
-                <ScalarProperty Name="PaymentMode" ColumnName="PaymentMode" />
-                <ScalarProperty Name="ChequeNo" ColumnName="ChequeNo" />
-                <ScalarProperty Name="ChequeDate" ColumnName="ChequeDate" />
-                <ScalarProperty Name="BankCharges" ColumnName="BankCharges" />
-                <ScalarProperty Name="BankClearanceDate" ColumnName="BankClearanceDate" />
-                <ScalarProperty Name="BankName" ColumnName="BankName" />
-                <ScalarProperty Name="BankBranch" ColumnName="BankBranch" />
-                <ScalarProperty Name="PaymentStatus" ColumnName="PaymentStatus" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="Activity" ColumnName="Activity" />
-                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -4816,17 +4767,6 @@ warning 6002: The table/view 'remshh_com_remsdb.dbo.PayTransferFee' does not hav
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="spGetProjectByFlatid1" FunctionName="REMSDBModel.Store.spGetProjectByFlatid" />
-          <EntitySetMapping Name="PaymentMasters">
-            <EntityTypeMapping TypeName="REMSDBModel.PaymentMaster">
-              <MappingFragment StoreEntitySet="PaymentMaster">
-                <ScalarProperty Name="PriTag" ColumnName="PriTag" />
-                <ScalarProperty Name="CrDate" ColumnName="CrDate" />
-                <ScalarProperty Name="SerialNo" ColumnName="SerialNo" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="PaymentMasterID" ColumnName="PaymentMasterID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="spPlanSummary" FunctionName="REMSDBModel.Store.spPlanSummary">
             <ResultMapping>
               <ComplexTypeMapping TypeName="REMSDBModel.spPlanSummary_Result">
@@ -4843,6 +4783,11 @@ warning 6002: The table/view 'remshh_com_remsdb.dbo.PayTransferFee' does not hav
           <EntitySetMapping Name="SaleFlats">
             <EntityTypeMapping TypeName="REMSDBModel.SaleFlat">
               <MappingFragment StoreEntitySet="SaleFlat">
+                <ScalarProperty Name="PlanName" ColumnName="PlanName" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="DemandStatus" ColumnName="DemandStatus" />
                 <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
                 <ScalarProperty Name="Remarks" ColumnName="Remarks" />
@@ -4856,11 +4801,388 @@ warning 6002: The table/view 'remshh_com_remsdb.dbo.PayTransferFee' does not hav
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="Update_Clearance" FunctionName="REMSDBModel.Store.Update_Clearance" />
-          <FunctionImportMapping FunctionImportName="Update_Payment" FunctionName="REMSDBModel.Store.Update_Payment" />
-          <FunctionImportMapping FunctionImportName="Update_TransferProperty" FunctionName="REMSDBModel.Store.Update_TransferProperty" />
-          <FunctionImportMapping FunctionImportName="Insert_PaymentOther1" FunctionName="REMSDBModel.Store.Insert_PaymentOther" />
-        </EntityContainerMapping>
+          <EntitySetMapping Name="PaymentDiscounts">
+            <EntityTypeMapping TypeName="REMSDBModel.PaymentDiscount">
+              <MappingFragment StoreEntitySet="PaymentDiscount">
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
+                <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="ReqDate" ColumnName="ReqDate" />
+                <ScalarProperty Name="PaymentType" ColumnName="PaymentType" />
+                <ScalarProperty Name="SaleID" ColumnName="SaleID" />
+                <ScalarProperty Name="PaymentDiscountID" ColumnName="PaymentDiscountID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PaymentDiscountApprovals">
+            <EntityTypeMapping TypeName="REMSDBModel.PaymentDiscountApproval">
+              <MappingFragment StoreEntitySet="PaymentDiscountApproval">
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="Days" ColumnName="Days" />
+                <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="PaymentDiscountID" ColumnName="PaymentDiscountID" />
+                <ScalarProperty Name="PaymentDiscountApprovalID" ColumnName="PaymentDiscountApprovalID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ActivityLogs">
+            <EntityTypeMapping TypeName="REMSDBModel.ActivityLog">
+              <MappingFragment StoreEntitySet="ActivityLog">
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="CrDate" ColumnName="CrDate" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="FlatID" ColumnName="FlatID" />
+                <ScalarProperty Name="ActivityLogID" ColumnName="ActivityLogID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Agreements">
+            <EntityTypeMapping TypeName="REMSDBModel.Agreement">
+              <MappingFragment StoreEntitySet="Agreement">
+                <ScalarProperty Name="AssuredHTMLURL" ColumnName="AssuredHTMLURL" />
+                <ScalarProperty Name="AssuredDocURL" ColumnName="AssuredDocURL" />
+                <ScalarProperty Name="WelComeLetter" ColumnName="WelComeLetter" />
+                <ScalarProperty Name="AllotmentLetterDate" ColumnName="AllotmentLetterDate" />
+                <ScalarProperty Name="AllotmentLetterBy" ColumnName="AllotmentLetterBy" />
+                <ScalarProperty Name="AllotmentLetter" ColumnName="AllotmentLetter" />
+                <ScalarProperty Name="UploadURL" ColumnName="UploadURL" />
+                <ScalarProperty Name="UploadBy" ColumnName="UploadBy" />
+                <ScalarProperty Name="UploadDate" ColumnName="UploadDate" />
+                <ScalarProperty Name="HTMLURL" ColumnName="HTMLURL" />
+                <ScalarProperty Name="DocURL" ColumnName="DocURL" />
+                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
+                <ScalarProperty Name="CrDate" ColumnName="CrDate" />
+                <ScalarProperty Name="ModifyBy" ColumnName="ModifyBy" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="AgreementAmount" ColumnName="AgreementAmount" />
+                <ScalarProperty Name="SaleID" ColumnName="SaleID" />
+                <ScalarProperty Name="AgreementID" ColumnName="AgreementID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AssuredReturns">
+            <EntityTypeMapping TypeName="REMSDBModel.AssuredReturn">
+              <MappingFragment StoreEntitySet="AssuredReturn">
+                <ScalarProperty Name="TDS" ColumnName="TDS" />
+                <ScalarProperty Name="ChequeDate" ColumnName="ChequeDate" />
+                <ScalarProperty Name="ChequeNo" ColumnName="ChequeNo" />
+                <ScalarProperty Name="MonthName" ColumnName="MonthName" />
+                <ScalarProperty Name="FlatName" ColumnName="FlatName" />
+                <ScalarProperty Name="PropertyID" ColumnName="PropertyID" />
+                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
+                <ScalarProperty Name="CrDate" ColumnName="CrDate" />
+                <ScalarProperty Name="ModifyBy" ColumnName="ModifyBy" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Duration" ColumnName="Duration" />
+                <ScalarProperty Name="SaleID" ColumnName="SaleID" />
+                <ScalarProperty Name="AssuredReturnID" ColumnName="AssuredReturnID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AssuredReturnPayments">
+            <EntityTypeMapping TypeName="REMSDBModel.AssuredReturnPayment">
+              <MappingFragment StoreEntitySet="AssuredReturnPayment">
+                <ScalarProperty Name="TransactionID" ColumnName="TransactionID" />
+                <ScalarProperty Name="AssuredReturnID" ColumnName="AssuredReturnID" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="IsBounce" ColumnName="IsBounce" />
+                <ScalarProperty Name="ClearanceCharge" ColumnName="ClearanceCharge" />
+                <ScalarProperty Name="RefundRemark" ColumnName="RefundRemark" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="ModifyBy" ColumnName="ModifyBy" />
+                <ScalarProperty Name="CrDate" ColumnName="CrDate" />
+                <ScalarProperty Name="FlatName" ColumnName="FlatName" />
+                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
+                <ScalarProperty Name="Activity" ColumnName="Activity" />
+                <ScalarProperty Name="IsReceipt" ColumnName="IsReceipt" />
+                <ScalarProperty Name="AmtRcvdinWords" ColumnName="AmtRcvdinWords" />
+                <ScalarProperty Name="BankBranch" ColumnName="BankBranch" />
+                <ScalarProperty Name="BankClearanceDate" ColumnName="BankClearanceDate" />
+                <ScalarProperty Name="BankCharges" ColumnName="BankCharges" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="PaymentStatus" ColumnName="PaymentStatus" />
+                <ScalarProperty Name="ChequeDate" ColumnName="ChequeDate" />
+                <ScalarProperty Name="BankName" ColumnName="BankName" />
+                <ScalarProperty Name="ChequeNo" ColumnName="ChequeNo" />
+                <ScalarProperty Name="PaymentMode" ColumnName="PaymentMode" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="PaymentDate" ColumnName="PaymentDate" />
+                <ScalarProperty Name="SaleID" ColumnName="SaleID" />
+                <ScalarProperty Name="ReceiptNo" ColumnName="ReceiptNo" />
+                <ScalarProperty Name="ARPaymentID" ColumnName="ARPaymentID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BankMasters">
+            <EntityTypeMapping TypeName="REMSDBModel.BankMaster">
+              <MappingFragment StoreEntitySet="BankMaster">
+                <ScalarProperty Name="BankAddress" ColumnName="BankAddress" />
+                <ScalarProperty Name="BankBranch" ColumnName="BankBranch" />
+                <ScalarProperty Name="BankName" ColumnName="BankName" />
+                <ScalarProperty Name="BankID" ColumnName="BankID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BrokerMasters">
+            <EntityTypeMapping TypeName="REMSDBModel.BrokerMaster">
+              <MappingFragment StoreEntitySet="BrokerMaster">
+                <ScalarProperty Name="RecordStatus" ColumnName="RecordStatus" />
+                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="PanNo" ColumnName="PanNo" />
+                <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+                <ScalarProperty Name="Address2" ColumnName="Address2" />
+                <ScalarProperty Name="Address1" ColumnName="Address1" />
+                <ScalarProperty Name="BrokerName" ColumnName="BrokerName" />
+                <ScalarProperty Name="BrokerID" ColumnName="BrokerID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BrokerPayments">
+            <EntityTypeMapping TypeName="REMSDBModel.BrokerPayment">
+              <MappingFragment StoreEntitySet="BrokerPayment">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="BankBranch" ColumnName="BankBranch" />
+                <ScalarProperty Name="BankName" ColumnName="BankName" />
+                <ScalarProperty Name="ChequeDate" ColumnName="ChequeDate" />
+                <ScalarProperty Name="ChequeNo" ColumnName="ChequeNo" />
+                <ScalarProperty Name="PaymentMode" ColumnName="PaymentMode" />
+                <ScalarProperty Name="RecordStatus" ColumnName="RecordStatus" />
+                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="PID" ColumnName="PID" />
+                <ScalarProperty Name="PaidDate" ColumnName="PaidDate" />
+                <ScalarProperty Name="AmountPaid" ColumnName="AmountPaid" />
+                <ScalarProperty Name="BrokerID" ColumnName="BrokerID" />
+                <ScalarProperty Name="SaleID" ColumnName="SaleID" />
+                <ScalarProperty Name="FlatID" ColumnName="FlatID" />
+                <ScalarProperty Name="BrokerPaymentID" ColumnName="BrokerPaymentID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BrokerToProperties">
+            <EntityTypeMapping TypeName="REMSDBModel.BrokerToProperty">
+              <MappingFragment StoreEntitySet="BrokerToProperty">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="ApproveStatus" ColumnName="ApproveStatus" />
+                <ScalarProperty Name="RecordStatus" ColumnName="RecordStatus" />
+                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
+                <ScalarProperty Name="Createdate" ColumnName="Createdate" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="PID" ColumnName="PID" />
+                <ScalarProperty Name="BrokerAmount" ColumnName="BrokerAmount" />
+                <ScalarProperty Name="BrokerID" ColumnName="BrokerID" />
+                <ScalarProperty Name="SaleID" ColumnName="SaleID" />
+                <ScalarProperty Name="FlatID" ColumnName="FlatID" />
+                <ScalarProperty Name="BrokerToPropertyID" ColumnName="BrokerToPropertyID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CityMasters">
+            <EntityTypeMapping TypeName="REMSDBModel.CityMaster">
+              <MappingFragment StoreEntitySet="CityMaster">
+                <ScalarProperty Name="AreaID" ColumnName="AreaID" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CrDate" ColumnName="CrDate" />
+                <ScalarProperty Name="StateCode" ColumnName="StateCode" />
+                <ScalarProperty Name="CityCode" ColumnName="CityCode" />
+                <ScalarProperty Name="StateName" ColumnName="StateName" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Errors">
+            <EntityTypeMapping TypeName="REMSDBModel.Error">
+              <MappingFragment StoreEntitySet="Error">
+                <ScalarProperty Name="ErrorID" ColumnName="ErrorID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="FullURL" ColumnName="FullURL" />
+                <ScalarProperty Name="ChangedOn" ColumnName="ChangedOn" />
+                <ScalarProperty Name="ChangedBy" ColumnName="ChangedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="PathAndQuery" ColumnName="PathAndQuery" />
+                <ScalarProperty Name="HttpReferer" ColumnName="HttpReferer" />
+                <ScalarProperty Name="Everything" ColumnName="Everything" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="Exception" ColumnName="Exception" />
+                <ScalarProperty Name="UserAgent" ColumnName="UserAgent" />
+                <ScalarProperty Name="IpAddress" ColumnName="IpAddress" />
+                <ScalarProperty Name="ErrorDate" ColumnName="ErrorDate" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EventMasters">
+            <EntityTypeMapping TypeName="REMSDBModel.EventMaster">
+              <MappingFragment StoreEntitySet="EventMaster">
+                <ScalarProperty Name="EventType" ColumnName="EventType" />
+                <ScalarProperty Name="RecordStatus" ColumnName="RecordStatus" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="EventDesc" ColumnName="EventDesc" />
+                <ScalarProperty Name="EventName" ColumnName="EventName" />
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ModuleLists">
+            <EntityTypeMapping TypeName="REMSDBModel.ModuleList">
+              <MappingFragment StoreEntitySet="ModuleList">
+                <ScalarProperty Name="ActionName" ColumnName="ActionName" />
+                <ScalarProperty Name="Controller" ColumnName="Controller" />
+                <ScalarProperty Name="CrDate" ColumnName="CrDate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="PageName" ColumnName="PageName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ModuleListID" ColumnName="ModuleListID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PaymentClearances">
+            <EntityTypeMapping TypeName="REMSDBModel.PaymentClearance">
+              <MappingFragment StoreEntitySet="PaymentClearance">
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="CrDate" ColumnName="CrDate" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="TransactionID" ColumnName="TransactionID" />
+                <ScalarProperty Name="PaymentClearanceID" ColumnName="PaymentClearanceID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PaymentMasters">
+            <EntityTypeMapping TypeName="REMSDBModel.PaymentMaster">
+              <MappingFragment StoreEntitySet="PaymentMaster">
+                <ScalarProperty Name="PriTag" ColumnName="PriTag" />
+                <ScalarProperty Name="CrDate" ColumnName="CrDate" />
+                <ScalarProperty Name="SerialNo" ColumnName="SerialNo" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="PaymentMasterID" ColumnName="PaymentMasterID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RoleAccesses">
+            <EntityTypeMapping TypeName="REMSDBModel.RoleAccess">
+              <MappingFragment StoreEntitySet="RoleAccess">
+                <ScalarProperty Name="ControllerName" ColumnName="ControllerName" />
+                <ScalarProperty Name="ActionName" ColumnName="ActionName" />
+                <ScalarProperty Name="AssignUser" ColumnName="AssignUser" />
+                <ScalarProperty Name="AssignDate" ColumnName="AssignDate" />
+                <ScalarProperty Name="IsRead" ColumnName="IsRead" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="ModuleListID" ColumnName="ModuleListID" />
+                <ScalarProperty Name="RoleAccessID" ColumnName="RoleAccessID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ServiceTaxes">
+            <EntityTypeMapping TypeName="REMSDBModel.ServiceTax">
+              <MappingFragment StoreEntitySet="ServiceTax">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="ServiceTaxPer" ColumnName="ServiceTaxPer" />
+                <ScalarProperty Name="ServiceTaxName" ColumnName="ServiceTaxName" />
+                <ScalarProperty Name="ServiceTaxID" ColumnName="ServiceTaxID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TaxMasters">
+            <EntityTypeMapping TypeName="REMSDBModel.TaxMaster">
+              <MappingFragment StoreEntitySet="TaxMaster">
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CrDate" ColumnName="CrDate" />
+                <ScalarProperty Name="ApplyTill" ColumnName="ApplyTill" />
+                <ScalarProperty Name="Tax" ColumnName="Tax" />
+                <ScalarProperty Name="TaxTag" ColumnName="TaxTag" />
+                <ScalarProperty Name="TaxName" ColumnName="TaxName" />
+                <ScalarProperty Name="TaxMasterID" ColumnName="TaxMasterID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserAccesses">
+            <EntityTypeMapping TypeName="REMSDBModel.UserAccess">
+              <MappingFragment StoreEntitySet="UserAccess">
+                <ScalarProperty Name="ControllerName" ColumnName="ControllerName" />
+                <ScalarProperty Name="ActionName" ColumnName="ActionName" />
+                <ScalarProperty Name="AssignUser" ColumnName="AssignUser" />
+                <ScalarProperty Name="AssignDate" ColumnName="AssignDate" />
+                <ScalarProperty Name="IsWrite" ColumnName="IsWrite" />
+                <ScalarProperty Name="IsRead" ColumnName="IsRead" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="ModuleListID" ColumnName="ModuleListID" />
+                <ScalarProperty Name="UserAccessID" ColumnName="UserAccessID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PayTransferFees">
+            <EntityTypeMapping TypeName="REMSDBModel.PayTransferFee">
+              <MappingFragment StoreEntitySet="PayTransferFee">
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="Activity" ColumnName="Activity" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="PaymentStatus" ColumnName="PaymentStatus" />
+                <ScalarProperty Name="BankBranch" ColumnName="BankBranch" />
+                <ScalarProperty Name="BankName" ColumnName="BankName" />
+                <ScalarProperty Name="BankClearanceDate" ColumnName="BankClearanceDate" />
+                <ScalarProperty Name="BankCharges" ColumnName="BankCharges" />
+                <ScalarProperty Name="ChequeDate" ColumnName="ChequeDate" />
+                <ScalarProperty Name="ChequeNo" ColumnName="ChequeNo" />
+                <ScalarProperty Name="PaymentMode" ColumnName="PaymentMode" />
+                <ScalarProperty Name="AmtRcvdinWords" ColumnName="AmtRcvdinWords" />
+                <ScalarProperty Name="PaymentNo" ColumnName="PaymentNo" />
+                <ScalarProperty Name="RecordStatus" ColumnName="RecordStatus" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="PayDate" ColumnName="PayDate" />
+                <ScalarProperty Name="FlatID" ColumnName="FlatID" />
+                <ScalarProperty Name="SaleID" ColumnName="SaleID" />
+                <ScalarProperty Name="PayTransferID" ColumnName="PayTransferID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReminderLetters">
+            <EntityTypeMapping TypeName="REMSDBModel.ReminderLetter">
+              <MappingFragment StoreEntitySet="ReminderLetter">
+                <ScalarProperty Name="FlatID" ColumnName="FlatID" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="ClearancePaid" ColumnName="ClearancePaid" />
+                <ScalarProperty Name="ClearanceTotal" ColumnName="ClearanceTotal" />
+                <ScalarProperty Name="TransferPaid" ColumnName="TransferPaid" />
+                <ScalarProperty Name="TransferTotal" ColumnName="TransferTotal" />
+                <ScalarProperty Name="LatePaid" ColumnName="LatePaid" />
+                <ScalarProperty Name="LateTotal" ColumnName="LateTotal" />
+                <ScalarProperty Name="STaxPaid" ColumnName="STaxPaid" />
+                <ScalarProperty Name="STaxTotal" ColumnName="STaxTotal" />
+                <ScalarProperty Name="AOCPaid" ColumnName="AOCPaid" />
+                <ScalarProperty Name="AOCTotal" ColumnName="AOCTotal" />
+                <ScalarProperty Name="ACPaid" ColumnName="ACPaid" />
+                <ScalarProperty Name="ACTotal" ColumnName="ACTotal" />
+                <ScalarProperty Name="PLCPaid" ColumnName="PLCPaid" />
+                <ScalarProperty Name="PLCTotal" ColumnName="PLCTotal" />
+                <ScalarProperty Name="BSPPaid" ColumnName="BSPPaid" />
+                <ScalarProperty Name="BSPTotal" ColumnName="BSPTotal" />
+                <ScalarProperty Name="DueAmount" ColumnName="DueAmount" />
+                <ScalarProperty Name="duedate" ColumnName="duedate" />
+                <ScalarProperty Name="SaleID" ColumnName="SaleID" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="LetterType" ColumnName="LetterType" />
+                <ScalarProperty Name="ReminderLetterID" ColumnName="ReminderLetterID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

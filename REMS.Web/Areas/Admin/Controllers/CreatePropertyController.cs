@@ -178,9 +178,10 @@ namespace REMS.Web.Areas.Admin.Controllers
         {
             Mapper.CreateMap<FlatModel, Flat>().ForMember(dest => dest.FlatPLCs, sec => sec.Ignore());
             Flat fl = Mapper.Map<FlatModel, Flat>(flat);
-            int i = fservice.EditFlat(fl);
+            int i = fservice.EditFlat(fl,User.Identity.Name);
             FlatPLCService fpservice = new FlatPLCService();
             var model = fpservice.GetFlatPLCListByFlatID(fl.FlatID);
+
             foreach (var ft in model)
             {
                 FlatPLC md = new FlatPLC();
@@ -197,6 +198,8 @@ namespace REMS.Web.Areas.Admin.Controllers
                     int ii = fpservice.AddFlatPLC(fpm);
                 }
             }
+            // Update FlatSale Status
+            fservice.UpdateFlatSaleStatus(Convert.ToInt32(flat.FlatID), User.Identity.Name.ToString(), "Regenerate");
             return i.ToString();
         }
         public string UpdateFlatStatus(int flatid, string status)
@@ -213,6 +216,11 @@ namespace REMS.Web.Areas.Admin.Controllers
         {
           var model=  fservice.GetFlatListByTowerID(towerid);
           return Newtonsoft.Json.JsonConvert.SerializeObject(model);
+        }
+        public string GetReservedFlatListByTowerID(int towerid)
+        {
+            var model = fservice.GetReservedFlatListByTowerID(towerid);
+            return Newtonsoft.Json.JsonConvert.SerializeObject(model);
         }
         public string GetFlatByFlatNo(int towerid,int flatno)
         {
@@ -324,6 +332,9 @@ namespace REMS.Web.Areas.Admin.Controllers
             var mdl = Mapper.Map<FlatChargeModel, FlatCharge>(model);
             mdl.CrDate = DateTime.Now;
             int i = fcservice.AddFlatCharge(mdl);
+            
+            // Update FlatSale Status
+            fservice.UpdateFlatSaleStatus(Convert.ToInt32(model.FlatID), User.Identity.Name.ToString(), "Regenerate");
             return Newtonsoft.Json.JsonConvert.SerializeObject(i);
         }
         public string UpdateFlatChage(FlatChargeModel model)
@@ -361,6 +372,9 @@ namespace REMS.Web.Areas.Admin.Controllers
             var mdl = Mapper.Map<FlatOChargeModel, FlatOCharge>(model);
             mdl.CrDate = DateTime.Now;
             int i = focservice.AddFlatOCharge(mdl);
+            
+            // Update FlatSale Status
+            fservice.UpdateFlatSaleStatus(Convert.ToInt32(model.FlatID), User.Identity.Name.ToString(), "Regenerate");
             return Newtonsoft.Json.JsonConvert.SerializeObject(i);
         }
         public string UpdateFlatOChage(FlatOChargeModel model)
@@ -401,18 +415,18 @@ namespace REMS.Web.Areas.Admin.Controllers
                 }
                 else
                 {
-                    fs.UpdateFlatTypeAllTowerPerFloor(model);
+                    fs.UpdateFlatTypeAllTowerPerFloor(model,User.Identity.Name);
                 }
             }
             else
             {
                 if (model.FloorID == 0)
                 {
-                    fs.UpdateFlatTypePerTowerAllFloor(model);
+                    fs.UpdateFlatTypePerTowerAllFloor(model, User.Identity.Name);
                 }
                 else
                 {
-                    fs.UpdateFlatTypePerTowerPerFloor(model);
+                    fs.UpdateFlatTypePerTowerPerFloor(model, User.Identity.Name);
                 }
             }
             return "1";

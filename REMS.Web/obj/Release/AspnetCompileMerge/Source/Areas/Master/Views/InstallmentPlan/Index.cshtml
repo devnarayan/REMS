@@ -3,25 +3,28 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@section topright{
+<div class="row">
+    <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+        <h1 class="page-title txt-color-blueDark">
+            <!-- PAGE HEADER -->
+            <i class="fa-fw fa fa-pencil-square-o"></i>
+            Plan Installment
+            <span>
+                >
+                Manage
+            </span>
+        </h1>
+    </div>
+    <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+        <!-- Button trigger modal -->
+    </div>
+</div>
+}
 <!-- MAIN CONTENT -->
 <div id="content" data-ng-app="MasterApp" data-ng-controller="InstallmentPlanController">
 
-    <div class="row">
-        <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-            <h1 class="page-title txt-color-blueDark">
-                <!-- PAGE HEADER -->
-                <i class="fa-fw fa fa-pencil-square-o"></i>
-                Plan Installment
-                <span>
-                    >
-                    Manage
-                </span>
-            </h1>
-        </div>
-        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-            <!-- Button trigger modal -->
-        </div>
-    </div>
+    
     <div id="MessageArea" class="alert alert-block {{MessageClass}}" style="display:none;">
         <a class="close" data-dismiss="alert" href="#">×</a>
         <h4 class="alert-heading"><i class="fa fa-check-square-o"></i> {{MessageTitle}}</h4>
@@ -116,11 +119,14 @@
                                 </fieldset>
 
                                 <footer>
-                                    <button type="submit" id="btnSave" data-ng-click="AddPlanInstallmentSave()" class="btn btn-primary">
+                                     <button type="submit" id="btnSave" data-ng-click="AddPlanInstallmentSave()" class="btn btn-primary">
                                         Save
                                     </button>
                                     <button type="submit" id="btnEdit" data-ng-click="UpdatePlanInstallment()" class="btn btn-primary">
                                         Update
+                                    </button>
+                                    <button type="submit" id="btnSave" data-ng-click="CancelPlanInstallment()" class="btn btn-default">
+                                        Cancel
                                     </button>
                                 </footer>
                             </form>
@@ -181,7 +187,8 @@
                                             <td>{{ad.IntervalDays}}</td>
                                             <td>{{ad.Amount}}</td>
                                             <td>
-                                                <span><i class="fa fa-edit pointer" data-ng-click="EditPlanInstallment(ad.PlanInstallmentID)"></i> &nbsp;<i class="fa fa-trash-o pointer"></i></span>
+                                                <span><i class="fa fa-edit pointer" data-ng-click="EditPlanInstallment(ad.PlanInstallmentID)"></i> 
+                                                &nbsp;<i class="fa fa-trash-o pointer" data-ng-click="DeleteInstallment(ad.PlanInstallmentID)"></i></span>
                                             </td>
                                         </tr>
                                     </tbody>

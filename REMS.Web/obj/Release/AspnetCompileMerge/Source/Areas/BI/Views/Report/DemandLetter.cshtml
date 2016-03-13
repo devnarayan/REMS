@@ -2,30 +2,17 @@
     ViewBag.Title = "Demand Letter";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@section topright{
+<div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+    <h1 class="page-title txt-color-blueDark"><i class="fa fa-envelope"></i> Generate Demand Letter</h1>
+</div>
+}
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <div data-ng-app="BIApp" role="main">
       <!-- MAIN CONTENT -->
     <div id="content" data-ng-controller="ReportController">
         <div class="row">
-            <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-                <h1 class="page-title txt-color-blueDark">
-                    <!-- PAGE HEADER -->
-                    <i class="fa-fw fa fa-building-o"></i>
-                    Report
-                    <span>
-                        >
-                        Demand letter
-                    </span>
-                </h1>
-            </div>
-            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-                <!-- Button trigger modal -->
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
-                <h1 class="page-title txt-color-blueDark"><i class="fa fa-envelope"></i> Generate Demand Letter</h1>
-            </div>
+           
             <input type="hidden" value="" id="hdnSaleID" />
             <input type="hidden" value="" id="hdnSarchType" />
 
@@ -108,7 +95,7 @@
                                                     </div>
                                                     <div class="col-md-3">
                                                         <br />
-                                                        <input type="submit" value="Search" data-ng-click="SearchDemandLetter()" class="btn btn-primary" />
+                                                        <input type="submit" value="Search All" data-ng-click="SearchDemandLetter()" class="btn btn-primary" />
                                                         <input type="submit" value="Ganrate" data-ng-click="GanrateLetter()" class="btn btn-primary" />
                                                     </div>
                                                 </div>
@@ -244,7 +231,6 @@
     //    $("#datefrom").val(datestring);
     //}
 
-
     function PrintSingleReceipt(v) {
         $('#loading').show();
         var tid = $(v).attr("title");
@@ -288,56 +274,7 @@
 
     //});
 
-    $(document).ready(function () {
-        //$("#datediv").hide();
-        //$("#alldiv").hide();
-
-        if (localStorage.getItem("searchby") != null) {
-            $("#searchby").val(localStorage.getItem("searchby"));
-            $("#sortby").val(localStorage.getItem("sortby"));
-            $("#datefrom").val(localStorage.getItem("datefrom"));
-            $("#dateto").val(localStorage.getItem("dateto"));
-            $("#searchtext").val(localStorage.getItem("stext"));
-            var v = $("#sortby").val();
-            var vv = $("#searchby").val();
-            var df = $("#datefrom").val();
-            var dt = $("#dateto").val();
-            var stext = $("#searchtext").val();
-            if (vv.toString() == "All" || vv.toString() == "This Month" || vv.toString() == "Last 7 Days") {
-                $("#alldiv").hide();
-                $("#datediv").hide(); $("#subtypediv").hide();
-            }
-            else {
-                if (vv.toString() == "BookingDate" || vv.toString() == "SaleDate") {
-                    $("#datediv").show();
-                    $("#alldiv").hide(); $("#subtypediv").hide();
-                }
-                else if (vv.toString() == "SubType") {
-                    $("#alldiv").hide();
-                    $("#datediv").hide();
-                    $("#subtypediv").show();
-                }
-                else {
-                    $("#alldiv").show();
-                    $("#datediv").hide();
-                    $("#subtypediv").hide();
-                }
-            }
-        }
-    })
-
-    $("#datefrom").blur(function () {
-        var df = $("#datefrom").val();
-        localStorage.setItem("datefrom", df);
-    })
-    $("#dateto").blur(function () {
-        var df = $("#dateto").val();
-        localStorage.setItem("dateto", df);
-    })
-    $("#searchtext").blur(function () {
-        var df = $("#searchtext").val();
-        localStorage.setItem("stext", df);
-    })
+  
 </script>
 
     <script type="text/javascript">

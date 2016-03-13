@@ -3,23 +3,26 @@
     ViewBag.Title = "Payment Clearance";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div id="content" data-ng-app="PaymentApp" data-ng-controller="PaymentController">
-    <div class="row">
-        <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-            <h1 class="page-title txt-color-blueDark">
-                <!-- PAGE HEADER -->
-                <i class="fa-fw fa fa-flag"></i>
-                Installment Payments
-                <span>
-                    >
-                    Search
-                </span>
-            </h1>
-        </div>
-        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-            <!-- Button trigger modal -->
-        </div>
+@section topright{
+<div class="row">
+    <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+        <h1 class="page-title txt-color-blueDark">
+            <!-- PAGE HEADER -->
+            <i class="fa-fw fa fa-flag"></i>
+            Payment Clearance
+            <span>
+                >
+                Manage
+            </span>
+        </h1>
     </div>
+    <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+        <!-- Button trigger modal -->
+    </div>
+</div>
+}
+<div id="content" data-ng-app="PaymentApp" data-ng-controller="PaymentController">
+   
     <div id="MessageArea" class="alert alert-block alert-{{MessageClass}}" style="display:none;">
         <a class="close" data-dismiss="alert" href="#">×</a>
         <h4 class="alert-heading"><i class="fa fa-check-square-o"></i> {{MessageTitle}}</h4>
@@ -78,6 +81,7 @@
                                                     <!-- widget content -->
                                                     <div class="widget-body no-padding">
                                                         <div id="flatdetail" class="row">
+                                                            <div class="col-sm-2"></div>
                                                             <div class="col-sm-6 smart-form">
                                                                 <div id="comment-form" class="smart-form">
                                                                     <fieldset>
@@ -103,31 +107,7 @@
                                                                     </fieldset>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-sm-6">
-                                                                <div id="comment-form" class="smart-form">
-                                                                    <fieldset>
-                                                                        <div class="row">
-                                                                            <div class="col-sm-6">
-                                                                                <div class="hm_content_sec_top">
-                                                                                    <input type="hidden" id="SaleID" value="{{Sale.Sale[0].SaleID}}" />
-                                                                                    <ul>
-                                                                                        <li>Sale Price</li>
-                                                                                        <li><span id="SalePrice">{{ Sale.Sale[0].SaleRate}}</span></li>
-                                                                                    </ul>
-                                                                                    <ul>
-                                                                                        <li>Received Amount:</li>
-                                                                                        <li><span id="PaidAmount">{{ Amount.TotalPaid }}</span></li>
-                                                                                    </ul>
-                                                                                    <ul>
-                                                                                        <li>Balance Amount:</li>
-                                                                                        <li><span id="Balance">{{ Sale.Sale[0].SaleRate -  Amount.TotalPaid}}</span></li>
-                                                                                    </ul>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </fieldset>
-                                                                </div>
-                                                            </div>
+                                                            
                                                         </div>
                                                         <!-- end widget content -->
                                                     </div>

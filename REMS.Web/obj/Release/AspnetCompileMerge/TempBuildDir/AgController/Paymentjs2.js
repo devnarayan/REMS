@@ -78,7 +78,7 @@ myApp.controller('PaymentController', function ($scope, $http, $filter) {
                         $http({
                             method: 'Get',
                             url: '/Sale/Property/GetFlatInstallmentWithCharges',
-                            params: { flatid: flatid, flatsize: $scope.Flat.FlatSize }
+                            params: { flatid: flatid, flatsize: $scope.Flat.FlatSize, version:0}
                         }).success(function (data) {
                             $scope.Install = data;
 
@@ -173,11 +173,13 @@ myApp.controller('PaymentController', function ($scope, $http, $filter) {
         }
         else {
             $("#loading").show();
+            var paytype = "BSP";
+            paytype = $('input:radio[name=radio]:checked').val();
 
             $.ajax({
                 method: 'POST',
                 url: '/Sale/Payment/InsertPaymentDetails',
-                data: { InstallmentNo: $("#ddlPayment").find(":selected").val(), Saleid: $("#SaleID").val(), Flatname: $("#FlatName").val(), DueAmount: $("#DueAmount").val(), DueDate: $("#DueDate").val(), PaymentMode: $("#PaymentMode").val(), ChequeNo: $("#ChequeNo").val(), ChequeDate: $("#chequeDate").val(), BankName: $("#BankName").find(":selected").text(), BankBranch: $("#BankBranch").val(), Remarks: $("#Remarks").val(), PayDate: $("#paymentDate").val(), Amtrcvdinwrds: $("#PaymentAmountInWords").val(), ReceivedAmount: $("#ReceivedAmount").val(), IsPrint: $("#chkPrint").is(":checked"), IsEmailSent: $("#chkSendEmail").is(":checked"), EmailTo: $("#txtSendEmail").val(), CustomerName: $("#hidCustomerName").val(), CustomerID: $("#hidCustomerID").val(), chkInterest: $("#chkInterest").is(":checked") },
+                data: { InstallmentNo: $("#ddlPayment").find(":selected").val(), Saleid: $("#SaleID").val(), Flatname: $("#FlatName").val(), DueAmount: $("#DueAmount").val(), DueDate: $("#DueDate").val(), PaymentMode: $("#PaymentMode").val(), ChequeNo: $("#ChequeNo").val(), ChequeDate: $("#chequeDate").val(), BankName: $("#BankName").find(":selected").text(), BankBranch: $("#BankBranch").val(), Remarks: $("#Remarks").val(), PayDate: $("#paymentDate").val(), Amtrcvdinwrds: $("#PaymentAmountInWords").val(), ReceivedAmount: $("#ReceivedAmount").val(), IsPrint: $("#chkPrint").is(":checked"), IsEmailSent: $("#chkSendEmail").is(":checked"), EmailTo: $("#txtSendEmail").val(), CustomerName: $("#hidCustomerName").val(), CustomerID: $("#hidCustomerID").val(), chkInterest: $("#chkInterest").is(":checked"),PaymentType:paytype },
             }).success(function (data) { //Showing success message $scope.status = "The Person Saved Successfully!!!";
                 if (data != "No") {
                     $("#loading").hide();

@@ -41,6 +41,10 @@ namespace REMS.Web.Areas.Master.Controllers
             int i = adcservice.EditAdditionalCharge(model);
             return Newtonsoft.Json.JsonConvert.SerializeObject(i);
         }
+        public string DeleteAdditionalCharge(int additionalChargeid)
+        {
+            return Newtonsoft.Json.JsonConvert.SerializeObject(adcservice.DeleteAdditionalCharge(additionalChargeid));
+        }
 
         public string GetAdditionalCharge(int additionalChargeid)
         {

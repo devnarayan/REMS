@@ -103,6 +103,7 @@ myApp.controller('AChargesCtrlController', function ($scope, $http, $filter) {
     }
 
     $scope.EditAdditionalCharge = function (additionalChargeid) {
+        $scope.additionalChargeid = additionalChargeid;
         $("#loading").show();
         $http({
             method: 'Get',
@@ -122,6 +123,39 @@ myApp.controller('AChargesCtrlController', function ($scope, $http, $filter) {
             $("#loading").hide();
         })
 
+    }
+    $scope.CancelAC = function () {
+        $("#btnEdit").hide();
+        $("#btnSave").show();
+    }
+    $scope.DeleteAdditionalCharge = function () {
+        $("#loading").show();
+        $http({
+            method: 'Get',
+            url: '/Master/AChargesCtrl/DeleteAdditionalCharge',
+            params: { additionalChargeid: $scope.additionalChargeid }
+        }).success(function (data) {
+            $("#myModal").modal('hide')
+            $http({
+                method: 'Get',
+                url: '/Master/AChargesCtrl/AditionalChargeList',
+                params: {}
+            }).success(function (data) {
+                $scope.AdditionalChargeList = data;
+            }).error(function (error) {
+                $("#MessageArea").show();
+                $scope.MessageTitle = "Error";
+                $scope.MessageClass = "alert-danger";
+                $scope.Message = "Additional Charge Record can't loaded.";
+            })
+            $("#loading").hide();
+        }).error(function (error) {
+            $("#MessageArea").show();
+            $scope.MessageTitle = "Error";
+            $scope.Message = "Additional Charge Record can't deleted.";
+            $("#loading").hide();
+           
+        })
     }
     $scope.UpdateAdditionalCharge = function () {
 

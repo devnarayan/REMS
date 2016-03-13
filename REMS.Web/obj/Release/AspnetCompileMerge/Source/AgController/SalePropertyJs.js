@@ -201,6 +201,27 @@ myApp.controller('PropertyController', function ($scope, $http, $filter) {
                 params: { flatid: flatid },
             }).success(function (data) {
                 $scope.FlatDetails = data;
+                var salebl = $scope.FlatDetails.SaleFlatModel.length;
+                $scope.plan = [];
+                $scope.SaleStatus = "Available";
+                if (salebl > 0) {
+                    $scope.SaleStatus = $scope.FlatDetails.SaleFlatModel[0].Status;
+                    $scope.isSaled = true;
+                     //alert($scope.FlatDetails.SaleFlatModel[0].PlanName);
+                    $scope.plan.PlanName = $scope.FlatDetails.SaleFlatModel[0].PlanName;
+                    $("#txtSaleDate").val($scope.FlatDetails.SaleFlatModel[0].SaleDateSt);
+                    $scope.ShowPlanPriceNewSale($scope.FlatDetails.FlatType, $scope.FlatDetails.FlatSize);
+                    if ($scope.SaleStatus == "Regenerate") {
+                        $("#MessageArea").show();
+                        $scope.MessageClass = "danger";
+                        $scope.MessageTitle = "Error";
+                        $scope.Message = "Installments are updated, Please regenerate Installment.";
+                    }
+                }
+                else {
+                    $scope.isSaled = false;
+                }
+
                 var totalPLC = 0;
                 var GtotalPLC = 0;
                 for (var i = 0; i < $scope.FlatDetails.FlatPLCList.length; i++) {
@@ -235,7 +256,7 @@ myApp.controller('PropertyController', function ($scope, $http, $filter) {
                 $http({
                     method: 'Get',
                     url: '/Sale/Property/GetFlatInstallmentWithCharges',
-                    params: { flatid: flatid, flatsize: $scope.FlatDetails.FlatSize }
+                    params: { flatid: flatid, flatsize: $scope.FlatDetails.FlatSize, version: 0 }
                 }).success(function (data) {
                     $scope.FlatInstallmentList = data;
                     if (data == "") {
@@ -287,14 +308,19 @@ myApp.controller('PropertyController', function ($scope, $http, $filter) {
         })
     }
     $scope.ShowPlanPriceNewSale = function (FType, Size) {
+
         $("#loading").show();
         var PlanName = $("#PlanID").find(":selected").val();
+        if (PlanName == '? undefined:undefined ?') {
+            PlanName = $scope.plan.PlanName;
+        }
         $http({
             method: 'Get',
             url: '/Sale/Property/GetPlanTypeMasterByParams',
             params: { PlanName: PlanName, FType: FType, Size: Size }
         }).success(function (data) {
             if (data != "null") {
+
                 $scope.PlanSaleRate = data.AmountSqFt;
                 $scope.InstallmentTotal = data.AmountSqFt * Size;
 
@@ -330,6 +356,15 @@ myApp.controller('PropertyController', function ($scope, $http, $filter) {
         var plcvalue = $("#txtPLCAmount").val();
         var achargevalue = $("#txtAChargeAmount").val();
         var aochargevalue = $("#txtAOChargeAmount").val();
+
+        if ($scope.FlatInstallmentList != "") {
+            $("#MessageArea").show();
+            $scope.MessageClass = "danger";
+            $scope.MessageTitle = "Error";
+            $scope.Message = "Please delete generated installment to regenerate installment.";
+            return;
+        }
+
         if ($("#txtSaleDate").val() == "") {
             $("#MessageArea").show();
             $scope.MessageClass = "danger";
@@ -453,7 +488,7 @@ myApp.controller('PropertyController', function ($scope, $http, $filter) {
                                             $http({
                                                 method: 'Get',
                                                 url: '/Sale/Property/GetFlatInstallmentWithCharges',
-                                                params: { flatid: flatid, flatsize: $scope.FlatDetails.FlatSize }
+                                                params: { flatid: flatid, flatsize: $scope.FlatDetails.FlatSize, version: 0 }
                                             }).success(function (data) {
                                                 $scope.FlatInstallmentList = data;
 
@@ -510,6 +545,7 @@ myApp.controller('PropertyController', function ($scope, $http, $filter) {
                 $scope.MessageClass = "success";
                 $scope.MessageTitle = "Success";
                 $scope.Message = "Installment Deleted.";
+                $scope.FlatInstallmentList = "";
             }
             $("#divShowInstallment").hide();
             $("#divAddInstallments").show();
@@ -524,7 +560,7 @@ myApp.controller('PropertyController', function ($scope, $http, $filter) {
         $http({
             method: 'Get',
             url: '/Sale/Property/GetFlatInstallmentWithCharges',
-            params: { flatid: flatid, flatsize: $scope.FlatDetails.FlatSize }
+            params: { flatid: flatid, flatsize: $scope.FlatDetails.FlatSize, version: 0 }
         }).success(function (data) {
             $scope.FlatInstallmentList = data;
 
@@ -549,7 +585,7 @@ myApp.controller('PropertyController', function ($scope, $http, $filter) {
             $http({
                 method: 'Post',
                 url: '/Sale/Property/SaleFlatSave',
-                data: { flatid: flatid, salerate: $scope.GTotal, saleDate: $("#txtSaleDate").val(), saletype: $scope.flat.SaleType }
+                data: { flatid: flatid, salerate: $scope.GTotal, saleDate: $("#txtSaleDate").val(), saletype: $scope.flat.SaleType, planName: $scope.plan.PlanName }
             }).success(function (data) {
                 if (data == "1") {
                     // Update Flat status and insert into customer default value with flat and saleid.
@@ -582,6 +618,185 @@ myApp.controller('PropertyController', function ($scope, $http, $filter) {
         }
     }
 
+    $scope.ViewInstallmentInit = function () {
+        GetLoadTowerFlat();
+        $http({
+            method: 'Get',
+            url: '/Admin/CreateProperty/getFlatByID',
+            params: { flatid: $("#hidFlatID").val() }
+        }).success(function (data) {
+            $scope.FlatDetails = data;
+        });
+        $("#loading").hide();
+    }
+
+    $scope.SearchFlatClick = function () {
+        $("#hidFlatID").val($scope.Flat.FlatID);
+        // Get Installment Version list.
+        $("#loading").show();
+        $http({
+            method: 'Get',
+            url: '/Sale/Property/GetInstallmentVersion',
+            params: { flatid: $("#hidFlatID").val() }
+        }).success(function (data) {
+            $scope.InstallmentVersion = data;
+            $("#loading").hide();
+        }).error(function (error) {
+            $("#loading").hide();
+            $("#MessageArea").show();
+            $scope.MessageClass = "danger";
+            $scope.MessageTitle = "Error";
+            $scope.Message = "Installment version not found.";
+        });
+        $http({
+            method: 'Get',
+            url: '/Admin/CreateProperty/getFlatByID',
+            params: { flatid: $("#hidFlatID").val() }
+        }).success(function (data) {
+            $scope.FlatDetails = data;
+        });
+    }
+    $scope.ViewInstallmentClick = function (insVer) {
+        $http({
+            method: 'Get',
+            url: '/Sale/Property/GetFlatInstallmentWithCharges',
+            params: { flatid: $("#hidFlatID").val(), flatsize: $scope.FlatDetails.FlatSize, version: insVer }
+        }).success(function (data) {
+            $scope.FlatInstallmentList = data;
+            
+            $("#loading").hide();
+        }).error(function (error) {
+            $("#loading").hide();
+            $("#MessageArea").show();
+            $scope.MessageClass = "danger";
+            $scope.MessageTitle = "Error";
+            $scope.Message = "Installments not found.";
+        });
+    }
+
+    $scope.DirectEditPLC = function (plcid) {
+        $scope.EditType = "Flat PLC";
+        $scope.EditTypeID = plcid;
+    }
+    $scope.DirectEditFlatCharge = function (flatChargeId) {
+        $scope.EditType = "Flat Charge";
+        $scope.EditTypeID = flatChargeId;
+    }
+    $scope.DirectEditFlatOCharge = function (flatOChargeId) {
+        $scope.EditType = "Flat Other Charge";
+        $scope.EditTypeID = flatOChargeId;
+    }
+     $scope.DirectDeletePLC = function (plcid) {
+        $scope.EditType = "Flat PLC";
+        $scope.EditTypeID = plcid;
+    }
+    $scope.DirectDeleteFlatCharge = function (flatChargeId) {
+        $scope.EditType = "Flat Charge";
+        $scope.EditTypeID = flatChargeId;
+    }
+    $scope.DirectDeleteFlatOCharge = function (flatOChargeId) {
+        $scope.EditType = "Flat Other Charge";
+        $scope.EditTypeID = flatOChargeId;
+    }
+    $scope.SaveNewEditAmount = function () {
+        var $checkoutForm = $('#checkout-form1').validate({
+            // Rules for form validation
+            rules: {
+                txtNewEditAmount: {
+                    required: true,
+                    digits: true
+                },
+                
+            },
+
+            // Messages for form validation
+            messages: {
+                txtNewEditAmount: {
+                    required: 'Please enter Amount.',
+                    digits: 'Please enter numeric value'
+                },
+            },
+
+            submitHandler: function (form) {
+                $(form).ajaxSubmit({
+                    success: function () {
+                        //  $scope.ads.ChargeType = $("#divChargeType input[type='radio']:checked").val();
+                        $("#loading").show();
+                        $http({
+                            method: "POST",
+                            url: "/Sale/Property/EditFlatCharge",
+                            data: { flatID: $("#hidFlatID").val(), editTypeID: $scope.EditTypeID, editType: $scope.EditType, amount: $("#txtNewEditAmount").val() }
+                        }).success(function (data) {
+                            $("#myModalEdit").modal("hide");
+                            alert(window.location.href);
+                            window.location.href=window.location.href
+                            //if ($scope.EditType == "Flat PLC") {
+                            //    GetFlatPLC();
+                            //}
+                            //else if ($scope.EditType == "Flat Charge") {
+                            //    GetFlatCharge();
+                            //}
+                            //else if ($scope.EditType == "Flat Other Charge") {
+                            //    GetFlatOCharge();
+                            //}
+                            //$("#loading").hide();
+                            //$("#MessageArea").show();
+                            //$scope.MessageClass = "success";
+                            //$scope.MessageTitle = "Success";
+                            //$scope.Message = "Flat " + $scope.EditType + " Updated Successfully ";
+
+                        }).error(function (error) {
+                            $("#loading").hide();
+
+                            $("#MessageArea").show();
+                            $scope.MessageClass = "danger";
+                            $scope.MessageTitle = "Error";
+                            $scope.Message = "Flat " + $scope.EditType + " Not Updated, Please try again.";
+                        });
+                    }
+                });
+            },
+
+            // Do not change code below
+            errorPlacement: function (error, element) {
+                error.insertAfter(element.parent());
+            }
+        });
+      
+    }
+    $scope.DeleteFlatAmountSave = function () {
+        $("#loading").show();
+        $http({
+            method: "POST",
+            url: "/Sale/Property/DeleteFlatAttribute",
+            data: { flatID: $("#hidFlatID").val(), editTypeID: $scope.EditTypeID, editType: $scope.EditType }
+        }).success(function (data) {
+            $("#myModalDelete").modal("hide");
+            if ($scope.EditType == "Flat PLC") {
+                GetFlatPLC();
+            }
+            else if ($scope.EditType == "Flat Charge") {
+                GetFlatCharge();
+            }
+            else if ($scope.EditType == "Flat Other Charge") {
+                GetFlatOCharge();
+            }
+            $("#loading").hide();
+            $("#MessageArea").show();
+            $scope.MessageClass = "success";
+            $scope.MessageTitle = "Success";
+            $scope.Message = "Flat " + $scope.EditType + " Updated Successfully ";
+
+        }).error(function (error) {
+            $("#loading").hide();
+
+            $("#MessageArea").show();
+            $scope.MessageClass = "danger";
+            $scope.MessageTitle = "Error";
+            $scope.Message = "Flat " + $scope.EditType + " Not Updated, Please try again.";
+        });
+    }
+
     $("#loading").hide();
 
     function BSPChange() {
@@ -612,7 +827,35 @@ myApp.controller('PropertyController', function ($scope, $http, $filter) {
         })
         $("#TotalAOCharge").html(aochargeTotal);
     }
-})
+    function GetFlatPLC() {
+        $http({
+            method: 'Get',
+            url: '/Sale/Property/GetFlatPLCList',
+            params: { flatid: $("#hidFlatID").val() }
+        }).success(function (data) {
+            $scope.FlatDetails.FlatPLCList = data;
+        });
+    }
+    function GetFlatCharge() {
+        $http({
+            method: 'Get',
+            url: '/Sale/Property/GetFlatChargeList',
+            params: { flatid: $("#hidFlatID").val() }
+        }).success(function (data) {
+            $scope.FlatDetails.FlatChargeList = data;
+        });
+    }
+    function GetFlatOCharge() {
+        $http({
+            method: 'Get',
+            url: '/Sale/Property/GetFlatoChargeList',
+            params: { flatid: $("#hidFlatID").val() }
+        }).success(function (data) {
+            $scope.FlatDetails.FlatOChargeList = data;
+        });
+    }
+   
+});
 
 function SaleInstallmentClick() {
     var bsp = "";

@@ -209,6 +209,7 @@ myApp.controller('PlanCtrlController', function ($scope, $http, $filter) {
 
     }
     $scope.EditPlanTypeMaster = function (PlanTypeMasterID) {
+        $scope.PlanTypeMasterID = PlanTypeMasterID;
         $("#loading").show();
         $http({
             method: 'Get',
@@ -219,6 +220,39 @@ myApp.controller('PlanCtrlController', function ($scope, $http, $filter) {
             $("#loading").hide();
             $("#btnSave").hide();
             $("#btnUpdate").show();
+        }).error(function (error) {
+            $("#loading").hide();
+        })
+    }
+    $scope.DeletePlanTypeMaster = function () {
+        $("#loading").show();
+        $http({
+            method: 'Get',
+            url: '/Master/PlanCtrl/DeletePlanTypeMaster',
+            params: { plantypemasterID: $scope.PlanTypeMasterID }
+        }).success(function (data) {
+            $scope.plan = data;
+            $("#loading").hide();
+            $("#myModal").modal('hide');
+            $http({
+                method: 'Get',
+                url: '/Master/PlanCtrl/GetPlanTypeMasterList',
+            }).success(function (data) {
+                $scope.PlanTypeMasterList = data;
+                $("#loading").hide();
+                if (status == 0) {
+                    $("#MessageArea").show();
+                    $scope.MessageTitle = "Error";
+                    $scope.MessageClass = "danger";
+                    $scope.Message = "Plan Price can not updated.";
+                }
+                else {
+                    $("#MessageArea").show();
+                    $scope.MessageClass = "success";
+                    $scope.MessageTitle = "Success";
+                    $scope.Message = "Plan Price updated successfully.";
+                }
+            });
         }).error(function (error) {
             $("#loading").hide();
         })

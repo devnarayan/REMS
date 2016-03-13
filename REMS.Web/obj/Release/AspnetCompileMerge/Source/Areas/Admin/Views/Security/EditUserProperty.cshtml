@@ -2,6 +2,24 @@
     ViewBag.Title = "EditUserProperty";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@section topright{
+<div class="row">
+    <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+        <h1 class="page-title txt-color-blueDark">
+            <!-- PAGE HEADER -->
+            <i class="fa-fw fa fa-building-o"></i>
+            Manage User Access Rights
+            <span>
+                >
+                Manage
+            </span>
+        </h1>
+    </div>
+    <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+        <!-- Button trigger modal -->
+    </div>
+</div>
+}
 <!-- MAIN CONTENT -->
 <div id="content" data-ng-app="SecurityApp" data-ng-controller="SecurityController">
     <div class="row">
@@ -99,7 +117,8 @@
                                                                 <table class="table table-bordered table-striped particular_tbl">
                                                                     <thead>
                                                                         <tr>
-                                                                            <th><b>Select</b></th>
+                                                                            <th><b>Access</b></th>
+                                                                            <th><b>Authorize Person</b></th>
                                                                             <th><b>Property Name</b></th>
                                                                         </tr>
                                                                     </thead>

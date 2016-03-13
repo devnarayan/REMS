@@ -33,6 +33,10 @@ namespace REMS.Web.Areas.Master.Controllers
         {
             return Newtonsoft.Json.JsonConvert.SerializeObject(iplansrvice.GetPlanInstallmentByID(planInstallmentid));
         }
+        public string DeletePlanInstallment(int planInstallmentid)
+        {
+            return Newtonsoft.Json.JsonConvert.SerializeObject(iplansrvice.DeletePlanInstallment(planInstallmentid));
+        }
         public string GetPlanInstallmentByPlanID(int planID)
         {
             return Newtonsoft.Json.JsonConvert.SerializeObject(iplansrvice.GetPlanInstallmentByPlanID(planID));

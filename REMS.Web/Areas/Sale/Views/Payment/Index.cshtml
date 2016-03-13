@@ -2,8 +2,7 @@
     ViewBag.Title = "Payment";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<div id="content" data-ng-app="PaymentApp" data-ng-controller="PaymentController">
+@section topright{
     <div class="row">
         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
             <h1 class="page-title txt-color-blueDark">
@@ -20,6 +19,9 @@
             <!-- Button trigger modal -->
         </div>
     </div>
+}
+<div id="content" data-ng-app="PaymentApp" data-ng-controller="PaymentController">
+
     <div id="MessageArea" class="alert alert-block alert-{{MessageClass}}" style="display:none;">
         <a class="close" data-dismiss="alert" href="#">×</a>
         <h4 class="alert-heading"><i class="fa fa-check-square-o"></i> {{MessageTitle}}</h4>
@@ -99,75 +101,71 @@
                                                 <div class="widget-body no-padding">
 
                                                     <div id="flatdetail" class="row">
-                                                        <div class="col-sm-6 smart-form">
-                                                            <div id="comment-form" class="smart-form">
-                                                                <fieldset>
+                                                        <div class="col-md-offset-1 col-md-5">
+                                                               <br /> <fieldset>
                                                                     <div class="row">
-                                                                        <div class="col-sm-6">
-                                                                            <div class="hm_content_sec_top">
-                                                                                <input type="hidden" id="FlatName" name="FlatName" value="{{Flat.FlatName}}" />
-                                                                                <ul>
-                                                                                    <li>Flat Name:</li>
-                                                                                    <li id="FlatName">{{Flat.FlatName}} </li>
-                                                                                </ul>
-                                                                                <ul>
-                                                                                    <li>Customer Name:</li>
-                                                                                    <li id="CustomeName"> {{CustomerName}}</li>
-                                                                                </ul>
-                                                                                <ul>
-                                                                                    <li>Flat Type:</li>
-                                                                                    <li id="PlanName"> {{Flat.FlatType}}</li>
-                                                                                </ul>
-                                                                                <ul>
-                                                                                    <li>Flat Size:</li>
-                                                                                    <li>{{Flat.FlatSize}}</li>
-                                                                                </ul>
-                                                                                <input type="hidden" id="hidCustomerName" value="{{CustomerName}}" name="hidCustomerName" />
-                                                                                <input type="hidden" id="hidCustomerID" value="{{Customer.CustomerID}}" name="hidCustomerID" />
-                                                                            </div>
+                                                                        <div class="col-md-4">
+                                                                            Flat Name:
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <div id="FlatName">{{Flat.FlatName}} </div>
                                                                         </div>
                                                                     </div>
-
+                                                                    <div class="row">
+                                                                        <div class="col-md-4">
+                                                                            Customer Name:
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <div id="CustomeName"> {{CustomerName}}</div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-4">
+                                                                            Flat Type:
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <div id="PlanName"> {{Flat.FlatType}}</div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-4">
+                                                                            Flat Size:
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <div> {{Flat.FlatSize}}</div>
+                                                                            <input type="hidden" id="FlatName" name="FlatName" value="{{Flat.FlatName}}" />
+                                                                            <input type="hidden" id="hidCustomerName" value="{{CustomerName}}" name="hidCustomerName" />
+                                                                            <input type="hidden" id="hidCustomerID" value="{{Customer.CustomerID}}" name="hidCustomerID" />
+                                                                        </div>
+                                                                    </div>
                                                                 </fieldset>
-
-                                                            </div>
                                                         </div>
-                                                        <div class="col-sm-6">
-                                                            <div id="comment-form" class="smart-form">
-
+                                                        <div class="col-md-5">
+                                                            <br />
                                                                 <fieldset>
                                                                     <div class="row">
-                                                                        <div class="col-sm-6">
-                                                                            <div class="hm_content_sec_top">
-                                                                                <input type="hidden" id="SaleID" value="{{Sale.SaleID}}" />
-                                                                                <ul>
-                                                                                    <li>Sale Price</li>
-                                                                                    <li><span id="SalePrice">{{ Sale.TotalAmount}}</span></li>
-                                                                                </ul>
-                                                                                @*<ul>
-                                                                                        <li>Service Tax %:</li>
-                                                                                        <li><span id="ServiceTax">{{ Sale.Sale[0].ServiceTaxPer}}</span></li>
-                                                                                    </ul>*@
-                                                                                <ul>
-                                                                                    <li>Received Amount:</li>
-                                                                                    <li><span id="PaidAmount">{{ TotalPaid }}</span></li>
-                                                                                </ul>
-                                                                                <ul>
-                                                                                    <li>Balance Amount:</li>
-                                                                                    <li><span id="Balance">{{ Sale.TotalAmount-TotalPaid}}</span></li>
-                                                                                </ul>
-                                                                            </div>
+                                                                        <div class="col-md-4">Sale Price:
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <input type="hidden" id="SaleID" value="{{Sale.SaleID}}" />
+                                                                            <span id="SalePrice">{{ Sale.TotalAmount}}</span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-4">Received Amount:</div>
+                                                                        <div class="col-md-6">
+
+                                                                            <span id="PaidAmount">{{ TotalPaid }}</span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-4">Balance Amount:</div>
+                                                                        <div class="col-md-6">
+                                                                            <span id="Balance">{{ Sale.TotalAmount-TotalPaid}}</span>
                                                                         </div>
                                                                     </div>
                                                                 </fieldset>
 
-                                                                <div class="message">
-                                                                    <i class="fa fa-check fa-lg"></i>
-                                                                    <p>
-                                                                        Your comment was successfully added!
-                                                                    </p>
-                                                                </div>
-                                                            </div>
                                                         </div>
 
 
@@ -210,6 +208,26 @@
                                                                                         <option value="{{ ThisInstallmentNo }}">{{ ThisInstallmentName }}</option>
                                                                                     </select>
                                                                                 </label>
+                                                                            </section>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <section class="col-sm-12 col">
+                                                                                <label class="label">Payment Type</label>
+                                                                                <div class="row">
+                                                                                    <div class="col col-sm-2">
+                                                                                        <label class="radio state-success"><input type="radio" name="radio" id="rbtnBSP" value="BSP" checked><i></i>BSP</label>
+                                                                                    </div>
+                                                                                    <div class="col col-2">
+                                                                                        <label class="radio state-success"><input type="radio" name="radio" id="rbtnPLC" value="PLC"><i></i>PLC</label>
+                                                                                    </div>
+                                                                                    <div class="col col-3">
+                                                                                        <label class="radio state-success"><input type="radio" name="radio" id="rbtnAC" value="AdditionalCharge"><i></i>Additional </label>
+                                                                                    </div>
+                                                                                    <div class="col col-5">
+                                                                                        <label class="radio state-success"><input type="radio" name="radio" id="rbtnAOC" value="AdditionalOtherCharge"><i></i>Other Additional</label>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="note note-error">You must select one option.</div>
                                                                             </section>
                                                                         </div>
                                                                         <div class="row">
@@ -444,7 +462,6 @@
                                                                                         <td>{{ins.Installment}}</td>
                                                                                         <td>{{ ins.TotalAmount}}</td>
                                                                                         <td>{{ ins.DueDateSt}}</td>
-
                                                                                     </tr>
                                                                                     <tr><td style="display:none"></td><td><b>Total</b></td><td><b>{{TotalInstallmnetDueAmount }}</b></td><td></td></tr>
                                                                                 </tbody>
@@ -481,26 +498,25 @@
     <!-- end widget grid -->
 
 </div>
-    <!-- END MAIN CONTENT -->
-
+<!-- END MAIN CONTENT -->
 @section pagespecific {
-<script src="~/AgController/Paymentjs2.js"></script>
-<script type="text/javascript">
-    $(function () {
-        $(".datecal").datepicker({
-            changeMonth: true,
-            changeYear: true,
-            yearRange: '1914:2099',
-            dateFormat: 'dd/mm/yy'
-        });
+    <script src="~/AgController/Paymentjs2.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $(".datecal").datepicker({
+                changeMonth: true,
+                changeYear: true,
+                yearRange: '1914:2099',
+                dateFormat: 'dd/mm/yy'
+            });
 
-    });
-    $(document).ready(function () {
-        $('#loading').hide();
-        $('#btnSubmitPayment').click(function () {
-            // $('#btnSubmitPayment').hide();
-            // $('#loading').show();
-        })
-    });
-</script>
+        });
+        $(document).ready(function () {
+            $('#loading').hide();
+            $('#btnSubmitPayment').click(function () {
+                // $('#btnSubmitPayment').hide();
+                // $('#loading').show();
+            })
+        });
+    </script>
 }

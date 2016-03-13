@@ -2,36 +2,22 @@
     ViewBag.Title = "GenerateAgreementAction";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+@section topright{
+<div class="row">
+    <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+        <h1 class="page-title txt-color-blueDark"><i class="fa fa-building fa-fw "></i>Property  Agreement</h1>
+    </div>
+    <div class="col-xs-12 col-sm-5 col-md-5 col-lg-8">
+    </div>
+</div>
+}
 <div data-ng-app="DocApp" role="main">
     <!-- RIBBON -->
 
-    <div class="row">
-        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-            <h1 class="page-title txt-color-blueDark">
-                <!-- PAGE HEADER -->
-                <i class="fa-fw fa fa-flag"></i>
-                Customer
-                <span>
-                    >
-                    Property Agreement
-                </span>
-            </h1>
-        </div>
-        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-
-        </div>
-    </div>
     <!-- END RIBBON -->
     <!-- MAIN CONTENT -->
     <div id="content" data-ng-controller="DocumentController">
-        <div class="row">
-            <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
-                <h1 class="page-title txt-color-blueDark"><i class="fa fa-building fa-fw "></i>Property  Agreement</h1>
-            </div>
-            <div class="col-xs-12 col-sm-5 col-md-5 col-lg-8">
-            </div>
-        </div>
+       
 
         <!-- widget grid -->
         <section id="widget-grid" class="" data-ng-init="GenDocInit()">

@@ -26,6 +26,8 @@ namespace REMS.Data.DataModel
         public string ReceiptNo { get; set; }
         public string AuthoritySign { get; set; }
         public string PossessionDateSt { get; set; }
+        public string Contact { get; set; }
+        public string AuthEmail { get; set; }
 
     }
 }

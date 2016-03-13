@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <title>Stripe</title>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script type="text/javascript" src="jquery.maphilight.js"></script>
+    <script src="Content/Imagemap/jquery.maphilight.js"></script>
+    <script type="text/javascript">
+$(function () {
+    $('.map').maphilight();
+    $('#squidheadlink').mouseover(function (e) {
+        $('#squidhead').mouseover();
+    }).mouseout(function (e) {
+        $('#squidhead').mouseout();
+    }).click(function (e) { e.preventDefault(); });
+});</script>
+
+</head>
+<body>
+    <img src="Content/Imagemap/s1.png" width="900" height="641" class="map" usemap="#simple">
+        <map name="simple">
+            <area href="http://www.google.com" shape="poly" coords="58,241,100,241,104,237,153,236,153,268,58,268" alt="Link" title="Default behavior" data-maphilight='{"strokeColor":"0000ff","strokeWidth":1,"fillColor":"ff0000","fillOpacity":0.6,"alwaysOn":true}'>
+            <area href="http://www.google.com" shape="poly" coords="58,272,153,273,153,301,58,300" alt="Link" title="Default behavior" data-maphilight='{"strokeColor":"0000ff","strokeWidth":1,"fillColor":"7085F9","fillOpacity":0.6,"alwaysOn":true}'>
+            <area href="http://www.google.com" shape="poly" coords="58,307,153,307,153,343,58,343" alt="Link" title="Default behavior" data-maphilight='{"strokeColor":"0000ff","strokeWidth":1,"fillColor":"6DB760","fillOpacity":0.6,"alwaysOn":true}'>
+        </map>
+</body>
+</html>

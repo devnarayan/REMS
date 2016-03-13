@@ -1,0 +1,335 @@
+﻿@{
+    ViewBag.Title = "AddDiscount";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section topright{
+<h1 class="page-title txt-color-blueDark">
+    <!-- PAGE HEADER -->
+    <i class="fa-fw fa fa-flag"></i>
+    Add Discount
+    <span>>
+        Payment
+    </span>
+</h1>
+}
+
+<div id="content" data-ng-app="PaymentApp" data-ng-controller="PaymentDiscountController">
+
+    <div id="MessageArea" class="alert alert-block alert-{{MessageClass}}" style="display: none;">
+        <a class="close" data-dismiss="alert" href="#">×</a>
+        <h4 class="alert-heading"><i class="fa fa-check-square-o"></i><b id="MessageTitle"></b>{{MessageTitle}}</h4>
+        <p id="Message">
+            {{Message}}
+        </p>
+    </div>
+    <!-- widget grid -->
+    <section id="widget-grid" class="" data-ng-init="AddDiscountInit1()">
+        <input type="hidden" id="hidFlatID" data-ng-model="Pay.SaleID" value="@ViewBag.ID" />
+        <!-- START ROW -->
+        <div class="row" id="Newsaletower" style="display: none;" data-ng-init="AddDiscountInit()">
+            <article class="col-sm-12 col-md-12 col-lg-12">
+                <div class="jarviswidget" id="wid-id-1" data-widget-editbutton="false" data-widget-custombutton="false">
+                    <header>
+                        <span class="widget-icon"><i class="fa fa-user"></i></span>
+                        <h2>Add Payment Discount</h2>
+                    </header>
+                    <div>
+                        <!-- widget edit box -->
+                        <div class="jarviswidget-editbox">
+                            <!-- This area used as dropdown edit box -->
+                        </div>
+                        <!-- end widget edit box -->
+                        <div class="widget-body">
+                            <div class="step-content">
+                                <div class="form-horizontal" id="fuelux-wizard">
+                                    <div class="form-content">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <b>Select Tower:</b><br />
+                                                <select name="TowerID" class="form-control" data-ng-change="TowerChange()" data-ng-model="Flat.TowerID" id="searchby" required>
+                                                    <option data-ng-repeat="pro in TowerList" value="{{ pro.TowerID }}">{{pro.TowerName }}</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-3" id="searchflatname">
+                                                <b>Select Flat:</b><br />
+                                                <select name="FlatID" class="form-control" data-ng-model="Flat.FlatID" id="FlatID" required>
+                                                    <option data-ng-repeat="fl in FlatList" value="{{ fl.FlatID }}">{{ fl.FlatNo }}</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <br />
+                                                <a href="#" value="Search" data-ng-click="SearchsaleTransferProperty()" class="btn btn-primary" id="Srch1">Search</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+        <div class="row" id="divTrans">
+            <!-- NEW COL START -->
+            <article class="col-sm-12 col-md-12 col-lg-12">
+                <!-- Widget ID (each widget will need unique ID)-->
+                <div class="jarviswidget" id="wid-id-1" data-widget-editbutton="false" data-widget-custombutton="false">
+                    <!-- widget options:
+                        usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+
+                        data-widget-colorbutton="false"
+                        data-widget-editbutton="false"
+                        data-widget-togglebutton="false"
+                        data-widget-deletebutton="false"
+                        data-widget-fullscreenbutton="false"
+                        data-widget-custombutton="false"
+                        data-widget-collapsed="true"
+                        data-widget-sortable="false"
+
+                    -->
+                    <header>
+                        <span class="widget-icon"><i class="fa fa-edit"></i></span>
+                        <h2>Property Discount</h2>
+                    </header>
+                    <!-- widget div-->
+                    <div>
+                        <!-- widget edit box -->
+                        <div class="jarviswidget-editbox">
+                            <!-- This area used as dropdown edit box -->
+                        </div>
+                        <!-- end widget edit box -->
+                        <!-- widget content -->
+                        <div class="widget-body">
+                            <form id="checkout-form" class="smart-form" novalidate="novalidate">
+                                <div class="row">
+                                    <div class="col-md-7">
+                                        <div class="row">
+                                            <div class="col-md-1"></div>
+                                            <div class="col-md-5">
+                                                <div class="row" id="divTower">
+                                                    <div class="col col-5">Payment Type:</div>
+                                                    <div class="col col-6">
+                                                        <select id="ddlTower" name="ddlPaymentType" class="form-control" data-ng-change="ChangePaymentype()" data-ng-model="Pay.PaymentType">
+                                                            <option value="BSP Installment Amount" selected="selected">BSP Installment Amount</option>
+                                                            <option value="BSP Service Tax">BSP Service Tax</option>
+                                                            <option value="PLC Service Tax">PLC Service Tax</option>
+                                                            <option value="Additional Charges Service Tax">Additional Charges Service Tax</option>
+                                                            <option value="Addon Charges Service Tax">Addon Charges Service Tax</option>
+                                                            <option value="Late Payment">Late Payment</option>
+                                                            <option value="Transfer Fee">Transfer Fee</option>
+                                                            <option value="Clearance Charges">Clearance Charges</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                            <div class="col-md-5">
+                                                <div class="row" id="divFlat">
+                                                    <div class="col col-7">Discount Amount:</div>
+                                                    <div class="col col-5">
+                                                        <input type="text" id="txtDiscountAmt" name="txtDiscountAmt" data-ng-model="Pay.Amount" class="form-control" />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-1"></div>
+                                            <div class="col-md-5">
+                                                <h3>Current Property Info</h3>
+                                                <div class="row">
+                                                    <div class="col col-5">
+                                                        Company Name:
+                                                    </div>
+                                                    <div class="col col-6">
+                                                        {{FlatDetails.CompanyName}}
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col col-5">
+                                                        Project Name:
+                                                    </div>
+                                                    <div class="col col-6">
+                                                        {{FlatDetails.ProjectName}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                 <div class="row">
+                                                    <div class="col col-5">
+                                                        Flat/Property No:
+                                                    </div>
+                                                    <div class="col col-6">
+                                                        {{FlatDetails.FlatNo}}
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col col-5">
+                                                        Flat Type:
+                                                    </div>
+                                                    <div class="col col-6">
+                                                        {{FlatDetails.FlatType}}
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col col-5">
+                                                        Size:
+                                                    </div>
+                                                    <div class="col col-6" id="FlatSize">{{FlatDetails.FlatSize}}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col col-1"></div>
+                                            <div class="col col-9">
+                                                <div class="table-responsive">
+                                                    <table class="table table-bordered table-striped particular_tbl">
+                                                        <thead>
+                                                            <tr>
+                                                                <th><b>SN</b></th>
+                                                                <th><b>Authorize</b></th>
+                                                                <th><b>Authorize Person</b></th>
+                                                                <th><b>Days</b></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="tbodyhtml"></tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-5">
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered table-striped particular_tbl">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Payment Type</th>
+                                                        <th>Total Amount Charged</th>
+                                                        <th>Toal Paid</th>
+                                                        <td>Remaining Amount</td>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>BSP Installment Amount</td>
+                                                        <td>{{TotalInstallmentAmount}}</td>
+                                                        <td>N/A</td>
+                                                        <td>N/A</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>BSP Service Tax</td>
+                                                        <td>{{TotalInstallTax}}</td>
+                                                        <td>{{TotalST}}</td>
+                                                        <td>{{TotalInstallTax-TotalST}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>PLC Service Tax</td>
+                                                        <td>{{TotalFlatPLC}}</td>
+                                                        <td>{{TotalPT}}</td>
+                                                        <td>{{TotalFlatPLC-TotalPT}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Additional Charges Service Tax</td>
+                                                        <td>{{TotalFlatCharge }}</td>
+                                                        <td>{{TotalAT}}</td>
+                                                        <td>{{TotalFlatCharge -TotalAT}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Addon Charges Service Tax</td>
+                                                        <td>{{TotalFlatOCharge}}</td>
+                                                        <td>{{TotalOT}}</td>
+                                                        <td>{{TotalFlatOCharge-TotalOT}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Late Payment</td>
+                                                        <td>{{TotalLatePayment}}</td>
+                                                        <td>{{TotalLP}}</td>
+                                                        <td>{{TotalLatePayment-TotalLP}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Transfer Fee</td>
+                                                        <td>{{TotalPropertyTransfer}}</td>
+                                                        <td>{{TotalTP}}</td>
+                                                        <td>{{TotalPropertyTransfer-TotalTP}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Clearance Charges</td>
+                                                        <td>{{TotalPaymentClearance}}</td>
+                                                        <td>{{TotalCC}}</td>
+                                                        <td>{{TotalPaymentClearance-TotalCC}}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <footer>
+                                    <button class="btn btn-primary pull-left" data-ng-click="ClickSaveDiscount()" @*data-toggle="modal" href="#myModal"*@ type="submit">
+                                        <i class="fa fa-save"></i>
+                                        Save
+                                    </button>
+                                    <button class="btn btn-default pull-left btn_marg" type="submit">Cancel</button>
+                                </footer>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- end widget div -->
+                </div>
+                <!-- end widget -->
+            </article>
+            <!-- END COL -->
+        </div>
+
+        <!-- END ROW -->
+    </section>
+    <!-- end widget grid -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title">
+                        <img src="/content/img/logo.png" width="150" alt="SmartAdmin">
+                    </h4>
+                </div>
+                <div class="modal-body no-padding">
+                    <form id="login-form" class="smart-form">
+                        <fieldset>
+                            <section>
+                                <div class="row">
+                                    <div class="col col-2"></div>
+                                    <div class="col col-10">
+                                        <label class="label-danger">
+                                            Are you Confirm to submit payment confirm request?
+                                        </label><br /><br />
+                                       <textarea id="txtRemarks" placeholder="Enter Remarks Here." class="form-control" name="txtRemarks" data-ng-model="Pay.Remark"></textarea>
+                                    </div>
+                                </div>
+                            </section>
+                        </fieldset>
+                        <footer>
+                            <button type="submit" id="btnConfirmSave" data-ng-click="ConfirmedAddDiscount()" class="btn btn-primary">
+                                Submit
+                            </button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">
+                                Cancel
+                            </button>
+                        </footer>
+                    </form>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+</div>
+
+@section pagespecific {
+<script src="~/AgController/PaymentDiscountjs.js"></script>
+}

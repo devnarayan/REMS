@@ -50,6 +50,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActivityLog.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="AdditionalCharge.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -92,7 +95,10 @@
     <Compile Include="CustomModel\FlatSaleModel.cs" />
     <Compile Include="CustomModel\ModuleListModel.cs" />
     <Compile Include="CustomModel\NewSaleModel.cs" />
+    <Compile Include="CustomModel\PaymentDiscountApprovalModel.cs" />
+    <Compile Include="CustomModel\PaymentDiscountModel.cs" />
     <Compile Include="CustomModel\ProjectModel.cs" />
+    <Compile Include="CustomModel\ServiceTaxModel.cs" />
     <Compile Include="CustomModel\TowerViewModel.cs" />
     <Compile Include="CustomModel\UpdateFlatTypeModel.cs" />
     <Compile Include="DataModel\AdditionalChargeModel.cs" />
@@ -118,6 +124,7 @@
     <Compile Include="DataModel\PlanTypeMasterModel.cs" />
     <Compile Include="DataModel\PropertyTransferModel.cs" />
     <Compile Include="DataModel\RefundPropertyModel.cs" />
+    <Compile Include="DataModel\ReminderLetter2.cs" />
     <Compile Include="DataModel\ReminderLetterModel.cs" />
     <Compile Include="DataModel\SaleFlatModel.cs" />
     <Compile Include="DataModel\TransferPropertyModel.cs" />
@@ -191,6 +198,15 @@
     <Compile Include="PaymentCancel.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="PaymentClearance.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentDiscount.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentDiscountApproval.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="PaymentMaster.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -260,9 +276,6 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="spPlanSummary_Result.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="sysdiagram.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="TaxMaster.cs">

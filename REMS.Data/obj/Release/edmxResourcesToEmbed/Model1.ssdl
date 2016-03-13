@@ -1,5 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="REMSDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="REMSDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ActivityLog">
+    <Key>
+      <PropertyRef Name="ActivityLogID" />
+    </Key>
+    <Property Name="ActivityLogID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FlatID" Type="int" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+    <Property Name="CrDate" Type="datetime" />
+    <Property Name="Message" Type="nvarchar" MaxLength="256" />
+  </EntityType>
   <EntityType Name="AdditionalCharge">
     <Key>
       <PropertyRef Name="AdditionalChargeID" />
@@ -406,6 +416,7 @@
     <Property Name="AdditionalPer" Type="decimal" Precision="17" Scale="2" />
     <Property Name="OptionalPer" Type="decimal" Precision="17" Scale="2" />
     <Property Name="InstallmentServiceTaxID" Type="int" />
+    <Property Name="InsVersion" Type="int" />
   </EntityType>
   <EntityType Name="FlatOCharge">
     <Key>
@@ -524,6 +535,7 @@
     <Property Name="ClearanceCharge" Type="money" Nullable="false" />
     <Property Name="IsBounce" Type="bit" Nullable="false" />
     <Property Name="CustomerID" Type="int" />
+    <Property Name="PaymentType" Type="nvarchar" MaxLength="30" />
   </EntityType>
   <EntityType Name="PaymentCancel">
     <Key>
@@ -540,6 +552,44 @@
     <Property Name="CancelBy" Type="nvarchar" MaxLength="50" />
     <Property Name="UnCancelBy" Type="nvarchar" MaxLength="50" />
     <Property Name="Status" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="PaymentClearance">
+    <Key>
+      <PropertyRef Name="PaymentClearanceID" />
+    </Key>
+    <Property Name="PaymentClearanceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TransactionID" Type="bigint" Nullable="false" />
+    <Property Name="Amount" Type="money" Nullable="false" />
+    <Property Name="CrDate" Type="datetime" />
+    <Property Name="Remarks" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="PaymentDiscount">
+    <Key>
+      <PropertyRef Name="PaymentDiscountID" />
+    </Key>
+    <Property Name="PaymentDiscountID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SaleID" Type="int" Nullable="false" />
+    <Property Name="PaymentType" Type="nvarchar" MaxLength="30" />
+    <Property Name="ReqDate" Type="datetime" />
+    <Property Name="Amount" Type="money" />
+    <Property Name="Remark" Type="nvarchar" MaxLength="500" />
+    <Property Name="IsApproved" Type="bit" />
+    <Property Name="ExpiryDate" Type="datetime" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="30" />
+    <Property Name="UpdatedBy" Type="nvarchar" MaxLength="30" />
+    <Property Name="UpdatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="PaymentDiscountApproval">
+    <Key>
+      <PropertyRef Name="PaymentDiscountApprovalID" />
+    </Key>
+    <Property Name="PaymentDiscountApprovalID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PaymentDiscountID" Type="int" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="30" />
+    <Property Name="IsApproved" Type="bit" />
+    <Property Name="Days" Type="int" />
+    <Property Name="UpdateDate" Type="datetime" />
+    <Property Name="Remark" Type="nvarchar" MaxLength="256" />
   </EntityType>
   <EntityType Name="PaymentMaster">
     <Key>
@@ -664,7 +714,7 @@
     <Property Name="Remarks" Type="nvarchar" MaxLength="250" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'remshh_com_remsdb.dbo.PayTransferFee' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'REMSDB.dbo.PayTransferFee' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="PayTransferFee">
     <Key>
       <PropertyRef Name="PayTransferID" />
@@ -754,6 +804,8 @@ warning 6002: The table/view 'remshh_com_remsdb.dbo.PayTransferFee' does not hav
     <Property Name="PossessionDate" Type="datetime" />
     <Property Name="ReceiptNo" Type="nvarchar" MaxLength="50" />
     <Property Name="AuthoritySign" Type="nvarchar" MaxLength="100" />
+    <Property Name="Contact" Type="nvarchar" MaxLength="30" />
+    <Property Name="AuthEmail" Type="nvarchar" MaxLength="256" />
   </EntityType>
   <EntityType Name="ProjectType">
     <Key>
@@ -792,6 +844,7 @@ warning 6002: The table/view 'remshh_com_remsdb.dbo.PayTransferFee' does not hav
     <Property Name="OldPlanType" Type="nvarchar" MaxLength="200" />
     <Property Name="NewPlanType" Type="nvarchar" MaxLength="200" />
     <Property Name="UserName" Type="nvarchar" MaxLength="200" />
+    <Property Name="TransferType" Type="nvarchar" MaxLength="20" />
   </EntityType>
   <EntityType Name="RefundProperty">
     <Key>
@@ -819,6 +872,24 @@ warning 6002: The table/view 'remshh_com_remsdb.dbo.PayTransferFee' does not hav
     <Property Name="SaleID" Type="int" />
     <Property Name="duedate" Type="datetime" />
     <Property Name="DueAmount" Type="money" />
+    <Property Name="BSPTotal" Type="money" />
+    <Property Name="BSPPaid" Type="money" />
+    <Property Name="PLCTotal" Type="money" />
+    <Property Name="PLCPaid" Type="money" />
+    <Property Name="ACTotal" Type="money" />
+    <Property Name="ACPaid" Type="money" />
+    <Property Name="AOCTotal" Type="money" />
+    <Property Name="AOCPaid" Type="money" />
+    <Property Name="STaxTotal" Type="money" />
+    <Property Name="STaxPaid" Type="money" />
+    <Property Name="LateTotal" Type="money" />
+    <Property Name="LatePaid" Type="money" />
+    <Property Name="TransferTotal" Type="money" />
+    <Property Name="TransferPaid" Type="money" />
+    <Property Name="ClearanceTotal" Type="money" />
+    <Property Name="ClearancePaid" Type="money" />
+    <Property Name="CustomerID" Type="int" />
+    <Property Name="FlatID" Type="int" />
   </EntityType>
   <EntityType Name="RoleAccess">
     <Key>
@@ -847,6 +918,11 @@ warning 6002: The table/view 'remshh_com_remsdb.dbo.PayTransferFee' does not hav
     <Property Name="Remarks" Type="nvarchar" MaxLength="500" />
     <Property Name="ProjectID" Type="int" />
     <Property Name="DemandStatus" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="UpdateDate" Type="datetime" />
+    <Property Name="UpdateBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="PlanName" Type="nvarchar" MaxLength="256" />
   </EntityType>
   <EntityType Name="ServiceTax">
     <Key>
@@ -859,16 +935,6 @@ warning 6002: The table/view 'remshh_com_remsdb.dbo.PayTransferFee' does not hav
     <Property Name="ModifyDate" Type="datetime" />
     <Property Name="EndDate" Type="datetime" />
     <Property Name="Status" Type="bit" />
-  </EntityType>
-  <EntityType Name="sysdiagrams">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-    <Property Name="principal_id" Type="int" Nullable="false" />
-    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="version" Type="int" />
-    <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
   <EntityType Name="TaxMaster">
     <Key>
@@ -942,7 +1008,20 @@ warning 6002: The table/view 'remshh_com_remsdb.dbo.PayTransferFee' does not hav
     <Property Name="UserName" Type="nvarchar" MaxLength="100" />
     <Property Name="AssignDate" Type="datetime" />
     <Property Name="AssignUser" Type="nvarchar" MaxLength="100" />
+    <Property Name="IsAuthority" Type="bit" />
   </EntityType>
+  <Association Name="FK_ActivityLog_Flat">
+    <End Role="Flat" Type="Self.Flat" Multiplicity="0..1" />
+    <End Role="ActivityLog" Type="Self.ActivityLog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Flat">
+        <PropertyRef Name="FlatID" />
+      </Principal>
+      <Dependent Role="ActivityLog">
+        <PropertyRef Name="FlatID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Customer_SaleFlat">
     <End Role="SaleFlat" Type="Self.SaleFlat" Multiplicity="0..1">
       <OnDelete Action="Cascade" />
@@ -1149,6 +1228,30 @@ warning 6002: The table/view 'remshh_com_remsdb.dbo.PayTransferFee' does not hav
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_PaymentDiscount_SaleFlat">
+    <End Role="SaleFlat" Type="Self.SaleFlat" Multiplicity="1" />
+    <End Role="PaymentDiscount" Type="Self.PaymentDiscount" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SaleFlat">
+        <PropertyRef Name="SaleID" />
+      </Principal>
+      <Dependent Role="PaymentDiscount">
+        <PropertyRef Name="SaleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PaymentDiscountApproval_PaymentDiscount">
+    <End Role="PaymentDiscount" Type="Self.PaymentDiscount" Multiplicity="1" />
+    <End Role="PaymentDiscountApproval" Type="Self.PaymentDiscountApproval" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PaymentDiscount">
+        <PropertyRef Name="PaymentDiscountID" />
+      </Principal>
+      <Dependent Role="PaymentDiscountApproval">
+        <PropertyRef Name="PaymentDiscountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_PaymentOther_SaleFlat">
     <End Role="SaleFlat" Type="Self.SaleFlat" Multiplicity="0..1" />
     <End Role="PaymentOther" Type="Self.PaymentOther" Multiplicity="*" />
@@ -1307,6 +1410,30 @@ warning 6002: The table/view 'remshh_com_remsdb.dbo.PayTransferFee' does not hav
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_ReminderLetter_Customer">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+    <End Role="ReminderLetter" Type="Self.ReminderLetter" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerID" />
+      </Principal>
+      <Dependent Role="ReminderLetter">
+        <PropertyRef Name="CustomerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReminderLetter_Flat">
+    <End Role="Flat" Type="Self.Flat" Multiplicity="0..1" />
+    <End Role="ReminderLetter" Type="Self.ReminderLetter" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Flat">
+        <PropertyRef Name="FlatID" />
+      </Principal>
+      <Dependent Role="ReminderLetter">
+        <PropertyRef Name="FlatID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_ReminderLetter_SaleFlat">
     <End Role="SaleFlat" Type="Self.SaleFlat" Multiplicity="0..1" />
     <End Role="ReminderLetter" Type="Self.ReminderLetter" Multiplicity="*" />
@@ -1419,6 +1546,7 @@ warning 6002: The table/view 'remshh_com_remsdb.dbo.PayTransferFee' does not hav
     <Parameter Name="CustomerID" Type="int" Mode="In" />
     <Parameter Name="Interest" Type="bit" Mode="In" />
     <Parameter Name="CreatedBy" Type="nvarchar" Mode="In" />
+    <Parameter Name="PaymentType" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="Insert_PaymentAssuredReturn" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="SaleID" Type="int" Mode="In" />
@@ -1440,28 +1568,6 @@ warning 6002: The table/view 'remshh_com_remsdb.dbo.PayTransferFee' does not hav
     <Parameter Name="CustomerID" Type="int" Mode="In" />
     <Parameter Name="CreatedBy" Type="nvarchar" Mode="In" />
     <Parameter Name="AssuredReturnID" Type="int" Mode="In" />
-  </Function>
-  <Function Name="Insert_PaymentOther" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="SaleID" Type="int" Mode="In" />
-    <Parameter Name="InstallmentNo" Type="nvarchar" Mode="In" />
-    <Parameter Name="PaymentDate" Type="datetime" Mode="In" />
-    <Parameter Name="Amount" Type="decimal" Mode="In" />
-    <Parameter Name="PaymentMode" Type="nvarchar" Mode="In" />
-    <Parameter Name="ChequeNo" Type="varchar" Mode="In" />
-    <Parameter Name="ChequeDate" Type="datetime" Mode="In" />
-    <Parameter Name="BankName" Type="varchar" Mode="In" />
-    <Parameter Name="PaymentStatus" Type="nvarchar" Mode="In" />
-    <Parameter Name="CustomerName" Type="nvarchar" Mode="In" />
-    <Parameter Name="Remarks" Type="nvarchar" Mode="In" />
-    <Parameter Name="BankBranch" Type="nvarchar" Mode="In" />
-    <Parameter Name="AmtRcvdinwords" Type="nvarchar" Mode="In" />
-    <Parameter Name="PaymentNo" Type="nvarchar" Mode="In" />
-    <Parameter Name="IsReceipt" Type="bit" Mode="In" />
-    <Parameter Name="Activity" Type="nvarchar" Mode="In" />
-    <Parameter Name="FlatName" Type="nvarchar" Mode="In" />
-    <Parameter Name="TransactionID" Type="int" Mode="In" />
-    <Parameter Name="CustomerID" Type="int" Mode="In" />
-    <Parameter Name="CreatedBy" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="Rem_GetFlatPlanCharge" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="FlatId" Type="int" Mode="In" />
@@ -1530,41 +1636,8 @@ warning 6002: The table/view 'remshh_com_remsdb.dbo.PayTransferFee' does not hav
   <Function Name="spPlanSummary" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="FlatSize" Type="decimal" Mode="In" />
   </Function>
-  <Function Name="Update_Clearance" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="TransactionID" Type="nvarchar" Mode="In" />
-    <Parameter Name="ChargeAmount" Type="nvarchar" Mode="In" />
-    <Parameter Name="Remarks" Type="nvarchar" Mode="In" />
-    <Parameter Name="ModifyBy" Type="nvarchar" Mode="In" />
-    <Parameter Name="IsBounce" Type="nvarchar" Mode="In" />
-    <Parameter Name="ClearanceDate" Type="datetime" Mode="In" />
-  </Function>
-  <Function Name="Update_Payment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="SaleID" Type="int" Mode="In" />
-    <Parameter Name="TransactionID" Type="int" Mode="In" />
-    <Parameter Name="PaymentDate" Type="datetime" Mode="In" />
-    <Parameter Name="Amount" Type="decimal" Mode="In" />
-    <Parameter Name="PaymentMode" Type="nvarchar" Mode="In" />
-    <Parameter Name="ChequeNo" Type="varchar" Mode="In" />
-    <Parameter Name="ChequeDate" Type="datetime" Mode="In" />
-    <Parameter Name="BankName" Type="varchar" Mode="In" />
-    <Parameter Name="PaymentStatus" Type="nvarchar" Mode="In" />
-    <Parameter Name="Remarks" Type="nvarchar" Mode="In" />
-    <Parameter Name="BankBranch" Type="nvarchar" Mode="In" />
-    <Parameter Name="AmtRcvdinwords" Type="nvarchar" Mode="In" />
-    <Parameter Name="UserName" Type="nvarchar" Mode="In" />
-    <Parameter Name="Activity" Type="nvarchar" Mode="In" />
-  </Function>
-  <Function Name="Update_TransferProperty" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="CustomerID" Type="int" Mode="In" />
-    <Parameter Name="FName" Type="nvarchar" Mode="In" />
-    <Parameter Name="MName" Type="nvarchar" Mode="In" />
-    <Parameter Name="LName" Type="nvarchar" Mode="In" />
-    <Parameter Name="SaleID" Type="int" Mode="In" />
-    <Parameter Name="TransferAmount" Type="nvarchar" Mode="In" />
-    <Parameter Name="UserName" Type="nvarchar" Mode="In" />
-    <Parameter Name="TransferDate" Type="datetime" Mode="In" />
-  </Function>
   <EntityContainer Name="REMSDBModelStoreContainer">
+    <EntitySet Name="ActivityLog" EntityType="Self.ActivityLog" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AdditionalCharge" EntityType="Self.AdditionalCharge" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AddOnCharge" EntityType="Self.AddOnCharge" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Agreement" EntityType="Self.Agreement" Schema="dbo" store:Type="Tables" />
@@ -1590,6 +1663,9 @@ warning 6002: The table/view 'remshh_com_remsdb.dbo.PayTransferFee' does not hav
     <EntitySet Name="ModuleList" EntityType="Self.ModuleList" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Payment" EntityType="Self.Payment" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PaymentCancel" EntityType="Self.PaymentCancel" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PaymentClearance" EntityType="Self.PaymentClearance" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PaymentDiscount" EntityType="Self.PaymentDiscount" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PaymentDiscountApproval" EntityType="Self.PaymentDiscountApproval" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PaymentMaster" EntityType="Self.PaymentMaster" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PaymentOther" EntityType="Self.PaymentOther" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PaymentOtherCancel" EntityType="Self.PaymentOtherCancel" Schema="dbo" store:Type="Tables" />
@@ -1609,7 +1685,6 @@ warning 6002: The table/view 'remshh_com_remsdb.dbo.PayTransferFee' does not hav
     <EntitySet Name="RoleAccess" EntityType="Self.RoleAccess" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SaleFlat" EntityType="Self.SaleFlat" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ServiceTax" EntityType="Self.ServiceTax" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TaxMaster" EntityType="Self.TaxMaster" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Tower" EntityType="Self.Tower" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UploadAgreement" EntityType="Self.UploadAgreement" Schema="dbo" store:Type="Tables" />
@@ -1638,6 +1713,10 @@ warning 6002: The table/view 'remshh_com_remsdb.dbo.PayTransferFee' does not hav
     [PayTransferFee].[Remarks] AS [Remarks]
     FROM [dbo].[PayTransferFee] AS [PayTransferFee]</DefiningQuery>
     </EntitySet>
+    <AssociationSet Name="FK_ActivityLog_Flat" Association="Self.FK_ActivityLog_Flat">
+      <End Role="Flat" EntitySet="Flat" />
+      <End Role="ActivityLog" EntitySet="ActivityLog" />
+    </AssociationSet>
     <AssociationSet Name="FK_Customer_SaleFlat" Association="Self.FK_Customer_SaleFlat">
       <End Role="SaleFlat" EntitySet="SaleFlat" />
       <End Role="Customer" EntitySet="Customer" />
@@ -1698,6 +1777,14 @@ warning 6002: The table/view 'remshh_com_remsdb.dbo.PayTransferFee' does not hav
       <End Role="SaleFlat" EntitySet="SaleFlat" />
       <End Role="PaymentCancel" EntitySet="PaymentCancel" />
     </AssociationSet>
+    <AssociationSet Name="FK_PaymentDiscount_SaleFlat" Association="Self.FK_PaymentDiscount_SaleFlat">
+      <End Role="SaleFlat" EntitySet="SaleFlat" />
+      <End Role="PaymentDiscount" EntitySet="PaymentDiscount" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PaymentDiscountApproval_PaymentDiscount" Association="Self.FK_PaymentDiscountApproval_PaymentDiscount">
+      <End Role="PaymentDiscount" EntitySet="PaymentDiscount" />
+      <End Role="PaymentDiscountApproval" EntitySet="PaymentDiscountApproval" />
+    </AssociationSet>
     <AssociationSet Name="FK_PaymentOther_SaleFlat" Association="Self.FK_PaymentOther_SaleFlat">
       <End Role="SaleFlat" EntitySet="SaleFlat" />
       <End Role="PaymentOther" EntitySet="PaymentOther" />
@@ -1745,6 +1832,14 @@ warning 6002: The table/view 'remshh_com_remsdb.dbo.PayTransferFee' does not hav
     <AssociationSet Name="FK_RefundProperty_SaleFlat" Association="Self.FK_RefundProperty_SaleFlat">
       <End Role="SaleFlat" EntitySet="SaleFlat" />
       <End Role="RefundProperty" EntitySet="RefundProperty" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReminderLetter_Customer" Association="Self.FK_ReminderLetter_Customer">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="ReminderLetter" EntitySet="ReminderLetter" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReminderLetter_Flat" Association="Self.FK_ReminderLetter_Flat">
+      <End Role="Flat" EntitySet="Flat" />
+      <End Role="ReminderLetter" EntitySet="ReminderLetter" />
     </AssociationSet>
     <AssociationSet Name="FK_ReminderLetter_SaleFlat" Association="Self.FK_ReminderLetter_SaleFlat">
       <End Role="SaleFlat" EntitySet="SaleFlat" />

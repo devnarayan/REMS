@@ -3,6 +3,15 @@
     ViewBag.Title = "ViewCancelPayments";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@section topright{
+<div class="row">
+    <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+        <h1 class="page-title txt-color-blueDark"><i class="fa fa-building fa-fw "></i>Search Canceled Payments</h1>
+    </div>
+    <div class="col-xs-12 col-sm-5 col-md-5 col-lg-8">
+    </div>
+</div>
+}
 
 <div  data-ng-app="OPaymentApp" role="main">
     <!-- RIBBON -->
@@ -10,13 +19,7 @@
     <!-- END RIBBON -->
     <!-- MAIN CONTENT -->
     <div id="content" data-ng-controller="OtherPaymentController">
-        <div class="row">
-            <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
-                <h1 class="page-title txt-color-blueDark"><i class="fa fa-building fa-fw "></i>Search Canceled Payments</h1>
-            </div>
-            <div class="col-xs-12 col-sm-5 col-md-5 col-lg-8">
-            </div>
-        </div>
+      
         <!-- widget grid -->
         <section id="widget-grid" class="" data-ng-init="RefundInit()">
             <input type="hidden" id="hidFlatID" name="hidFlatID" value="@ViewBag.ID" />
@@ -40,7 +43,7 @@
                                             <div class="row">
                                                 <div class="col-md-4">
                                                     <b>Property:</b><br />
-                                                    <select name="TowerID" class="form-control" data-ng-change="TowerChange()" data-ng-model="Flat.TowerID" id="searchby" required>
+                                                    <select name="TowerID" class="form-control" data-ng-change="TowerChange()" data-ng-model="FlatSearch.TowerID" id="searchby" required>
                                                         <option data-ng-repeat="pro in TowerList" value="{{ pro.TowerID }}">{{pro.TowerName }}</option>
                                                         <option value="All" selected="selected">All</option>
                                                         <option value="FlatName">Property Name</option>
@@ -57,7 +60,7 @@
                                                 </div>
                                                 <div class="col-md-4" id="searchflatname">
                                                     <b>Search By:</b><br />
-                                                    <select name="FlatID" class="form-control" data-ng-model="Flat.FlatID" id="FlatID" required>
+                                                    <select name="FlatID" class="form-control" data-ng-model="FlatSearch.FlatID" id="FlatID" required>
                                                         <option data-ng-repeat="fl in FlatList" value="{{ fl.FlatID }}">{{ fl.FlatNo }}</option>
                                                     </select>
                                                     @*<input type="hidden" id="protypename" name="protypename">

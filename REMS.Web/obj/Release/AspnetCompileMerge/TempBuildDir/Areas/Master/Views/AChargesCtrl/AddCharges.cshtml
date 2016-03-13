@@ -2,26 +2,28 @@
     ViewBag.Title = "AddCharges";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+@section topright{
+<div class="row">
+    <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+        <h1 class="page-title txt-color-blueDark">
+            <!-- PAGE HEADER -->
+            <i class="fa-fw fa fa-pencil-square-o"></i>
+            Additional Charges
+            <span>
+                >
+                Manage
+            </span>
+        </h1>
+    </div>
+    <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+        <!-- Button trigger modal -->
+    </div>
+</div>
+}
 <!-- MAIN CONTENT -->
 <div id="content" data-ng-app="MasterApp" data-ng-controller="AChargesCtrlController">
 
-    <div class="row">
-        <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-            <h1 class="page-title txt-color-blueDark">
-                <!-- PAGE HEADER -->
-                <i class="fa-fw fa fa-pencil-square-o"></i>
-                Additional Charges
-                <span>
-                    >
-                    Manage
-                </span>
-            </h1>
-        </div>
-        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-            <!-- Button trigger modal -->
-        </div>
-    </div>
+    
     <div id="MessageArea" class="alert alert-block {{MessageClass}}" style="display:none;">
         <a class="close" data-dismiss="alert" href="#">×</a>
         <h4 class="alert-heading"><i class="fa fa-check-square-o"></i> {{MessageTitle}}</h4>
@@ -126,6 +128,9 @@
                                     <button type="submit" id="btnEdit" data-ng-click="UpdateAdditionalCharge()" class="btn btn-primary">
                                         Update
                                     </button>
+                                    <button type="button" class="btn btn-default" data-ng-click="CancelAC()">
+                                        Cancel
+                                    </button>
                                 </footer>
                             </form>
                         </div>
@@ -189,7 +194,8 @@
                                             <td>{{ad.TaxPer}}</td>
                                             <td>{{ad.Mandatory}}</td>
                                             <td>
-                                                <span><i class="fa fa-edit pointer" data-ng-click="EditAdditionalCharge(ad.AdditionalChargeID)"></i> &nbsp;<i class="fa fa-trash-o pointer"></i></span>
+                                                <span><i class="fa fa-edit pointer" data-ng-click="EditAdditionalCharge(ad.AdditionalChargeID)"></i> &nbsp;
+                                                <i class="fa fa-trash-o pointer"  data-ng-click="EditAdditionalCharge(ad.AdditionalChargeID)"  data-toggle="modal" href="#myModal"></i></span>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -208,7 +214,45 @@
         <!-- END ROW -->
     </section>
     <!-- end widget grid -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title">
+                        <img src="/content/img/logo.png" width="150" alt="SmartAdmin">
+                    </h4>
+                </div>
+                <div class="modal-body no-padding">
+                    <form id="login-form" class="smart-form">
+                        <fieldset>
+                            <section>
+                                <div class="row">
+                                    <div class="col col-2"></div>
+                                    <div class="col col-10">
+                                        <label class="label-danger">
+                                            Are you sure want to delete Additional Charges ?
+                                        </label>
+                                    </div>
+                                </div>
+                            </section>
+                        </fieldset>
+                        <footer>
+                            <button type="submit" data-ng-click="DeleteAdditionalCharge()" class="btn btn-primary">
+                                Delete
+                            </button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">
+                                Cancel
+                            </button>
+                        </footer>
+                    </form>
 
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
 </div>
 <!-- END MAIN CONTENT -->
 @section pagespecific {

@@ -2,25 +2,27 @@
     ViewBag.Title = "AddProject";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+@section topright{
+<div class="row">
+    <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+        <h1 class="page-title txt-color-blueDark">
+            <!-- PAGE HEADER -->
+            <i class="fa-fw fa fa-building-o"></i>
+            Property Project
+            <span>
+                >
+                Manage
+            </span>
+        </h1>
+    </div>
+    <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+        <!-- Button trigger modal -->
+    </div>
+</div>
+}
 <!-- MAIN CONTENT -->
 <div id="content" data-ng-app="AdminApp" data-ng-controller="PropertyProjectController">
-    <div class="row">
-        <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-            <h1 class="page-title txt-color-blueDark">
-                <!-- PAGE HEADER -->
-                <i class="fa-fw fa fa-building-o"></i>
-                Property Project
-                <span>
-                    >
-                    Manage
-                </span>
-            </h1>
-        </div>
-        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-            <!-- Button trigger modal -->
-        </div>
-    </div>
+   
     <div class="alert alert-block alert-success" style="display:none;">
         <a class="close" data-dismiss="alert" href="#">×</a>
         <h4 class="alert-heading"><i class="fa fa-check-square-o"></i> Check validation!</h4>
@@ -128,6 +130,20 @@
                                             <label class="input">
                                                 <i class="icon-prepend fa fa-calendar"></i>
                                                 <input type="text" name="PossessionDate" data-ng-model="project.PossessionDateSt" placeholder="Offer of Possession Date" class="datepicker" data-dateformat='dd/mm/yy'>
+                                            </label>
+                                        </section>
+                                    </div>
+                                    <div class="row">
+                                        <section class="col col-5">
+                                            <label class="input">
+                                                <i class="icon-prepend fa fa-lightbulb-o"></i>
+                                                <input type="text" name="Contact" data-ng-model="project.Contact" placeholder="Enter Contact No">
+                                            </label>
+                                        </section>
+                                        <section class="col col-5">
+                                            <label class="input">
+                                                <i class="icon-prepend fa fa-calendar"></i>
+                                                <input type="text" name="AuthEmail" data-ng-model="project.AuthEmail" placeholder="Enter Authorized Person Email ID">
                                             </label>
                                         </section>
                                     </div>

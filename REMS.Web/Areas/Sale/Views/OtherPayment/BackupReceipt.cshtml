@@ -3,7 +3,11 @@
     ViewBag.Title = "BackupReceipt";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+@section topright{
+<div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+    <h1 class="page-title txt-color-blueDark"><i class="fa fa-download fa-fw "></i>Backup  Receipt for Other Payment</h1>
+</div>
+}
 <div  data-ng-app="OPaymentApp" role="main">
     <!-- RIBBON -->
    
@@ -12,9 +16,7 @@
     <div id="content" data-ng-controller="OtherPaymentController">
         <div id="content">
             <div class="row">
-                <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
-                    <h1 class="page-title txt-color-blueDark"><i class="fa fa-download fa-fw "></i>Backup  Receipt for Other Payment</h1>
-                </div>
+              
                 <div class="col-xs-12 col-sm-5 col-md-5 col-lg-8">
                     <br />
                     <div class="row">
@@ -62,7 +64,7 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <b>Property:</b><br />
-                                <select name="TowerID" class="form-control" data-ng-change="TowerChange()" data-ng-model="Flat.TowerID" id="searchby" required>
+                                <select name="TowerID" class="form-control" data-ng-change="TowerChange()" data-ng-model="FlatSearch.TowerID" id="searchby" required>
                                     <option data-ng-repeat="pro in TowerList" value="{{ pro.TowerID }}">{{pro.TowerName }}</option>
                                     <option value="All" selected="selected">All</option>
                                     <option value="SubType">Property SubType</option>
@@ -75,7 +77,7 @@
                             </div>
                             <div class="col-md-4" id="searchflatname">
                                 <b>Search By:</b><br />
-                                <select name="FlatID" class="form-control" data-ng-model="Flat.FlatID" id="FlatID" required>
+                                <select name="FlatID" class="form-control" data-ng-model="FlatSearch.FlatID" id="FlatID" required>
                                     <option data-ng-repeat="fl in FlatList" value="{{ fl.FlatID }}">{{ fl.FlatNo }}</option>
                                 </select>
                             </div>
@@ -355,7 +357,7 @@
         $("#datediv").hide();
         $("#alldiv").hide();
         $("#searchflatname").hide();
-        $scope.Flat.FlatID = 0;
+        // $scope.FlatSearch.FlatID = 0;
         if (localStorage.getItem("searchby") != null) {
             $("#searchby").val(localStorage.getItem("searchby"));
             $("#sortby").val(localStorage.getItem("sortby"));

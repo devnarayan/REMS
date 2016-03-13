@@ -179,6 +179,57 @@ namespace REMS.Web.App_Helpers
             }
         }
 
+        public string SendPaymentDiscount(string emailids, string username,string customername,string amount)
+        {
+            try
+            {
+                //u.GetPassword();
+                MailMessage email = new MailMessage();
+                email.From = new MailAddress(ConfigurationManager.AppSettings["tomail"],ConfigurationManager.AppSettings["SenderName"]);
+
+                email.Subject = "REMS || Payment Discount Notification‏";
+                email.IsBodyHtml = true;
+                StringBuilder Message = new StringBuilder();
+                string path = HostingEnvironment.MapPath(@"~\MailTemplates\PaymentDiscount.html");
+                using (StreamReader reader = new StreamReader(path))
+                {
+                    Message = new StringBuilder(reader.ReadToEnd());
+                }
+
+                DateTime dt = DateTime.Now;
+                Message.Replace("User_Name", username);
+                Message.Replace("Customer_Name", customername);
+                Message.Replace("Discount_Amount", amount);
+                Message.Replace("Domain_Token", ConfigurationManager.AppSettings["domain"].ToString());
+
+                email.Body = Convert.ToString(Message);
+                string from_email = ConfigurationManager.AppSettings["email"];
+                string password = ConfigurationManager.AppSettings["password"];
+                string host = ConfigurationManager.AppSettings["host"];
+                int port = Convert.ToInt32(ConfigurationManager.AppSettings["port"]);
+                SmtpClient smtp = new SmtpClient(host, port);
+                smtp.UseDefaultCredentials = false;
+                smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+                NetworkCredential nc = new NetworkCredential(from_email, password);
+                smtp.Credentials = nc;
+                smtp.EnableSsl = true;
+                email.IsBodyHtml = true;
+
+
+                email.To.Add(emailids);
+                //Attachment attachment = new Attachment(Path.Combine(HostingEnvironment.MapPath("~/Pdfdocs"), model.PdfUrl));
+                //email.Attachments.Add(attachment);
+
+                smtp.Send(email);
+                return "OK";
+            }
+            catch (Exception ex)
+            {
+                Helper helper = new Helper();
+                helper.LogException(ex);
+                return "Error";
+            }
+        }
         public static string SendContactUsMailFunding(string emailid, string name)
         {
             try

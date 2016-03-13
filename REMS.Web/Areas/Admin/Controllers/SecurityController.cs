@@ -6,6 +6,7 @@ using Owin;
 using REMS.Data;
 using REMS.Data.Access;
 using REMS.Data.Access.Admin;
+using REMS.Data.Access.Auth;
 using REMS.Data.CustomModel;
 using REMS.Data.DataModel;
 using REMS.Web.App_Helpers;
@@ -31,12 +32,14 @@ namespace REMS.Web.Areas.Admin.Controllers
         private ProjectService projectService;
         private Helper hp;
         private REMSDBEntities dbContext;
+        private AuthorizeService authService;
         #endregion
         public SecurityController()
         {
-             hp = new Helper();
-             projectService = new ProjectService();
-             dbContext = new REMSDBEntities();
+            hp = new Helper();
+            projectService = new ProjectService();
+            dbContext = new REMSDBEntities();
+            authService = new AuthorizeService();
         }
         // GET: Admin/Security
         [MyAuthorize]
@@ -106,7 +109,7 @@ namespace REMS.Web.Areas.Admin.Controllers
                     {
                         UserProperty up = new UserProperty();
                         up.UserName = model.UserName;
-                        up.ProjectID =Convert.ToInt32(pid);
+                        up.ProjectID = Convert.ToInt32(pid);
                         up.AssignUser = User.Identity.Name;
                         up.AssignDate = DateTime.Now;
                         context.UserProperties.Add(up);
@@ -158,9 +161,9 @@ namespace REMS.Web.Areas.Admin.Controllers
             ProjectService pservice = new ProjectService();
             var model = pservice.AllProjects();
             List<ProjectListModel> lstPropertyDetails = new List<ProjectListModel>();
-            foreach (var  plist in model)
+            foreach (var plist in model)
             {
-                lstPropertyDetails.Add(new ProjectListModel { ProjectID =plist.ProjectID, ProjectName=plist.PName });
+                lstPropertyDetails.Add(new ProjectListModel { ProjectID = plist.ProjectID, ProjectName = plist.PName });
             }
             return Json(lstPropertyDetails, JsonRequestBehavior.AllowGet);
         }
@@ -187,6 +190,7 @@ namespace REMS.Web.Areas.Admin.Controllers
                 }
                 lstPropertyDetails.Add(new ModuleListModel { ModuleListID = Convert.ToInt32(bankDetails["ModuleListID"]), Name = Convert.ToString(bankDetails["Name"]), PageName = bankDetails["PageName"].ToString(), Controller = bankDetails["Controller"].ToString(), ActionName = bankDetails["ActionName"].ToString(), UserName = username, IsRead = isread, IsWrite = iswrite, Checked = chk });
                 st += @"<tr><td><input type='checkbox' id='" + Convert.ToInt32(bankDetails["ModuleListID"]) + "'  value='" + Convert.ToInt32(bankDetails["ModuleListID"]) + "' name='chkPro' class='Prolist' " + chk + "/></td>";
+                st += @"<td><input type='checkbox' id='Auth" + Convert.ToInt32(bankDetails["ModuleListID"]) + "'  value='" + Convert.ToInt32(bankDetails["ModuleListID"]) + "' name='chkAuth' class='ProAuth' " + chk + "/></td>";
                 st += "<td>" + Convert.ToString(bankDetails["Name"]) + "</td><td>" + Convert.ToString(bankDetails["PageName"]) + "</td><td>" + Convert.ToString(bankDetails["Controller"]) + "</td><td>" + Convert.ToString(bankDetails["ActionName"]) + "</td></tr>";
             }
             return st;
@@ -258,27 +262,52 @@ namespace REMS.Web.Areas.Admin.Controllers
         public string GetPropertyByUser(string username)
         {
             REMSDBEntities context = new REMSDBEntities();
-            var model= projectService.AllProjects();
+            var model = projectService.AllProjects();
             DataFunctions obj = new DataFunctions();
             List<ProjectListModel> lstPropertyDetails = new List<ProjectListModel>();
-            
+
             DataTable dt = obj.GetDataTable("select * from Project");
             string st = "";
             foreach (var mdl in model)
             {
-                string chk = "";
+                string chk = "", chk2 = "";
                 var UAM = context.UserProperties.Where(ua => ua.UserName == username && ua.ProjectID == mdl.ProjectID).FirstOrDefault();
                 if (UAM != null)
                 {
                     chk = "checked";
+                    if (UAM.IsAuthority == true)
+                        chk2 = "checked";
                 }
+
                 // lstPropertyDetails.Add(new ModuleListModel { ModuleListID = Convert.ToInt32(bankDetails["ModuleListID"]), Name = Convert.ToString(bankDetails["Name"]), PageName = bankDetails["PageName"].ToString(), Controller = bankDetails["Controller"].ToString(), ActionName = bankDetails["ActionName"].ToString(), UserName = username, IsRead = isread, IsWrite = iswrite, Checked = chk });
                 st += @"<tr><td><input type='checkbox' id='" + Convert.ToInt32(mdl.ProjectID) + "'  value='" + mdl.ProjectID + "' name='chkPro' class='Prolist' " + chk + "/></td>";
+                st += @"<td><input type='checkbox'  id='chk" + Convert.ToInt32(mdl.ProjectID) + "'  value='" + mdl.ProjectID + "' name='chkAuth' class='ProAuth' " + chk2 + "/></td>";
                 st += "<td>" + mdl.PName + "</td></tr>";
             }
             return st;
         }
-        public string SaveUsersPropertyRights(string username, string modulelist, string notinaccess)
+        public string GetPropertyByProjectID(int projectid)
+        {
+            REMSDBEntities context = new REMSDBEntities();
+            var model = projectService.AllProjects();
+            DataFunctions obj = new DataFunctions();
+            List<ProjectListModel> lstPropertyDetails = new List<ProjectListModel>();
+
+            string st = "";
+            int i = 0;
+            var UAM = context.UserProperties.Where(ua => ua.ProjectID == projectid && ua.IsAuthority==true).ToList();
+            foreach (var mdl in UAM)
+            {
+                i++;
+                st += @"<tr><td>" + i + "</td>";
+                st += @"<td><input type='checkbox' class='form-control ProAuth' id='chk" + Convert.ToInt32(mdl.UserPropertyID) + "'  value='" + mdl.UserName + "' name='chkAuth'/></td>";
+                st+="<td>" + mdl.UserName + "</td></td>";
+                st += @"<td><select class='form-control mydays' id='" + i + "' name='"+mdl.UserName+"'><option value='2'>2 Days</option><option value='1'>1 Day</option><option value='3'>3 Days</option><option value='4'>4 Days</option><option value='5'>5 Days</option><option value='6'>6 Days</option><option value='7'>7 Days</option></select></td>";
+                st += "</tr>";
+            }
+            return st;
+        }
+        public string SaveUsersPropertyRights(string username, string modulelist, string notinaccess, string IsAuth, string NAuth)
         {
             try
             {
@@ -326,9 +355,54 @@ namespace REMS.Web.Areas.Admin.Controllers
                         }
                         else
                         {
-                            // Delete
+                            // Delete 
                             dbContext.UserProperties.Add(UAM);
                             dbContext.Entry(UAM).State = EntityState.Deleted;
+                            int i = dbContext.SaveChanges();
+                        }
+                    }
+                }
+                string[] iauth = IsAuth.Split(',');
+                if (iauth.Length > 0)
+                {
+                    foreach (string pid in iauth)
+                    {
+                        int? proid = Convert.ToInt32(pid);
+                        var UAM = dbContext.UserProperties.Where(ua => ua.UserName == username && ua.ProjectID == proid).FirstOrDefault();
+                        if (UAM == null)
+                        {
+
+                        }
+                        else
+                        {
+                            // Update
+                            UAM.AssignDate = DateTime.Now;
+                            UAM.AssignUser = User.Identity.Name;
+                            UAM.IsAuthority = true;
+                            dbContext.UserProperties.Add(UAM);
+                            dbContext.Entry(UAM).State = EntityState.Modified;
+                            int i = dbContext.SaveChanges();
+                        }
+                    }
+                }
+                string[] nauth = NAuth.Split(',');
+                if (nauth.Count() > 0)
+                {
+                    foreach (string pid in nauth)
+                    {
+                        int? proid = Convert.ToInt32(pid);
+
+                        var UAM = dbContext.UserProperties.Where(ua => ua.UserName == username && ua.ProjectID == proid).FirstOrDefault();
+                        if (UAM == null)
+                        {
+                        }
+                        else
+                        {
+                            UAM.AssignDate = DateTime.Now;
+                            UAM.AssignUser = User.Identity.Name;
+                            UAM.IsAuthority = false;
+                            dbContext.UserProperties.Add(UAM);
+                            dbContext.Entry(UAM).State = EntityState.Modified;
                             int i = dbContext.SaveChanges();
                         }
                     }
@@ -493,6 +567,20 @@ namespace REMS.Web.Areas.Admin.Controllers
                 return "Role Updated Successfully.";
             }
             catch (Exception ex)
+            {
+                Helper hp = new Helper();
+                hp.LogException(ex);
+                return "Error! Please try again.";
+            }
+        }
+        public string AuthUserList()
+        {
+            try
+            {
+               var model= authService.AuthUserList();
+               return Newtonsoft.Json.JsonConvert.SerializeObject(model);
+            }
+            catch(Exception ex)
             {
                 Helper hp = new Helper();
                 hp.LogException(ex);

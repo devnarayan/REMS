@@ -110,7 +110,13 @@ namespace REMS.Web.Areas.Admin.Controllers
                         saleStatus = "";
                         saleStatus2 = "hide";
                     }
-                    else //if (ft.Status == "Sale")
+                    else if (ft.Status == "Regenerate")
+                    {
+                        st = "yellow"; home = "homesale.png";
+                        saleStatus = "";
+                        saleStatus2 = "hide";
+                    }
+                    else //if (ft.Status == "Regenerate")
                     {
                         st = "red"; home = "homesale.png";
                         saleStatus = "";
@@ -150,7 +156,7 @@ namespace REMS.Web.Areas.Admin.Controllers
                                 <h2 style='display: table !important;'><img src='/Content/img/<% homepng %>' /> <% FlatNo %> - <% FlatType %></h2>
                             </a>
                             <ul class='dropdown-menu pull-right no-padding' role='menu'>
-                                <li class='no-padding <% SaleStatus2 %>'><a href='/Sale/Property/NewSale/<% FlatID %>'  target='_blank'>Sale</a></li>
+                                <li class='no-padding'><a href='/Sale/Property/NewSale/<% FlatID %>'  target='_blank'>Sale</a></li>
                                 <li class='no-padding '><a href='/Admin/CreateProperty/EditFlat/<% FlatID %>' target='_blank'>Edit Flat</a></li>
                                 <li class='no-padding '><a target='_blank' href='/Sale/Property/CalculatePrice/<% FlatID %>'  target='_blank'>View Details</a></li>
                                 <li class='divider'></li>

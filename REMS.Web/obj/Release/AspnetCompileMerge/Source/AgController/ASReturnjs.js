@@ -3,8 +3,8 @@ myApp.controller('ASReturnController', function ($scope, $http) {
     // Get all Property list for dropdownlist
     $scope.Error = "";
 
-    $http.get('/flat/GetPropertyList/').success(function (response) { $scope.Properties = response; });
-    $http.get('/flat/GetBanks/').success(function (response) { $scope.Banks = response; });
+    //$http.get('/flat/GetPropertyList/').success(function (response) { $scope.Properties = response; });
+    //$http.get('/flat/GetBanks/').success(function (response) { $scope.Banks = response; });
     $scope.inWords = function inWords(num) {
         if ((num = num.toString()).length > 9) return 'overflow';
         n = ('000000000' + num).substr(-9).match(/^(\d{2})(\d{2})(\d{2})(\d{1})(\d{2})$/);
@@ -44,13 +44,14 @@ myApp.controller('ASReturnController', function ($scope, $http) {
 
     }
     $scope.TowerChange = function () {
+        $("#loading").show();
         $http({
             method: 'Get',
             url: '/Admin/CreateProperty/GetFlatByTowerID',
             params: { towerid: $scope.Flat.TowerID }
         }).success(function (data) {
             $scope.FlatList = data;
-
+            $("#loading").hide();
         })
     }
     $scope.CheckGeneratedAssuredReturn = function () {
@@ -298,7 +299,6 @@ myApp.controller('ASReturnController', function ($scope, $http) {
             url: '/Customer/AssuredReturn/GenerateInstallment',
             params: { sid: sid, amt: amt, sdate: startdate, PDate: PDate }
         }).success(function (data) {
-            alert(data);
             $http({
                 method: 'Get',
                 url: '/Customer/AssuredReturn/GetAssuredReturnBySaleID',

@@ -21,6 +21,8 @@ namespace REMS.Data
             this.FlatOCharges = new HashSet<FlatOCharge>();
             this.FlatPLCs = new HashSet<FlatPLC>();
             this.SaleFlats = new HashSet<SaleFlat>();
+            this.ActivityLogs = new HashSet<ActivityLog>();
+            this.ReminderLetters = new HashSet<ReminderLetter>();
         }
     
         public int FlatID { get; set; }
@@ -58,5 +60,7 @@ namespace REMS.Data
         public virtual ICollection<FlatOCharge> FlatOCharges { get; set; }
         public virtual ICollection<FlatPLC> FlatPLCs { get; set; }
         public virtual ICollection<SaleFlat> SaleFlats { get; set; }
+        public virtual ICollection<ActivityLog> ActivityLogs { get; set; }
+        public virtual ICollection<ReminderLetter> ReminderLetters { get; set; }
     }
 }

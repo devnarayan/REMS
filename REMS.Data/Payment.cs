@@ -51,6 +51,7 @@ namespace REMS.Data
         public decimal ClearanceCharge { get; set; }
         public bool IsBounce { get; set; }
         public Nullable<int> CustomerID { get; set; }
+        public string PaymentType { get; set; }
     
         public virtual SaleFlat SaleFlat { get; set; }
     }

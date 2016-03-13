@@ -239,13 +239,14 @@ myApp.controller('PaymentController', function ($scope, $http, $filter) {
         $("#loading").show();
         $http({
             method: 'POST',
-            url: '/Payment/UpdateClearanceDetails',
+            url: '/Sale/Payment/UpdateClearanceDetails',
             data: { TransactionID: $("#TransactionID").val(), ChargeAmount: $("#ClearAmt").val(), Remarks: $("#Remarks").val(), ClearanceDate: $("#ClearanceDate").val(), IsBounce: $("#isBounce").is(":checked") },
         }).success(function (data) { //Showing success message $scope.status = "The Person Saved Successfully!!!";
-            if (data == '"Yes"') {
+            if (data == 'Yes') {
                 alert("Payment Clearance has been updated successfully!");
                 $scope.Error = 'Payment Clearance updated successfully.';
                 $("#loading").hide();
+                location.reload();
             }
             else {
                 alert("Payment Clearance has not been updated successfully!");
@@ -263,18 +264,7 @@ myApp.controller('PaymentController', function ($scope, $http, $filter) {
         $('#loading').show();
         $("#hidFlatID").val($scope.Flat.FlatID);
         var pid = $("#hidFlatID").val();
-        //var FName = $scope.Flat.flatname;
-
-        //if (FName == undefined) {
-        //    var FName = $scope.Flat.Result[0].FlatName;
-        //}
-
-
-        //var PID = $scope.PropertyID;
-        //if (PID == undefined) {
-        //    PID = $("#PropertyID").find(":selected").val();
-        //    $scope.PropertyID = PID;
-        //}
+       
         $scope.ThisInstallmentAmount = 500000;
         $scope.ThisInsTotalSum = 500000;
         $http({
@@ -702,7 +692,7 @@ myApp.controller('PaymentController', function ($scope, $http, $filter) {
         $http({
             method: 'Get',
             contentType: "application/json; charset=utf-8",
-            url: '/Payment/SearchPayment',
+            url: '/Sale/Payment/SearchPayment',
             params: { search: search,Flatid: pid, datefrom: datefrom, dateto: dateto, searchtext: searchtext },
             dataType: "json"
         }).success(function (data) {

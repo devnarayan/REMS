@@ -3,7 +3,14 @@
     ViewBag.Title = "GenerateAssuredInstallment";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@section topright{
+<div class="row">
+    <div class="col-xs-12 col-sm-7 col-md-7 col-lg-8">
+        <h1 class="page-title txt-color-blueDark"><i class="fa fa-pencil-square-o fa-fw "></i>Generate/Update Assured Return Installments </h1>
+    </div>
+</div>
 
+}
 <div  data-ng-app="ASReturnApp" role="main">
     <!-- RIBBON -->
     
@@ -11,12 +18,7 @@
     <!-- MAIN CONTENT -->
     <div id="content" data-ng-controller="ASReturnController">
 
-        <div class="row">
-            <div class="col-xs-12 col-sm-7 col-md-7 col-lg-8">
-                <h1 class="page-title txt-color-blueDark"><i class="fa fa-pencil-square-o fa-fw "></i>Generate/Update Assured Return Installments </h1>
-            </div>
-        </div>
-
+       
         <!-- widget grid -->
         <section id="widget-grid" class="" data-ng-init="RefundInit()">
             <input type="hidden" id="hidFlatID" name="hidFlatID" value="@ViewBag.ID" />

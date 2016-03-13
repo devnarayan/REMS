@@ -28,6 +28,7 @@ namespace REMS.Web.Areas.Sale.Controllers
         SerivceTaxService staxService;
         SaleFlatService saleService;
         CustomerService custService;
+        FlatService fltService;
         #endregion
         public PropertyController()
         {
@@ -37,6 +38,7 @@ namespace REMS.Web.Areas.Sale.Controllers
             saleService = new SaleFlatService();
             staxService = new SerivceTaxService();
             custService = new CustomerService();
+            fltService = new FlatService();
         }
         // GET: Sale/Property
         public ActionResult Index()
@@ -60,11 +62,32 @@ namespace REMS.Web.Areas.Sale.Controllers
             return View();
         }
 
+        public ActionResult ViewInstallment(int? Id)
+        {
+            ViewBag.ID = Id;
+            return View();
+        }
+
         #region ChargeList
         public string GetFlatDetails(int flatid)
         {
             FlatService fservice = new FlatService();
             var model = fservice.GetFlatDetails(flatid);
+            return Newtonsoft.Json.JsonConvert.SerializeObject(model);
+        }
+        public string GetFlatPLCList(int flatid)
+        {
+          var model=  fltService.GetFlatPLCList(flatid);
+          return   Newtonsoft.Json.JsonConvert.SerializeObject(model);
+        }
+        public string GetFlatChargeList(int flatid)
+        {
+            var model = fltService.GetFlatChargeList(flatid);
+            return Newtonsoft.Json.JsonConvert.SerializeObject(model);
+        }
+        public string GetFlatoChargeList(int flatid)
+        {
+            var model = fltService.GetFlatOChargeList(flatid);
             return Newtonsoft.Json.JsonConvert.SerializeObject(model);
         }
 
@@ -321,7 +344,7 @@ namespace REMS.Web.Areas.Sale.Controllers
             }
             return bl.ToString();
         }
-     
+
         [WebMethod]
         public string SaveInstallment2(NewSaleModel sale)
         {
@@ -394,6 +417,7 @@ namespace REMS.Web.Areas.Sale.Controllers
                     mdl.CreateDate = DateTime.Now;
                     mdl.UserName = User.Identity.Name;
                     mdl.InstallmentServiceTaxID = staxService.GetServiceTax().ServiceTaxID;
+                    mdl.InsVersion = 0;
                     int ii = proService.AddFlatInstallment(mdl);
                     if (ii > 0)
                         bl = true;
@@ -413,54 +437,77 @@ namespace REMS.Web.Areas.Sale.Controllers
         {
             return Newtonsoft.Json.JsonConvert.SerializeObject(proService.GetFlatInstallment(flatid));
         }
-        public string GetFlatInstallmentWithCharges(int flatid, decimal flatsize)
+        public string GetFlatInstallmentWithCharges(int flatid, decimal flatsize, int version)
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(proService.GetFlatInstallmentWithCharges(flatid, flatsize));
+            return Newtonsoft.Json.JsonConvert.SerializeObject(proService.GetFlatInstallmentWithCharges(flatid, flatsize, version));
         }
         public string GetFlatInstallmentWithCharges2(int FlatID, decimal flatsize)
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(proService.GetFlatInstallmentWithCharges(FlatID, flatsize));
+            return Newtonsoft.Json.JsonConvert.SerializeObject(proService.GetFlatInstallmentWithCharges(FlatID, flatsize, 0));
         }
         public string DeleteInstallment(int flatid)
         {
             return Newtonsoft.Json.JsonConvert.SerializeObject(proService.DeleteFlatInstallment(flatid));
         }
 
-        public string SaleFlatSave(int flatid, decimal? salerate, string saleDate, string saletype)
+        public string SaleFlatSave(int flatid, decimal? salerate, string saleDate, string saletype, string planName)
         {
-           
-            SaleFlatModel model = new SaleFlatModel();
-            model.FlatID = flatid;
-            model.TotalAmount = salerate;
-            model.SaleDate = Convert.ToDateTime(saleDate, DataHelper.IndianDateFormat());
-            model.Status = saletype;
-            model.DemandStatus = 0;
-            ProjectService projService=new ProjectService();
-            model.ProjectID = projService.GetProjectByFlatID(flatid).ProjectID;
-            int i = saleService.AddSaleFlat(model);
-            if (i > 0)
+            if (!saleService.IsSaled(flatid))
             {
-                // Insert into customer
-                CustomerModel cust = new CustomerModel();
-                cust.SaleID = i;
-                cust.SaleStatus = true;
-                //cust.SaleStatus = saletype; 
-                int ii = custService.AddCustomer(cust);
-                return ii.ToString();
+
+                SaleFlatModel model = new SaleFlatModel();
+                model.FlatID = flatid;
+                model.TotalAmount = salerate;
+                model.SaleDate = Convert.ToDateTime(saleDate, DataHelper.IndianDateFormat());
+                model.Status = saletype;
+                model.DemandStatus = 0;
+                model.CreatedDate = DateTime.Now;
+                model.CreatedBy = User.Identity.Name.ToString();
+                model.PlanName = planName;
+                ProjectService projService = new ProjectService();
+                model.ProjectID = projService.GetProjectByFlatID(flatid).ProjectID;
+                int i = saleService.AddSaleFlat(model);
+                if (i > 0)
+                {
+                    // Insert into customer
+                    CustomerModel cust = new CustomerModel();
+                    cust.SaleID = i;
+                    cust.SaleStatus = true;
+                    //cust.SaleStatus = saletype; 
+                    int ii = custService.AddCustomer(cust);
+                    return ii.ToString();
+                }
+                else
+                {
+                    return "0";
+                }
             }
             else
             {
-                return "0";
+                // Update SaleFlat
+                var model = new SaleFlatModel
+                {
+                    FlatID = flatid,
+                    UpdateBy = User.Identity.Name.ToString(),
+                    UpdateDate = DateTime.Now,
+                    Status = saletype,
+                    PlanName = planName,
+                    TotalAmount = salerate,
+                    SaleDate = Convert.ToDateTime(saleDate, DataHelper.IndianDateFormat()),
+                };
+                int i = saleService.EditSaleFlatRegenerate(model);
+                return i.ToString();
             }
         }
 
-        public string SaleFlatTransfer(string FName, string MName, string LName, int salecustid, int OldCustId, string TransferAmount, string TDate)
+        public string SaleFlatTransfer(string AppTitle, string FName, string MName, string LName, int salecustid, int OldCustId, string TransferAmount, string TDate)
         {
             System.Globalization.DateTimeFormatInfo dtinfo = new System.Globalization.DateTimeFormatInfo();
             dtinfo.ShortDatePattern = "dd/MM/yyyy";
             dtinfo.DateSeparator = "/";
             Hashtable htPayment = new Hashtable();
             htPayment.Add("CustomerID", OldCustId);
+            htPayment.Add("AppTitle", AppTitle);
             htPayment.Add("FName", FName);
             htPayment.Add("MName", MName);
             htPayment.Add("LName", LName);
@@ -468,7 +515,7 @@ namespace REMS.Web.Areas.Sale.Controllers
             htPayment.Add("TransferAmount", TransferAmount);
             htPayment.Add("UserName", User.Identity.Name);
             htPayment.Add("TransferDate", Convert.ToDateTime(TDate, dtinfo));
-           // htPayment.Add("IsBounce", IsBounce);
+            // htPayment.Add("IsBounce", IsBounce);
             if (obj.ExecuteProcedure("Update_TransferProperty", htPayment))
             {
                 string st = "Yes";
@@ -479,7 +526,41 @@ namespace REMS.Web.Areas.Sale.Controllers
 
         }
 
-     
+
+        #endregion
+
+        #region Edit Flat Charge
+        public string EditFlatCharge(int flatID, int editTypeID, string editType, string amount)
+        {
+            Hashtable ht = new Hashtable();
+            ht.Add("FlatID", flatID);
+            ht.Add("EditType", editType);
+            ht.Add("EditTypeID", editTypeID);
+            ht.Add("Amount", amount);
+            bool bl = obj.ExecuteProcedure("spEditFlatAmount", ht);
+            // Update FlatSale Status
+            fltService.UpdateFlatSaleStatus(flatID, User.Identity.Name.ToString(), "Regenerate");
+            return Newtonsoft.Json.JsonConvert.SerializeObject(bl);
+        }
+        public string DeleteFlatAttribute(int flatID, int editTypeID, string editType, string amount)
+        {
+            Hashtable ht = new Hashtable();
+            ht.Add("FlatID", flatID);
+            ht.Add("EditType", editType);
+            ht.Add("EditTypeID", editTypeID);
+            bool bl = obj.ExecuteProcedure("spDeleteFlatAmount", ht);
+            // Update FlatSale Status
+            fltService.UpdateFlatSaleStatus(flatID, User.Identity.Name.ToString(), "Regenerate");
+            return Newtonsoft.Json.JsonConvert.SerializeObject(bl);
+        }
+        #endregion
+
+        #region View Installments
+        public string GetInstallmentVersion(int flatid)
+        {
+            var model = proService.GetInstallmentVersion(flatid);
+            return Newtonsoft.Json.JsonConvert.SerializeObject(model);
+        }
         #endregion
     }
 }

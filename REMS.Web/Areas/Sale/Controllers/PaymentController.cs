@@ -362,7 +362,7 @@ namespace REMS.Web.Areas.Sale.Controllers
         {
             return Newtonsoft.Json.JsonConvert.SerializeObject(payService.GetBank());
         }
-        public string InsertPaymentDetails(string InstallmentNo, string Saleid, string Flatname, string DueAmount, string DueDate, string PaymentMode, string ChequeNo, string ChequeDate, string BankName, string BankBranch, string Remarks, string PayDate, string Amtrcvdinwrds, string ReceivedAmount, string IsPrint, string IsEmailSent, string EmailTo, string CustomerName, string CustomerID, bool chkInterest)
+        public string InsertPaymentDetails(string InstallmentNo, string Saleid, string Flatname, string DueAmount, string DueDate, string PaymentMode, string ChequeNo, string ChequeDate, string BankName, string BankBranch, string Remarks, string PayDate, string Amtrcvdinwrds, string ReceivedAmount, string IsPrint, string IsEmailSent, string EmailTo, string CustomerName, string CustomerID, bool chkInterest,string PaymentType)
         {
             try
             {
@@ -375,7 +375,7 @@ namespace REMS.Web.Areas.Sale.Controllers
                 bool IsPrintReceipt = Convert.ToBoolean(IsPrint);
                 bool IsSentEmail = Convert.ToBoolean(IsEmailSent);
 
-                bool bl = SavePayment(Convert.ToDecimal(DueAmount), Saleid, Flatname, InstallmentNo, InterestAmount, Convert.ToDecimal(ReceivedAmount), PaymentMode, Amtrcvdinwrds, PaymentNumber, MaxTransactionID, ChequeNo, ChequeDate, BankName, BankBranch, Remarks, PayDate, IsPrintReceipt, IsSentEmail, CustomerName, CustomerID, DueDate, chkInterest);
+                bool bl = SavePayment(Convert.ToDecimal(DueAmount), Saleid, Flatname, InstallmentNo, InterestAmount, Convert.ToDecimal(ReceivedAmount), PaymentMode, Amtrcvdinwrds, PaymentNumber, MaxTransactionID, ChequeNo, ChequeDate, BankName, BankBranch, Remarks, PayDate, IsPrintReceipt, IsSentEmail, CustomerName, CustomerID, DueDate, chkInterest,PaymentType);
 
                 PrintReceipt re = new PrintReceipt();
                 ReceiptModel model = new ReceiptModel();
@@ -404,7 +404,7 @@ namespace REMS.Web.Areas.Sale.Controllers
             }
 
         }
-        protected bool SavePayment(decimal DueAmount, string Saleid, string FlatName, string InstallmentNo, decimal InterestAmount, decimal PayAmount, string PaymentMode, String Amtrcvdinwrds, String PaymentNo, int TransactionID, string ChequeNo, string ChequeDate, string BankName, string BankBranch, string Remarks, string PayDate, bool IsPrint, bool IsEmailSent, string CustomerName, string CustomerID, string DueDate, bool chkInterest)
+        protected bool SavePayment(decimal DueAmount, string Saleid, string FlatName, string InstallmentNo, decimal InterestAmount, decimal PayAmount, string PaymentMode, String Amtrcvdinwrds, String PaymentNo, int TransactionID, string ChequeNo, string ChequeDate, string BankName, string BankBranch, string Remarks, string PayDate, bool IsPrint, bool IsEmailSent, string CustomerName, string CustomerID, string DueDate, bool chkInterest,string PaymentType)
         {
             try
             {
@@ -444,6 +444,7 @@ namespace REMS.Web.Areas.Sale.Controllers
                 htPayment.Add("CustomerID", Convert.ToInt32(CustomerID));
                 htPayment.Add("CreatedBy", User.Identity.Name);
                 htPayment.Add("Interest", chkInterest);
+                htPayment.Add("PaymentType", PaymentType);
                 if (obj.ExecuteProcedure("Insert_Payment", htPayment))
                 {
                     return true;

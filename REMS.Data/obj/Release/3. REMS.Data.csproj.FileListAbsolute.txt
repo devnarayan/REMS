@@ -58,3 +58,13 @@ E:\ComaxCosulting\1. SourceCode\REMS_New\REMS.Data\bin\Release\EntityFramework.S
 E:\ComaxCosulting\1. SourceCode\REMS_New\REMS.Data\obj\Release\3. REMS.Data.csprojResolveAssemblyReference.cache
 E:\ComaxCosulting\1. SourceCode\REMS_New\REMS.Data\obj\Release\REMS.Data.dll
 E:\ComaxCosulting\1. SourceCode\REMS_New\REMS.Data\obj\Release\REMS.Data.pdb
+E:\ComaxCosulting\1. SourceCode\REMSGit\REMS.Data\bin\Release\REMS.Data.dll.config
+E:\ComaxCosulting\1. SourceCode\REMSGit\REMS.Data\bin\Release\REMS.Data.dll
+E:\ComaxCosulting\1. SourceCode\REMSGit\REMS.Data\bin\Release\REMS.Data.pdb
+E:\ComaxCosulting\1. SourceCode\REMSGit\REMS.Data\bin\Release\EntityFramework.dll
+E:\ComaxCosulting\1. SourceCode\REMSGit\REMS.Data\bin\Release\EntityFramework.SqlServer.dll
+E:\ComaxCosulting\1. SourceCode\REMSGit\REMS.Data\bin\Release\EntityFramework.xml
+E:\ComaxCosulting\1. SourceCode\REMSGit\REMS.Data\bin\Release\EntityFramework.SqlServer.xml
+E:\ComaxCosulting\1. SourceCode\REMSGit\REMS.Data\obj\Release\3. REMS.Data.csprojResolveAssemblyReference.cache
+E:\ComaxCosulting\1. SourceCode\REMSGit\REMS.Data\obj\Release\REMS.Data.dll
+E:\ComaxCosulting\1. SourceCode\REMSGit\REMS.Data\obj\Release\REMS.Data.pdb

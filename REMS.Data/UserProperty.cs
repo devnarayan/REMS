@@ -19,6 +19,7 @@ namespace REMS.Data
         public string UserName { get; set; }
         public Nullable<System.DateTime> AssignDate { get; set; }
         public string AssignUser { get; set; }
+        public Nullable<bool> IsAuthority { get; set; }
     
         public virtual Project Project { get; set; }
     }

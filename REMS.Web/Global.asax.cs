@@ -17,6 +17,9 @@ namespace REMS.Web
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            string path = System.Web.HttpContext.Current.Server.MapPath("/");//.ApplicationPath.ToLower();
+            log4net.GlobalContext.Properties["LogFileName"] = path + "\\App_Log\\MyloggerSite.log";
+            log4net.Config.DOMConfigurator.Configure();
         }
     }
 }

@@ -2,25 +2,27 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+@section topright{
+<div class="row">
+    <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+        <h1 class="page-title txt-color-blueDark">
+            <!-- PAGE HEADER -->
+            <i class="fa-fw fa fa-building-o"></i>
+            Property Project
+            <span>
+                >
+                View
+            </span>
+        </h1>
+    </div>
+    <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+        <!-- Button trigger modal -->
+    </div>
+</div>
+}
 <!-- MAIN CONTENT -->
 <div id="content" data-ng-app="AdminApp" data-ng-controller="PropertyProjectController">
-    <div class="row">
-        <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-            <h1 class="page-title txt-color-blueDark">
-                <!-- PAGE HEADER -->
-                <i class="fa-fw fa fa-building-o"></i>
-                Property Project
-                <span>
-                    >
-                    View
-                </span>
-            </h1>
-        </div>
-        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-            <!-- Button trigger modal -->
-        </div>
-    </div>
+   
     <div class="alert alert-block alert-success" style="display:none;">
         <a class="close" data-dismiss="alert" href="#">×</a>
         <h4 class="alert-heading"><i class="fa fa-check-square-o"></i> Check validation!</h4>
@@ -72,7 +74,7 @@
                                             <th data-class="expand"><i class="fa fa-fw fa-building-o text-muted hidden-md hidden-sm hidden-xs"></i> Office Address</th>
                                             <th data-hide="phone"><i class="fa fa-fw fa-calendar text-muted hidden-md hidden-sm hidden-xs"></i> Possession Date</th>
                                             <th>Property Address</th>
-                                            <th data-hide="phone,tablet"><i class="fa fa-fw fa-map-marker txt-color-blue hidden-md hidden-sm hidden-xs"></i> Action</th>
+                                          @*  <th data-hide="phone,tablet"><i class="fa fa-fw fa-map-marker txt-color-blue hidden-md hidden-sm hidden-xs"></i> Action</th>*@
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -83,7 +85,7 @@
                                             <td>{{pr.OfficeAddress}}</td>
                                             <td>{{pr.PossessionDateSt}}</td>
                                             <td>{{pr.Address}}</td>
-                                            <td><span><i class="fa fa-edit"></i> <i class="fa fa-desktop"></i> <i class="fa fa-eye"></i> </span></td>
+                                            @*<td><span><i class="fa fa-edit"></i> <i class="fa fa-desktop"></i> <i class="fa fa-eye"></i> </span></td>*@
                                         </tr>
                                     </tbody>
                                 </table>

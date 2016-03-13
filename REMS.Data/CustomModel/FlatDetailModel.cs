@@ -43,10 +43,13 @@ namespace REMS.Data.CustomModel
         public string Block { get; set; }
         public Nullable<int> FloorNo { get; set; }
         public string FloorName { get; set; }
+        public string ProjectName { get; set; }
+        public string CompanyName { get; set; }
         public List<FlatPLCModel> FlatPLCList { get; set; }
         public List<FlatChargeModel> FlatChargeList { get; set; }
         public List<Rem_GetFlatPlanCharge_Result> FlatPlanCharge { get; set; }
         public ObjectResult<spPlanSummary_Result> ChargeSummaryList { get; set; }
         public List<FlatOChargeModel> FlatOChargeList { get; set; }
+        public List<SaleFlatModel> SaleFlatModel { get; set; }
     }
 }

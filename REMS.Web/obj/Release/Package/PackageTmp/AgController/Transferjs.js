@@ -288,6 +288,7 @@ myApp.controller('TransferController', function ($scope, $http, $filter) {
     }
     // Refund functions
     $scope.RefundInit = function () {
+        $http.get('/Sale/Payment/GetBank/').success(function (response) { $scope.Banks = response; });
         //$('#loading').show();
         GetLoadTowerFlat();
         var sid = $("#SaleID").val();
@@ -304,6 +305,7 @@ myApp.controller('TransferController', function ($scope, $http, $filter) {
                 var mth = ddate.getMonth() + 1;
                 if (mth < 10) mth = "0" + mth;
                 $scope.SaleDate = ddate.getDate() + "/" + mth + "/" + ddate.getFullYear();
+                $scope.FlatID = data.Sale[0].FlatID;
                 $http({
                     method: 'Get',
                     url: '/Customer/Transfer/GetPropertyInfoByFlatID',
@@ -323,8 +325,8 @@ myApp.controller('TransferController', function ($scope, $http, $filter) {
                     $http({
                         method: 'Get',
                         contentType: "application/json; charset=utf-8",
-                        url: '/Payment/SearchPaymentBySaleID',
-                        params: { saleid: $scope.SaleID },
+                        url: '/sale/Payment/EditSearchPayment',
+                        params: { Flatid: $scope.FlatID },
                         dataType: "json"
                     }).success(function (data) {
                         $scope.SearchList = data;
@@ -362,6 +364,8 @@ myApp.controller('TransferController', function ($scope, $http, $filter) {
             params: { PID: pid }
         }).success(function (data, status, headers, config) {
             $scope.SaleID = data;
+            if (data != 0) {
+
             $("#SaleID").val(data);
             $http({
                 method: 'Get',
@@ -373,47 +377,68 @@ myApp.controller('TransferController', function ($scope, $http, $filter) {
                 var mth = ddate.getMonth() + 1;
                 if (mth < 10) mth = "0" + mth;
                 $scope.SaleDate = ddate.getDate() + "/" + mth + "/" + ddate.getFullYear();
+                $scope.FlatID = data.Sale[0].FlatID;
                 $http({
-                    method: 'Get',
-                    url: '/Customer/Transfer/GetPropertyInfoByFlatID',
-                    params: { fid: data.Sale[0].FlatID, saleid: $scope.SaleID }
+                    method: 'Post',
+                    url: '/Customer/Transfer/CheckRefundProperty',
+                    data: { SaleID: saleid },
                 }).success(function (data) {
-                    $scope.Pro = data;
-                    //$("#PlanType").find(":selected").val(data.PlanID);
-                    //$("#PlanType").find(":selected").text(data.PlanName);
-                    //$("#lblFlatNo").html(pname);
-                    //$("#lblSaleDate").html($scope.SaleDate)
-                    //$("#lblPlanName").text(data.PlanName);
-                    //$("#hidPlanType").val(data.PlanName);
+                    var ata = data.replace('"', '').replace('"', '');
+                    if (ata == "Booked" || ata == "Sale") {
+                        $http({
+                            method: 'Get',
+                            url: '/Customer/Transfer/GetPropertyInfoByFlatID',
+                            params: { fid: data.Sale[0].FlatID, saleid: $scope.SaleID }
+                        }).success(function (data) {
+                            $scope.Pro = data;
+                            //$("#PlanType").find(":selected").val(data.PlanID);
+                            //$("#PlanType").find(":selected").text(data.PlanName);
+                            //$("#lblFlatNo").html(pname);
+                            //$("#lblSaleDate").html($scope.SaleDate)
+                            //$("#lblPlanName").text(data.PlanName);
+                            //$("#hidPlanType").val(data.PlanName);
 
-                    $('#loading').hide();
-                    $("#dvSearch").hide();
-                    $("#dvShow").show();
-                    $http({
-                        method: 'Get',
-                        contentType: "application/json; charset=utf-8",
-                        url: '/sale/Payment/EditSearchPayment',
-                        params: { SaleID: $scope.SaleID },
-                        dataType: "json"
-                    }).success(function (data) {
-                        $scope.SearchList = data;
-                        $('#loading').hide();
-                        var total = 0;
-                        for (var i = 0; i < $scope.SearchList.length; i++) {
-                            var list = $scope.SearchList[i];
-                            total += list.Amount;
-                        }
-                        $scope.TotalSearchAmount = total;
-                        inWords(total);
-                    }).then(function () {
-                        $('#loading').hide();
-                        $("#dvSearch").hide();
-                        $("#dvShow").show();
-                    })
+                            $('#loading').hide();
+                            $("#dvSearch").hide();
+                            $("#dvShow").show();
+                            $http({
+                                method: 'Get',
+                                contentType: "application/json; charset=utf-8",
+                                url: '/sale/Payment/EditSearchPayment',
+                                params: { Flatid: $scope.FlatID },
+                                dataType: "json"
+                            }).success(function (data) {
+                                $scope.SearchList = data;
+                                $('#loading').hide();
+                                var total = 0;
+                                for (var i = 0; i < $scope.SearchList.length; i++) {
+                                    var list = $scope.SearchList[i];
+                                    total += list.Amount;
+                                }
+                                $scope.TotalSearchAmount = total;
+                                inWords(total);
+                            }).then(function () {
+                                $('#loading').hide();
+                                $("#dvSearch").hide();
+                                $("#dvShow").show();
+                            })
+                        })
+                    }
+                    else {
+                        alert("This property not available for refund. not sale yet.");
+                    }
                 })
+               
             })
+            }
+            else {
+                alert("This property not available for refund, not Sale yet.");
+            }
         }).then(function () {
+            $("#loading").hide();
         })
+            
+       
     }
 
     $scope.RefundProperty = function () {
@@ -442,7 +467,8 @@ myApp.controller('TransferController', function ($scope, $http, $filter) {
                     url: '/Customer/Transfer/CheckRefundProperty',
                     data: { SaleID: saleid },
                 }).success(function (data) {
-                    if (data == "No") {
+                    var ata = data.replace('"', '').replace('"', '');
+                    if (ata == "Booked" || ata=="Sale") {
                         $http({
                             method: 'Post',
                             url: '/Customer/Transfer/RefundPropertySave',
@@ -456,7 +482,7 @@ myApp.controller('TransferController', function ($scope, $http, $filter) {
                         })
                     }
                     else {
-                        alert("Property already refunded.");
+                        alert("Property is available on sale. can't  refund.");
                         $('#loading').hide();
                     }
                 })

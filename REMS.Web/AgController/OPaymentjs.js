@@ -52,7 +52,7 @@ myApp.controller('OtherPaymentController', function ($scope, $http, $filter) {
         $http({
             method: 'Get',
             url: '/Admin/CreateProperty/GetFlatByTowerID',
-            params: { towerid: $scope.Flat.TowerID }
+            params: { towerid: $scope.FlatSearch.TowerID }
         }).success(function (data) {
             $scope.FlatList = data;
            // $("#loading").hide();
@@ -78,7 +78,7 @@ myApp.controller('OtherPaymentController', function ($scope, $http, $filter) {
         //    $http({
         //        method: 'Get',
         //        url: '/Admin/CreateProperty/GetFlatByTowerID',
-        //        params: { towerid: $scope.Flat.TowerID }
+    //        params: { towerid: $scope.FlatSearch.TowerID }
         //    }).success(function (data) {
         //        $scope.FlatList = data;
         //        $("#loading").hide();
@@ -125,7 +125,7 @@ myApp.controller('OtherPaymentController', function ($scope, $http, $filter) {
     // Save Payment
     $scope.EditSearchPayment = function () {
         $('#loading').show();
-        $("#hidFlatID").val($scope.Flat.FlatID);
+        $("#hidFlatID").val($scope.FlatSearch.FlatID);
         var pid = $("#hidFlatID").val();
         //var proID = $("#PropertyID").val();
         //var searchtext = $("#searchtext").val();
@@ -281,7 +281,7 @@ myApp.controller('OtherPaymentController', function ($scope, $http, $filter) {
 
     $scope.SearchCancelPayment = function () {
         $('#loading').show();
-        $("#hidFlatID").val($scope.Flat.FlatID);
+        $("#hidFlatID").val($scope.FlatSearch.FlatID);
         var Flatid = $("#hidFlatID").val();
        // var propertyName = $("#FlatID :selected").text()
         var search = $("#searchby").val();
@@ -352,7 +352,7 @@ myApp.controller('OtherPaymentController', function ($scope, $http, $filter) {
     }
     $scope.SearchBackupReceipt = function () {
         $('#loading').show();
-        $("#hidFlatID").val($scope.Flat.FlatID);
+        $("#hidFlatID").val($scope.FlatSearch.FlatID);
         var pid = $("#hidFlatID").val();
         var propertyName = $("#PropertyTypeID :selected").text()
         var search = $("#searchby").val();

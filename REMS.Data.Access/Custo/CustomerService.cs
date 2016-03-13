@@ -30,6 +30,10 @@ namespace REMS.Data.Access.Custo
             {
                 try
                 {
+                    if (String.IsNullOrEmpty(model.AppTitle)) model.AppTitle = "";
+                    if (String.IsNullOrEmpty(model.FName)) model.FName = "";
+                    if (String.IsNullOrEmpty(model.LName)) model.LName = "";
+                    if (String.IsNullOrEmpty(model.MName)) model.MName = "";
                     Mapper.CreateMap<CustomerModel, Customer>();
                     var mdl = Mapper.Map<CustomerModel, Customer>(model);
                     dbContext.Customers.Add(mdl);
@@ -63,6 +67,22 @@ namespace REMS.Data.Access.Custo
             if (model.SecCoDOBst != null)
             {
                 model.SecCoDOB = Convert.ToDateTime(model.SecCoDOBst, dtinfo);
+            }
+            if (string.IsNullOrEmpty(model.AppTitle))
+            {
+                model.AppTitle = "";
+            }
+            if (string.IsNullOrEmpty(model.FName))
+            {
+                model.FName = "";
+            }
+            if (string.IsNullOrEmpty(model.MName))
+            {
+                model.MName = "";
+            }
+            if (string.IsNullOrEmpty(model.LName))
+            {
+                model.LName = "";
             }
             Mapper.CreateMap<CustomerModel, Customer>();
             var cDetail = Mapper.Map<CustomerModel, Customer>(model);

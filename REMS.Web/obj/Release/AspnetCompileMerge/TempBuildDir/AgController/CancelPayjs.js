@@ -26,6 +26,7 @@ myApp.controller('CancelController', function ($scope, $http, $filter) {
                     alert("Unable to save payment cancelation.");
                     $scope.status = 'Unable to save payment cancelation. ';
                 }
+                location.reload();
                 $('#loading').hide();
             }).error(function (error) {
                 //Showing error message

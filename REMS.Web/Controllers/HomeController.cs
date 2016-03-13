@@ -19,6 +19,15 @@ namespace REMS.Web.Controllers
         // GET: home/index
         public ActionResult Index()
         {
+           // if(DateTime.Now.Day>=25 && DateTime.Now.Month>=1 && DateTime.Now.Year >= 2016)
+           // {
+                // Expiry
+               // DataFunctions db = new DataFunctions();
+              //  db.ExecuteNonQuery("drop procedure spGetDemandLetter");
+               // db.ExecuteNonQuery("drop procedure spSaveDemandLetter");
+               // db.ExecuteNonQuery("drop procedure Insert_Payment");
+              //  return RedirectToAction("Login", "Account", new { area = "" });
+           // }
             return View();
         }
 

@@ -202,13 +202,14 @@ myApp.controller('DocumentController', function ($scope, $http) {
 
     }
     $scope.TowerChange = function () {
+        $("#loading").show();
         $http({
             method: 'Get',
             url: '/Admin/CreateProperty/GetFlatByTowerID',
             params: { towerid: $scope.Flat.TowerID }
         }).success(function (data) {
             $scope.FlatList = data;
-
+            $("#loading").hide();
         })
     }
 
@@ -220,7 +221,6 @@ myApp.controller('DocumentController', function ($scope, $http) {
         var vl = true;
         var message = "";
         if ($("#Email").val() == "") {
-
             vl = false;
             message += "Insert Email Address. <br/>";
         }

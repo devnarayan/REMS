@@ -14,6 +14,11 @@ namespace REMS.Data
     
     public partial class Customer
     {
+        public Customer()
+        {
+            this.ReminderLetters = new HashSet<ReminderLetter>();
+        }
+    
         public int CustomerID { get; set; }
         public Nullable<int> SaleID { get; set; }
         public string AppTitle { get; set; }
@@ -139,5 +144,6 @@ namespace REMS.Data
         public string UserName { get; set; }
     
         public virtual SaleFlat SaleFlat { get; set; }
+        public virtual ICollection<ReminderLetter> ReminderLetters { get; set; }
     }
 }

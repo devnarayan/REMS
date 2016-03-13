@@ -3,23 +3,26 @@
     ViewBag.Title = "MakeOPayment";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div id="content" data-ng-app="OPaymentApp" data-ng-controller="OtherPaymentController">
-    <div class="row">
-        <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-            <h1 class="page-title txt-color-blueDark">
-                <!-- PAGE HEADER -->
-                <i class="fa-fw fa fa-flag"></i>
-                Other Payments
-                <span>
-                    >
-                    Search
-                </span>
-            </h1>
-        </div>
-        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-            <!-- Button trigger modal -->
-        </div>
+@section topright{
+<div class="row">
+    <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+        <h1 class="page-title txt-color-blueDark">
+            <!-- PAGE HEADER -->
+            <i class="fa-fw fa fa-flag"></i>
+            Other Payments
+            <span>
+                >
+                Search
+            </span>
+        </h1>
     </div>
+    <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+        <!-- Button trigger modal -->
+    </div>
+</div>
+}
+<div id="content" data-ng-app="OPaymentApp" data-ng-controller="OtherPaymentController">
+   
     <div id="MessageArea" class="alert alert-block alert-{{MessageClass}}" style="display:none;">
         <a class="close" data-dismiss="alert" href="#">×</a>
         <h4 class="alert-heading"><i class="fa fa-check-square-o"></i> {{MessageTitle}}</h4>
@@ -54,13 +57,13 @@
                                         <div class="row">
                                             <div class="col-md-1 col-md-offset-1">Property</div>
                                             <div class="col-md-2">
-                                                <select name="TowerID" class="form-control" data-ng-change="TowerChange()" data-ng-model="Flat.TowerID" id="searchby" required>
+                                                <select name="TowerID" class="form-control" data-ng-change="TowerChange()" data-ng-model="FlatSearch.TowerID" id="searchby" required>
                                                     <option data-ng-repeat="pro in TowerList" value="{{ pro.TowerID }}">{{pro.TowerName }}</option>
                                                 </select>
                                             </div>
                                             <div class="col-md-2">Property Name</div>
                                             <div class="col-md-3">
-                                                <select name="FlatID" class="form-control" data-ng-model="Flat.FlatID" id="FlatID" required>
+                                                <select name="FlatID" class="form-control" data-ng-model="FlatSearch.FlatID" id="FlatID" required>
                                                     <option data-ng-repeat="fl in FlatList" value="{{ fl.FlatID }}">{{ fl.FlatNo }}</option>
                                                 </select>
                                             </div>
@@ -591,7 +594,6 @@
     $(document).ready(function () {
         $('#loading').hide();
         $('#btnSubmitPayment').click(function () {
-            $('#btnSubmitPayment').hide();
         })
     });
     </script>
